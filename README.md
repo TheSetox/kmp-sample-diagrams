@@ -1,5 +1,6 @@
-# kmp-diagram-samples
-Architecture Samples when using Kotlin Multiplatform.
+# kmp-sample-diagrams
+
+Sample diagrams when using Kotlin Multiplatform.
 
 # I. Adding KMP
 
