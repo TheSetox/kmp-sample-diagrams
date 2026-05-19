@@ -28,9 +28,6 @@ flowchart TB
     DUI --> DVM --> DUseCase --> DRepository
   end
 
-  ARepository -. "same behavior\nseparate code" .- IRepository
-  IRepository -. "same behavior\nseparate code" .- DRepository
-
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   class AUI,AVM,AUseCase,ARepository,IUI,IVM,IUseCase,IRepository,DUI,DVM,DUseCase,DRepository app;
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
