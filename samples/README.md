@@ -23,7 +23,7 @@ For iOS, open the `iosApp` folder in Xcode when present and use the sample READM
 | Baseline | [`modular-native`](modular-native/) | Platform-specific feature modules. |
 | Baseline | [`three-layer-native`](three-layer-native/) | Platform-specific UI, domain, and data layers. |
 | Main KMP | [`kmp-native-ui`](kmp-native-ui/) | Shared logic with native UI per platform. |
-| Main KMP | [`kmp-compose-ui`](kmp-compose-ui/) | Shared Compose UI and logic. |
+| Main KMP | [`kmp-compose-ui`](kmp-compose-ui/) | Shared Compose UI with native logic. |
 | Main KMP | [`kmp-data-layer`](kmp-data-layer/) | Shared data layer only. |
 | Main KMP | [`kmp-presentation-layer`](kmp-presentation-layer/) | Shared presentation layer only. |
 | Main KMP | [`kmp-ui-layer`](kmp-ui-layer/) | Shared Compose UI only. |

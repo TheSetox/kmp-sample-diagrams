@@ -1,28 +1,28 @@
 # KMP Compose UI
 
-        Shared Compose UI and shared logic in one KMP library.
+Shared Compose UI with platform-specific ViewModel, use case, repository, and data source logic.
 
-        ## Modules
+## Modules
 
-        | Module | Purpose |
+| Module | Purpose |
 | --- | --- |
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `shared` | Shared shared ui and logic KMP library. |
+| `shared` | Shared Compose UI KMP library. |
 
-        ## Run
+## Run
 
-        ```sh
-        ./gradlew -p samples/kmp-compose-ui :desktopApp:run
-        ./gradlew -p samples/kmp-compose-ui :androidApp:assembleDebug
-        ./gradlew -p samples/kmp-compose-ui :shared:assemble
-        ```
+```sh
+./gradlew -p samples/kmp-compose-ui :desktopApp:run
+./gradlew -p samples/kmp-compose-ui :androidApp:assembleDebug
+./gradlew -p samples/kmp-compose-ui :shared:assemble
+```
 
-        ## iOS
+## iOS
 
-        ```sh
-        ./gradlew -p samples/kmp-compose-ui :shared:linkDebugFrameworkIosSimulatorArm64
-        ```
+```sh
+./gradlew -p samples/kmp-compose-ui :shared:linkDebugFrameworkIosSimulatorArm64
+```
 
-        The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework in Xcode.
