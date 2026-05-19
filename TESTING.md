@@ -26,6 +26,16 @@ Opened `http://127.0.0.1:8000/index.html` in the in-app browser. The viewer load
 - 19 sidebar links
 - no viewer error state
 
+Forced the bundled fallback with `http://127.0.0.1:8000/index.html?source=bundle`. The viewer loaded:
+
+- 19 diagram cards
+- 19 Mermaid-rendered SVG diagrams
+- 19 sidebar links
+- no viewer error state
+- `data-diagram-source="bundle"`
+
+The in-app browser blocks direct `file://` navigation by policy, so the fallback path was verified through the explicit bundle source switch. The same bundle is loaded by `index.html` as a local script for direct browser opens.
+
 ## Gradle Checks
 
 ```sh

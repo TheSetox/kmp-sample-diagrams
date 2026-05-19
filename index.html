@@ -295,11 +295,14 @@
       </main>
     </div>
 
+    <script src="diagrams/bundle.js"></script>
     <script type="module">
       import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
 
       const nav = document.querySelector("#nav");
       const content = document.querySelector("#content");
+      const bundle = window.KMP_DIAGRAM_BUNDLE;
+      const forceBundle = new URLSearchParams(window.location.search).get("source") === "bundle";
 
       mermaid.initialize({
         startOnLoad: false,
@@ -420,12 +423,49 @@
           .join("");
       }
 
-      async function loadDiagram(entry) {
-        const response = await fetch(`diagrams/${entry.file}`);
-        if (!response.ok) {
-          throw new Error(`Unable to load ${entry.file}`);
+      async function loadManifest() {
+        if (forceBundle && bundle?.manifest) {
+          document.documentElement.dataset.diagramSource = "bundle";
+          return bundle.manifest;
         }
-        const markdown = await response.text();
+        try {
+          const manifestResponse = await fetch("diagrams/manifest.json");
+          if (!manifestResponse.ok) {
+            throw new Error("Unable to load diagrams/manifest.json");
+          }
+          document.documentElement.dataset.diagramSource = "fetch";
+          return await manifestResponse.json();
+        } catch (error) {
+          if (bundle?.manifest) {
+            document.documentElement.dataset.diagramSource = "bundle";
+            return bundle.manifest;
+          }
+          throw error;
+        }
+      }
+
+      async function loadMarkdown(entry) {
+        const bundledMarkdown = bundle?.diagrams?.[entry.file];
+        if (forceBundle && bundledMarkdown) {
+          return bundledMarkdown;
+        }
+        try {
+          const response = await fetch(`diagrams/${entry.file}`);
+          if (!response.ok) {
+            throw new Error(`Unable to load ${entry.file}`);
+          }
+          return await response.text();
+        } catch (error) {
+          if (bundledMarkdown) {
+            document.documentElement.dataset.diagramSource = "bundle";
+            return bundledMarkdown;
+          }
+          throw error;
+        }
+      }
+
+      async function loadDiagram(entry) {
+        const markdown = await loadMarkdown(entry);
         return `
           <article class="diagram-card" id="${slug(entry.file)}">
             <header class="diagram-header">
@@ -439,11 +479,7 @@
 
       async function main() {
         try {
-          const manifestResponse = await fetch("diagrams/manifest.json");
-          if (!manifestResponse.ok) {
-            throw new Error("Unable to load diagrams/manifest.json");
-          }
-          const manifest = await manifestResponse.json();
+          const manifest = await loadManifest();
           renderNav(manifest);
           const cards = await Promise.all(manifest.map(loadDiagram));
           content.innerHTML = cards.join("");
@@ -452,7 +488,7 @@
           content.innerHTML = `
             <div class="error">
               <strong>Could not load diagrams.</strong>
-              Serve this folder with a local HTTP server, then open the server URL.
+              Open the repository version that includes diagrams/bundle.js, or serve this folder with a local HTTP server.
               Details: ${escapeHtml(error.message)}
             </div>
           `;

@@ -24,13 +24,13 @@ The old PNG diagrams are preserved on the `feature/legacy-png-reference` branch.
 
 ## Diagram Viewer
 
-Serve the repository root with any static HTTP server, then open the local URL:
+Open [`index.html`](index.html) directly in a browser, or serve the repository root with any static HTTP server:
 
 ```sh
 python3 -m http.server 8000
 ```
 
-The viewer uses browser `fetch`, so opening `index.html` directly from `file://` may not load the Markdown files.
+When served over HTTP, the viewer loads Markdown files from [`diagrams/`](diagrams/). When opened directly from `file://`, it falls back to [`diagrams/bundle.js`](diagrams/bundle.js), because browsers block `fetch()` for local Markdown files.
 
 ## Scenarios
 
