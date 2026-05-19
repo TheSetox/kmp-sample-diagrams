@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KMP 2026 Diagrams</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #17212b;
+        --muted: #536575;
+        --line: #d7e0e8;
+        --panel: #f7fafc;
+        --app: #d8ecff;
+        --shared: #fff0b8;
+        --accent: #0f6d83;
+        --accent-soft: #e4f5f8;
+        --bg: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        border-right: 1px solid var(--line);
+        background: var(--panel);
+        padding: 24px 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+        border: 2px solid var(--accent);
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 68% 38%, var(--accent) 0 3px, transparent 4px),
+          linear-gradient(145deg, #bcecf4, #eefbff);
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .brand-mark::before {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 16px;
+        width: 18px;
+        height: 8px;
+        border-top: 3px solid var(--accent);
+        border-radius: 70% 70% 0 0;
+        transform: rotate(-8deg);
+      }
+
+      .brand-mark::after {
+        content: "";
+        position: absolute;
+        right: -5px;
+        top: 13px;
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid var(--accent);
+        border-right: 2px solid var(--accent);
+        transform: rotate(45deg);
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.2;
+      }
+
+      .brand p {
+        margin: 2px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .nav-group {
+        margin: 18px 0;
+      }
+
+      .nav-group h2 {
+        margin: 0 0 8px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 8px 10px;
+        border-radius: 8px;
+        color: var(--ink);
+        font-size: 14px;
+        line-height: 1.25;
+        text-decoration: none;
+      }
+
+      .nav-link:hover,
+      .nav-link:focus {
+        background: var(--accent-soft);
+        outline: none;
+      }
+
+      main {
+        min-width: 0;
+      }
+
+      .hero {
+        padding: 42px clamp(22px, 5vw, 64px) 28px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero h2 {
+        margin: 0;
+        max-width: 980px;
+        font-size: clamp(34px, 5vw, 72px);
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      .hero p {
+        max-width: 760px;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.55;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .pill {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 7px 11px;
+        color: var(--muted);
+        background: #fff;
+        font-size: 13px;
+      }
+
+      .content {
+        padding: 28px clamp(18px, 4vw, 56px) 64px;
+      }
+
+      .diagram-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        margin: 0 0 22px;
+        background: #fff;
+        overflow: hidden;
+      }
+
+      .diagram-header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--line);
+        background: var(--panel);
+      }
+
+      .diagram-header h3 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      .diagram-header a {
+        color: var(--accent);
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .markdown {
+        padding: 18px;
+      }
+
+      .markdown h1 {
+        margin: 0 0 8px;
+        font-size: 24px;
+      }
+
+      .markdown p {
+        max-width: 850px;
+        margin: 0 0 16px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .markdown ul {
+        color: var(--muted);
+      }
+
+      .mermaid {
+        width: 100%;
+        overflow: auto;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .error {
+        border: 1px solid #e5a7a7;
+        border-radius: 8px;
+        background: #fff7f7;
+        color: #8a1f1f;
+        padding: 14px 16px;
+      }
+
+      @media (max-width: 860px) {
+        .shell {
+          display: block;
+        }
+
+        .sidebar {
+          position: static;
+          height: auto;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div>
+            <h1>KMP diagrams</h1>
+            <p>2026 structure map</p>
+          </div>
+        </div>
+        <nav id="nav" aria-label="Diagram list"></nav>
+      </aside>
+
+      <main>
+        <section class="hero">
+          <h2>Kotlin Multiplatform sample diagrams</h2>
+          <p>
+            Mermaid source diagrams for AGP 9 compatible Kotlin Multiplatform
+            structures. App entry points stay in platform modules, and shared
+            code stays in KMP library modules.
+          </p>
+          <div class="meta">
+            <span class="pill">AGP 9.2.0</span>
+            <span class="pill">Kotlin 2.3.21</span>
+            <span class="pill">Compose Multiplatform 1.11.0</span>
+            <span class="pill">Android + iOS + Desktop</span>
+          </div>
+        </section>
+
+        <section id="content" class="content" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+      const nav = document.querySelector("#nav");
+      const content = document.querySelector("#content");
+
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "strict",
+        theme: "base",
+        themeVariables: {
+          fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
+          primaryColor: "#d8ecff",
+          primaryBorderColor: "#1f5f8b",
+          primaryTextColor: "#17212b",
+          lineColor: "#536575",
+          secondaryColor: "#fff0b8",
+          tertiaryColor: "#e4f5f8"
+        }
+      });
+
+      function slug(value) {
+        return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      }
+
+      function escapeHtml(value) {
+        return value
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function renderMarkdown(markdown) {
+        const lines = markdown.trim().split(/\r?\n/);
+        const html = [];
+        let paragraph = [];
+        let list = [];
+        let fence = null;
+        let fenceBody = [];
+
+        function flushParagraph() {
+          if (paragraph.length > 0) {
+            html.push(`<p>${paragraph.map(escapeHtml).join(" ")}</p>`);
+            paragraph = [];
+          }
+        }
+
+        function flushList() {
+          if (list.length > 0) {
+            html.push(`<ul>${list.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`);
+            list = [];
+          }
+        }
+
+        for (const line of lines) {
+          if (line.startsWith("```")) {
+            if (fence) {
+              flushParagraph();
+              flushList();
+              const code = fenceBody.join("\n");
+              if (fence === "mermaid") {
+                html.push(`<div class="mermaid">${escapeHtml(code)}</div>`);
+              } else {
+                html.push(`<pre><code>${escapeHtml(code)}</code></pre>`);
+              }
+              fence = null;
+              fenceBody = [];
+            } else {
+              flushParagraph();
+              flushList();
+              fence = line.slice(3).trim() || "text";
+            }
+            continue;
+          }
+
+          if (fence) {
+            fenceBody.push(line);
+            continue;
+          }
+
+          if (line.startsWith("# ")) {
+            flushParagraph();
+            flushList();
+            html.push(`<h1>${escapeHtml(line.slice(2).trim())}</h1>`);
+          } else if (line.startsWith("## ")) {
+            flushParagraph();
+            flushList();
+            html.push(`<h2>${escapeHtml(line.slice(3).trim())}</h2>`);
+          } else if (line.startsWith("- ")) {
+            flushParagraph();
+            list.push(line.slice(2).trim());
+          } else if (line.trim() === "") {
+            flushParagraph();
+            flushList();
+          } else {
+            paragraph.push(line.trim());
+          }
+        }
+
+        flushParagraph();
+        flushList();
+        return html.join("\n");
+      }
+
+      function renderNav(items) {
+        const groups = items.reduce((accumulator, item) => {
+          const entries = accumulator.get(item.category) || [];
+          entries.push(item);
+          accumulator.set(item.category, entries);
+          return accumulator;
+        }, new Map());
+        nav.innerHTML = Array.from(groups.entries())
+          .map(([category, entries]) => `
+            <div class="nav-group">
+              <h2>${escapeHtml(category)}</h2>
+              ${entries.map((entry) => `
+                <a class="nav-link" href="#${slug(entry.file)}">${escapeHtml(entry.title)}</a>
+              `).join("")}
+            </div>
+          `)
+          .join("");
+      }
+
+      async function loadDiagram(entry) {
+        const response = await fetch(`diagrams/${entry.file}`);
+        if (!response.ok) {
+          throw new Error(`Unable to load ${entry.file}`);
+        }
+        const markdown = await response.text();
+        return `
+          <article class="diagram-card" id="${slug(entry.file)}">
+            <header class="diagram-header">
+              <h3>${escapeHtml(entry.title)}</h3>
+              <a href="${escapeHtml(entry.sample)}">Open sample</a>
+            </header>
+            <div class="markdown">${renderMarkdown(markdown)}</div>
+          </article>
+        `;
+      }
+
+      async function main() {
+        try {
+          const manifestResponse = await fetch("diagrams/manifest.json");
+          if (!manifestResponse.ok) {
+            throw new Error("Unable to load diagrams/manifest.json");
+          }
+          const manifest = await manifestResponse.json();
+          renderNav(manifest);
+          const cards = await Promise.all(manifest.map(loadDiagram));
+          content.innerHTML = cards.join("");
+          await mermaid.run({ querySelector: ".mermaid" });
+        } catch (error) {
+          content.innerHTML = `
+            <div class="error">
+              <strong>Could not load diagrams.</strong>
+              Serve this folder with a local HTTP server, then open the server URL.
+              Details: ${escapeHtml(error.message)}
+            </div>
+          `;
+        }
+      }
+
+      main();
+    </script>
+  </body>
+</html>
