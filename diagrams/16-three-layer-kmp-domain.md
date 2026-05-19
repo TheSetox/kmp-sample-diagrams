@@ -3,17 +3,19 @@
 The domain layer is shared. Presentation stays native and contains UI plus ViewModel; data implementations stay native.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native"]
-    AUI["HomeScreen.kt\nCompose UI"]
-    AVM["HomeViewModel.kt"]
-    ARepository["TaskRepository.kt"]
-    ADataSource["TaskDataSource.kt"]
-    AUI --> AVM
-    ARepository --> ADataSource
+flowchart TB
+  subgraph Desktop["desktopApp"]
+    direction TB
+    DUI["HomeWindow.kt\nCompose Desktop UI"]
+    DVM["HomeViewModel.kt"]
+    DRepository["TaskRepository.kt"]
+    DDataSource["TaskDataSource.kt"]
+    DUI --> DVM
+    DRepository --> DDataSource
   end
 
-  subgraph IOS["iosApp native"]
+  subgraph IOS["iosApp"]
+    direction TB
     IUI["ContentView.swift\nSwiftUI"]
     IVM["HomeViewModel.swift"]
     IRepository["TaskRepository.swift"]
@@ -22,13 +24,14 @@ flowchart LR
     IRepository --> IDataSource
   end
 
-  subgraph Desktop["desktopApp native"]
-    DUI["HomeWindow.kt\nCompose Desktop UI"]
-    DVM["HomeViewModel.kt"]
-    DRepository["TaskRepository.kt"]
-    DDataSource["TaskDataSource.kt"]
-    DUI --> DVM
-    DRepository --> DDataSource
+  subgraph Android["androidApp"]
+    direction TB
+    AUI["HomeScreen.kt\nCompose UI"]
+    AVM["HomeViewModel.kt"]
+    ARepository["TaskRepository.kt"]
+    ADataSource["TaskDataSource.kt"]
+    AUI --> AVM
+    ARepository --> ADataSource
   end
 
   subgraph KMP["sharedDomain KMP module"]

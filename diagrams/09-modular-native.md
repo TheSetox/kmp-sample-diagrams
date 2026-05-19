@@ -4,47 +4,7 @@ Baseline modular architecture. Each app target owns native feature modules; each
 
 ```mermaid
 flowchart TB
-  subgraph Android["androidApp app target"]
-    direction LR
-    subgraph AF1["feature-one module"]
-      direction TB
-      AF1UI["HomeScreen.kt"]
-      AF1VM["HomeViewModel.kt"]
-      AF1Repo["TaskRepository.kt"]
-      AF1Source["TaskDataSource.kt"]
-      AF1UI --> AF1VM --> AF1Repo --> AF1Source
-    end
-    subgraph AF2["feature-two module"]
-      direction TB
-      AF2UI["DetailsScreen.kt"]
-      AF2VM["DetailsViewModel.kt"]
-      AF2Repo["DetailsRepository.kt"]
-      AF2Source["DetailsDataSource.kt"]
-      AF2UI --> AF2VM --> AF2Repo --> AF2Source
-    end
-  end
-
-  subgraph IOS["iosApp app target"]
-    direction LR
-    subgraph IF1["feature-one module"]
-      direction TB
-      IF1UI["HomeView.swift"]
-      IF1VM["HomeViewModel.swift"]
-      IF1Repo["TaskRepository.swift"]
-      IF1Source["TaskDataSource.swift"]
-      IF1UI --> IF1VM --> IF1Repo --> IF1Source
-    end
-    subgraph IF2["feature-two module"]
-      direction TB
-      IF2UI["DetailsView.swift"]
-      IF2VM["DetailsViewModel.swift"]
-      IF2Repo["DetailsRepository.swift"]
-      IF2Source["DetailsDataSource.swift"]
-      IF2UI --> IF2VM --> IF2Repo --> IF2Source
-    end
-  end
-
-  subgraph Desktop["desktopApp app target"]
+  subgraph Desktop["desktopApp"]
     direction LR
     subgraph DF1["feature-one module"]
       direction TB
@@ -64,8 +24,45 @@ flowchart TB
     end
   end
 
-  AF2Source ~~~ IF1UI
-  IF2Source ~~~ DF1UI
+  subgraph IOS["iosApp"]
+    direction LR
+    subgraph IF1["feature-one module"]
+      direction TB
+      IF1UI["HomeView.swift"]
+      IF1VM["HomeViewModel.swift"]
+      IF1Repo["TaskRepository.swift"]
+      IF1Source["TaskDataSource.swift"]
+      IF1UI --> IF1VM --> IF1Repo --> IF1Source
+    end
+    subgraph IF2["feature-two module"]
+      direction TB
+      IF2UI["DetailsView.swift"]
+      IF2VM["DetailsViewModel.swift"]
+      IF2Repo["DetailsRepository.swift"]
+      IF2Source["DetailsDataSource.swift"]
+      IF2UI --> IF2VM --> IF2Repo --> IF2Source
+    end
+  end
+
+  subgraph Android["androidApp"]
+    direction LR
+    subgraph AF1["feature-one module"]
+      direction TB
+      AF1UI["HomeScreen.kt"]
+      AF1VM["HomeViewModel.kt"]
+      AF1Repo["TaskRepository.kt"]
+      AF1Source["TaskDataSource.kt"]
+      AF1UI --> AF1VM --> AF1Repo --> AF1Source
+    end
+    subgraph AF2["feature-two module"]
+      direction TB
+      AF2UI["DetailsScreen.kt"]
+      AF2VM["DetailsViewModel.kt"]
+      AF2Repo["DetailsRepository.kt"]
+      AF2Source["DetailsDataSource.kt"]
+      AF2UI --> AF2VM --> AF2Repo --> AF2Source
+    end
+  end
 
   classDef native fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   class AF1UI,AF1VM,AF1Repo,AF1Source,AF2UI,AF2VM,AF2Repo,AF2Source,IF1UI,IF1VM,IF1Repo,IF1Source,IF2UI,IF2VM,IF2Repo,IF2Source,DF1UI,DF1VM,DF1Repo,DF1Source,DF2UI,DF2VM,DF2Repo,DF2Source native;

@@ -3,23 +3,26 @@
 Domain and presentation are shared. Presentation contains shared Compose UI and ViewModel; data implementations remain native.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native data"]
-    ARepository["TaskRepository.kt"]
-    ADataSource["TaskDataSource.kt"]
-    ARepository --> ADataSource
+flowchart TB
+  subgraph Desktop["desktopApp"]
+    direction TB
+    DRepository["TaskRepository.kt"]
+    DDataSource["TaskDataSource.kt"]
+    DRepository --> DDataSource
   end
 
-  subgraph IOS["iosApp native data"]
+  subgraph IOS["iosApp"]
+    direction TB
     IRepository["TaskRepository.swift"]
     IDataSource["TaskDataSource.swift"]
     IRepository --> IDataSource
   end
 
-  subgraph Desktop["desktopApp native data"]
-    DRepository["TaskRepository.kt"]
-    DDataSource["TaskDataSource.kt"]
-    DRepository --> DDataSource
+  subgraph Android["androidApp"]
+    direction TB
+    ARepository["TaskRepository.kt"]
+    ADataSource["TaskDataSource.kt"]
+    ARepository --> ADataSource
   end
 
   subgraph Presentation["sharedPresentation KMP module"]

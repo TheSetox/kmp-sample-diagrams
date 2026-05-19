@@ -3,16 +3,19 @@
 Feature two shares UI and data as separate KMP modules. Native ViewModels connect the shared UI to the shared data layer.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native"]
+flowchart TB
+  subgraph Android["androidApp"]
+    direction TB
     AVM["DetailsViewModel.kt"]
   end
 
-  subgraph IOS["iosApp native"]
+  subgraph IOS["iosApp"]
+    direction TB
     IVM["DetailsViewModel.swift"]
   end
 
-  subgraph Desktop["desktopApp native"]
+  subgraph Desktop["desktopApp"]
+    direction TB
     DVM["DetailsViewModel.kt"]
   end
 

@@ -4,25 +4,7 @@ Baseline with separate platform app targets. There is no shared KMP module.
 
 ```mermaid
 flowchart TB
-  subgraph Android["androidApp app target"]
-    direction TB
-    AUI["HomeScreen.kt\nCompose UI"]
-    AVM["HomeViewModel.kt"]
-    ARepository["TaskRepository.kt"]
-    ADataSource["TaskDataSource.kt"]
-    AUI --> AVM --> ARepository --> ADataSource
-  end
-
-  subgraph IOS["iosApp app target"]
-    direction TB
-    IUI["ContentView.swift\nSwiftUI"]
-    IVM["HomeViewModel.swift"]
-    IRepository["TaskRepository.swift"]
-    IDataSource["TaskDataSource.swift"]
-    IUI --> IVM --> IRepository --> IDataSource
-  end
-
-  subgraph Desktop["desktopApp app target"]
+  subgraph Desktop["desktopApp"]
     direction TB
     DUI["HomeWindow.kt\nCompose Desktop UI"]
     DVM["HomeViewModel.kt"]
@@ -31,8 +13,23 @@ flowchart TB
     DUI --> DVM --> DRepository --> DDataSource
   end
 
-  ADataSource ~~~ IUI
-  IDataSource ~~~ DUI
+  subgraph IOS["iosApp"]
+    direction TB
+    IUI["ContentView.swift\nSwiftUI"]
+    IVM["HomeViewModel.swift"]
+    IRepository["TaskRepository.swift"]
+    IDataSource["TaskDataSource.swift"]
+    IUI --> IVM --> IRepository --> IDataSource
+  end
+
+  subgraph Android["androidApp"]
+    direction TB
+    AUI["HomeScreen.kt\nCompose UI"]
+    AVM["HomeViewModel.kt"]
+    ARepository["TaskRepository.kt"]
+    ADataSource["TaskDataSource.kt"]
+    AUI --> AVM --> ARepository --> ADataSource
+  end
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   class AUI,AVM,ARepository,ADataSource,IUI,IVM,IRepository,IDataSource,DUI,DVM,DRepository,DDataSource app;

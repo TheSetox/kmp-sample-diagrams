@@ -3,16 +3,16 @@
 Only Compose UI is shared with Compose Multiplatform. Native ViewModels call native repositories and data sources.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native"]
-    AHost["MainActivity"]
-    AVM["HomeViewModel.kt"]
-    ARepository["TaskRepository.kt"]
-    ADataSource["TaskDataSource.kt"]
-    AVM --> ARepository --> ADataSource
+flowchart TB
+  subgraph Desktop["desktopApp"]
+    DHost["main()"]
+    DVM["HomeViewModel.kt"]
+    DRepository["TaskRepository.kt"]
+    DDataSource["TaskDataSource.kt"]
+    DVM --> DRepository --> DDataSource
   end
 
-  subgraph IOS["iosApp native"]
+  subgraph IOS["iosApp"]
     IHost["SwiftUI App"]
     IVM["HomeViewModel.swift"]
     IRepository["TaskRepository.swift"]
@@ -20,12 +20,12 @@ flowchart LR
     IVM --> IRepository --> IDataSource
   end
 
-  subgraph Desktop["desktopApp native"]
-    DHost["main()"]
-    DVM["HomeViewModel.kt"]
-    DRepository["TaskRepository.kt"]
-    DDataSource["TaskDataSource.kt"]
-    DVM --> DRepository --> DDataSource
+  subgraph Android["androidApp"]
+    AHost["MainActivity"]
+    AVM["HomeViewModel.kt"]
+    ARepository["TaskRepository.kt"]
+    ADataSource["TaskDataSource.kt"]
+    AVM --> ARepository --> ADataSource
   end
 
   subgraph KMP["sharedUI KMP module"]

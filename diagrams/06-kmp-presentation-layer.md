@@ -3,26 +3,29 @@
 Presentation is shared in a KMP module. In this two-layer scenario, presentation contains shared Compose UI and ViewModel; data remains native.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native"]
-    AEntry["MainActivity"]
-    ARepository["TaskRepository.kt"]
-    ADataSource["TaskDataSource.kt"]
-    ARepository --> ADataSource
+flowchart TB
+  subgraph Desktop["desktopApp"]
+    direction TB
+    DEntry["main()"]
+    DRepository["TaskRepository.kt"]
+    DDataSource["TaskDataSource.kt"]
+    DRepository --> DDataSource
   end
 
-  subgraph IOS["iosApp native"]
+  subgraph IOS["iosApp"]
+    direction TB
     IEntry["SwiftUI App"]
     IRepository["TaskRepository.swift"]
     IDataSource["TaskDataSource.swift"]
     IRepository --> IDataSource
   end
 
-  subgraph Desktop["desktopApp native"]
-    DEntry["main()"]
-    DRepository["TaskRepository.kt"]
-    DDataSource["TaskDataSource.kt"]
-    DRepository --> DDataSource
+  subgraph Android["androidApp"]
+    direction TB
+    AEntry["MainActivity"]
+    ARepository["TaskRepository.kt"]
+    ADataSource["TaskDataSource.kt"]
+    ARepository --> ADataSource
   end
 
   subgraph KMP["sharedPresentation KMP module"]

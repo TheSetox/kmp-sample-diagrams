@@ -3,23 +3,23 @@
 Feature two is consolidated into one shared KMP feature module. Feature one remains native in each app target.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native shell"]
-    AEntry["Android entry point"]
-    AFeatureOne["feature-one native module"]
-    AEntry --> AFeatureOne
+flowchart TB
+  subgraph Desktop["desktopApp"]
+    DEntry["Desktop entry point"]
+    DFeatureOne["feature-one native module"]
+    DEntry --> DFeatureOne
   end
 
-  subgraph IOS["iosApp native shell"]
+  subgraph IOS["iosApp"]
     IEntry["iOS entry point"]
     IFeatureOne["feature-one native module"]
     IEntry --> IFeatureOne
   end
 
-  subgraph Desktop["desktopApp native shell"]
-    DEntry["Desktop entry point"]
-    DFeatureOne["feature-one native module"]
-    DEntry --> DFeatureOne
+  subgraph Android["androidApp"]
+    AEntry["Android entry point"]
+    AFeatureOne["feature-one native module"]
+    AEntry --> AFeatureOne
   end
 
   subgraph KMP["featureTwoSharedFeature KMP module"]

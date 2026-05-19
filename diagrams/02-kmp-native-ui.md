@@ -3,20 +3,23 @@
 Shared Kotlin logic is used by every app, while each platform keeps its own native UI.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native"]
+flowchart TB
+  subgraph Android["androidApp"]
+    direction TB
     AEntry["MainActivity"]
     AUI["Compose screen"]
     AEntry --> AUI
   end
 
-  subgraph IOS["iosApp native"]
+  subgraph IOS["iosApp"]
+    direction TB
     IEntry["SwiftUI App"]
     IUI["SwiftUI view"]
     IEntry --> IUI
   end
 
-  subgraph Desktop["desktopApp native"]
+  subgraph Desktop["desktopApp"]
+    direction TB
     DEntry["main()"]
     DUI["Compose Desktop screen"]
     DEntry --> DUI

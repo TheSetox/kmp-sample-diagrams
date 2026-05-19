@@ -3,16 +3,16 @@
 Feature two shares Compose UI only. Native ViewModels call native repositories and data sources.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native"]
-    AHost["feature-two host"]
-    AVM["DetailsViewModel.kt"]
-    ARepository["DetailsRepository.kt"]
-    ADataSource["DetailsDataSource.kt"]
-    AVM --> ARepository --> ADataSource
+flowchart TB
+  subgraph Desktop["desktopApp"]
+    DHost["feature-two host"]
+    DVM["DetailsViewModel.kt"]
+    DRepository["DetailsRepository.kt"]
+    DDataSource["DetailsDataSource.kt"]
+    DVM --> DRepository --> DDataSource
   end
 
-  subgraph IOS["iosApp native"]
+  subgraph IOS["iosApp"]
     IHost["feature-two host"]
     IVM["DetailsViewModel.swift"]
     IRepository["DetailsRepository.swift"]
@@ -20,12 +20,12 @@ flowchart LR
     IVM --> IRepository --> IDataSource
   end
 
-  subgraph Desktop["desktopApp native"]
-    DHost["feature-two host"]
-    DVM["DetailsViewModel.kt"]
-    DRepository["DetailsRepository.kt"]
-    DDataSource["DetailsDataSource.kt"]
-    DVM --> DRepository --> DDataSource
+  subgraph Android["androidApp"]
+    AHost["feature-two host"]
+    AVM["DetailsViewModel.kt"]
+    ARepository["DetailsRepository.kt"]
+    ADataSource["DetailsDataSource.kt"]
+    AVM --> ARepository --> ADataSource
   end
 
   subgraph KMP["featureTwoSharedUI KMP module"]

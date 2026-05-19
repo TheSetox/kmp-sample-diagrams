@@ -4,41 +4,7 @@ Baseline layered architecture. Each app target owns a presentation module and a 
 
 ```mermaid
 flowchart TB
-  subgraph Android["androidApp app target"]
-    direction TB
-    subgraph APresentation["presentation module"]
-      direction TB
-      AUI["HomeScreen.kt\nCompose UI"]
-      AVM["HomeViewModel.kt"]
-      AUI --> AVM
-    end
-    subgraph AData["data module"]
-      direction TB
-      ARepository["TaskRepository.kt"]
-      ADataSource["TaskDataSource.kt"]
-      ARepository --> ADataSource
-    end
-    AVM --> ARepository
-  end
-
-  subgraph IOS["iosApp app target"]
-    direction TB
-    subgraph IPresentation["presentation module"]
-      direction TB
-      IUI["ContentView.swift\nSwiftUI"]
-      IVM["HomeViewModel.swift"]
-      IUI --> IVM
-    end
-    subgraph IData["data module"]
-      direction TB
-      IRepository["TaskRepository.swift"]
-      IDataSource["TaskDataSource.swift"]
-      IRepository --> IDataSource
-    end
-    IVM --> IRepository
-  end
-
-  subgraph Desktop["desktopApp app target"]
+  subgraph Desktop["desktopApp"]
     direction TB
     subgraph DPresentation["presentation module"]
       direction TB
@@ -55,8 +21,39 @@ flowchart TB
     DVM --> DRepository
   end
 
-  ADataSource ~~~ IUI
-  IDataSource ~~~ DUI
+  subgraph IOS["iosApp"]
+    direction TB
+    subgraph IPresentation["presentation module"]
+      direction TB
+      IUI["ContentView.swift\nSwiftUI"]
+      IVM["HomeViewModel.swift"]
+      IUI --> IVM
+    end
+    subgraph IData["data module"]
+      direction TB
+      IRepository["TaskRepository.swift"]
+      IDataSource["TaskDataSource.swift"]
+      IRepository --> IDataSource
+    end
+    IVM --> IRepository
+  end
+
+  subgraph Android["androidApp"]
+    direction TB
+    subgraph APresentation["presentation module"]
+      direction TB
+      AUI["HomeScreen.kt\nCompose UI"]
+      AVM["HomeViewModel.kt"]
+      AUI --> AVM
+    end
+    subgraph AData["data module"]
+      direction TB
+      ARepository["TaskRepository.kt"]
+      ADataSource["TaskDataSource.kt"]
+      ARepository --> ADataSource
+    end
+    AVM --> ARepository
+  end
 
   classDef native fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   class AUI,AVM,ARepository,ADataSource,IUI,IVM,IRepository,IDataSource,DUI,DVM,DRepository,DDataSource native;

@@ -3,16 +3,19 @@
 Presentation and data are shared. Presentation contains Compose UI and ViewModel; data contains repository and data sources.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native shell"]
+flowchart TB
+  subgraph Android["androidApp"]
+    direction TB
     AndroidEntry["MainActivity"]
   end
 
-  subgraph IOS["iosApp native shell"]
+  subgraph IOS["iosApp"]
+    direction TB
     IOSEntry["SwiftUI App"]
   end
 
-  subgraph Desktop["desktopApp native shell"]
+  subgraph Desktop["desktopApp"]
+    direction TB
     DesktopEntry["main()"]
   end
 

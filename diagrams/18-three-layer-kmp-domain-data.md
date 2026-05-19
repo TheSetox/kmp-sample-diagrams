@@ -3,20 +3,20 @@
 Domain and data are shared. Native presentation contains UI and ViewModel.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native presentation"]
+flowchart TB
+  subgraph Android["androidApp"]
     AUI["HomeScreen.kt\nCompose UI"]
     AVM["HomeViewModel.kt"]
     AUI --> AVM
   end
 
-  subgraph IOS["iosApp native presentation"]
+  subgraph IOS["iosApp"]
     IUI["ContentView.swift\nSwiftUI"]
     IVM["HomeViewModel.swift"]
     IUI --> IVM
   end
 
-  subgraph Desktop["desktopApp native presentation"]
+  subgraph Desktop["desktopApp"]
     DUI["HomeWindow.kt\nCompose Desktop UI"]
     DVM["HomeViewModel.kt"]
     DUI --> DVM

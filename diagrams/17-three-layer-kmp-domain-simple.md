@@ -3,20 +3,20 @@
 Simplified domain-sharing view. Native presentation calls into one shared domain KMP module.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native presentation"]
+flowchart TB
+  subgraph Android["androidApp"]
     AUI["HomeScreen.kt"]
     AVM["HomeViewModel.kt"]
     AUI --> AVM
   end
 
-  subgraph IOS["iosApp native presentation"]
+  subgraph IOS["iosApp"]
     IUI["ContentView.swift"]
     IVM["HomeViewModel.swift"]
     IUI --> IVM
   end
 
-  subgraph Desktop["desktopApp native presentation"]
+  subgraph Desktop["desktopApp"]
     DUI["HomeWindow.kt"]
     DVM["HomeViewModel.kt"]
     DUI --> DVM

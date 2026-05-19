@@ -3,22 +3,22 @@
 Feature two shares only its data layer. Feature two presentation remains native in each app target.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native"]
+flowchart TB
+  subgraph Android["androidApp"]
     direction TB
     AUI["DetailsScreen.kt"]
     AVM["DetailsViewModel.kt"]
     AUI --> AVM
   end
 
-  subgraph IOS["iosApp native"]
+  subgraph IOS["iosApp"]
     direction TB
     IUI["DetailsView.swift"]
     IVM["DetailsViewModel.swift"]
     IUI --> IVM
   end
 
-  subgraph Desktop["desktopApp native"]
+  subgraph Desktop["desktopApp"]
     direction TB
     DUI["DetailsWindow.kt"]
     DVM["DetailsViewModel.kt"]

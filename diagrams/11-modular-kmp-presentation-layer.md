@@ -3,26 +3,26 @@
 Feature two shares presentation as a KMP module. Presentation contains shared Compose UI and ViewModel; data remains native.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native"]
-    AHost["feature-two host"]
-    ARepository["DetailsRepository.kt"]
-    ADataSource["DetailsDataSource.kt"]
-    ARepository --> ADataSource
+flowchart TB
+  subgraph Desktop["desktopApp"]
+    DHost["feature-two host"]
+    DRepository["DetailsRepository.kt"]
+    DDataSource["DetailsDataSource.kt"]
+    DRepository --> DDataSource
   end
 
-  subgraph IOS["iosApp native"]
+  subgraph IOS["iosApp"]
     IHost["feature-two host"]
     IRepository["DetailsRepository.swift"]
     IDataSource["DetailsDataSource.swift"]
     IRepository --> IDataSource
   end
 
-  subgraph Desktop["desktopApp native"]
-    DHost["feature-two host"]
-    DRepository["DetailsRepository.kt"]
-    DDataSource["DetailsDataSource.kt"]
-    DRepository --> DDataSource
+  subgraph Android["androidApp"]
+    AHost["feature-two host"]
+    ARepository["DetailsRepository.kt"]
+    ADataSource["DetailsDataSource.kt"]
+    ARepository --> ADataSource
   end
 
   subgraph KMP["featureTwoSharedPresentation KMP module"]

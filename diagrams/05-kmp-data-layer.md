@@ -3,22 +3,22 @@
 The data layer is shared in a KMP module. Each app target keeps native presentation code: UI plus ViewModel.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native"]
+flowchart TB
+  subgraph Android["androidApp"]
     direction TB
     AUI["HomeScreen.kt\nCompose UI"]
     AVM["HomeViewModel.kt"]
     AUI --> AVM
   end
 
-  subgraph IOS["iosApp native"]
+  subgraph IOS["iosApp"]
     direction TB
     IUI["ContentView.swift\nSwiftUI"]
     IVM["HomeViewModel.swift"]
     IUI --> IVM
   end
 
-  subgraph Desktop["desktopApp native"]
+  subgraph Desktop["desktopApp"]
     direction TB
     DUI["HomeWindow.kt\nCompose Desktop UI"]
     DVM["HomeViewModel.kt"]

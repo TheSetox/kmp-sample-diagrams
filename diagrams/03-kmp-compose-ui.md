@@ -3,16 +3,16 @@
 All platform entry points are separate app modules. Compose UI is shared, while ViewModel, repository, and data source logic stay native.
 
 ```mermaid
-flowchart LR
-  subgraph Android["androidApp native shell"]
-    AEntry["MainActivity"]
-    AVM["Android ViewModel"]
-    ARepository["Android Repository"]
-    ADataSource["Android DataSource"]
-    AVM --> ARepository --> ADataSource
+flowchart TB
+  subgraph Desktop["desktopApp"]
+    DEntry["main()"]
+    DVM["Desktop ViewModel"]
+    DRepository["Desktop Repository"]
+    DDataSource["Desktop DataSource"]
+    DVM --> DRepository --> DDataSource
   end
 
-  subgraph IOS["iosApp native shell"]
+  subgraph IOS["iosApp"]
     IEntry["SwiftUI App"]
     IVM["iOS ViewModel"]
     IRepository["iOS Repository"]
@@ -20,12 +20,12 @@ flowchart LR
     IVM --> IRepository --> IDataSource
   end
 
-  subgraph Desktop["desktopApp native shell"]
-    DEntry["main()"]
-    DVM["Desktop ViewModel"]
-    DRepository["Desktop Repository"]
-    DDataSource["Desktop DataSource"]
-    DVM --> DRepository --> DDataSource
+  subgraph Android["androidApp"]
+    AEntry["MainActivity"]
+    AVM["Android ViewModel"]
+    ARepository["Android Repository"]
+    ADataSource["Android DataSource"]
+    AVM --> ARepository --> ADataSource
   end
 
   subgraph KMP["shared KMP module: Compose UI only"]
