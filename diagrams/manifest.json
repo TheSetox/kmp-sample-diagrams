@@ -1,0 +1,116 @@
+[
+  {
+    "title": "Normal Native",
+    "category": "Baselines",
+    "file": "01-normal-native.md",
+    "sample": "samples/normal-native"
+  },
+  {
+    "title": "KMP Native UI",
+    "category": "Main KMP",
+    "file": "02-kmp-native-ui.md",
+    "sample": "samples/kmp-native-ui"
+  },
+  {
+    "title": "KMP Compose UI",
+    "category": "Main KMP",
+    "file": "03-kmp-compose-ui.md",
+    "sample": "samples/kmp-compose-ui"
+  },
+  {
+    "title": "Layered Native",
+    "category": "Baselines",
+    "file": "04-layered-native.md",
+    "sample": "samples/layered-native"
+  },
+  {
+    "title": "KMP Data Layer",
+    "category": "Main KMP",
+    "file": "05-kmp-data-layer.md",
+    "sample": "samples/kmp-data-layer"
+  },
+  {
+    "title": "KMP Presentation Layer",
+    "category": "Main KMP",
+    "file": "06-kmp-presentation-layer.md",
+    "sample": "samples/kmp-presentation-layer"
+  },
+  {
+    "title": "KMP UI Layer",
+    "category": "Main KMP",
+    "file": "07-kmp-ui-layer.md",
+    "sample": "samples/kmp-ui-layer"
+  },
+  {
+    "title": "KMP Presentation And Data Layers",
+    "category": "Main KMP",
+    "file": "08-kmp-presentation-data-layer.md",
+    "sample": "samples/kmp-presentation-data-layer"
+  },
+  {
+    "title": "Modular Native",
+    "category": "Baselines",
+    "file": "09-modular-native.md",
+    "sample": "samples/modular-native"
+  },
+  {
+    "title": "Modular KMP Data Layer",
+    "category": "Modular KMP",
+    "file": "10-modular-kmp-data-layer.md",
+    "sample": "samples/modular-kmp-data-layer"
+  },
+  {
+    "title": "Modular KMP Presentation Layer",
+    "category": "Modular KMP",
+    "file": "11-modular-kmp-presentation-layer.md",
+    "sample": "samples/modular-kmp-presentation-layer"
+  },
+  {
+    "title": "Modular KMP UI Layer",
+    "category": "Modular KMP",
+    "file": "12-modular-kmp-ui-layer.md",
+    "sample": "samples/modular-kmp-ui-layer"
+  },
+  {
+    "title": "Modular KMP UI And Data Layers",
+    "category": "Modular KMP",
+    "file": "13-modular-kmp-ui-data-layer.md",
+    "sample": "samples/modular-kmp-ui-data-layer"
+  },
+  {
+    "title": "Modular KMP Shared Feature",
+    "category": "Modular KMP",
+    "file": "14-modular-kmp-shared-feature.md",
+    "sample": "samples/modular-kmp-shared-feature"
+  },
+  {
+    "title": "Three Layer Native",
+    "category": "Baselines",
+    "file": "15-three-layer-native.md",
+    "sample": "samples/three-layer-native"
+  },
+  {
+    "title": "Three Layer KMP Domain",
+    "category": "Three Layer KMP",
+    "file": "16-three-layer-kmp-domain.md",
+    "sample": "samples/three-layer-kmp-domain"
+  },
+  {
+    "title": "Three Layer KMP Domain Simple",
+    "category": "Three Layer KMP",
+    "file": "17-three-layer-kmp-domain-simple.md",
+    "sample": "samples/three-layer-kmp-domain-simple"
+  },
+  {
+    "title": "Three Layer KMP Domain And Data",
+    "category": "Three Layer KMP",
+    "file": "18-three-layer-kmp-domain-data.md",
+    "sample": "samples/three-layer-kmp-domain-data"
+  },
+  {
+    "title": "Three Layer KMP Domain And Presentation",
+    "category": "Three Layer KMP",
+    "file": "19-three-layer-kmp-domain-presentation.md",
+    "sample": "samples/three-layer-kmp-domain-presentation"
+  }
+]
