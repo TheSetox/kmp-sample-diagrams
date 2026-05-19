@@ -1,0 +1,6 @@
+.gradle/
+build/
+**/.gradle/
+**/build/
+local.properties
+.DS_Store
