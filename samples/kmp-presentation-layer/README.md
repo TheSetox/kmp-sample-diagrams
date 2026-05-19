@@ -1,28 +1,28 @@
 # KMP Presentation Layer
 
-        Shared presentation state and actions with platform-specific UI and data.
+Shared presentation with Compose UI and ViewModel in KMP. Repository and data source implementations stay native.
 
-        ## Modules
+## Modules
 
-        | Module | Purpose |
+| Module | Purpose |
 | --- | --- |
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `sharedPresentation` | Shared presentation KMP library. |
+| `sharedPresentation` | Shared Compose UI and ViewModel KMP library. |
 
-        ## Run
+## Run
 
-        ```sh
-        ./gradlew -p samples/kmp-presentation-layer :desktopApp:run
-        ./gradlew -p samples/kmp-presentation-layer :androidApp:assembleDebug
-        ./gradlew -p samples/kmp-presentation-layer :sharedPresentation:assemble
-        ```
+```sh
+./gradlew -p samples/kmp-presentation-layer :desktopApp:run
+./gradlew -p samples/kmp-presentation-layer :androidApp:assembleDebug
+./gradlew -p samples/kmp-presentation-layer :sharedPresentation:assemble
+```
 
-        ## iOS
+## iOS
 
-        ```sh
-        ./gradlew -p samples/kmp-presentation-layer :sharedPresentation:linkDebugFrameworkIosSimulatorArm64
-        ```
+```sh
+./gradlew -p samples/kmp-presentation-layer :sharedPresentation:linkDebugFrameworkIosSimulatorArm64
+```
 
-        The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework in Xcode.

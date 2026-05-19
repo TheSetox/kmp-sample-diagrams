@@ -1,47 +1,47 @@
 # 13. Modular KMP UI And Data Layers
 
-Feature two shares UI and data as separate KMP modules. Presentation remains platform-specific.
+Feature two shares UI and data as separate KMP modules. Native ViewModels connect the shared UI to the shared data layer.
 
 ```mermaid
 flowchart LR
   subgraph Android["androidApp native"]
-    AndroidVM["feature-two ViewModel"]
+    AVM["DetailsViewModel.kt"]
   end
 
   subgraph IOS["iosApp native"]
-    IOSVM["feature-two ViewModel"]
+    IVM["DetailsViewModel.swift"]
   end
 
   subgraph Desktop["desktopApp native"]
-    DesktopVM["feature-two ViewModel"]
+    DVM["DetailsViewModel.kt"]
   end
 
   subgraph UIKMP["featureTwoSharedUI KMP module"]
     direction LR
-    App["Compose App"]
-    Screen["feature-two shared screen"]
-    Components["feature-two components"]
+    App["Details Compose App"]
+    Screen["DetailsScreen.kt"]
+    Components["Details components"]
     App --> Screen --> Components
   end
 
   subgraph DataKMP["featureTwoSharedData KMP module"]
     direction LR
-    Repository["Repository"]
-    DataSource["DataSource"]
-    Mapper["Mapper"]
+    Repository["DetailsRepository.kt"]
+    DataSource["DetailsDataSource.kt"]
+    Mapper["DetailsDtoMapper.kt"]
     Repository --> DataSource --> Mapper
   end
 
-  AndroidVM --> App
-  IOSVM --> App
-  DesktopVM --> App
-  AndroidVM --> Repository
-  IOSVM --> Repository
-  DesktopVM --> Repository
+  AVM --> App
+  IVM --> App
+  DVM --> App
+  AVM --> Repository
+  IVM --> Repository
+  DVM --> Repository
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
-  class AndroidVM,IOSVM,DesktopVM app;
+  class AVM,IVM,DVM app;
   class App,Screen,Components,Repository,DataSource,Mapper kmp;
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px

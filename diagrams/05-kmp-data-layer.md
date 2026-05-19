@@ -1,49 +1,49 @@
 # 05. KMP Data Layer
 
-The data layer is shared in a KMP library. UI and presentation remain platform-specific.
+The data layer is shared in a KMP module. Each app target keeps native presentation code: UI plus ViewModel.
 
 ```mermaid
 flowchart LR
-  subgraph Android["androidApp"]
-    AUI["Android UI"]
-    AVM["Android ViewModel"]
-    AUseCase["Android UseCase"]
-    AUI --> AVM --> AUseCase
+  subgraph Android["androidApp native"]
+    direction TB
+    AUI["HomeScreen.kt\nCompose UI"]
+    AVM["HomeViewModel.kt"]
+    AUI --> AVM
   end
 
-  subgraph IOS["iosApp"]
-    IUI["SwiftUI"]
-    IVM["iOS ViewModel"]
-    IUseCase["iOS UseCase"]
-    IUI --> IVM --> IUseCase
+  subgraph IOS["iosApp native"]
+    direction TB
+    IUI["ContentView.swift\nSwiftUI"]
+    IVM["HomeViewModel.swift"]
+    IUI --> IVM
   end
 
-  subgraph Desktop["desktopApp"]
-    DUI["Desktop UI"]
-    DVM["Desktop ViewModel"]
-    DUseCase["Desktop UseCase"]
-    DUI --> DVM --> DUseCase
+  subgraph Desktop["desktopApp native"]
+    direction TB
+    DUI["HomeWindow.kt\nCompose Desktop UI"]
+    DVM["HomeViewModel.kt"]
+    DUI --> DVM
   end
 
   subgraph KMP["sharedData KMP module"]
     direction LR
-    Repository["Repository"]
-    Remote["Remote data source"]
-    Cache["Cache data source"]
-    Mapper["DTO mapper"]
+    Repository["TaskRepository.kt"]
+    Remote["RemoteTaskDataSource.kt"]
+    Cache["LocalTaskDataSource.kt"]
+    Mapper["TaskDtoMapper.kt"]
     Repository --> Remote
     Repository --> Cache
     Remote --> Mapper
     Cache --> Mapper
   end
 
-  AUseCase --> Repository
-  IUseCase --> Repository
-  DUseCase --> Repository
+  AVM --> Repository
+  IVM --> Repository
+  DVM --> Repository
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
-  class AUI,AVM,AUseCase,IUI,IVM,IUseCase,DUI,DVM,DUseCase app;
+  class AUI,AVM,IUI,IVM,DUI,DVM app;
   class Repository,Remote,Cache,Mapper kmp;
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px

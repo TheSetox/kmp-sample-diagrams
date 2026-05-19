@@ -1,51 +1,51 @@
 # 12. Modular KMP UI Layer
 
-Feature two shares Compose UI only. Presentation and data stay in app modules.
+Feature two shares Compose UI only. Native ViewModels call native repositories and data sources.
 
 ```mermaid
 flowchart LR
-  subgraph Android["androidApp"]
+  subgraph Android["androidApp native"]
     AHost["feature-two host"]
-    AVM["feature-two ViewModel"]
-    AUseCase["feature-two UseCase"]
-    ARepository["feature-two repository"]
-    AVM --> AUseCase --> ARepository
+    AVM["DetailsViewModel.kt"]
+    ARepository["DetailsRepository.kt"]
+    ADataSource["DetailsDataSource.kt"]
+    AVM --> ARepository --> ADataSource
   end
 
-  subgraph IOS["iosApp"]
+  subgraph IOS["iosApp native"]
     IHost["feature-two host"]
-    IVM["feature-two ViewModel"]
-    IUseCase["feature-two UseCase"]
-    IRepository["feature-two repository"]
-    IVM --> IUseCase --> IRepository
+    IVM["DetailsViewModel.swift"]
+    IRepository["DetailsRepository.swift"]
+    IDataSource["DetailsDataSource.swift"]
+    IVM --> IRepository --> IDataSource
   end
 
-  subgraph Desktop["desktopApp"]
+  subgraph Desktop["desktopApp native"]
     DHost["feature-two host"]
-    DVM["feature-two ViewModel"]
-    DUseCase["feature-two UseCase"]
-    DRepository["feature-two repository"]
-    DVM --> DUseCase --> DRepository
+    DVM["DetailsViewModel.kt"]
+    DRepository["DetailsRepository.kt"]
+    DDataSource["DetailsDataSource.kt"]
+    DVM --> DRepository --> DDataSource
   end
 
   subgraph KMP["featureTwoSharedUI KMP module"]
     direction LR
-    App["Compose App"]
-    Screen["feature-two shared screen"]
-    Components["feature-two components"]
+    App["Details Compose App"]
+    Screen["DetailsScreen.kt"]
+    Components["Details components"]
     App --> Screen --> Components
   end
 
   AHost --> App
   IHost --> App
   DHost --> App
-  Screen -. "events and state" .-> AVM
-  Screen -. "events and state" .-> IVM
-  Screen -. "events and state" .-> DVM
+  Screen -. "state and events" .-> AVM
+  Screen -. "state and events" .-> IVM
+  Screen -. "state and events" .-> DVM
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
-  class AHost,AVM,AUseCase,ARepository,IHost,IVM,IUseCase,IRepository,DHost,DVM,DUseCase,DRepository app;
+  class AHost,AVM,ARepository,ADataSource,IHost,IVM,IRepository,IDataSource,DHost,DVM,DRepository,DDataSource app;
   class App,Screen,Components kmp;
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px

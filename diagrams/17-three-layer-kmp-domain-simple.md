@@ -1,37 +1,43 @@
 # 17. Three Layer KMP Domain Simple
 
-Simplified domain-sharing view. The app modules depend on one shared domain KMP module.
+Simplified domain-sharing view. Native presentation calls into one shared domain KMP module.
 
 ```mermaid
 flowchart LR
-  subgraph Android["androidApp native"]
-    AndroidUI["Android UI"]
+  subgraph Android["androidApp native presentation"]
+    AUI["HomeScreen.kt"]
+    AVM["HomeViewModel.kt"]
+    AUI --> AVM
   end
 
-  subgraph IOS["iosApp native"]
-    IOSUI["SwiftUI"]
+  subgraph IOS["iosApp native presentation"]
+    IUI["ContentView.swift"]
+    IVM["HomeViewModel.swift"]
+    IUI --> IVM
   end
 
-  subgraph Desktop["desktopApp native"]
-    DesktopUI["Desktop UI"]
+  subgraph Desktop["desktopApp native presentation"]
+    DUI["HomeWindow.kt"]
+    DVM["HomeViewModel.kt"]
+    DUI --> DVM
   end
 
   subgraph KMP["sharedDomain KMP module"]
     direction LR
-    UseCase["UseCase"]
-    Entity["Domain entity"]
-    RepositoryPort["Repository contract"]
+    UseCase["GetTasksUseCase.kt"]
+    Entity["Task.kt"]
+    RepositoryPort["TaskRepository contract"]
     UseCase --> Entity
     UseCase --> RepositoryPort
   end
 
-  AndroidUI --> UseCase
-  IOSUI --> UseCase
-  DesktopUI --> UseCase
+  AVM --> UseCase
+  IVM --> UseCase
+  DVM --> UseCase
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
-  class AndroidUI,IOSUI,DesktopUI app;
+  class AUI,AVM,IUI,IVM,DUI,DVM app;
   class UseCase,Entity,RepositoryPort kmp;
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px

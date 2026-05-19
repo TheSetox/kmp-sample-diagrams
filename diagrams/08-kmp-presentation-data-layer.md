@@ -1,46 +1,47 @@
 # 08. KMP Presentation And Data Layers
 
-Presentation and data are shared. Platform app modules keep the entry points and host the UI.
+Presentation and data are shared. Presentation contains Compose UI and ViewModel; data contains repository and data sources.
 
 ```mermaid
 flowchart LR
-  subgraph Android["androidApp native"]
-    AndroidUI["Android UI"]
+  subgraph Android["androidApp native shell"]
+    AndroidEntry["MainActivity"]
   end
 
-  subgraph IOS["iosApp native"]
-    IOSUI["SwiftUI"]
+  subgraph IOS["iosApp native shell"]
+    IOSEntry["SwiftUI App"]
   end
 
-  subgraph Desktop["desktopApp native"]
-    DesktopUI["Desktop UI"]
+  subgraph Desktop["desktopApp native shell"]
+    DesktopEntry["main()"]
   end
 
   subgraph Presentation["sharedPresentation KMP module"]
     direction LR
-    VM["ViewModel"]
-    UseCase["UseCase"]
-    VM --> UseCase
+    App["Compose App"]
+    Screen["HomeScreen.kt"]
+    VM["HomeViewModel.kt"]
+    App --> Screen --> VM
   end
 
   subgraph Data["sharedData KMP module"]
     direction LR
-    Repository["Repository"]
-    Remote["Remote data source"]
-    Cache["Cache data source"]
+    Repository["TaskRepository.kt"]
+    Remote["RemoteTaskDataSource.kt"]
+    Cache["LocalTaskDataSource.kt"]
     Repository --> Remote
     Repository --> Cache
   end
 
-  AndroidUI --> VM
-  IOSUI --> VM
-  DesktopUI --> VM
-  UseCase --> Repository
+  AndroidEntry --> App
+  IOSEntry --> App
+  DesktopEntry --> App
+  VM --> Repository
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
-  class AndroidUI,IOSUI,DesktopUI app;
-  class VM,UseCase,Repository,Remote,Cache kmp;
+  class AndroidEntry,IOSEntry,DesktopEntry app;
+  class App,Screen,VM,Repository,Remote,Cache kmp;
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px

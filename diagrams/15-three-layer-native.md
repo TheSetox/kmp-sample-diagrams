@@ -1,31 +1,75 @@
 # 15. Three Layer Native
 
-Baseline three-layer architecture with platform-specific UI, domain, and data.
+Baseline three-layer native architecture. Each app target has presentation, domain, and data modules. Presentation contains UI and ViewModel.
 
 ```mermaid
 flowchart TB
-  subgraph Android["androidApp"]
-    AUI["UI"]
-    ADomain["Domain"]
-    AData["Data"]
-    AUI --> ADomain --> AData
+  subgraph Android["androidApp app target"]
+    direction TB
+    subgraph APresentation["presentation module"]
+      AUI["HomeScreen.kt\nCompose UI"]
+      AVM["HomeViewModel.kt"]
+      AUI --> AVM
+    end
+    subgraph ADomain["domain module"]
+      AUseCase["GetTasksUseCase.kt"]
+      AEntity["Task.kt"]
+      AUseCase --> AEntity
+    end
+    subgraph AData["data module"]
+      ARepository["TaskRepository.kt"]
+      ADataSource["TaskDataSource.kt"]
+      ARepository --> ADataSource
+    end
+    AVM --> AUseCase --> ARepository
   end
 
-  subgraph IOS["iosApp"]
-    IUI["UI"]
-    IDomain["Domain"]
-    IData["Data"]
-    IUI --> IDomain --> IData
+  subgraph IOS["iosApp app target"]
+    direction TB
+    subgraph IPresentation["presentation module"]
+      IUI["ContentView.swift\nSwiftUI"]
+      IVM["HomeViewModel.swift"]
+      IUI --> IVM
+    end
+    subgraph IDomain["domain module"]
+      IUseCase["GetTasksUseCase.swift"]
+      IEntity["Task.swift"]
+      IUseCase --> IEntity
+    end
+    subgraph IData["data module"]
+      IRepository["TaskRepository.swift"]
+      IDataSource["TaskDataSource.swift"]
+      IRepository --> IDataSource
+    end
+    IVM --> IUseCase --> IRepository
   end
 
-  subgraph Desktop["desktopApp"]
-    DUI["UI"]
-    DDomain["Domain"]
-    DData["Data"]
-    DUI --> DDomain --> DData
+  subgraph Desktop["desktopApp app target"]
+    direction TB
+    subgraph DPresentation["presentation module"]
+      DUI["HomeWindow.kt\nCompose Desktop UI"]
+      DVM["HomeViewModel.kt"]
+      DUI --> DVM
+    end
+    subgraph DDomain["domain module"]
+      DUseCase["GetTasksUseCase.kt"]
+      DEntity["Task.kt"]
+      DUseCase --> DEntity
+    end
+    subgraph DData["data module"]
+      DRepository["TaskRepository.kt"]
+      DDataSource["TaskDataSource.kt"]
+      DRepository --> DDataSource
+    end
+    DVM --> DUseCase --> DRepository
   end
 
-  classDef layer fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
-  class AUI,ADomain,AData,IUI,IDomain,IData,DUI,DDomain,DData layer;
+  ADataSource ~~~ IUI
+  IDataSource ~~~ DUI
+
+  classDef native fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
+  class AUI,AVM,AUseCase,AEntity,ARepository,ADataSource,IUI,IVM,IUseCase,IEntity,IRepository,IDataSource,DUI,DVM,DUseCase,DEntity,DRepository,DDataSource native;
+  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
 ```
-

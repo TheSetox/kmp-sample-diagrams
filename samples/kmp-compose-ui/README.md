@@ -1,6 +1,6 @@
 # KMP Compose UI
 
-Shared Compose UI with platform-specific ViewModel, use case, repository, and data source logic.
+Shared Compose UI with platform-specific ViewModel, repository, and data source logic.
 
 ## Modules
 

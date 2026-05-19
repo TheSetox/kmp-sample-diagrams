@@ -1,49 +1,49 @@
 # 10. Modular KMP Data Layer
 
-Feature two shares only its data layer. Feature one remains platform-specific.
+Feature two shares only its data layer. Feature two presentation remains native in each app target.
 
 ```mermaid
 flowchart LR
-  subgraph Android["androidApp"]
-    AF2UI["feature-two UI"]
-    AF2VM["feature-two ViewModel"]
-    AF2UseCase["feature-two UseCase"]
-    AF2UI --> AF2VM --> AF2UseCase
+  subgraph Android["androidApp native"]
+    direction TB
+    AUI["DetailsScreen.kt"]
+    AVM["DetailsViewModel.kt"]
+    AUI --> AVM
   end
 
-  subgraph IOS["iosApp"]
-    IF2UI["feature-two UI"]
-    IF2VM["feature-two ViewModel"]
-    IF2UseCase["feature-two UseCase"]
-    IF2UI --> IF2VM --> IF2UseCase
+  subgraph IOS["iosApp native"]
+    direction TB
+    IUI["DetailsView.swift"]
+    IVM["DetailsViewModel.swift"]
+    IUI --> IVM
   end
 
-  subgraph Desktop["desktopApp"]
-    DF2UI["feature-two UI"]
-    DF2VM["feature-two ViewModel"]
-    DF2UseCase["feature-two UseCase"]
-    DF2UI --> DF2VM --> DF2UseCase
+  subgraph Desktop["desktopApp native"]
+    direction TB
+    DUI["DetailsWindow.kt"]
+    DVM["DetailsViewModel.kt"]
+    DUI --> DVM
   end
 
   subgraph KMP["featureTwoSharedData KMP module"]
     direction LR
-    Repository["Repository"]
-    Remote["Remote data source"]
-    Cache["Cache data source"]
-    Mapper["Mapper"]
+    Repository["DetailsRepository.kt"]
+    Remote["RemoteDetailsDataSource.kt"]
+    Cache["LocalDetailsDataSource.kt"]
+    Mapper["DetailsDtoMapper.kt"]
     Repository --> Remote
     Repository --> Cache
     Remote --> Mapper
     Cache --> Mapper
   end
 
-  AF2UseCase --> Repository
-  IF2UseCase --> Repository
-  DF2UseCase --> Repository
+  AVM --> Repository
+  IVM --> Repository
+  DVM --> Repository
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
-  class AF2UI,AF2VM,AF2UseCase,IF2UI,IF2VM,IF2UseCase,DF2UI,DF2VM,DF2UseCase app;
+  class AUI,AVM,IUI,IVM,DUI,DVM app;
   class Repository,Remote,Cache,Mapper kmp;
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px

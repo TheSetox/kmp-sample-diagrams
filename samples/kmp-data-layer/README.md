@@ -1,28 +1,28 @@
 # KMP Data Layer
 
-        Shared data layer used by platform-specific UI and presentation.
+Shared data in KMP. Each app target keeps its native UI and ViewModel, then calls the shared Repository and DataSource implementation.
 
-        ## Modules
+## Modules
 
-        | Module | Purpose |
+| Module | Purpose |
 | --- | --- |
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `sharedData` | Shared data KMP library. |
+| `sharedData` | Shared Repository and DataSource KMP library. |
 
-        ## Run
+## Run
 
-        ```sh
-        ./gradlew -p samples/kmp-data-layer :desktopApp:run
-        ./gradlew -p samples/kmp-data-layer :androidApp:assembleDebug
-        ./gradlew -p samples/kmp-data-layer :sharedData:assemble
-        ```
+```sh
+./gradlew -p samples/kmp-data-layer :desktopApp:run
+./gradlew -p samples/kmp-data-layer :androidApp:assembleDebug
+./gradlew -p samples/kmp-data-layer :sharedData:assemble
+```
 
-        ## iOS
+## iOS
 
-        ```sh
-        ./gradlew -p samples/kmp-data-layer :sharedData:linkDebugFrameworkIosSimulatorArm64
-        ```
+```sh
+./gradlew -p samples/kmp-data-layer :sharedData:linkDebugFrameworkIosSimulatorArm64
+```
 
-        The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.

@@ -1,30 +1,30 @@
 # Three Layer KMP Domain And Data
 
-        Shared domain and data layers with platform-specific UI.
+Shared domain and data in KMP. Each app target keeps native UI and ViewModel classes.
 
-        ## Modules
+## Modules
 
-        | Module | Purpose |
+| Module | Purpose |
 | --- | --- |
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `sharedData` | Shared data KMP library. |
-| `sharedDomain` | Shared domain KMP library. |
+| `sharedData` | Shared Repository and DataSource KMP library. |
+| `sharedDomain` | Shared UseCase, Entity, and Repository contract KMP library. |
 
-        ## Run
+## Run
 
-        ```sh
-        ./gradlew -p samples/three-layer-kmp-domain-data :desktopApp:run
-        ./gradlew -p samples/three-layer-kmp-domain-data :androidApp:assembleDebug
-        ./gradlew -p samples/three-layer-kmp-domain-data :sharedData:assemble
+```sh
+./gradlew -p samples/three-layer-kmp-domain-data :desktopApp:run
+./gradlew -p samples/three-layer-kmp-domain-data :androidApp:assembleDebug
+./gradlew -p samples/three-layer-kmp-domain-data :sharedData:assemble
 ./gradlew -p samples/three-layer-kmp-domain-data :sharedDomain:assemble
-        ```
+```
 
-        ## iOS
+## iOS
 
-        ```sh
-        ./gradlew -p samples/three-layer-kmp-domain-data :sharedDomain:linkDebugFrameworkIosSimulatorArm64
-        ```
+```sh
+./gradlew -p samples/three-layer-kmp-domain-data :sharedDomain:linkDebugFrameworkIosSimulatorArm64
+```
 
-        The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.

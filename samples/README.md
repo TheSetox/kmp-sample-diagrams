@@ -25,11 +25,11 @@ For iOS, open the `iosApp` folder in Xcode when present and use the sample READM
 | Main KMP | [`kmp-native-ui`](kmp-native-ui/) | Shared logic with native UI per platform. |
 | Main KMP | [`kmp-compose-ui`](kmp-compose-ui/) | Shared Compose UI with native logic. |
 | Main KMP | [`kmp-data-layer`](kmp-data-layer/) | Shared data layer only. |
-| Main KMP | [`kmp-presentation-layer`](kmp-presentation-layer/) | Shared presentation layer only. |
+| Main KMP | [`kmp-presentation-layer`](kmp-presentation-layer/) | Shared presentation layer: Compose UI and ViewModel. |
 | Main KMP | [`kmp-ui-layer`](kmp-ui-layer/) | Shared Compose UI only. |
 | Main KMP | [`kmp-presentation-data-layer`](kmp-presentation-data-layer/) | Shared presentation and data layers. |
 | Modular KMP | [`modular-kmp-data-layer`](modular-kmp-data-layer/) | Feature-scoped shared data layer. |
-| Modular KMP | [`modular-kmp-presentation-layer`](modular-kmp-presentation-layer/) | Feature-scoped shared presentation layer. |
+| Modular KMP | [`modular-kmp-presentation-layer`](modular-kmp-presentation-layer/) | Feature-scoped shared presentation: Compose UI and ViewModel. |
 | Modular KMP | [`modular-kmp-ui-layer`](modular-kmp-ui-layer/) | Feature-scoped shared UI layer. |
 | Modular KMP | [`modular-kmp-ui-data-layer`](modular-kmp-ui-data-layer/) | Feature-scoped shared UI and data layers. |
 | Modular KMP | [`modular-kmp-shared-feature`](modular-kmp-shared-feature/) | One shared KMP feature module. |

@@ -1,50 +1,50 @@
 # 06. KMP Presentation Layer
 
-Presentation state and actions are shared. UI and data implementations remain platform-specific.
+Presentation is shared in a KMP module. In this two-layer scenario, presentation contains shared Compose UI and ViewModel; data remains native.
 
 ```mermaid
 flowchart LR
   subgraph Android["androidApp native"]
-    AndroidUI["Compose UI"]
-    AndroidData["Android repository implementation"]
-    AndroidSource["Android data source"]
-    AndroidData --> AndroidSource
+    AEntry["MainActivity"]
+    ARepository["TaskRepository.kt"]
+    ADataSource["TaskDataSource.kt"]
+    ARepository --> ADataSource
   end
 
   subgraph IOS["iosApp native"]
-    IOSUI["SwiftUI"]
-    IOSData["iOS repository implementation"]
-    IOSSource["iOS data source"]
-    IOSData --> IOSSource
+    IEntry["SwiftUI App"]
+    IRepository["TaskRepository.swift"]
+    IDataSource["TaskDataSource.swift"]
+    IRepository --> IDataSource
   end
 
   subgraph Desktop["desktopApp native"]
-    DesktopUI["Desktop UI"]
-    DesktopData["Desktop repository implementation"]
-    DesktopSource["Desktop data source"]
-    DesktopData --> DesktopSource
+    DEntry["main()"]
+    DRepository["TaskRepository.kt"]
+    DDataSource["TaskDataSource.kt"]
+    DRepository --> DDataSource
   end
 
   subgraph KMP["sharedPresentation KMP module"]
     direction LR
-    VM["ViewModel\nstate and events"]
-    UseCase["UseCase"]
-    RepositoryPort["Repository contract"]
-    VM --> UseCase --> RepositoryPort
+    App["Compose App"]
+    Screen["HomeScreen.kt"]
+    VM["HomeViewModel.kt"]
+    RepositoryPort["TaskRepository contract"]
+    App --> Screen --> VM --> RepositoryPort
   end
 
-  AndroidUI --> VM
-  IOSUI --> VM
-  DesktopUI --> VM
-
-  RepositoryPort -. "implemented by native" .-> AndroidData
-  RepositoryPort -. "implemented by native" .-> IOSData
-  RepositoryPort -. "implemented by native" .-> DesktopData
+  AEntry --> App
+  IEntry --> App
+  DEntry --> App
+  RepositoryPort -. "implemented by native" .-> ARepository
+  RepositoryPort -. "implemented by native" .-> IRepository
+  RepositoryPort -. "implemented by native" .-> DRepository
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
-  class AndroidUI,AndroidData,AndroidSource,IOSUI,IOSData,IOSSource,DesktopUI,DesktopData,DesktopSource app;
-  class VM,UseCase,RepositoryPort kmp;
+  class AEntry,ARepository,ADataSource,IEntry,IRepository,IDataSource,DEntry,DRepository,DDataSource app;
+  class App,Screen,VM,RepositoryPort kmp;
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
