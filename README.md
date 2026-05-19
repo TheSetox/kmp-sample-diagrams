@@ -1,135 +1,73 @@
-# kmp-sample-diagrams
+# KMP Sample Diagrams
 
-These diagrams provide a visual representation of how Kotlin Multiplatform (KMP) can be integrated into existing projects, showcasing various architecture approaches and modular designs.
+Kotlin Multiplatform architecture diagrams and runnable sample projects updated for the 2026 KMP default structure and AGP 9.
 
-# I. Adding KMP
+The old PNG diagrams are preserved on the `feature/legacy-png-reference` branch. This branch keeps the refreshed version reviewable without losing the previous reference material.
 
-## 1. Normal Approach
+## What Changed
 
-This diagram illustrates the traditional development method where iOS and Android applications are developed separately without shared code.
+- Diagrams are now Markdown files with Mermaid source in [`diagrams/`](diagrams/).
+- [`index.html`](index.html) loads every diagram listed in [`diagrams/manifest.json`](diagrams/manifest.json).
+- Samples use Android, iOS, and desktop only.
+- No `webApp` and no `server` modules are included.
+- Shared KMP code lives in KMP library modules. Platform entry points live in `androidApp`, `iosApp`, and `desktopApp`.
 
-![Main](main.png)
+## Versions
 
-## 2-1. KMP - Native UI
+| Tool | Version |
+| --- | --- |
+| Android Gradle Plugin | `9.2.0` |
+| Gradle | `9.4.1` |
+| Kotlin | `2.3.21` |
+| Compose Multiplatform | `1.11.0` |
+| JDK | `17` |
 
-This diagram demonstrates using Kotlin Multiplatform without altering the native implementation of the UI screens on both iOS and Android platforms. The UI remains platform-specific, while other components can be shared.
+## Diagram Viewer
 
-![Kotlin Multiplatform](kmp_main.png)
+Serve the repository root with any static HTTP server, then open the local URL:
 
-## 2-2. KMP - Compose Multiplatform
+```sh
+python3 -m http.server 8000
+```
 
-This approach combines Kotlin Multiplatform and Compose Multiplatform to enable the reuse of UI components across both Android and iOS, allowing for a unified design system.
+The viewer uses browser `fetch`, so opening `index.html` directly from `file://` may not load the Markdown files.
 
-![Kotlin Multiplatform](kmp_main_compose.png)
+## Scenarios
 
-## 3. Main with UI and Data Layer
+| Scenario | Diagram | Sample |
+| --- | --- | --- |
+| Normal Native | [`01-normal-native.md`](diagrams/01-normal-native.md) | [`samples/normal-native`](samples/normal-native/) |
+| KMP Native UI | [`02-kmp-native-ui.md`](diagrams/02-kmp-native-ui.md) | [`samples/kmp-native-ui`](samples/kmp-native-ui/) |
+| KMP Compose UI | [`03-kmp-compose-ui.md`](diagrams/03-kmp-compose-ui.md) | [`samples/kmp-compose-ui`](samples/kmp-compose-ui/) |
+| Layered Native | [`04-layered-native.md`](diagrams/04-layered-native.md) | [`samples/layered-native`](samples/layered-native/) |
+| KMP Data Layer | [`05-kmp-data-layer.md`](diagrams/05-kmp-data-layer.md) | [`samples/kmp-data-layer`](samples/kmp-data-layer/) |
+| KMP Presentation Layer | [`06-kmp-presentation-layer.md`](diagrams/06-kmp-presentation-layer.md) | [`samples/kmp-presentation-layer`](samples/kmp-presentation-layer/) |
+| KMP UI Layer | [`07-kmp-ui-layer.md`](diagrams/07-kmp-ui-layer.md) | [`samples/kmp-ui-layer`](samples/kmp-ui-layer/) |
+| KMP Presentation And Data Layers | [`08-kmp-presentation-data-layer.md`](diagrams/08-kmp-presentation-data-layer.md) | [`samples/kmp-presentation-data-layer`](samples/kmp-presentation-data-layer/) |
+| Modular Native | [`09-modular-native.md`](diagrams/09-modular-native.md) | [`samples/modular-native`](samples/modular-native/) |
+| Modular KMP Data Layer | [`10-modular-kmp-data-layer.md`](diagrams/10-modular-kmp-data-layer.md) | [`samples/modular-kmp-data-layer`](samples/modular-kmp-data-layer/) |
+| Modular KMP Presentation Layer | [`11-modular-kmp-presentation-layer.md`](diagrams/11-modular-kmp-presentation-layer.md) | [`samples/modular-kmp-presentation-layer`](samples/modular-kmp-presentation-layer/) |
+| Modular KMP UI Layer | [`12-modular-kmp-ui-layer.md`](diagrams/12-modular-kmp-ui-layer.md) | [`samples/modular-kmp-ui-layer`](samples/modular-kmp-ui-layer/) |
+| Modular KMP UI And Data Layers | [`13-modular-kmp-ui-data-layer.md`](diagrams/13-modular-kmp-ui-data-layer.md) | [`samples/modular-kmp-ui-data-layer`](samples/modular-kmp-ui-data-layer/) |
+| Modular KMP Shared Feature | [`14-modular-kmp-shared-feature.md`](diagrams/14-modular-kmp-shared-feature.md) | [`samples/modular-kmp-shared-feature`](samples/modular-kmp-shared-feature/) |
+| Three Layer Native | [`15-three-layer-native.md`](diagrams/15-three-layer-native.md) | [`samples/three-layer-native`](samples/three-layer-native/) |
+| Three Layer KMP Domain | [`16-three-layer-kmp-domain.md`](diagrams/16-three-layer-kmp-domain.md) | [`samples/three-layer-kmp-domain`](samples/three-layer-kmp-domain/) |
+| Three Layer KMP Domain Simple | [`17-three-layer-kmp-domain-simple.md`](diagrams/17-three-layer-kmp-domain-simple.md) | [`samples/three-layer-kmp-domain-simple`](samples/three-layer-kmp-domain-simple/) |
+| Three Layer KMP Domain And Data | [`18-three-layer-kmp-domain-data.md`](diagrams/18-three-layer-kmp-domain-data.md) | [`samples/three-layer-kmp-domain-data`](samples/three-layer-kmp-domain-data/) |
+| Three Layer KMP Domain And Presentation | [`19-three-layer-kmp-domain-presentation.md`](diagrams/19-three-layer-kmp-domain-presentation.md) | [`samples/three-layer-kmp-domain-presentation`](samples/three-layer-kmp-domain-presentation/) |
 
-This diagram shows the separation of concerns by dividing the project into two distinct layers: UI and Data Layer. This layered structure facilitates easier refactoring of specific layers when needed.
+## AGP 9 KMP Rules Used Here
 
-![Main](main_with_layer.png)
+- Android app entry points are standalone `com.android.application` modules.
+- Android app modules rely on AGP built-in Kotlin instead of applying `org.jetbrains.kotlin.android`.
+- KMP library modules apply `org.jetbrains.kotlin.multiplatform` and `com.android.kotlin.multiplatform.library`.
+- KMP library Android targets are configured inside the Kotlin DSL with `android { ... }`.
 
-## 4. KMP - Data Layer
+## References
 
-In this example, Kotlin Multiplatform is applied specifically in the Data Layer, enabling code sharing for data handling across platforms while keeping platform-specific UI separate.
-
-![Kotlin Multiplatform - Data Layer](kmp_data_layer.png)
-
-## 5. KMP - Presentation Layer
-
-Here, Kotlin Multiplatform is utilized in the Presentation Layer, which includes the ViewModel and UI components.
-
-![Kotlin Multiplatform - Presentation Layer](kmp_presentation_layer.png)
-
-## 6. KMP - UI Layer
-
-This diagram showcases Kotlin Multiplatform applied to the UI Layer only, using Compose Multiplatform. The UI is shared between platforms, while other layers may remain platform-specific.
-
-![Kotlin Multiplatform - UI Layer](kmp_ui_layer.png)
-
-## 7. KMP - Presentation and Data Layer
-
-This approach shows Kotlin Multiplatform applied to both the Presentation and Data Layers, enabling code sharing in business logic, data handling, and ViewModel implementation, and the UI.
-
-![Kotlin Multiplatform - UI and Data Layer](kmp_data_ui_layer.png)
-
-# II. Adding KMP in Multiple Modules
-
-## 1. Main Modular Approach
-
-This diagram illustrates a traditional modular architecture where the project is divided into separate feature modules, such as Feature 1 and Feature 2. 
-Each feature contains multiple layers (UI, Presentation, Data), but Kotlin Multiplatform (KMP) is not yet applied. This is the baseline structure before KMP integration.
-
-![Kotlin Multiplatform Modular](main_with_modules.png)
-
-## 2. KMP - Data Layer (Modular)
-
-In this approach, Kotlin Multiplatform is introduced to Feature 2, specifically within the Data Layer. 
-By sharing data-related code between platforms, the Data Layer becomes reusable across iOS and Android, while the other layers in Feature 2 remain platform-specific.
-
-![Kotlin Multiplatform - Data Layer (Modular)](kmp_module_data_layer.png)
-
-## 3. KMP - Presentation Layer (Modular)
-
-In this approach, Kotlin Multiplatform is introduced into the entire Presentation Layer of Feature 2. 
-This means both the UI and the presentation logic (ViewModel, controllers) are shared across platforms, while the Data Layer remains platform-specific.
-
-![Kotlin Multiplatform - Presentation Layer (Modular)](kmp_module_presentation_layer.png)
-
-## 4. KMP - UI Layer (Modular)
-
-Here, Kotlin Multiplatform is applied solely to the UI components of Feature 2, using Compose Multiplatform. 
-The presentation logic (ViewModel) and Data Layer remain platform-specific, while UI components are shared across platforms.
-
-![Kotlin Multiplatform - UI Layer (Modular)](kmp_module_ui_layer.png)
-
-## 5. KMP - UI and Data Layer (Modular)
-
-This approach demonstrates Kotlin Multiplatform applied to both the combined UI and Presentation Layer 
-(which includes UI components and presentation logic like ViewModel) as well as the Data Layer in Feature 2. 
-Both layers are shared between platforms (iOS and Android), but each layer is managed in separate modules.
-
-![Kotlin Multiplatform - UI and Data Layer (Modular)](kmp_module_ui_data_layer.png)
-
-## 6. KMP - Shared Module (Modular)
-
-This approach is similar to the previous one but consolidates the entire Feature 2 into a single shared module. 
-Instead of managing the UI/Presentation Layer and Data Layer in separate modules, both layers are contained within one shared module using Kotlin Multiplatform.
-
-![Kotlin Multiplatform Module](kmp_module.png)
-
-# III. Adding KMP that has Three Layers 
-
-## 1. Three Layer Approach
-
-This diagram presents a project architecture organized into three distinct layers: UI, Presentation, and Data. 
-This structure is a standard baseline for projects without Kotlin Multiplatform applied, allowing each layer to be developed independently on different platforms.
-
-![Main - Three Layers](main_three_layers.png)
-
-## 2-1. KMP - Domain Layer
-
-In this example, Kotlin Multiplatform is applied to the Domain Layer, which handles core business logic shared between platforms (iOS and Android). 
-The Domain Layer library is exposed in the diagram, showing how this shared code interacts with platform-specific UI and Data Layers.
-
-![KMP - Domain Layer](kmp_three_layers_domain_layer.png)
-
-## 2-2. KMP - Domain Layer (Simple Version)
-
-This simplified version of the Domain Layer still applies Kotlin Multiplatform for shared business logic but omits the detailed representation of the Domain library. 
-The focus here is on providing a cleaner, simpler view of the flow between shared business logic and platform-specific layers.
-
-![KMP - Domain Layer (Simple)](kmp_three_layers_domain_layer_simple.png)
-
-## 3. KMP - Domain and Data Layer
-
-Here, Kotlin Multiplatform is applied to both the Domain and Data Layers, enabling shared business logic and data management across platforms. 
-The Presentation Layer (UI and presentation logic) remains platform-specific.
-
-![KMP - Domain and Data Layer](kmp_three_layer_domain_data_layer.png)
-
-## 4. KMP - Domain and Presentation Layer
-
-This diagram demonstrates Kotlin Multiplatform applied to both the Domain and Presentation Layers. 
-The entire Presentation Layer (including UI and presentation logic like ViewModel) is shared between platforms, while the Data Layer remains platform-specific.
-
-![KMP - Domain and Presentation Layer](kmp_three_layer_domain_presentation_layer.png)
+- [JetBrains: A New Default Project Structure for Kotlin Multiplatform](https://blog.jetbrains.com/kotlin/2026/05/new-kmp-default-structure/)
+- [Android Gradle Plugin release notes](https://developer.android.com/build/releases/gradle-plugin)
+- [Android-KMP library plugin](https://developer.android.com/kotlin/multiplatform/plugin)
+- [AGP built-in Kotlin](https://developer.android.com/build/migrate-to-built-in-kotlin)
+- [Kotlin releases](https://kotlinlang.org/docs/releases.html)
+- [Compose Multiplatform 1.11.0](https://blog.jetbrains.com/kotlin/2026/05/compose-multiplatform-1-11-0/)
