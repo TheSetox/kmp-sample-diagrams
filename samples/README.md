@@ -7,9 +7,9 @@ Each folder is a standalone sample project for one diagram scenario. Samples tar
 Run commands from the repository root:
 
 ```sh
-gradle -p samples/kmp-compose-ui :desktopApp:run
-gradle -p samples/kmp-compose-ui :androidApp:assembleDebug
-gradle -p samples/kmp-compose-ui :shared:assemble
+./gradlew -p samples/kmp-compose-ui :desktopApp:run
+./gradlew -p samples/kmp-compose-ui :androidApp:assembleDebug
+./gradlew -p samples/kmp-compose-ui :shared:assemble
 ```
 
 For iOS, open the `iosApp` folder in Xcode when present and use the sample README to find the framework-producing Gradle task.
