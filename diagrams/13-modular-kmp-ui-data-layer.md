@@ -4,24 +4,48 @@ Feature two shares UI and data as separate KMP modules. Presentation remains pla
 
 ```mermaid
 flowchart LR
-  SharedF2UI["feature-two:sharedUI\nKMP library"]
-  SharedF2Data["feature-two:sharedData\nKMP library"]
+  subgraph Android["androidApp native"]
+    AndroidVM["feature-two ViewModel"]
+  end
 
-  AndroidP["androidApp\nfeature-two presentation"]
-  IOSP["iosApp\nfeature-two presentation"]
-  DesktopP["desktopApp\nfeature-two presentation"]
+  subgraph IOS["iosApp native"]
+    IOSVM["feature-two ViewModel"]
+  end
 
-  AndroidP --> SharedF2UI
-  IOSP --> SharedF2UI
-  DesktopP --> SharedF2UI
+  subgraph Desktop["desktopApp native"]
+    DesktopVM["feature-two ViewModel"]
+  end
 
-  AndroidP --> SharedF2Data
-  IOSP --> SharedF2Data
-  DesktopP --> SharedF2Data
+  subgraph UIKMP["featureTwoSharedUI KMP module"]
+    direction LR
+    App["Compose App"]
+    Screen["feature-two shared screen"]
+    Components["feature-two components"]
+    App --> Screen --> Components
+  end
+
+  subgraph DataKMP["featureTwoSharedData KMP module"]
+    direction LR
+    Repository["Repository"]
+    DataSource["DataSource"]
+    Mapper["Mapper"]
+    Repository --> DataSource --> Mapper
+  end
+
+  AndroidVM --> App
+  IOSVM --> App
+  DesktopVM --> App
+  AndroidVM --> Repository
+  IOSVM --> Repository
+  DesktopVM --> Repository
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
-  classDef shared fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
-  class AndroidP,IOSP,DesktopP app;
-  class SharedF2UI,SharedF2Data shared;
+  classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
+  class AndroidVM,IOSVM,DesktopVM app;
+  class App,Screen,Components,Repository,DataSource,Mapper kmp;
+  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  style UIKMP fill:#fff7cc,stroke:#9b7415,stroke-width:3px
+  style DataKMP fill:#fff7cc,stroke:#9b7415,stroke-width:3px
 ```
-

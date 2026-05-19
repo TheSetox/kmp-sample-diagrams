@@ -4,29 +4,53 @@ Domain and presentation are shared. Data remains platform-specific.
 
 ```mermaid
 flowchart LR
-  SharedPresentation["sharedPresentation\nKMP library\nstate + actions"]
-  SharedDomain["sharedDomain\nKMP library\nuse cases + entities"]
-  SharedPresentation --> SharedDomain
+  subgraph Android["androidApp native"]
+    AndroidUI["Android UI"]
+    AndroidData["Android repository implementation"]
+  end
 
-  Android["androidApp\nAndroid UI"]
-  IOS["iosApp\nSwiftUI"]
-  Desktop["desktopApp\nDesktop UI"]
+  subgraph IOS["iosApp native"]
+    IOSUI["SwiftUI"]
+    IOSData["iOS repository implementation"]
+  end
 
-  AndroidData["Android data"]
-  IOSData["iOS data"]
-  DesktopData["Desktop data"]
+  subgraph Desktop["desktopApp native"]
+    DesktopUI["Desktop UI"]
+    DesktopData["Desktop repository implementation"]
+  end
 
-  Android --> SharedPresentation
-  IOS --> SharedPresentation
-  Desktop --> SharedPresentation
+  subgraph Presentation["sharedPresentation KMP module"]
+    direction LR
+    VM["ViewModel"]
+    State["UI state"]
+    VM --> State
+  end
 
-  SharedDomain -. "repository contract" .-> AndroidData
-  SharedDomain -. "repository contract" .-> IOSData
-  SharedDomain -. "repository contract" .-> DesktopData
+  subgraph Domain["sharedDomain KMP module"]
+    direction LR
+    UseCase["UseCase"]
+    Entity["Domain entity"]
+    RepositoryPort["Repository contract"]
+    UseCase --> Entity
+    UseCase --> RepositoryPort
+  end
+
+  AndroidUI --> VM
+  IOSUI --> VM
+  DesktopUI --> VM
+  VM --> UseCase
+
+  RepositoryPort -. "implemented by native" .-> AndroidData
+  RepositoryPort -. "implemented by native" .-> IOSData
+  RepositoryPort -. "implemented by native" .-> DesktopData
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
-  classDef shared fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
-  class Android,IOS,Desktop,AndroidData,IOSData,DesktopData app;
-  class SharedPresentation,SharedDomain shared;
+  classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
+  class AndroidUI,AndroidData,IOSUI,IOSData,DesktopUI,DesktopData app;
+  class VM,State,UseCase,Entity,RepositoryPort kmp;
+  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  style Presentation fill:#fff7cc,stroke:#9b7415,stroke-width:3px
+  style Domain fill:#fff7cc,stroke:#9b7415,stroke-width:3px
 ```
-
