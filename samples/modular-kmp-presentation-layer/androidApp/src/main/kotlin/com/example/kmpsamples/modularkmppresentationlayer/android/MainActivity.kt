@@ -1,21 +1,18 @@
 package com.example.kmpsamples.modularkmppresentationlayer.android
 
-import android.app.Activity
+import androidx.activity.ComponentActivity
 import android.os.Bundle
-import android.widget.TextView
-import com.example.kmpsamples.modularkmppresentationlayer.featuretwosharedpresentation.SampleMessage
+import androidx.activity.compose.setContent
+import com.example.kmpsamples.modularkmppresentationlayer.featuretwosharedpresentation.App
 
-class MainActivity : Activity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(
-            TextView(this).apply {
-                text = "Modular KMP Presentation Layer\n" + sampleDetail()
-                textSize = 20f
-                setPadding(32, 32, 32, 32)
-            }
-        )
+        setContent {
+            App(
+                platform = "Android",
+                repository = DetailsRepository(DetailsDataSource())
+            )
+        }
     }
-
-    private fun sampleDetail(): String = SampleMessage().message("Android")
 }

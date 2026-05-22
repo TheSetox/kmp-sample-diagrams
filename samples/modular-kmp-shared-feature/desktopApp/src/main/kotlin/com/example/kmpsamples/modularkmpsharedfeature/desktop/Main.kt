@@ -6,8 +6,9 @@ import com.example.kmpsamples.modularkmpsharedfeature.featuretwosharedfeature.Ap
 
 fun main() = application {
     Window(onCloseRequest = ::exitApplication, title = "Modular KMP Shared Feature") {
-        App(platform = "Desktop", detail = sampleDetail())
+        App(
+            platform = "Desktop",
+            nativeFeatureOneSummary = HomeViewModel().screenState("Desktop")
+        )
     }
 }
-
-private fun sampleDetail(): String = "Modular KMP Shared Feature on Desktop\nNo shared KMP module in this baseline."

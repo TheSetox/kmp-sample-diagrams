@@ -1,14 +1,20 @@
 package com.example.kmpsamples.modularkmpuidatalayer.desktop
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import com.example.kmpsamples.modularkmpuidatalayer.featuretwosharedui.App
-import com.example.kmpsamples.modularkmpuidatalayer.featuretwoshareddata.SampleMessage
 
 fun main() = application {
     Window(onCloseRequest = ::exitApplication, title = "Modular KMP UI And Data Layers") {
-        App(platform = "Desktop", detail = sampleDetail())
+        val viewModel = remember { DetailsViewModel() }
+        var state by remember { mutableStateOf(viewModel.load("Desktop")) }
+        App(
+            state = state,
+            onRefresh = { state = viewModel.refresh("Desktop") }
+        )
     }
 }
-
-private fun sampleDetail(): String = SampleMessage().message("Desktop")
