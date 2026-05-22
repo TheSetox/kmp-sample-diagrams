@@ -4,6 +4,7 @@ Domain and presentation are shared; data implementations stay native.
 
 ## Implemented Flow
 
+- `androidApp/MainActivity`, `iosApp/ContentView`, and `desktopApp/Main.kt` remain the platform entry points.
 - `sharedPresentation` owns `App -> HomeScreen -> HomeViewModel -> HomeUiState`.
 - `sharedDomain` owns `GetTasksUseCase`, the `Task` entity, and the `TaskRepository` contract.
 - Android, iOS, and Desktop implement `TaskRepository -> TaskDataSource` natively and pass the contract into shared presentation.

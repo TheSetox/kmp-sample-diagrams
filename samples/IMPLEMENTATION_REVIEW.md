@@ -251,10 +251,10 @@ No blocking architecture mismatches were found in this pass. The known local too
 
 | Module | How It Works |
 | --- | --- |
-| [`androidApp`](three-layer-kmp-domain-presentation/androidApp/) | Android implements `TaskRepository -> TaskDataSource` and passes it to shared presentation. |
-| [`iosApp`](three-layer-kmp-domain-presentation/iosApp/) | Swift implements `TaskRepository -> TaskDataSource` and passes it to the shared Compose view controller. |
-| [`desktopApp`](three-layer-kmp-domain-presentation/desktopApp/) | Desktop implements `TaskRepository -> TaskDataSource` and passes it to shared `App`. |
-| [`sharedPresentation`](three-layer-kmp-domain-presentation/sharedPresentation/) | KMP owns `App -> HomeScreen -> HomeViewModel -> HomeUiState`. |
+| [`androidApp`](three-layer-kmp-domain-presentation/androidApp/) | `MainActivity` is the Android entry point; it builds native `TaskRepository -> TaskDataSource` and passes it to shared `App`. |
+| [`iosApp`](three-layer-kmp-domain-presentation/iosApp/) | SwiftUI `ContentView` is the iOS entry point; it builds native `TaskRepository -> TaskDataSource` and passes it to the shared Compose view controller. |
+| [`desktopApp`](three-layer-kmp-domain-presentation/desktopApp/) | Desktop `Main.kt` is the desktop entry point; it builds native `TaskRepository -> TaskDataSource` and passes it to shared `App`. |
+| [`sharedPresentation`](three-layer-kmp-domain-presentation/sharedPresentation/) | KMP owns `MainViewController`, `App -> HomeScreen -> HomeViewModel -> HomeUiState`. |
 | [`sharedDomain`](three-layer-kmp-domain-presentation/sharedDomain/) | KMP owns `GetTasksUseCase`, `Task`, and the `TaskRepository` contract. |
 
 ## How To Re-Validate Quickly

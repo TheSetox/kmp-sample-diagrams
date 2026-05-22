@@ -37,7 +37,7 @@ For a per-module review map, open [`implementation-review.html`](implementation-
 | Modular KMP | [`modular-kmp-shared-feature`](modular-kmp-shared-feature/) | Feature two is fully shared while Feature One is native and visible. | Feature One lives in platform `featureone` / `Sources/FeatureOne` code outside the shared Feature Two module and renders FeatureOneScreen/View -> HomeViewModel -> TaskRepository -> TaskDataSource. |
 | Three Layer KMP | [`three-layer-kmp-domain`](three-layer-kmp-domain/) | The domain layer is shared; presentation and data implementations stay native. | Android, iOS, and Desktop own UI, HomeViewModel, TaskRepository, and TaskDataSource. |
 | Three Layer KMP | [`three-layer-kmp-domain-data`](three-layer-kmp-domain-data/) | Domain and data are shared; presentation stays native. | Android, iOS, and Desktop own UI plus HomeViewModel. |
-| Three Layer KMP | [`three-layer-kmp-domain-presentation`](three-layer-kmp-domain-presentation/) | Domain and presentation are shared; data implementations stay native. | sharedPresentation owns App -> HomeScreen -> HomeViewModel -> HomeUiState. |
+| Three Layer KMP | [`three-layer-kmp-domain-presentation`](three-layer-kmp-domain-presentation/) | Domain and presentation are shared; data implementations stay native. | Platform entries host shared presentation and provide native TaskRepository -> TaskDataSource. |
 
 ## Structure Rules
 

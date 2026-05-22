@@ -310,10 +310,10 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="three-layer-kmp-domain-presentation/androidApp/"><code>androidApp</code></a></td><td>Android implements <code>TaskRepository -&gt; TaskDataSource</code> and passes it to shared presentation.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-presentation/iosApp/"><code>iosApp</code></a></td><td>Swift implements <code>TaskRepository -&gt; TaskDataSource</code> and passes it to the shared Compose view controller.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-presentation/desktopApp/"><code>desktopApp</code></a></td><td>Desktop implements <code>TaskRepository -&gt; TaskDataSource</code> and passes it to shared <code>App</code>.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-presentation/sharedPresentation/"><code>sharedPresentation</code></a></td><td>KMP owns <code>App -&gt; HomeScreen -&gt; HomeViewModel -&gt; HomeUiState</code>.</td></tr>
+<tr><td><a href="three-layer-kmp-domain-presentation/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> is the Android entry point; it builds native <code>TaskRepository -&gt; TaskDataSource</code> and passes it to shared <code>App</code>.</td></tr>
+<tr><td><a href="three-layer-kmp-domain-presentation/iosApp/"><code>iosApp</code></a></td><td>SwiftUI <code>ContentView</code> is the iOS entry point; it builds native <code>TaskRepository -&gt; TaskDataSource</code> and passes it to the shared Compose view controller.</td></tr>
+<tr><td><a href="three-layer-kmp-domain-presentation/desktopApp/"><code>desktopApp</code></a></td><td>Desktop <code>Main.kt</code> is the desktop entry point; it builds native <code>TaskRepository -&gt; TaskDataSource</code> and passes it to shared <code>App</code>.</td></tr>
+<tr><td><a href="three-layer-kmp-domain-presentation/sharedPresentation/"><code>sharedPresentation</code></a></td><td>KMP owns <code>MainViewController</code>, <code>App -&gt; HomeScreen -&gt; HomeViewModel -&gt; HomeUiState</code>.</td></tr>
 <tr><td><a href="three-layer-kmp-domain-presentation/sharedDomain/"><code>sharedDomain</code></a></td><td>KMP owns <code>GetTasksUseCase</code>, <code>Task</code>, and the <code>TaskRepository</code> contract.</td></tr>
 </tbody></table></div>
 <h2 id="how-to-re-validate-quickly">How To Re-Validate Quickly</h2>
