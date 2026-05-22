@@ -1,5 +1,6 @@
 package com.example.kmpsamples.normalnative.desktop
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -12,12 +13,13 @@ import androidx.compose.ui.window.application
 fun main() = application {
     Window(onCloseRequest = ::exitApplication, title = "Normal Native") {
         MaterialTheme {
-            Column(modifier = Modifier.padding(24.dp)) {
+            Column(
+                modifier = Modifier.padding(24.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
                 Text("Normal Native")
-                Text(sampleDetail())
+                Text(HomeViewModel().screenState("Desktop"))
             }
         }
     }
 }
-
-private fun sampleDetail(): String = "Normal Native on Desktop\nNo shared KMP module in this baseline."

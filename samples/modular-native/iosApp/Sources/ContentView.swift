@@ -1,11 +1,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    private let homeViewModel = HomeViewModel()
+    private let detailsViewModel = DetailsViewModel()
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Modular Native")
                 .font(.title)
-            Text("No shared KMP module in this baseline.")
+            Text(homeViewModel.screenState(platform: "iOS"))
+            Text(detailsViewModel.screenState(platform: "iOS"))
         }
         .padding()
     }
