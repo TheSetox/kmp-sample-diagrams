@@ -53,7 +53,6 @@ When served over HTTP, the viewer loads Markdown files from [`diagrams/`](diagra
 | Modular KMP Shared Feature | [`14-modular-kmp-shared-feature.md`](diagrams/14-modular-kmp-shared-feature.md) | [`samples/modular-kmp-shared-feature`](samples/modular-kmp-shared-feature/) |
 | Three Layer Native | [`15-three-layer-native.md`](diagrams/15-three-layer-native.md) | [`samples/three-layer-native`](samples/three-layer-native/) |
 | Three Layer KMP Domain | [`16-three-layer-kmp-domain.md`](diagrams/16-three-layer-kmp-domain.md) | [`samples/three-layer-kmp-domain`](samples/three-layer-kmp-domain/) |
-| Three Layer KMP Domain Simple | [`17-three-layer-kmp-domain-simple.md`](diagrams/17-three-layer-kmp-domain-simple.md) | [`samples/three-layer-kmp-domain-simple`](samples/three-layer-kmp-domain-simple/) |
 | Three Layer KMP Domain And Data | [`18-three-layer-kmp-domain-data.md`](diagrams/18-three-layer-kmp-domain-data.md) | [`samples/three-layer-kmp-domain-data`](samples/three-layer-kmp-domain-data/) |
 | Three Layer KMP Domain And Presentation | [`19-three-layer-kmp-domain-presentation.md`](diagrams/19-three-layer-kmp-domain-presentation.md) | [`samples/three-layer-kmp-domain-presentation`](samples/three-layer-kmp-domain-presentation/) |
 

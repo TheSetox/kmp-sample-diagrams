@@ -20,7 +20,7 @@ Served the repository root with:
 python3 -m http.server 8000
 ```
 
-Opened `http://127.0.0.1:8000/index.html` and `http://127.0.0.1:8000/index.html?source=bundle`. The viewer loaded all 19 diagram cards, rendered all 19 Mermaid SVG diagrams, and showed no viewer error state.
+Opened `http://127.0.0.1:8000/index.html` and `http://127.0.0.1:8000/index.html?source=bundle`. The viewer loaded all 18 diagram cards, rendered all 18 Mermaid SVG diagrams, and showed no viewer error state.
 
 ## Sample Build Checks
 
@@ -64,7 +64,6 @@ ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modul
 
 ```sh
 ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-kmp-domain :sharedDomain:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-kmp-domain-simple :sharedDomain:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
 ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-kmp-domain-data :sharedData:assemble :sharedDomain:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
 ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-kmp-domain-presentation :sharedDomain:assemble :sharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
 ```

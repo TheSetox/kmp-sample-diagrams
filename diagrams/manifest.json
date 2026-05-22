@@ -96,12 +96,6 @@
     "sample": "samples/three-layer-kmp-domain"
   },
   {
-    "title": "Three Layer KMP Domain Simple",
-    "category": "Three Layer KMP",
-    "file": "17-three-layer-kmp-domain-simple.md",
-    "sample": "samples/three-layer-kmp-domain-simple"
-  },
-  {
     "title": "Three Layer KMP Domain And Data",
     "category": "Three Layer KMP",
     "file": "18-three-layer-kmp-domain-data.md",

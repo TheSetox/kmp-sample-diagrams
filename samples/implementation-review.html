@@ -53,7 +53,7 @@
 <ul>
 <li>Review date: May 22, 2026.</li>
 <li>Branch: <code>feature/kmp-2026-mermaid-samples</code>.</li>
-<li>All 19 samples have <code>androidApp</code>, <code>desktopApp</code>, and <code>iosApp/Sources/ContentView.swift</code>.</li>
+<li>All 18 samples have <code>androidApp</code>, <code>desktopApp</code>, and <code>iosApp/Sources/ContentView.swift</code>.</li>
 <li>Static scan found no stale placeholder message classes, sample-detail helpers, or todo/fixme markers.</li>
 <li>Android app Gradle files do not apply <code>org.jetbrains.kotlin.android</code>; they rely on AGP built-in Kotlin.</li>
 <li>Build verification details are recorded in <a href="../TESTING.md">../TESTING.md</a>.</li>
@@ -285,20 +285,6 @@
 <tr><td><a href="three-layer-kmp-domain/iosApp/"><code>iosApp</code></a></td><td>SwiftUI owns <code>HomeViewModel</code>, plus native repository/data source classes implementing the shared contract.</td></tr>
 <tr><td><a href="three-layer-kmp-domain/desktopApp/"><code>desktopApp</code></a></td><td>Desktop owns <code>HomeWindow -&gt; HomeViewModel</code>, plus native <code>TaskRepository -&gt; TaskDataSource</code>.</td></tr>
 <tr><td><a href="three-layer-kmp-domain/sharedDomain/"><code>sharedDomain</code></a></td><td>KMP owns <code>GetTasksUseCase</code>, <code>Task</code>, and the <code>TaskRepository</code> contract.</td></tr>
-</tbody></table></div>
-<h3 id="three-layer-kmp-domain-simple">three-layer-kmp-domain-simple</h3>
-<ul>
-<li>Sample: <a href="three-layer-kmp-domain-simple/"><code>three-layer-kmp-domain-simple</code></a></li>
-<li>Diagram: <a href="../diagrams/17-three-layer-kmp-domain-simple.md"><code>17-three-layer-kmp-domain-simple.md</code></a></li>
-<li>Verdict: Matches the simplified diagram while keeping native repository/data classes so the shared use case is runnable.</li>
-</ul>
-<div class="table-wrap"><table>
-<thead><tr><th>Module</th><th>How It Works</th></tr></thead>
-<tbody>
-<tr><td><a href="three-layer-kmp-domain-simple/androidApp/"><code>androidApp</code></a></td><td>Android owns <code>HomeScreen -&gt; HomeViewModel</code> and injects a native repository into the shared use case.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-simple/iosApp/"><code>iosApp</code></a></td><td>SwiftUI owns <code>HomeViewModel</code> and injects a native repository into the shared use case.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-simple/desktopApp/"><code>desktopApp</code></a></td><td>Desktop owns <code>HomeWindow -&gt; HomeViewModel</code> and injects a native repository into the shared use case.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-simple/sharedDomain/"><code>sharedDomain</code></a></td><td>KMP owns <code>GetTasksUseCase</code>, <code>Task</code>, and the <code>TaskRepository</code> contract.</td></tr>
 </tbody></table></div>
 <h3 id="three-layer-kmp-domain-data">three-layer-kmp-domain-data</h3>
 <ul>

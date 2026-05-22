@@ -6,7 +6,7 @@ This review maps every diagram scenario to the current sample code on `feature/k
 
 - Review date: May 22, 2026.
 - Branch: `feature/kmp-2026-mermaid-samples`.
-- All 19 samples have `androidApp`, `desktopApp`, and `iosApp/Sources/ContentView.swift`.
+- All 18 samples have `androidApp`, `desktopApp`, and `iosApp/Sources/ContentView.swift`.
 - Static scan found no stale placeholder message classes, sample-detail helpers, or todo/fixme markers.
 - Android app Gradle files do not apply `org.jetbrains.kotlin.android`; they rely on AGP built-in Kotlin.
 - Build verification details are recorded in [../TESTING.md](../TESTING.md).
@@ -228,19 +228,6 @@ No blocking architecture mismatches were found in this pass. The known local too
 | [`iosApp`](three-layer-kmp-domain/iosApp/) | SwiftUI owns `HomeViewModel`, plus native repository/data source classes implementing the shared contract. |
 | [`desktopApp`](three-layer-kmp-domain/desktopApp/) | Desktop owns `HomeWindow -> HomeViewModel`, plus native `TaskRepository -> TaskDataSource`. |
 | [`sharedDomain`](three-layer-kmp-domain/sharedDomain/) | KMP owns `GetTasksUseCase`, `Task`, and the `TaskRepository` contract. |
-
-### three-layer-kmp-domain-simple
-
-- Sample: [`three-layer-kmp-domain-simple`](three-layer-kmp-domain-simple/)
-- Diagram: [`17-three-layer-kmp-domain-simple.md`](../diagrams/17-three-layer-kmp-domain-simple.md)
-- Verdict: Matches the simplified diagram while keeping native repository/data classes so the shared use case is runnable.
-
-| Module | How It Works |
-| --- | --- |
-| [`androidApp`](three-layer-kmp-domain-simple/androidApp/) | Android owns `HomeScreen -> HomeViewModel` and injects a native repository into the shared use case. |
-| [`iosApp`](three-layer-kmp-domain-simple/iosApp/) | SwiftUI owns `HomeViewModel` and injects a native repository into the shared use case. |
-| [`desktopApp`](three-layer-kmp-domain-simple/desktopApp/) | Desktop owns `HomeWindow -> HomeViewModel` and injects a native repository into the shared use case. |
-| [`sharedDomain`](three-layer-kmp-domain-simple/sharedDomain/) | KMP owns `GetTasksUseCase`, `Task`, and the `TaskRepository` contract. |
 
 ### three-layer-kmp-domain-data
 
