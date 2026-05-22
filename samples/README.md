@@ -14,6 +14,8 @@ Run commands from the repository root:
 
 Android commands require a local Android SDK. For iOS, open the `iosApp` folder in Xcode when present and use each sample README to find the framework-producing Gradle task.
 
+For a per-module review map, see [`IMPLEMENTATION_REVIEW.md`](IMPLEMENTATION_REVIEW.md).
+
 ## Sample Index
 
 | Group | Sample | What It Demonstrates | First Implemented Flow |
