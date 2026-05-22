@@ -4,7 +4,9 @@ Feature one is rendered natively in every app target. Feature two shares Compose
 
 ## Implemented Flow
 
-- Feature One native flow on Android, iOS, and Desktop: `HomeViewModel -> TaskRepository -> TaskDataSource`.
+- Feature One native flow on Android and Desktop: `FeatureOneScreen -> HomeViewModel -> TaskRepository -> TaskDataSource`.
+- Feature One native flow on iOS: `FeatureOneView -> HomeViewModel -> TaskRepository -> TaskDataSource`.
+- Feature One UI and logic are kept out of the app entry root: Android and Desktop use `featureone` packages, and iOS uses `Sources/FeatureOne`.
 - Feature Two native `DetailsViewModel` calls shared data and passes state/events to shared UI.
 - `featureTwoSharedUI` owns `App -> DetailsScreen -> DetailsUiState`; `featureTwoSharedData` owns repository/data sources/mapper.
 

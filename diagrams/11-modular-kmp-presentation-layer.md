@@ -7,37 +7,61 @@ flowchart TB
   subgraph Android["androidApp"]
     direction TB
     AEntry["MainActivity.kt"]
-    AHomeVM["HomeViewModel.kt"]
-    ATaskRepository["TaskRepository.kt"]
-    ATaskDataSource["TaskDataSource.kt"]
-    ADetailsRepository["DetailsRepository.kt"]
-    ADetailsDataSource["DetailsDataSource.kt"]
-    AEntry --> AHomeVM --> ATaskRepository --> ATaskDataSource
-    ADetailsRepository --> ADetailsDataSource
+    subgraph AFeatureOne["featureOne module"]
+      direction TB
+      AHomeUI["FeatureOneScreen.kt"]
+      AHomeVM["HomeViewModel.kt"]
+      ATaskRepository["TaskRepository.kt"]
+      ATaskDataSource["TaskDataSource.kt"]
+      AHomeUI --> AHomeVM --> ATaskRepository --> ATaskDataSource
+    end
+    subgraph AFeatureTwo["featureTwo native data"]
+      direction TB
+      ADetailsRepository["DetailsRepository.kt"]
+      ADetailsDataSource["DetailsDataSource.kt"]
+      ADetailsRepository --> ADetailsDataSource
+    end
+    AEntry --> AHomeUI
   end
 
   subgraph IOS["iosApp"]
     direction TB
     IEntry["ContentView.swift"]
-    IHomeVM["HomeViewModel.swift"]
-    ITaskRepository["TaskRepository.swift"]
-    ITaskDataSource["TaskDataSource.swift"]
-    IDetailsRepository["DetailsRepository.swift"]
-    IDetailsDataSource["DetailsDataSource.swift"]
-    IEntry --> IHomeVM --> ITaskRepository --> ITaskDataSource
-    IDetailsRepository --> IDetailsDataSource
+    subgraph IFeatureOne["featureOne module"]
+      direction TB
+      IHomeUI["FeatureOneView.swift"]
+      IHomeVM["HomeViewModel.swift"]
+      ITaskRepository["TaskRepository.swift"]
+      ITaskDataSource["TaskDataSource.swift"]
+      IHomeUI --> IHomeVM --> ITaskRepository --> ITaskDataSource
+    end
+    subgraph IFeatureTwo["featureTwo native data"]
+      direction TB
+      IDetailsRepository["DetailsRepository.swift"]
+      IDetailsDataSource["DetailsDataSource.swift"]
+      IDetailsRepository --> IDetailsDataSource
+    end
+    IEntry --> IHomeUI
   end
 
   subgraph Desktop["desktopApp"]
     direction TB
     DEntry["Main.kt"]
-    DHomeVM["HomeViewModel.kt"]
-    DTaskRepository["TaskRepository.kt"]
-    DTaskDataSource["TaskDataSource.kt"]
-    DDetailsRepository["DetailsRepository.kt"]
-    DDetailsDataSource["DetailsDataSource.kt"]
-    DEntry --> DHomeVM --> DTaskRepository --> DTaskDataSource
-    DDetailsRepository --> DDetailsDataSource
+    subgraph DFeatureOne["featureOne module"]
+      direction TB
+      DHomeUI["FeatureOneScreen.kt"]
+      DHomeVM["HomeViewModel.kt"]
+      DTaskRepository["TaskRepository.kt"]
+      DTaskDataSource["TaskDataSource.kt"]
+      DHomeUI --> DHomeVM --> DTaskRepository --> DTaskDataSource
+    end
+    subgraph DFeatureTwo["featureTwo native data"]
+      direction TB
+      DDetailsRepository["DetailsRepository.kt"]
+      DDetailsDataSource["DetailsDataSource.kt"]
+      DDetailsRepository --> DDetailsDataSource
+    end
+    DEntry --> DHomeUI
   end
 
   subgraph KMP["featureTwoSharedPresentation KMP module"]
@@ -61,10 +85,16 @@ flowchart TB
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
-  class AEntry,AHomeVM,ATaskRepository,ATaskDataSource,ADetailsRepository,ADetailsDataSource,IEntry,IHomeVM,ITaskRepository,ITaskDataSource,IDetailsRepository,IDetailsDataSource,DEntry,DHomeVM,DTaskRepository,DTaskDataSource,DDetailsRepository,DDetailsDataSource app;
+  class AEntry,AHomeUI,AHomeVM,ATaskRepository,ATaskDataSource,ADetailsRepository,ADetailsDataSource,IEntry,IHomeUI,IHomeVM,ITaskRepository,ITaskDataSource,IDetailsRepository,IDetailsDataSource,DEntry,DHomeUI,DHomeVM,DTaskRepository,DTaskDataSource,DDetailsRepository,DDetailsDataSource app;
   class App,Screen,State,VM,RepositoryPort kmp;
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  style AFeatureOne fill:#e8f4ff,stroke:#1f5f8b,stroke-width:2px
+  style AFeatureTwo fill:#e8f4ff,stroke:#1f5f8b,stroke-width:2px
+  style IFeatureOne fill:#e8f4ff,stroke:#1f5f8b,stroke-width:2px
+  style IFeatureTwo fill:#e8f4ff,stroke:#1f5f8b,stroke-width:2px
+  style DFeatureOne fill:#e8f4ff,stroke:#1f5f8b,stroke-width:2px
+  style DFeatureTwo fill:#e8f4ff,stroke:#1f5f8b,stroke-width:2px
   style KMP fill:#fff7cc,stroke:#9b7415,stroke-width:3px
 ```

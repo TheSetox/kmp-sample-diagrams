@@ -12,6 +12,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.kmpsamples.modularkmpsharedfeature.android.featureone.FeatureOneScreen
 import com.example.kmpsamples.modularkmpsharedfeature.featuretwosharedfeature.App
 
 class MainActivity : ComponentActivity() {
@@ -25,8 +26,7 @@ class MainActivity : ComponentActivity() {
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         Text("Modular KMP Shared Feature")
-                        Text("Feature One (native Android)")
-                        Text(HomeViewModel().screenState("Android"))
+                        FeatureOneScreen(platform = "Android")
                         App(
                             platform = "Android",
                             modifier = Modifier.weight(1f)

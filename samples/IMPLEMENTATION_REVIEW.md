@@ -156,9 +156,9 @@ No blocking architecture mismatches were found in this pass. The known local too
 
 | Module | How It Works |
 | --- | --- |
-| [`androidApp`](modular-kmp-data-layer/androidApp/) | Renders native Feature One via `HomeViewModel -> TaskRepository -> TaskDataSource`, then native `DetailsViewModel` calls shared data. |
-| [`iosApp`](modular-kmp-data-layer/iosApp/) | SwiftUI renders native Feature One and native `DetailsViewModel` calls the shared data framework. |
-| [`desktopApp`](modular-kmp-data-layer/desktopApp/) | Compose Desktop renders native Feature One and native `DetailsViewModel` calls shared data. |
+| [`androidApp`](modular-kmp-data-layer/androidApp/) | `MainActivity` hosts native `FeatureOneScreen -> HomeViewModel -> TaskRepository -> TaskDataSource`, then native `DetailsViewModel` calls shared data. |
+| [`iosApp`](modular-kmp-data-layer/iosApp/) | SwiftUI `ContentView` hosts native `FeatureOneView -> HomeViewModel -> TaskRepository -> TaskDataSource`, and native `DetailsViewModel` calls the shared data framework. |
+| [`desktopApp`](modular-kmp-data-layer/desktopApp/) | Desktop `Main.kt` hosts native `FeatureOneScreen -> HomeViewModel -> TaskRepository -> TaskDataSource`, and native `DetailsViewModel` calls shared data. |
 | [`featureTwoSharedData`](modular-kmp-data-layer/featureTwoSharedData/) | KMP owns `DetailsRepository -> RemoteDetailsDataSource / LocalDetailsDataSource -> DetailsDtoMapper`. |
 
 ### modular-kmp-presentation-layer
@@ -169,9 +169,9 @@ No blocking architecture mismatches were found in this pass. The known local too
 
 | Module | How It Works |
 | --- | --- |
-| [`androidApp`](modular-kmp-presentation-layer/androidApp/) | Renders native Feature One, implements native `DetailsRepository -> DetailsDataSource`, and hosts shared Feature Two presentation. |
-| [`iosApp`](modular-kmp-presentation-layer/iosApp/) | SwiftUI renders native Feature One, implements the repository contract, and hosts shared Compose presentation. |
-| [`desktopApp`](modular-kmp-presentation-layer/desktopApp/) | Renders native Feature One, implements native Feature Two data, and hosts shared presentation. |
+| [`androidApp`](modular-kmp-presentation-layer/androidApp/) | `MainActivity` hosts native `FeatureOneScreen -> HomeViewModel -> TaskRepository -> TaskDataSource`, implements native `DetailsRepository -> DetailsDataSource`, and hosts shared Feature Two presentation. |
+| [`iosApp`](modular-kmp-presentation-layer/iosApp/) | SwiftUI hosts native `FeatureOneView -> HomeViewModel -> TaskRepository -> TaskDataSource`, implements the repository contract, and hosts shared Compose presentation. |
+| [`desktopApp`](modular-kmp-presentation-layer/desktopApp/) | Desktop hosts native `FeatureOneScreen -> HomeViewModel -> TaskRepository -> TaskDataSource`, implements native Feature Two data, and hosts shared presentation. |
 | [`featureTwoSharedPresentation`](modular-kmp-presentation-layer/featureTwoSharedPresentation/) | KMP owns `App -> DetailsScreen -> DetailsViewModel -> DetailsUiState` plus the `DetailsRepository` contract. |
 
 ### modular-kmp-ui-layer
@@ -182,9 +182,9 @@ No blocking architecture mismatches were found in this pass. The known local too
 
 | Module | How It Works |
 | --- | --- |
-| [`androidApp`](modular-kmp-ui-layer/androidApp/) | Renders native Feature One and native Feature Two `DetailsViewModel -> DetailsRepository -> DetailsDataSource`, passing state/events to shared UI. |
-| [`iosApp`](modular-kmp-ui-layer/iosApp/) | SwiftUI renders native Feature One and uses native Feature Two logic with the shared UI factory. |
-| [`desktopApp`](modular-kmp-ui-layer/desktopApp/) | Renders native Feature One and native Feature Two logic, then renders shared UI. |
+| [`androidApp`](modular-kmp-ui-layer/androidApp/) | `MainActivity` hosts native `FeatureOneScreen -> HomeViewModel -> TaskRepository -> TaskDataSource` and native Feature Two `DetailsViewModel -> DetailsRepository -> DetailsDataSource`, passing state/events to shared UI. |
+| [`iosApp`](modular-kmp-ui-layer/iosApp/) | SwiftUI hosts native `FeatureOneView -> HomeViewModel -> TaskRepository -> TaskDataSource` and uses native Feature Two logic with the shared UI factory. |
+| [`desktopApp`](modular-kmp-ui-layer/desktopApp/) | Desktop hosts native `FeatureOneScreen -> HomeViewModel -> TaskRepository -> TaskDataSource` and native Feature Two logic, then renders shared UI. |
 | [`featureTwoSharedUI`](modular-kmp-ui-layer/featureTwoSharedUI/) | KMP owns `App -> DetailsScreen -> DetailsUiState` and receives native state/events. |
 
 ### modular-kmp-ui-data-layer
@@ -195,9 +195,9 @@ No blocking architecture mismatches were found in this pass. The known local too
 
 | Module | How It Works |
 | --- | --- |
-| [`androidApp`](modular-kmp-ui-data-layer/androidApp/) | Renders native Feature One; native `DetailsViewModel` calls shared data and passes state/events to shared UI. |
-| [`iosApp`](modular-kmp-ui-data-layer/iosApp/) | SwiftUI renders native Feature One; native `DetailsViewModel` bridges shared UI and shared data. |
-| [`desktopApp`](modular-kmp-ui-data-layer/desktopApp/) | Renders native Feature One; native `DetailsViewModel` connects shared UI and data. |
+| [`androidApp`](modular-kmp-ui-data-layer/androidApp/) | `MainActivity` hosts native `FeatureOneScreen -> HomeViewModel -> TaskRepository -> TaskDataSource`; native `DetailsViewModel` calls shared data and passes state/events to shared UI. |
+| [`iosApp`](modular-kmp-ui-data-layer/iosApp/) | SwiftUI hosts native `FeatureOneView -> HomeViewModel -> TaskRepository -> TaskDataSource`; native `DetailsViewModel` bridges shared UI and shared data. |
+| [`desktopApp`](modular-kmp-ui-data-layer/desktopApp/) | Desktop hosts native `FeatureOneScreen -> HomeViewModel -> TaskRepository -> TaskDataSource`; native `DetailsViewModel` connects shared UI and data. |
 | [`featureTwoSharedUI`](modular-kmp-ui-data-layer/featureTwoSharedUI/) | KMP owns `App -> DetailsScreen -> DetailsUiState`. |
 | [`featureTwoSharedData`](modular-kmp-ui-data-layer/featureTwoSharedData/) | KMP owns `DetailsRepository -> RemoteDetailsDataSource / LocalDetailsDataSource -> DetailsDtoMapper`. |
 
@@ -209,9 +209,9 @@ No blocking architecture mismatches were found in this pass. The known local too
 
 | Module | How It Works |
 | --- | --- |
-| [`androidApp`](modular-kmp-shared-feature/androidApp/) | Renders native Feature One via `HomeViewModel -> TaskRepository -> TaskDataSource`, then hosts shared Feature Two. |
-| [`iosApp`](modular-kmp-shared-feature/iosApp/) | SwiftUI renders native Feature One, then hosts the shared Feature Two view controller. |
-| [`desktopApp`](modular-kmp-shared-feature/desktopApp/) | Renders native Feature One, then hosts shared Feature Two. |
+| [`androidApp`](modular-kmp-shared-feature/androidApp/) | `MainActivity` hosts native `FeatureOneScreen -> HomeViewModel -> TaskRepository -> TaskDataSource`, then hosts shared Feature Two. |
+| [`iosApp`](modular-kmp-shared-feature/iosApp/) | SwiftUI hosts native `FeatureOneView -> HomeViewModel -> TaskRepository -> TaskDataSource`, then hosts the shared Feature Two view controller. |
+| [`desktopApp`](modular-kmp-shared-feature/desktopApp/) | Desktop hosts native `FeatureOneScreen -> HomeViewModel -> TaskRepository -> TaskDataSource`, then hosts shared Feature Two. |
 | [`featureTwoSharedFeature`](modular-kmp-shared-feature/featureTwoSharedFeature/) | KMP owns `App -> DetailsScreen -> DetailsViewModel -> DetailsRepository -> DetailsDataSource`. |
 
 ## Three Layer KMP

@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.kmpsamples.modularkmpuilayer.android.featureone.FeatureOneScreen
 import com.example.kmpsamples.modularkmpuilayer.featuretwosharedui.App
 
 class MainActivity : ComponentActivity() {
@@ -31,8 +32,7 @@ class MainActivity : ComponentActivity() {
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         Text("Modular KMP UI Layer")
-                        Text("Feature One (native Android)")
-                        Text(HomeViewModel().screenState("Android"))
+                        FeatureOneScreen(platform = "Android")
                         App(
                             state = state,
                             onRefresh = { state = detailsViewModel.refresh("Android") },

@@ -209,9 +209,9 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-data-layer/androidApp/"><code>androidApp</code></a></td><td>Renders native Feature One via <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then native <code>DetailsViewModel</code> calls shared data.</td></tr>
-<tr><td><a href="modular-kmp-data-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI renders native Feature One and native <code>DetailsViewModel</code> calls the shared data framework.</td></tr>
-<tr><td><a href="modular-kmp-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Compose Desktop renders native Feature One and native <code>DetailsViewModel</code> calls shared data.</td></tr>
+<tr><td><a href="modular-kmp-data-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then native <code>DetailsViewModel</code> calls shared data.</td></tr>
+<tr><td><a href="modular-kmp-data-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI <code>ContentView</code> hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, and native <code>DetailsViewModel</code> calls the shared data framework.</td></tr>
+<tr><td><a href="modular-kmp-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop <code>Main.kt</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, and native <code>DetailsViewModel</code> calls shared data.</td></tr>
 <tr><td><a href="modular-kmp-data-layer/featureTwoSharedData/"><code>featureTwoSharedData</code></a></td><td>KMP owns <code>DetailsRepository -&gt; RemoteDetailsDataSource / LocalDetailsDataSource -&gt; DetailsDtoMapper</code>.</td></tr>
 </tbody></table></div>
 <h3 id="modular-kmp-presentation-layer">modular-kmp-presentation-layer</h3>
@@ -223,9 +223,9 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-presentation-layer/androidApp/"><code>androidApp</code></a></td><td>Renders native Feature One, implements native <code>DetailsRepository -&gt; DetailsDataSource</code>, and hosts shared Feature Two presentation.</td></tr>
-<tr><td><a href="modular-kmp-presentation-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI renders native Feature One, implements the repository contract, and hosts shared Compose presentation.</td></tr>
-<tr><td><a href="modular-kmp-presentation-layer/desktopApp/"><code>desktopApp</code></a></td><td>Renders native Feature One, implements native Feature Two data, and hosts shared presentation.</td></tr>
+<tr><td><a href="modular-kmp-presentation-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, implements native <code>DetailsRepository -&gt; DetailsDataSource</code>, and hosts shared Feature Two presentation.</td></tr>
+<tr><td><a href="modular-kmp-presentation-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, implements the repository contract, and hosts shared Compose presentation.</td></tr>
+<tr><td><a href="modular-kmp-presentation-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, implements native Feature Two data, and hosts shared presentation.</td></tr>
 <tr><td><a href="modular-kmp-presentation-layer/featureTwoSharedPresentation/"><code>featureTwoSharedPresentation</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsViewModel -&gt; DetailsUiState</code> plus the <code>DetailsRepository</code> contract.</td></tr>
 </tbody></table></div>
 <h3 id="modular-kmp-ui-layer">modular-kmp-ui-layer</h3>
@@ -237,9 +237,9 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-ui-layer/androidApp/"><code>androidApp</code></a></td><td>Renders native Feature One and native Feature Two <code>DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code>, passing state/events to shared UI.</td></tr>
-<tr><td><a href="modular-kmp-ui-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI renders native Feature One and uses native Feature Two logic with the shared UI factory.</td></tr>
-<tr><td><a href="modular-kmp-ui-layer/desktopApp/"><code>desktopApp</code></a></td><td>Renders native Feature One and native Feature Two logic, then renders shared UI.</td></tr>
+<tr><td><a href="modular-kmp-ui-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and native Feature Two <code>DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code>, passing state/events to shared UI.</td></tr>
+<tr><td><a href="modular-kmp-ui-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and uses native Feature Two logic with the shared UI factory.</td></tr>
+<tr><td><a href="modular-kmp-ui-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and native Feature Two logic, then renders shared UI.</td></tr>
 <tr><td><a href="modular-kmp-ui-layer/featureTwoSharedUI/"><code>featureTwoSharedUI</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsUiState</code> and receives native state/events.</td></tr>
 </tbody></table></div>
 <h3 id="modular-kmp-ui-data-layer">modular-kmp-ui-data-layer</h3>
@@ -251,9 +251,9 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-ui-data-layer/androidApp/"><code>androidApp</code></a></td><td>Renders native Feature One; native <code>DetailsViewModel</code> calls shared data and passes state/events to shared UI.</td></tr>
-<tr><td><a href="modular-kmp-ui-data-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI renders native Feature One; native <code>DetailsViewModel</code> bridges shared UI and shared data.</td></tr>
-<tr><td><a href="modular-kmp-ui-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Renders native Feature One; native <code>DetailsViewModel</code> connects shared UI and data.</td></tr>
+<tr><td><a href="modular-kmp-ui-data-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>; native <code>DetailsViewModel</code> calls shared data and passes state/events to shared UI.</td></tr>
+<tr><td><a href="modular-kmp-ui-data-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>; native <code>DetailsViewModel</code> bridges shared UI and shared data.</td></tr>
+<tr><td><a href="modular-kmp-ui-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>; native <code>DetailsViewModel</code> connects shared UI and data.</td></tr>
 <tr><td><a href="modular-kmp-ui-data-layer/featureTwoSharedUI/"><code>featureTwoSharedUI</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsUiState</code>.</td></tr>
 <tr><td><a href="modular-kmp-ui-data-layer/featureTwoSharedData/"><code>featureTwoSharedData</code></a></td><td>KMP owns <code>DetailsRepository -&gt; RemoteDetailsDataSource / LocalDetailsDataSource -&gt; DetailsDtoMapper</code>.</td></tr>
 </tbody></table></div>
@@ -266,9 +266,9 @@
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-shared-feature/androidApp/"><code>androidApp</code></a></td><td>Renders native Feature One via <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts shared Feature Two.</td></tr>
-<tr><td><a href="modular-kmp-shared-feature/iosApp/"><code>iosApp</code></a></td><td>SwiftUI renders native Feature One, then hosts the shared Feature Two view controller.</td></tr>
-<tr><td><a href="modular-kmp-shared-feature/desktopApp/"><code>desktopApp</code></a></td><td>Renders native Feature One, then hosts shared Feature Two.</td></tr>
+<tr><td><a href="modular-kmp-shared-feature/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts shared Feature Two.</td></tr>
+<tr><td><a href="modular-kmp-shared-feature/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts the shared Feature Two view controller.</td></tr>
+<tr><td><a href="modular-kmp-shared-feature/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts shared Feature Two.</td></tr>
 <tr><td><a href="modular-kmp-shared-feature/featureTwoSharedFeature/"><code>featureTwoSharedFeature</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code>.</td></tr>
 </tbody></table></div>
 <h2 id="three-layer-kmp">Three Layer KMP</h2>

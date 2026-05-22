@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import com.example.kmpsamples.modularkmpdatalayer.desktop.featureone.FeatureOneScreen
 
 fun main() = application {
     Window(onCloseRequest = ::exitApplication, title = "Modular KMP Data Layer") {
@@ -18,8 +19,7 @@ fun main() = application {
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 Text("Modular KMP Data Layer")
-                Text("Feature One (native Desktop)")
-                Text(HomeViewModel().screenState("Desktop"))
+                FeatureOneScreen(platform = "Desktop")
                 Text("Feature Two (shared data)")
                 Text(DetailsViewModel().screenState("Desktop"))
             }

@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import com.example.kmpsamples.modularkmpsharedfeature.desktop.featureone.FeatureOneScreen
 import com.example.kmpsamples.modularkmpsharedfeature.featuretwosharedfeature.App
 
 fun main() = application {
@@ -22,8 +23,7 @@ fun main() = application {
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     Text("Modular KMP Shared Feature")
-                    Text("Feature One (native Desktop)")
-                    Text(HomeViewModel().screenState("Desktop"))
+                    FeatureOneScreen(platform = "Desktop")
                     App(
                         platform = "Desktop",
                         modifier = Modifier.weight(1f)

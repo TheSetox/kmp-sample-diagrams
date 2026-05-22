@@ -3,7 +3,6 @@ import UIKit
 import FeatureTwoSharedUI
 
 struct ContentView: View {
-    private let homeViewModel = HomeViewModel()
     private let detailsViewModel = DetailsViewModel()
     @State private var detailsState: DetailsUiState?
 
@@ -11,9 +10,7 @@ struct ContentView: View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Modular KMP UI And Data Layers")
                 .font(.title)
-            Text("Feature One (native iOS)")
-                .font(.headline)
-            Text(homeViewModel.screenState(platform: "iOS"))
+            FeatureOneView(platform: "iOS")
             if let detailsState = detailsState {
                 ComposeHostView(
                     state: detailsState,
