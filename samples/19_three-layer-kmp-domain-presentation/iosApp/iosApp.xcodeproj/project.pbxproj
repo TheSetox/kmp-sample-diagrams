@@ -1,0 +1,342 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+		2A6F2FD381DB1005C4DF5DEE = {
+			isa = PBXBuildFile;
+			fileRef = 4B438A25AADD1C130CCA90DD;
+		};
+
+		6DE8F0BE921E5F9D3542675E = {
+			isa = PBXBuildFile;
+			fileRef = 59EBCA5FD308D00015794DEC;
+		};
+
+		43715C088CC15F2680CC5553 = {
+			isa = PBXBuildFile;
+			fileRef = A2C383487E7DA69847AFB714;
+		};
+
+		6ABF313B3FAB7E80F5F848E1 = {
+			isa = PBXBuildFile;
+			fileRef = 6F477FA89D0C77F28CACA111;
+		};
+
+		D80B06D6F7B191FE4F339EBB = {
+			isa = PBXBuildFile;
+			fileRef = DCC921E35201C7DFF5FD21AC;
+		};
+
+		508043993201A9A40C0714A1 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+			path = iosApp.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+
+		4B438A25AADD1C130CCA90DD = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "ContentView.swift";
+			sourceTree = "<group>";
+		};
+
+		59EBCA5FD308D00015794DEC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "SampleApp.swift";
+			sourceTree = "<group>";
+		};
+
+		A2C383487E7DA69847AFB714 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "TaskDataSource.swift";
+			sourceTree = "<group>";
+		};
+
+		6F477FA89D0C77F28CACA111 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "TaskRepository.swift";
+			sourceTree = "<group>";
+		};
+
+		DCC921E35201C7DFF5FD21AC = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			path = "SharedPresentation.framework";
+			sourceTree = "<group>";
+		};
+
+		E89D268786F02AE60EF17665 = {
+			isa = PBXGroup;
+			children = (
+				2F368730D0369E1941917FA6,
+				37E77E14BBA3033355F9751D,
+				A86E43B8301D8E8D004B067D,
+			);
+			sourceTree = "<group>";
+		};
+
+		2F368730D0369E1941917FA6 = {
+			isa = PBXGroup;
+			children = (
+				4B438A25AADD1C130CCA90DD,
+				59EBCA5FD308D00015794DEC,
+				A2C383487E7DA69847AFB714,
+				6F477FA89D0C77F28CACA111,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+
+		37E77E14BBA3033355F9751D = {
+			isa = PBXGroup;
+			children = (
+				DCC921E35201C7DFF5FD21AC,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+
+		A86E43B8301D8E8D004B067D = {
+			isa = PBXGroup;
+			children = (
+				508043993201A9A40C0714A1,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+
+		6D4154FC8C322202AC8AC702 = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A6F2FD381DB1005C4DF5DEE,
+				6DE8F0BE921E5F9D3542675E,
+				43715C088CC15F2680CC5553,
+				6ABF313B3FAB7E80F5F848E1,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
+		B0441EEDCB13EF4C1F861F89 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D80B06D6F7B191FE4F339EBB,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
+		F8BE50BC806B08615ED08C4F = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = ();
+			inputFileListPaths = ();
+			inputPaths = ();
+			name = "Build KMP Frameworks";
+			outputFileListPaths = ();
+			outputPaths = (
+				"$(SRCROOT)/Frameworks/SharedPresentation.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -euo pipefail\n\nREPO_ROOT=\"$(cd \"$SRCROOT/../../..\" && pwd)\"\nSAMPLE_PATH=\"samples/19_three-layer-kmp-domain-presentation\"\nCONFIGURATION_NAME=\"${CONFIGURATION:-Debug}\"\n\nif [ \"$CONFIGURATION_NAME\" = \"Release\" ]; then\n  KMP_BUILD_TYPE=\"Release\"\n  KMP_BUILD_TYPE_DIR=\"releaseFramework\"\nelse\n  KMP_BUILD_TYPE=\"Debug\"\n  KMP_BUILD_TYPE_DIR=\"debugFramework\"\nfi\n\nif [[ \"${SDK_NAME:-iphonesimulator}\" == iphoneos* ]]; then\n  KMP_TARGET=\"IosArm64\"\n  KMP_TARGET_DIR=\"iosArm64\"\nelse\n  KMP_TARGET=\"IosSimulatorArm64\"\n  KMP_TARGET_DIR=\"iosSimulatorArm64\"\nfi\n\nrm -rf \"$SRCROOT/Frameworks\"\nmkdir -p \"$SRCROOT/Frameworks\"\nFRAMEWORK_SPECS=(\n  \"sharedPresentation|SharedPresentation\"\n)\n\nfor SPEC in \"${FRAMEWORK_SPECS[@]}\"; do\n  IFS=\"|\" read -r GRADLE_MODULE FRAMEWORK_NAME <<< \"$SPEC\"\n  TASK=\":${GRADLE_MODULE}:link${KMP_BUILD_TYPE}Framework${KMP_TARGET}\"\n  \"$REPO_ROOT/gradlew\" -p \"$REPO_ROOT/$SAMPLE_PATH\" \"$TASK\"\n\n  SOURCE_FRAMEWORK=\"$REPO_ROOT/$SAMPLE_PATH/$GRADLE_MODULE/build/bin/$KMP_TARGET_DIR/$KMP_BUILD_TYPE_DIR/$FRAMEWORK_NAME.framework\"\n  DEST_FRAMEWORK=\"$SRCROOT/Frameworks/$FRAMEWORK_NAME.framework\"\n\n  if [ ! -d \"$SOURCE_FRAMEWORK\" ]; then\n    echo \"Expected framework was not produced: $SOURCE_FRAMEWORK\" >&2\n    exit 1\n  fi\n\n  rm -rf \"$DEST_FRAMEWORK\"\n  cp -R \"$SOURCE_FRAMEWORK\" \"$DEST_FRAMEWORK\"\ndone\n";
+		};
+
+		D2ABC92BC27E8BA1EB75F703 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7E43953DDB2D55FA8236E2F;
+			buildPhases = (
+				F8BE50BC806B08615ED08C4F,
+				6D4154FC8C322202AC8AC702,
+				B0441EEDCB13EF4C1F861F89,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = iosApp;
+			productName = iosApp;
+			productReference = 508043993201A9A40C0714A1;
+			productType = "com.apple.product-type.application";
+		};
+
+		035BCA01966300DD9DD0A71E = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					D2ABC92BC27E8BA1EB75F703 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = 69F5D01C67E965E51943F6C2;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E89D268786F02AE60EF17665;
+			productRefGroup = A86E43B8301D8E8D004B067D;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2ABC92BC27E8BA1EB75F703,
+			);
+		};
+
+		0AB4ECAB4D5E03FEE2B1A2AD = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "NO";
+				CLANG_ANALYZER_NONNULL = "YES";
+				CLANG_ENABLE_MODULES = "YES";
+				CLANG_ENABLE_OBJC_ARC = "YES";
+				CLANG_ENABLE_OBJC_WEAK = "YES";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = "YES";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "YES";
+				DEBUG_INFORMATION_FORMAT = "dwarf";
+				ENABLE_STRICT_OBJC_MSGSEND = "YES";
+				GCC_C_LANGUAGE_STANDARD = "gnu17";
+				GCC_NO_COMMON_BLOCKS = "YES";
+				GCC_OPTIMIZATION_LEVEL = "0";
+				SDKROOT = "iphoneos";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+			};
+			name = Debug;
+		};
+
+		3C2A0ACFFB52C412B9606849 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "NO";
+				CLANG_ANALYZER_NONNULL = "YES";
+				CLANG_ENABLE_MODULES = "YES";
+				CLANG_ENABLE_OBJC_ARC = "YES";
+				CLANG_ENABLE_OBJC_WEAK = "YES";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = "YES";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "YES";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = "YES";
+				GCC_C_LANGUAGE_STANDARD = "gnu17";
+				GCC_NO_COMMON_BLOCKS = "YES";
+				GCC_OPTIMIZATION_LEVEL = "s";
+				SDKROOT = "iphoneos";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				VALIDATE_PRODUCT = "YES";
+			};
+			name = Release;
+		};
+
+		0F6A384514A3C81580F04172 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "AccentColor";
+				CODE_SIGN_STYLE = "Automatic";
+				CURRENT_PROJECT_VERSION = "1";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = "YES";
+				ENABLE_USER_SCRIPT_SANDBOXING = "NO";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "x86_64";
+				FRAMEWORK_SEARCH_PATHS = (
+				"$(inherited)",
+				"$(SRCROOT)/Frameworks",
+			);
+				GENERATE_INFOPLIST_FILE = "YES";
+				INFOPLIST_KEY_CFBundleDisplayName = "Three Layer KMP Domain And Presentation";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = "YES";
+				INFOPLIST_KEY_UILaunchScreen_Generation = "YES";
+				IPHONEOS_DEPLOYMENT_TARGET = "18.5";
+				LD_RUNPATH_SEARCH_PATHS = (
+				"$(inherited)",
+				"@executable_path/Frameworks",
+			);
+				MARKETING_VERSION = "1.0";
+				ONLY_ACTIVE_ARCH = "YES";
+				OTHER_LDFLAGS = (
+				"$(inherited)",
+				"-framework",
+				"SharedPresentation",
+			);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.kmpsamples.threelayerkmpdomainpresentation.iosApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG";
+				SWIFT_EMIT_LOC_STRINGS = "YES";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "5.0";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+
+		2D2D54369BFA52045C436F79 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "AccentColor";
+				CODE_SIGN_STYLE = "Automatic";
+				CURRENT_PROJECT_VERSION = "1";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = "YES";
+				ENABLE_USER_SCRIPT_SANDBOXING = "NO";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "x86_64";
+				FRAMEWORK_SEARCH_PATHS = (
+				"$(inherited)",
+				"$(SRCROOT)/Frameworks",
+			);
+				GENERATE_INFOPLIST_FILE = "YES";
+				INFOPLIST_KEY_CFBundleDisplayName = "Three Layer KMP Domain And Presentation";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = "YES";
+				INFOPLIST_KEY_UILaunchScreen_Generation = "YES";
+				IPHONEOS_DEPLOYMENT_TARGET = "18.5";
+				LD_RUNPATH_SEARCH_PATHS = (
+				"$(inherited)",
+				"@executable_path/Frameworks",
+			);
+				MARKETING_VERSION = "1.0";
+				OTHER_LDFLAGS = (
+				"$(inherited)",
+				"-framework",
+				"SharedPresentation",
+			);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.kmpsamples.threelayerkmpdomainpresentation.iosApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = "YES";
+				SWIFT_VERSION = "5.0";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+
+		69F5D01C67E965E51943F6C2 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0AB4ECAB4D5E03FEE2B1A2AD,
+				3C2A0ACFFB52C412B9606849,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+
+		D7E43953DDB2D55FA8236E2F = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F6A384514A3C81580F04172,
+				2D2D54369BFA52045C436F79,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+	};
+	rootObject = 035BCA01966300DD9DD0A71E;
+}

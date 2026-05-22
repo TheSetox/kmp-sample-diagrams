@@ -6,14 +6,14 @@ This review maps every diagram scenario to the current sample code on `feature/k
 
 - Review date: May 22, 2026.
 - Branch: `feature/kmp-2026-mermaid-samples`.
-- All 18 samples have `androidApp`, `desktopApp`, and `iosApp/Sources/ContentView.swift`.
+- All 18 samples have `androidApp`, `desktopApp`, and a real SwiftUI `iosApp.xcodeproj` with the shared `iosApp` scheme.
 - Static scan found no stale placeholder message classes, sample-detail helpers, or todo/fixme markers.
 - Android app Gradle files do not apply `org.jetbrains.kotlin.android`; they rely on AGP built-in Kotlin.
 - Build verification details are recorded in [../TESTING.md](../TESTING.md).
 
 ## Review Findings
 
-No blocking architecture mismatches were found in this pass. The known local tooling caveat is still the Compose-heavy iOS framework link: shared Compose UI/presentation modules compile for desktop and Android app assembly passes, but full iOS Compose framework linking can exceed the local Gradle daemon heap/metaspace settings. Plain shared logic/data/domain modules assembled fully, including Kotlin/Native framework tasks.
+No blocking architecture mismatches were found in this pass. The iOS apps are now runnable Xcode projects; KMP-backed projects build their Kotlin/Native frameworks from an Xcode shell phase before Swift compilation.
 
 ## Baseline
 

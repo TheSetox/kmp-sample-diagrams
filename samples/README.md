@@ -10,9 +10,10 @@ Run commands from the repository root:
 ./gradlew -p samples/03_kmp-compose-ui :desktopApp:compileKotlin
 ./gradlew -p samples/03_kmp-compose-ui :androidApp:assembleDebug
 ./gradlew -p samples/03_kmp-compose-ui :shared:assemble
+xcodebuild -project samples/03_kmp-compose-ui/iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -derivedDataPath samples/03_kmp-compose-ui/build/xcode-derived-data CODE_SIGNING_ALLOWED=NO build
 ```
 
-Android commands require a local Android SDK. For iOS, open the `iosApp` folder in Xcode when present and use each sample README to find the framework-producing Gradle task.
+Android commands require a local Android SDK. For iOS, open `iosApp/iosApp.xcodeproj` in Xcode and run the shared `iosApp` scheme; KMP-backed samples build and copy their frameworks through the Xcode `Build KMP Frameworks` phase.
 
 For a per-module review map, open [`implementation-review.html`](implementation-review.html) or read [`IMPLEMENTATION_REVIEW.md`](IMPLEMENTATION_REVIEW.md).
 
@@ -43,7 +44,7 @@ For a per-module review map, open [`implementation-review.html`](implementation-
 
 - `androidApp` contains the Android application entry point.
 - `desktopApp` contains the desktop application entry point.
-- `iosApp` contains SwiftUI entry code and Xcode project files or notes.
+- `iosApp` contains SwiftUI entry code and a runnable `iosApp.xcodeproj` app target.
 - Shared KMP library modules use the Android-KMP library plugin when they expose an Android target.
 - Android app modules use AGP built-in Kotlin and do not apply `org.jetbrains.kotlin.android`.
 - Samples intentionally avoid `webApp` and `server` modules.

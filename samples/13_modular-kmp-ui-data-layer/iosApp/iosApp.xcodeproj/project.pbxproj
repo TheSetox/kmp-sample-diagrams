@@ -1,0 +1,403 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+		54ED2127AE54025BD556FA82 = {
+			isa = PBXBuildFile;
+			fileRef = 270D3E8D4208F464F503D997;
+		};
+
+		63A5BB50C1CC96DC95BA6ECD = {
+			isa = PBXBuildFile;
+			fileRef = 1BB0B8AC4E62D2D06C3429A3;
+		};
+
+		F27D247227105787A76AC6FD = {
+			isa = PBXBuildFile;
+			fileRef = C025E255295DF8501CF60F23;
+		};
+
+		CFC58100C447879484D1CA17 = {
+			isa = PBXBuildFile;
+			fileRef = 0E56906E6248CC5584A198DA;
+		};
+
+		D033ECE88BD13BC065C53C5C = {
+			isa = PBXBuildFile;
+			fileRef = 75A192A5F0B27A61A3EE4851;
+		};
+
+		F2FA751D849D90D70A050480 = {
+			isa = PBXBuildFile;
+			fileRef = 51DDBBCAB0D1B90DFE7F5840;
+		};
+
+		21E466F4E1AB19DF1F1DB76F = {
+			isa = PBXBuildFile;
+			fileRef = BA16A89688E60B06411CFCB0;
+		};
+
+		5BC276AF8BF3E2A33B3DD3F3 = {
+			isa = PBXBuildFile;
+			fileRef = D042CEE2E78FF7FCA372BB7D;
+		};
+
+		A63BA1B275A3021189F660D8 = {
+			isa = PBXBuildFile;
+			fileRef = 00BDAD047B708DF6C5013BFD;
+		};
+
+		88FBD0A2E9BB52ECB1A7F5C8 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+			path = iosApp.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+
+		270D3E8D4208F464F503D997 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "ContentView.swift";
+			sourceTree = "<group>";
+		};
+
+		1BB0B8AC4E62D2D06C3429A3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "DetailsViewModel.swift";
+			sourceTree = "<group>";
+		};
+
+		C025E255295DF8501CF60F23 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "FeatureOne/FeatureOneView.swift";
+			sourceTree = "<group>";
+		};
+
+		0E56906E6248CC5584A198DA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "FeatureOne/HomeViewModel.swift";
+			sourceTree = "<group>";
+		};
+
+		75A192A5F0B27A61A3EE4851 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "FeatureOne/TaskDataSource.swift";
+			sourceTree = "<group>";
+		};
+
+		51DDBBCAB0D1B90DFE7F5840 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "FeatureOne/TaskRepository.swift";
+			sourceTree = "<group>";
+		};
+
+		BA16A89688E60B06411CFCB0 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "SampleApp.swift";
+			sourceTree = "<group>";
+		};
+
+		D042CEE2E78FF7FCA372BB7D = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			path = "FeatureTwoSharedUI.framework";
+			sourceTree = "<group>";
+		};
+
+		00BDAD047B708DF6C5013BFD = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			path = "FeatureTwoSharedData.framework";
+			sourceTree = "<group>";
+		};
+
+		846F798C53CC0F27A1C54951 = {
+			isa = PBXGroup;
+			children = (
+				7F15FBC783545612B66DC40E,
+				53F35E754BBE892D39DE7740,
+				B943B22F40ADF91CFA88E29B,
+			);
+			sourceTree = "<group>";
+		};
+
+		7F15FBC783545612B66DC40E = {
+			isa = PBXGroup;
+			children = (
+				270D3E8D4208F464F503D997,
+				1BB0B8AC4E62D2D06C3429A3,
+				C025E255295DF8501CF60F23,
+				0E56906E6248CC5584A198DA,
+				75A192A5F0B27A61A3EE4851,
+				51DDBBCAB0D1B90DFE7F5840,
+				BA16A89688E60B06411CFCB0,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+
+		53F35E754BBE892D39DE7740 = {
+			isa = PBXGroup;
+			children = (
+				D042CEE2E78FF7FCA372BB7D,
+				00BDAD047B708DF6C5013BFD,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+
+		B943B22F40ADF91CFA88E29B = {
+			isa = PBXGroup;
+			children = (
+				88FBD0A2E9BB52ECB1A7F5C8,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+
+		A22851DE970EC0A64DD55FEB = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54ED2127AE54025BD556FA82,
+				63A5BB50C1CC96DC95BA6ECD,
+				F27D247227105787A76AC6FD,
+				CFC58100C447879484D1CA17,
+				D033ECE88BD13BC065C53C5C,
+				F2FA751D849D90D70A050480,
+				21E466F4E1AB19DF1F1DB76F,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
+		31C7730A97435B4B257E50C9 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BC276AF8BF3E2A33B3DD3F3,
+				A63BA1B275A3021189F660D8,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
+		4A8BDB3136A1A248AD529131 = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = ();
+			inputFileListPaths = ();
+			inputPaths = ();
+			name = "Build KMP Frameworks";
+			outputFileListPaths = ();
+			outputPaths = (
+				"$(SRCROOT)/Frameworks/FeatureTwoSharedUI.framework",
+				"$(SRCROOT)/Frameworks/FeatureTwoSharedData.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -euo pipefail\n\nREPO_ROOT=\"$(cd \"$SRCROOT/../../..\" && pwd)\"\nSAMPLE_PATH=\"samples/13_modular-kmp-ui-data-layer\"\nCONFIGURATION_NAME=\"${CONFIGURATION:-Debug}\"\n\nif [ \"$CONFIGURATION_NAME\" = \"Release\" ]; then\n  KMP_BUILD_TYPE=\"Release\"\n  KMP_BUILD_TYPE_DIR=\"releaseFramework\"\nelse\n  KMP_BUILD_TYPE=\"Debug\"\n  KMP_BUILD_TYPE_DIR=\"debugFramework\"\nfi\n\nif [[ \"${SDK_NAME:-iphonesimulator}\" == iphoneos* ]]; then\n  KMP_TARGET=\"IosArm64\"\n  KMP_TARGET_DIR=\"iosArm64\"\nelse\n  KMP_TARGET=\"IosSimulatorArm64\"\n  KMP_TARGET_DIR=\"iosSimulatorArm64\"\nfi\n\nrm -rf \"$SRCROOT/Frameworks\"\nmkdir -p \"$SRCROOT/Frameworks\"\nFRAMEWORK_SPECS=(\n  \"featureTwoSharedUI|FeatureTwoSharedUI\"\n  \"featureTwoSharedData|FeatureTwoSharedData\"\n)\n\nfor SPEC in \"${FRAMEWORK_SPECS[@]}\"; do\n  IFS=\"|\" read -r GRADLE_MODULE FRAMEWORK_NAME <<< \"$SPEC\"\n  TASK=\":${GRADLE_MODULE}:link${KMP_BUILD_TYPE}Framework${KMP_TARGET}\"\n  \"$REPO_ROOT/gradlew\" -p \"$REPO_ROOT/$SAMPLE_PATH\" \"$TASK\"\n\n  SOURCE_FRAMEWORK=\"$REPO_ROOT/$SAMPLE_PATH/$GRADLE_MODULE/build/bin/$KMP_TARGET_DIR/$KMP_BUILD_TYPE_DIR/$FRAMEWORK_NAME.framework\"\n  DEST_FRAMEWORK=\"$SRCROOT/Frameworks/$FRAMEWORK_NAME.framework\"\n\n  if [ ! -d \"$SOURCE_FRAMEWORK\" ]; then\n    echo \"Expected framework was not produced: $SOURCE_FRAMEWORK\" >&2\n    exit 1\n  fi\n\n  rm -rf \"$DEST_FRAMEWORK\"\n  cp -R \"$SOURCE_FRAMEWORK\" \"$DEST_FRAMEWORK\"\ndone\n";
+		};
+
+		6199D64094C8F4DFDE1755CE = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47ADF62F7C3BD28CEE7F851E;
+			buildPhases = (
+				4A8BDB3136A1A248AD529131,
+				A22851DE970EC0A64DD55FEB,
+				31C7730A97435B4B257E50C9,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = iosApp;
+			productName = iosApp;
+			productReference = 88FBD0A2E9BB52ECB1A7F5C8;
+			productType = "com.apple.product-type.application";
+		};
+
+		1241EC515E336D376DA34E69 = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					6199D64094C8F4DFDE1755CE = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = 985A51587C1EB309FF86BD0C;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 846F798C53CC0F27A1C54951;
+			productRefGroup = B943B22F40ADF91CFA88E29B;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6199D64094C8F4DFDE1755CE,
+			);
+		};
+
+		6B87F1190713F3A47CDF6C3D = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "NO";
+				CLANG_ANALYZER_NONNULL = "YES";
+				CLANG_ENABLE_MODULES = "YES";
+				CLANG_ENABLE_OBJC_ARC = "YES";
+				CLANG_ENABLE_OBJC_WEAK = "YES";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = "YES";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "YES";
+				DEBUG_INFORMATION_FORMAT = "dwarf";
+				ENABLE_STRICT_OBJC_MSGSEND = "YES";
+				GCC_C_LANGUAGE_STANDARD = "gnu17";
+				GCC_NO_COMMON_BLOCKS = "YES";
+				GCC_OPTIMIZATION_LEVEL = "0";
+				SDKROOT = "iphoneos";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+			};
+			name = Debug;
+		};
+
+		108553631D02A0C87CEEF4FE = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "NO";
+				CLANG_ANALYZER_NONNULL = "YES";
+				CLANG_ENABLE_MODULES = "YES";
+				CLANG_ENABLE_OBJC_ARC = "YES";
+				CLANG_ENABLE_OBJC_WEAK = "YES";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = "YES";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "YES";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = "YES";
+				GCC_C_LANGUAGE_STANDARD = "gnu17";
+				GCC_NO_COMMON_BLOCKS = "YES";
+				GCC_OPTIMIZATION_LEVEL = "s";
+				SDKROOT = "iphoneos";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				VALIDATE_PRODUCT = "YES";
+			};
+			name = Release;
+		};
+
+		47D926563828C354FCCBC98D = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "AccentColor";
+				CODE_SIGN_STYLE = "Automatic";
+				CURRENT_PROJECT_VERSION = "1";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = "YES";
+				ENABLE_USER_SCRIPT_SANDBOXING = "NO";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "x86_64";
+				FRAMEWORK_SEARCH_PATHS = (
+				"$(inherited)",
+				"$(SRCROOT)/Frameworks",
+			);
+				GENERATE_INFOPLIST_FILE = "YES";
+				INFOPLIST_KEY_CFBundleDisplayName = "Modular KMP UI And Data Layers";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = "YES";
+				INFOPLIST_KEY_UILaunchScreen_Generation = "YES";
+				IPHONEOS_DEPLOYMENT_TARGET = "18.5";
+				LD_RUNPATH_SEARCH_PATHS = (
+				"$(inherited)",
+				"@executable_path/Frameworks",
+			);
+				MARKETING_VERSION = "1.0";
+				ONLY_ACTIVE_ARCH = "YES";
+				OTHER_LDFLAGS = (
+				"$(inherited)",
+				"-framework",
+				"FeatureTwoSharedUI",
+				"-framework",
+				"FeatureTwoSharedData",
+			);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.kmpsamples.modularkmpuidatalayer.iosApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG";
+				SWIFT_EMIT_LOC_STRINGS = "YES";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "5.0";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+
+		DD72DEFEC84500ECF497EDCC = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "AccentColor";
+				CODE_SIGN_STYLE = "Automatic";
+				CURRENT_PROJECT_VERSION = "1";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = "YES";
+				ENABLE_USER_SCRIPT_SANDBOXING = "NO";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "x86_64";
+				FRAMEWORK_SEARCH_PATHS = (
+				"$(inherited)",
+				"$(SRCROOT)/Frameworks",
+			);
+				GENERATE_INFOPLIST_FILE = "YES";
+				INFOPLIST_KEY_CFBundleDisplayName = "Modular KMP UI And Data Layers";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = "YES";
+				INFOPLIST_KEY_UILaunchScreen_Generation = "YES";
+				IPHONEOS_DEPLOYMENT_TARGET = "18.5";
+				LD_RUNPATH_SEARCH_PATHS = (
+				"$(inherited)",
+				"@executable_path/Frameworks",
+			);
+				MARKETING_VERSION = "1.0";
+				OTHER_LDFLAGS = (
+				"$(inherited)",
+				"-framework",
+				"FeatureTwoSharedUI",
+				"-framework",
+				"FeatureTwoSharedData",
+			);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.kmpsamples.modularkmpuidatalayer.iosApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = "YES";
+				SWIFT_VERSION = "5.0";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+
+		985A51587C1EB309FF86BD0C = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B87F1190713F3A47CDF6C3D,
+				108553631D02A0C87CEEF4FE,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+
+		47ADF62F7C3BD28CEE7F851E = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47D926563828C354FCCBC98D,
+				DD72DEFEC84500ECF497EDCC,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+	};
+	rootObject = 1241EC515E336D376DA34E69;
+}

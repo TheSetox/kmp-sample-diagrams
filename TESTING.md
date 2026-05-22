@@ -6,9 +6,11 @@ Verification updated on May 22, 2026 from `feature/kmp-2026-mermaid-samples`.
 
 - `python3 -m json.tool diagrams/manifest.json`
 - `node --check diagrams/bundle.js`
+- `node --check samples/gradle/ios-xcode/generate-ios-projects.js`
 - `git diff --check`
 - `rg -n "No shared KMP module|sampleDetail|SampleMessage" samples` returned no matches.
 - `rg --files -g '*.hprof' -g 'hs_err_pid*'` returned no generated crash/heap files.
+- `find samples -path '*/iosApp/iosApp.xcodeproj/project.pbxproj' -type f | wc -l` returned `18`.
 - The review branch has no root `*.png` files.
 - `feature/legacy-png-reference` exists and preserves the old PNG files.
 
@@ -68,8 +70,26 @@ ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/18_th
 ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/19_three-layer-kmp-domain-presentation :sharedDomain:assemble :sharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
 ```
 
+### iOS Xcode Projects
+
+Each sample now has a real SwiftUI app target at `iosApp/iosApp.xcodeproj` with a shared `iosApp` scheme. KMP-backed projects include a `Build KMP Frameworks` Xcode phase that runs the matching Gradle framework link task and copies the framework into `iosApp/Frameworks` before Swift compilation.
+
+Representative commands that succeeded locally:
+
+```sh
+xcodebuild -list -project samples/01_normal-native/iosApp/iosApp.xcodeproj
+xcodebuild -list -project samples/02_kmp-native-ui/iosApp/iosApp.xcodeproj
+xcodebuild -project samples/01_normal-native/iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -derivedDataPath samples/01_normal-native/build/xcode-derived-data CODE_SIGNING_ALLOWED=NO build
+xcodebuild -project samples/02_kmp-native-ui/iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -derivedDataPath samples/02_kmp-native-ui/build/xcode-derived-data CODE_SIGNING_ALLOWED=NO build
+xcodebuild -project samples/03_kmp-compose-ui/iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -derivedDataPath samples/03_kmp-compose-ui/build/xcode-derived-data CODE_SIGNING_ALLOWED=NO -quiet build
+xcodebuild -project samples/08_kmp-presentation-data-layer/iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -derivedDataPath samples/08_kmp-presentation-data-layer/build/xcode-derived-data CODE_SIGNING_ALLOWED=NO -quiet build
+xcodebuild -project samples/13_modular-kmp-ui-data-layer/iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -derivedDataPath samples/13_modular-kmp-ui-data-layer/build/xcode-derived-data CODE_SIGNING_ALLOWED=NO -quiet build
+xcodebuild -project samples/18_three-layer-kmp-domain-data/iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -derivedDataPath samples/18_three-layer-kmp-domain-data/build/xcode-derived-data CODE_SIGNING_ALLOWED=NO -quiet build
+```
+
 ## Local Tooling Notes
 
 - Plain shared KMP logic/data modules assembled fully, including Kotlin/Native framework tasks.
-- Compose-heavy shared UI/presentation modules were verified with `compileKotlinDesktop`, Android app assembly, and desktop app compilation. Full iOS Compose framework linking can exceed this machine's current Gradle daemon memory settings of 512 MiB heap and 384 MiB metaspace.
+- Sample-level `gradle.properties` files raise the Gradle daemon heap/metaspace enough for the representative iOS framework links above.
+- `13_modular-kmp-ui-data-layer` emits duplicate static KMP symbol warnings because it intentionally links two separate static KMP frameworks for shared UI and shared data; the Xcode build still succeeds.
 - Gradle emitted deprecation warnings for Compose dependency accessors such as `compose.material3`; these are warnings from the current Compose Gradle API and did not block compilation.

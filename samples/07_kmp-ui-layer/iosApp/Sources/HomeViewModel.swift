@@ -1,3 +1,5 @@
+import SharedUI
+
 final class HomeViewModel {
     private let repository: TaskRepository
 

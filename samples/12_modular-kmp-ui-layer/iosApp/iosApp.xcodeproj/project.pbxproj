@@ -1,0 +1,412 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+		DC564FFF0CF118C1EB794264 = {
+			isa = PBXBuildFile;
+			fileRef = 3DFCAB506871570458EF471D;
+		};
+
+		4894869FA168909457AA81B8 = {
+			isa = PBXBuildFile;
+			fileRef = 87285932F868621EB9C14F58;
+		};
+
+		6CEC5D4244BD35EF122E66A3 = {
+			isa = PBXBuildFile;
+			fileRef = 604AF0FBBF8D68AA96062B5A;
+		};
+
+		68D19DD5066B71A93D90C3A4 = {
+			isa = PBXBuildFile;
+			fileRef = 0C612200A39D013C70880947;
+		};
+
+		E5D4F57D77D8358DA3A7C538 = {
+			isa = PBXBuildFile;
+			fileRef = 87FDC0D80A009FE3907E47A1;
+		};
+
+		73A4DB718AD95B0CD3588A88 = {
+			isa = PBXBuildFile;
+			fileRef = 681B1F91A3A88CBE5588FE1E;
+		};
+
+		5DA3B3A1EE75874AE8B56EA0 = {
+			isa = PBXBuildFile;
+			fileRef = 86F72EF81C45419CF5BE472B;
+		};
+
+		84FC52B3392D7ABDC15D3CC5 = {
+			isa = PBXBuildFile;
+			fileRef = EC5EE90A8FA1BCA51A4E7F27;
+		};
+
+		E314D01B942705D6AA889B33 = {
+			isa = PBXBuildFile;
+			fileRef = D81F32ED5D5E4BC246B08C02;
+		};
+
+		0F3E111E7418C8A053C6DB76 = {
+			isa = PBXBuildFile;
+			fileRef = 4F1070DAD8774C890F7F860C;
+		};
+
+		225B0AA6AD372B80262CAA8F = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+			path = iosApp.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+
+		3DFCAB506871570458EF471D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "ContentView.swift";
+			sourceTree = "<group>";
+		};
+
+		87285932F868621EB9C14F58 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "DetailsDataSource.swift";
+			sourceTree = "<group>";
+		};
+
+		604AF0FBBF8D68AA96062B5A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "DetailsRepository.swift";
+			sourceTree = "<group>";
+		};
+
+		0C612200A39D013C70880947 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "DetailsViewModel.swift";
+			sourceTree = "<group>";
+		};
+
+		87FDC0D80A009FE3907E47A1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "FeatureOne/FeatureOneView.swift";
+			sourceTree = "<group>";
+		};
+
+		681B1F91A3A88CBE5588FE1E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "FeatureOne/HomeViewModel.swift";
+			sourceTree = "<group>";
+		};
+
+		86F72EF81C45419CF5BE472B = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "FeatureOne/TaskDataSource.swift";
+			sourceTree = "<group>";
+		};
+
+		EC5EE90A8FA1BCA51A4E7F27 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "FeatureOne/TaskRepository.swift";
+			sourceTree = "<group>";
+		};
+
+		D81F32ED5D5E4BC246B08C02 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = "SampleApp.swift";
+			sourceTree = "<group>";
+		};
+
+		4F1070DAD8774C890F7F860C = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			path = "FeatureTwoSharedUI.framework";
+			sourceTree = "<group>";
+		};
+
+		19ED21CEAEF17F3D7644F009 = {
+			isa = PBXGroup;
+			children = (
+				955A54AEEA159F2DC6817F66,
+				CBB96493B646BA47DE1D964D,
+				22EF00619F531C42D40551A2,
+			);
+			sourceTree = "<group>";
+		};
+
+		955A54AEEA159F2DC6817F66 = {
+			isa = PBXGroup;
+			children = (
+				3DFCAB506871570458EF471D,
+				87285932F868621EB9C14F58,
+				604AF0FBBF8D68AA96062B5A,
+				0C612200A39D013C70880947,
+				87FDC0D80A009FE3907E47A1,
+				681B1F91A3A88CBE5588FE1E,
+				86F72EF81C45419CF5BE472B,
+				EC5EE90A8FA1BCA51A4E7F27,
+				D81F32ED5D5E4BC246B08C02,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+
+		CBB96493B646BA47DE1D964D = {
+			isa = PBXGroup;
+			children = (
+				4F1070DAD8774C890F7F860C,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+
+		22EF00619F531C42D40551A2 = {
+			isa = PBXGroup;
+			children = (
+				225B0AA6AD372B80262CAA8F,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+
+		F6AC7A836055BB59464D067F = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC564FFF0CF118C1EB794264,
+				4894869FA168909457AA81B8,
+				6CEC5D4244BD35EF122E66A3,
+				68D19DD5066B71A93D90C3A4,
+				E5D4F57D77D8358DA3A7C538,
+				73A4DB718AD95B0CD3588A88,
+				5DA3B3A1EE75874AE8B56EA0,
+				84FC52B3392D7ABDC15D3CC5,
+				E314D01B942705D6AA889B33,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
+		1DCF6794F6BF0578184E5618 = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F3E111E7418C8A053C6DB76,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
+		40FD2603871308DA8F95BCCB = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = ();
+			inputFileListPaths = ();
+			inputPaths = ();
+			name = "Build KMP Frameworks";
+			outputFileListPaths = ();
+			outputPaths = (
+				"$(SRCROOT)/Frameworks/FeatureTwoSharedUI.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -euo pipefail\n\nREPO_ROOT=\"$(cd \"$SRCROOT/../../..\" && pwd)\"\nSAMPLE_PATH=\"samples/12_modular-kmp-ui-layer\"\nCONFIGURATION_NAME=\"${CONFIGURATION:-Debug}\"\n\nif [ \"$CONFIGURATION_NAME\" = \"Release\" ]; then\n  KMP_BUILD_TYPE=\"Release\"\n  KMP_BUILD_TYPE_DIR=\"releaseFramework\"\nelse\n  KMP_BUILD_TYPE=\"Debug\"\n  KMP_BUILD_TYPE_DIR=\"debugFramework\"\nfi\n\nif [[ \"${SDK_NAME:-iphonesimulator}\" == iphoneos* ]]; then\n  KMP_TARGET=\"IosArm64\"\n  KMP_TARGET_DIR=\"iosArm64\"\nelse\n  KMP_TARGET=\"IosSimulatorArm64\"\n  KMP_TARGET_DIR=\"iosSimulatorArm64\"\nfi\n\nrm -rf \"$SRCROOT/Frameworks\"\nmkdir -p \"$SRCROOT/Frameworks\"\nFRAMEWORK_SPECS=(\n  \"featureTwoSharedUI|FeatureTwoSharedUI\"\n)\n\nfor SPEC in \"${FRAMEWORK_SPECS[@]}\"; do\n  IFS=\"|\" read -r GRADLE_MODULE FRAMEWORK_NAME <<< \"$SPEC\"\n  TASK=\":${GRADLE_MODULE}:link${KMP_BUILD_TYPE}Framework${KMP_TARGET}\"\n  \"$REPO_ROOT/gradlew\" -p \"$REPO_ROOT/$SAMPLE_PATH\" \"$TASK\"\n\n  SOURCE_FRAMEWORK=\"$REPO_ROOT/$SAMPLE_PATH/$GRADLE_MODULE/build/bin/$KMP_TARGET_DIR/$KMP_BUILD_TYPE_DIR/$FRAMEWORK_NAME.framework\"\n  DEST_FRAMEWORK=\"$SRCROOT/Frameworks/$FRAMEWORK_NAME.framework\"\n\n  if [ ! -d \"$SOURCE_FRAMEWORK\" ]; then\n    echo \"Expected framework was not produced: $SOURCE_FRAMEWORK\" >&2\n    exit 1\n  fi\n\n  rm -rf \"$DEST_FRAMEWORK\"\n  cp -R \"$SOURCE_FRAMEWORK\" \"$DEST_FRAMEWORK\"\ndone\n";
+		};
+
+		5BBF3F5097D24A226A7DE696 = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F1A1B92C5141CD64B1858C0;
+			buildPhases = (
+				40FD2603871308DA8F95BCCB,
+				F6AC7A836055BB59464D067F,
+				1DCF6794F6BF0578184E5618,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = iosApp;
+			productName = iosApp;
+			productReference = 225B0AA6AD372B80262CAA8F;
+			productType = "com.apple.product-type.application";
+		};
+
+		52730EC04FAE8D1CD694599C = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					5BBF3F5097D24A226A7DE696 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A3C2ECB2DD8D577825348868;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 19ED21CEAEF17F3D7644F009;
+			productRefGroup = 22EF00619F531C42D40551A2;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5BBF3F5097D24A226A7DE696,
+			);
+		};
+
+		C9098F0901F610CD0B430EE7 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "NO";
+				CLANG_ANALYZER_NONNULL = "YES";
+				CLANG_ENABLE_MODULES = "YES";
+				CLANG_ENABLE_OBJC_ARC = "YES";
+				CLANG_ENABLE_OBJC_WEAK = "YES";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = "YES";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "YES";
+				DEBUG_INFORMATION_FORMAT = "dwarf";
+				ENABLE_STRICT_OBJC_MSGSEND = "YES";
+				GCC_C_LANGUAGE_STANDARD = "gnu17";
+				GCC_NO_COMMON_BLOCKS = "YES";
+				GCC_OPTIMIZATION_LEVEL = "0";
+				SDKROOT = "iphoneos";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+			};
+			name = Debug;
+		};
+
+		00CCE32EF24978376E8602A9 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = "NO";
+				CLANG_ANALYZER_NONNULL = "YES";
+				CLANG_ENABLE_MODULES = "YES";
+				CLANG_ENABLE_OBJC_ARC = "YES";
+				CLANG_ENABLE_OBJC_WEAK = "YES";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = "YES";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = "YES";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = "YES";
+				GCC_C_LANGUAGE_STANDARD = "gnu17";
+				GCC_NO_COMMON_BLOCKS = "YES";
+				GCC_OPTIMIZATION_LEVEL = "s";
+				SDKROOT = "iphoneos";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				VALIDATE_PRODUCT = "YES";
+			};
+			name = Release;
+		};
+
+		0657286E758EF5C405B189A4 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "AccentColor";
+				CODE_SIGN_STYLE = "Automatic";
+				CURRENT_PROJECT_VERSION = "1";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = "YES";
+				ENABLE_USER_SCRIPT_SANDBOXING = "NO";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "x86_64";
+				FRAMEWORK_SEARCH_PATHS = (
+				"$(inherited)",
+				"$(SRCROOT)/Frameworks",
+			);
+				GENERATE_INFOPLIST_FILE = "YES";
+				INFOPLIST_KEY_CFBundleDisplayName = "Modular KMP UI Layer";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = "YES";
+				INFOPLIST_KEY_UILaunchScreen_Generation = "YES";
+				IPHONEOS_DEPLOYMENT_TARGET = "18.5";
+				LD_RUNPATH_SEARCH_PATHS = (
+				"$(inherited)",
+				"@executable_path/Frameworks",
+			);
+				MARKETING_VERSION = "1.0";
+				ONLY_ACTIVE_ARCH = "YES";
+				OTHER_LDFLAGS = (
+				"$(inherited)",
+				"-framework",
+				"FeatureTwoSharedUI",
+			);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.kmpsamples.modularkmpuilayer.iosApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG";
+				SWIFT_EMIT_LOC_STRINGS = "YES";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "5.0";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+
+		78C5FBDF5FF0441BD9FAA413 = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "AccentColor";
+				CODE_SIGN_STYLE = "Automatic";
+				CURRENT_PROJECT_VERSION = "1";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = "YES";
+				ENABLE_USER_SCRIPT_SANDBOXING = "NO";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "x86_64";
+				FRAMEWORK_SEARCH_PATHS = (
+				"$(inherited)",
+				"$(SRCROOT)/Frameworks",
+			);
+				GENERATE_INFOPLIST_FILE = "YES";
+				INFOPLIST_KEY_CFBundleDisplayName = "Modular KMP UI Layer";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = "YES";
+				INFOPLIST_KEY_UILaunchScreen_Generation = "YES";
+				IPHONEOS_DEPLOYMENT_TARGET = "18.5";
+				LD_RUNPATH_SEARCH_PATHS = (
+				"$(inherited)",
+				"@executable_path/Frameworks",
+			);
+				MARKETING_VERSION = "1.0";
+				OTHER_LDFLAGS = (
+				"$(inherited)",
+				"-framework",
+				"FeatureTwoSharedUI",
+			);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.kmpsamples.modularkmpuilayer.iosApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = "YES";
+				SWIFT_VERSION = "5.0";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+
+		A3C2ECB2DD8D577825348868 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9098F0901F610CD0B430EE7,
+				00CCE32EF24978376E8602A9,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+
+		2F1A1B92C5141CD64B1858C0 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0657286E758EF5C405B189A4,
+				78C5FBDF5FF0441BD9FAA413,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+	};
+	rootObject = 52730EC04FAE8D1CD694599C;
+}

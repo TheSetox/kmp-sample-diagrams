@@ -1,7 +1,6 @@
 import SwiftUI
 import UIKit
 import SharedPresentation
-import SharedData
 
 struct ContentView: View {
     private let repository = TaskRepository()

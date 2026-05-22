@@ -9,6 +9,7 @@ The old PNG diagrams are preserved on the `feature/legacy-png-reference` branch.
 - Diagrams are now Markdown files with Mermaid source in [`diagrams/`](diagrams/).
 - [`index.html`](index.html) loads every diagram listed in [`diagrams/manifest.json`](diagrams/manifest.json).
 - Samples use Android, iOS, and desktop only.
+- Every sample `iosApp` contains a runnable SwiftUI `iosApp.xcodeproj` with an `iosApp` scheme.
 - No `webApp` and no `server` modules are included.
 - Shared KMP code lives in KMP library modules. Platform entry points live in `androidApp`, `iosApp`, and `desktopApp`.
 - Sample projects now implement the diagram flows with deterministic `Task` / `Details` demo data instead of placeholder messages.
