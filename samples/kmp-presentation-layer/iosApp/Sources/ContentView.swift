@@ -1,15 +1,23 @@
 import SwiftUI
+import UIKit
 import SharedPresentation
 
 struct ContentView: View {
-    private let message = SampleMessage().message(platform: "iOS")
+    private let repository = IosTaskRepository(dataSource: TaskDataSource())
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("KMP Presentation Layer")
-                .font(.title)
-            Text(message)
-        }
-        .padding()
+        ComposeHostView(repository: repository)
+            .ignoresSafeArea()
+    }
+}
+
+struct ComposeHostView: UIViewControllerRepresentable {
+    let repository: TaskRepository
+
+    func makeUIViewController(context: Context) -> UIViewController {
+        MainViewControllerKt.MainViewController(platform: "iOS", repository: repository)
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
     }
 }
