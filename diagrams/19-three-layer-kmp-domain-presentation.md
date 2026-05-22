@@ -6,29 +6,47 @@ Domain and presentation are shared. Presentation contains shared Compose UI and 
 flowchart TB
   subgraph Android["androidApp"]
     direction TB
-    AEntry["MainActivity.kt"]
-    ARepository["TaskRepository.kt"]
-    ADataSource["TaskDataSource.kt"]
+    subgraph AApp["app module"]
+      direction TB
+      AEntry["MainActivity.kt"]
+    end
+    subgraph AData["data module"]
+      direction TB
+      ARepository["TaskRepository.kt"]
+      ADataSource["TaskDataSource.kt"]
+      ARepository --> ADataSource
+    end
     AEntry --> ARepository
-    ARepository --> ADataSource
   end
 
   subgraph IOS["iosApp"]
     direction TB
-    IEntry["ContentView.swift"]
-    IRepository["TaskRepository.swift"]
-    IDataSource["TaskDataSource.swift"]
+    subgraph IApp["app module"]
+      direction TB
+      IEntry["ContentView.swift"]
+    end
+    subgraph IData["data module"]
+      direction TB
+      IRepository["TaskRepository.swift"]
+      IDataSource["TaskDataSource.swift"]
+      IRepository --> IDataSource
+    end
     IEntry --> IRepository
-    IRepository --> IDataSource
   end
 
   subgraph Desktop["desktopApp"]
     direction TB
-    DEntry["Main.kt"]
-    DRepository["TaskRepository.kt"]
-    DDataSource["TaskDataSource.kt"]
+    subgraph DApp["app module"]
+      direction TB
+      DEntry["Main.kt"]
+    end
+    subgraph DData["data module"]
+      direction TB
+      DRepository["TaskRepository.kt"]
+      DDataSource["TaskDataSource.kt"]
+      DRepository --> DDataSource
+    end
     DEntry --> DRepository
-    DRepository --> DDataSource
   end
 
   subgraph Presentation["sharedPresentation KMP module"]
@@ -66,6 +84,12 @@ flowchart TB
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  style AApp fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style AData fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style IApp fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style IData fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style DApp fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style DData fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
   style Presentation fill:#fff7cc,stroke:#9b7415,stroke-width:3px
   style Domain fill:#fff7cc,stroke:#9b7415,stroke-width:3px
 ```

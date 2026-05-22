@@ -4,34 +4,52 @@ The domain layer is shared. Presentation stays native and contains UI plus ViewM
 
 ```mermaid
 flowchart TB
-  subgraph Desktop["desktopApp"]
+  subgraph Android["androidApp"]
     direction TB
-    DUI["HomeWindow.kt\nCompose Desktop UI"]
-    DVM["HomeViewModel.kt"]
-    DRepository["TaskRepository.kt"]
-    DDataSource["TaskDataSource.kt"]
-    DUI --> DVM
-    DRepository --> DDataSource
+    subgraph APresentation["presentation module"]
+      direction TB
+      AUI["HomeScreen.kt\nCompose UI"]
+      AVM["HomeViewModel.kt"]
+      AUI --> AVM
+    end
+    subgraph AData["data module"]
+      direction TB
+      ARepository["TaskRepository.kt"]
+      ADataSource["TaskDataSource.kt"]
+      ARepository --> ADataSource
+    end
   end
 
   subgraph IOS["iosApp"]
     direction TB
-    IUI["ContentView.swift\nSwiftUI"]
-    IVM["HomeViewModel.swift"]
-    IRepository["TaskRepository.swift"]
-    IDataSource["TaskDataSource.swift"]
-    IUI --> IVM
-    IRepository --> IDataSource
+    subgraph IPresentation["presentation module"]
+      direction TB
+      IUI["ContentView.swift\nSwiftUI"]
+      IVM["HomeViewModel.swift"]
+      IUI --> IVM
+    end
+    subgraph IData["data module"]
+      direction TB
+      IRepository["TaskRepository.swift"]
+      IDataSource["TaskDataSource.swift"]
+      IRepository --> IDataSource
+    end
   end
 
-  subgraph Android["androidApp"]
+  subgraph Desktop["desktopApp"]
     direction TB
-    AUI["HomeScreen.kt\nCompose UI"]
-    AVM["HomeViewModel.kt"]
-    ARepository["TaskRepository.kt"]
-    ADataSource["TaskDataSource.kt"]
-    AUI --> AVM
-    ARepository --> ADataSource
+    subgraph DPresentation["presentation module"]
+      direction TB
+      DUI["HomeWindow.kt\nCompose Desktop UI"]
+      DVM["HomeViewModel.kt"]
+      DUI --> DVM
+    end
+    subgraph DData["data module"]
+      direction TB
+      DRepository["TaskRepository.kt"]
+      DDataSource["TaskDataSource.kt"]
+      DRepository --> DDataSource
+    end
   end
 
   subgraph KMP["sharedDomain KMP module"]
@@ -57,5 +75,11 @@ flowchart TB
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  style APresentation fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style AData fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style IPresentation fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style IData fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style DPresentation fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style DData fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
   style KMP fill:#fff7cc,stroke:#9b7415,stroke-width:3px
 ```

@@ -5,21 +5,33 @@ Domain and data are shared. Native presentation contains UI and ViewModel.
 ```mermaid
 flowchart TB
   subgraph Android["androidApp"]
-    AUI["HomeScreen.kt\nCompose UI"]
-    AVM["HomeViewModel.kt"]
-    AUI --> AVM
+    direction TB
+    subgraph APresentation["presentation module"]
+      direction TB
+      AUI["HomeScreen.kt\nCompose UI"]
+      AVM["HomeViewModel.kt"]
+      AUI --> AVM
+    end
   end
 
   subgraph IOS["iosApp"]
-    IUI["ContentView.swift\nSwiftUI"]
-    IVM["HomeViewModel.swift"]
-    IUI --> IVM
+    direction TB
+    subgraph IPresentation["presentation module"]
+      direction TB
+      IUI["ContentView.swift\nSwiftUI"]
+      IVM["HomeViewModel.swift"]
+      IUI --> IVM
+    end
   end
 
   subgraph Desktop["desktopApp"]
-    DUI["HomeWindow.kt\nCompose Desktop UI"]
-    DVM["HomeViewModel.kt"]
-    DUI --> DVM
+    direction TB
+    subgraph DPresentation["presentation module"]
+      direction TB
+      DUI["HomeWindow.kt\nCompose Desktop UI"]
+      DVM["HomeViewModel.kt"]
+      DUI --> DVM
+    end
   end
 
   subgraph Domain["sharedDomain KMP module"]
@@ -50,6 +62,9 @@ flowchart TB
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  style APresentation fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style IPresentation fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style DPresentation fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
   style Domain fill:#fff7cc,stroke:#9b7415,stroke-width:3px
   style Data fill:#fff7cc,stroke:#9b7415,stroke-width:3px
 ```
