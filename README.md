@@ -11,6 +11,7 @@ The old PNG diagrams are preserved on the `feature/legacy-png-reference` branch.
 - Samples use Android, iOS, and desktop only.
 - No `webApp` and no `server` modules are included.
 - Shared KMP code lives in KMP library modules. Platform entry points live in `androidApp`, `iosApp`, and `desktopApp`.
+- Sample projects now implement the diagram flows with deterministic `Task` / `Details` demo data instead of placeholder messages.
 
 ## Versions
 
@@ -55,6 +56,8 @@ When served over HTTP, the viewer loads Markdown files from [`diagrams/`](diagra
 | Three Layer KMP Domain Simple | [`17-three-layer-kmp-domain-simple.md`](diagrams/17-three-layer-kmp-domain-simple.md) | [`samples/three-layer-kmp-domain-simple`](samples/three-layer-kmp-domain-simple/) |
 | Three Layer KMP Domain And Data | [`18-three-layer-kmp-domain-data.md`](diagrams/18-three-layer-kmp-domain-data.md) | [`samples/three-layer-kmp-domain-data`](samples/three-layer-kmp-domain-data/) |
 | Three Layer KMP Domain And Presentation | [`19-three-layer-kmp-domain-presentation.md`](diagrams/19-three-layer-kmp-domain-presentation.md) | [`samples/three-layer-kmp-domain-presentation`](samples/three-layer-kmp-domain-presentation/) |
+
+See [`samples/README.md`](samples/README.md) for each sample's implemented flow and module commands. See [`TESTING.md`](TESTING.md) for the latest local verification notes.
 
 ## AGP 9 KMP Rules Used Here
 

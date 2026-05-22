@@ -1,28 +1,34 @@
 # Modular KMP Data Layer
 
-        Feature two shares its data layer as a KMP module.
+Feature two uses shared data while feature one remains native.
 
-        ## Modules
+## Implemented Flow
 
-        | Module | Purpose |
+- Feature one stays native on Android, iOS, and Desktop.
+- Feature two native `DetailsViewModel` calls `featureTwoSharedData`.
+- `featureTwoSharedData` owns `DetailsRepository -> RemoteDetailsDataSource / LocalDetailsDataSource -> DetailsDtoMapper`.
+
+## Modules
+
+| Module | Purpose |
 | --- | --- |
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `featureTwoSharedData` | Shared feature two data KMP library. |
+| `featureTwoSharedData` | Shared KMP module for this scenario. |
 
-        ## Run
+## Verify
 
-        ```sh
-        ./gradlew -p samples/modular-kmp-data-layer :desktopApp:run
-        ./gradlew -p samples/modular-kmp-data-layer :androidApp:assembleDebug
-        ./gradlew -p samples/modular-kmp-data-layer :featureTwoSharedData:assemble
-        ```
+```sh
+./gradlew -p samples/modular-kmp-data-layer :desktopApp:compileKotlin
+./gradlew -p samples/modular-kmp-data-layer :androidApp:assembleDebug
+./gradlew -p samples/modular-kmp-data-layer :featureTwoSharedData:assemble
+```
 
-        ## iOS
+## iOS Frameworks
 
-        ```sh
-        ./gradlew -p samples/modular-kmp-data-layer :featureTwoSharedData:linkDebugFrameworkIosSimulatorArm64
-        ```
+```sh
+./gradlew -p samples/modular-kmp-data-layer :featureTwoSharedData:linkDebugFrameworkIosSimulatorArm64
+```
 
-        The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.

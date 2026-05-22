@@ -1,27 +1,28 @@
 # Normal Native
 
-        Separate native implementations with no shared KMP module.
+Separate native implementations with no shared KMP module.
 
-        ## Modules
+## Implemented Flow
 
-        | Module | Purpose |
+- Android: `MainActivity` renders native UI and calls `HomeViewModel -> TaskRepository -> TaskDataSource`.
+- iOS: `ContentView.swift` calls `HomeViewModel -> TaskRepository -> TaskDataSource`.
+- Desktop: `Main.kt` renders Compose Desktop UI and calls `HomeViewModel -> TaskRepository -> TaskDataSource`.
+
+## Modules
+
+| Module | Purpose |
 | --- | --- |
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
 
-        ## Run
+## Verify
 
-        ```sh
-        ./gradlew -p samples/normal-native :desktopApp:run
-        ./gradlew -p samples/normal-native :androidApp:assembleDebug
-        # No KMP module in this baseline sample.
-        ```
+```sh
+./gradlew -p samples/normal-native :desktopApp:compileKotlin
+./gradlew -p samples/normal-native :androidApp:assembleDebug
+```
 
-        ## iOS
+## iOS Frameworks
 
-        ```sh
-        # No KMP framework task in this baseline sample.
-        ```
-
-        The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+This baseline sample has no KMP framework task. The `iosApp` folder contains SwiftUI entry source.

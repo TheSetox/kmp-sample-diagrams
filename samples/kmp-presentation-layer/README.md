@@ -1,6 +1,12 @@
 # KMP Presentation Layer
 
-Shared presentation with Compose UI and ViewModel in KMP. Repository and data source implementations stay native.
+Shared Compose UI and shared ViewModel with native data implementations.
+
+## Implemented Flow
+
+- `sharedPresentation` owns `App`, `HomeUiState`, and `HomeViewModel`.
+- `HomeViewModel` depends on the shared `TaskRepository` contract.
+- Android, iOS, and Desktop implement the repository contract with native `TaskDataSource` classes.
 
 ## Modules
 
@@ -9,20 +15,20 @@ Shared presentation with Compose UI and ViewModel in KMP. Repository and data so
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `sharedPresentation` | Shared Compose UI and ViewModel KMP library. |
+| `sharedPresentation` | Shared KMP module for this scenario. |
 
-## Run
+## Verify
 
 ```sh
-./gradlew -p samples/kmp-presentation-layer :desktopApp:run
+./gradlew -p samples/kmp-presentation-layer :desktopApp:compileKotlin
 ./gradlew -p samples/kmp-presentation-layer :androidApp:assembleDebug
 ./gradlew -p samples/kmp-presentation-layer :sharedPresentation:assemble
 ```
 
-## iOS
+## iOS Frameworks
 
 ```sh
 ./gradlew -p samples/kmp-presentation-layer :sharedPresentation:linkDebugFrameworkIosSimulatorArm64
 ```
 
-The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework in Xcode.
+The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.

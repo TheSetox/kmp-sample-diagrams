@@ -1,6 +1,12 @@
 # KMP Compose UI
 
-Shared Compose UI with platform-specific ViewModel, repository, and data source logic.
+Shared Compose UI with platform-specific logic.
+
+## Implemented Flow
+
+- `shared` exposes `HomeUiState`, `App(state, onRefresh)`, and the iOS `MainViewController(...)` factory.
+- Android, iOS, and Desktop own `HomeViewModel -> TaskRepository -> TaskDataSource`.
+- Native ViewModels pass state and refresh callbacks into the shared UI.
 
 ## Modules
 
@@ -9,20 +15,20 @@ Shared Compose UI with platform-specific ViewModel, repository, and data source 
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `shared` | Shared Compose UI KMP library. |
+| `shared` | Shared KMP module for this scenario. |
 
-## Run
+## Verify
 
 ```sh
-./gradlew -p samples/kmp-compose-ui :desktopApp:run
+./gradlew -p samples/kmp-compose-ui :desktopApp:compileKotlin
 ./gradlew -p samples/kmp-compose-ui :androidApp:assembleDebug
 ./gradlew -p samples/kmp-compose-ui :shared:assemble
 ```
 
-## iOS
+## iOS Frameworks
 
 ```sh
 ./gradlew -p samples/kmp-compose-ui :shared:linkDebugFrameworkIosSimulatorArm64
 ```
 
-The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework in Xcode.
+The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.

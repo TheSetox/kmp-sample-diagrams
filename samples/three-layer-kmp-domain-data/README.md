@@ -1,6 +1,12 @@
 # Three Layer KMP Domain And Data
 
-Shared domain and data in KMP. Each app target keeps native UI and ViewModel classes.
+Domain and data are shared; presentation stays native.
+
+## Implemented Flow
+
+- Android, iOS, and Desktop own UI plus `HomeViewModel`.
+- `sharedDomain` owns `GetTasksUseCase` and the `Task` entity.
+- `sharedData` owns `TaskRepository -> RemoteTaskDataSource / LocalTaskDataSource -> TaskDtoMapper`.
 
 ## Modules
 
@@ -9,21 +15,22 @@ Shared domain and data in KMP. Each app target keeps native UI and ViewModel cla
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `sharedData` | Shared Repository and DataSource KMP library. |
-| `sharedDomain` | Shared UseCase, Entity, and Repository contract KMP library. |
+| `sharedData` | Shared KMP module for this scenario. |
+| `sharedDomain` | Shared KMP module for this scenario. |
 
-## Run
+## Verify
 
 ```sh
-./gradlew -p samples/three-layer-kmp-domain-data :desktopApp:run
+./gradlew -p samples/three-layer-kmp-domain-data :desktopApp:compileKotlin
 ./gradlew -p samples/three-layer-kmp-domain-data :androidApp:assembleDebug
 ./gradlew -p samples/three-layer-kmp-domain-data :sharedData:assemble
 ./gradlew -p samples/three-layer-kmp-domain-data :sharedDomain:assemble
 ```
 
-## iOS
+## iOS Frameworks
 
 ```sh
+./gradlew -p samples/three-layer-kmp-domain-data :sharedData:linkDebugFrameworkIosSimulatorArm64
 ./gradlew -p samples/three-layer-kmp-domain-data :sharedDomain:linkDebugFrameworkIosSimulatorArm64
 ```
 

@@ -1,6 +1,12 @@
 # KMP Data Layer
 
-Shared data in KMP. Each app target keeps its native UI and ViewModel, then calls the shared Repository and DataSource implementation.
+Native presentation with a shared KMP data layer.
+
+## Implemented Flow
+
+- Android, iOS, and Desktop own UI plus `HomeViewModel`.
+- `sharedData` owns `TaskRepository -> RemoteTaskDataSource / LocalTaskDataSource -> TaskDtoMapper`.
+- Native ViewModels call the shared repository directly.
 
 ## Modules
 
@@ -9,17 +15,17 @@ Shared data in KMP. Each app target keeps its native UI and ViewModel, then call
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `sharedData` | Shared Repository and DataSource KMP library. |
+| `sharedData` | Shared KMP module for this scenario. |
 
-## Run
+## Verify
 
 ```sh
-./gradlew -p samples/kmp-data-layer :desktopApp:run
+./gradlew -p samples/kmp-data-layer :desktopApp:compileKotlin
 ./gradlew -p samples/kmp-data-layer :androidApp:assembleDebug
 ./gradlew -p samples/kmp-data-layer :sharedData:assemble
 ```
 
-## iOS
+## iOS Frameworks
 
 ```sh
 ./gradlew -p samples/kmp-data-layer :sharedData:linkDebugFrameworkIosSimulatorArm64

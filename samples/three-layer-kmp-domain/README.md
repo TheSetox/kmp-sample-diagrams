@@ -1,6 +1,12 @@
 # Three Layer KMP Domain
 
-Shared domain in KMP. Each app target keeps native UI, ViewModel, Repository implementation, and DataSource classes.
+The domain layer is shared; presentation and data implementations stay native.
+
+## Implemented Flow
+
+- Android, iOS, and Desktop own UI, `HomeViewModel`, `TaskRepository`, and `TaskDataSource`.
+- `sharedDomain` owns `GetTasksUseCase`, the `Task` entity, and the `TaskRepository` contract.
+- Native repositories implement the shared contract and are injected into the shared use case.
 
 ## Modules
 
@@ -9,17 +15,17 @@ Shared domain in KMP. Each app target keeps native UI, ViewModel, Repository imp
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `sharedDomain` | Shared UseCase, Entity, and Repository contract KMP library. |
+| `sharedDomain` | Shared KMP module for this scenario. |
 
-## Run
+## Verify
 
 ```sh
-./gradlew -p samples/three-layer-kmp-domain :desktopApp:run
+./gradlew -p samples/three-layer-kmp-domain :desktopApp:compileKotlin
 ./gradlew -p samples/three-layer-kmp-domain :androidApp:assembleDebug
 ./gradlew -p samples/three-layer-kmp-domain :sharedDomain:assemble
 ```
 
-## iOS
+## iOS Frameworks
 
 ```sh
 ./gradlew -p samples/three-layer-kmp-domain :sharedDomain:linkDebugFrameworkIosSimulatorArm64

@@ -1,6 +1,12 @@
 # Three Layer KMP Domain And Presentation
 
-Shared domain and presentation in KMP. Presentation owns the Compose UI and ViewModel; each app target keeps native Repository and DataSource classes.
+Domain and presentation are shared; data implementations stay native.
+
+## Implemented Flow
+
+- `sharedPresentation` owns `App -> HomeScreen -> HomeViewModel -> HomeUiState`.
+- `sharedDomain` owns `GetTasksUseCase`, the `Task` entity, and the `TaskRepository` contract.
+- Android, iOS, and Desktop implement `TaskRepository -> TaskDataSource` natively and pass the contract into shared presentation.
 
 ## Modules
 
@@ -9,21 +15,22 @@ Shared domain and presentation in KMP. Presentation owns the Compose UI and View
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `sharedDomain` | Shared UseCase, Entity, and Repository contract KMP library. |
-| `sharedPresentation` | Shared Compose UI and ViewModel KMP library. |
+| `sharedDomain` | Shared KMP module for this scenario. |
+| `sharedPresentation` | Shared KMP module for this scenario. |
 
-## Run
+## Verify
 
 ```sh
-./gradlew -p samples/three-layer-kmp-domain-presentation :desktopApp:run
+./gradlew -p samples/three-layer-kmp-domain-presentation :desktopApp:compileKotlin
 ./gradlew -p samples/three-layer-kmp-domain-presentation :androidApp:assembleDebug
 ./gradlew -p samples/three-layer-kmp-domain-presentation :sharedDomain:assemble
 ./gradlew -p samples/three-layer-kmp-domain-presentation :sharedPresentation:assemble
 ```
 
-## iOS
+## iOS Frameworks
 
 ```sh
+./gradlew -p samples/three-layer-kmp-domain-presentation :sharedDomain:linkDebugFrameworkIosSimulatorArm64
 ./gradlew -p samples/three-layer-kmp-domain-presentation :sharedPresentation:linkDebugFrameworkIosSimulatorArm64
 ```
 

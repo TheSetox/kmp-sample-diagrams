@@ -1,6 +1,12 @@
 # KMP Presentation And Data Layers
 
-Shared presentation and data in KMP. Presentation owns the Compose UI and ViewModel; data owns the shared Repository and DataSource.
+Shared Compose presentation calls shared KMP data.
+
+## Implemented Flow
+
+- `sharedPresentation` owns `App`, `HomeUiState`, and `HomeViewModel`.
+- `sharedData` owns `TaskRepository -> RemoteTaskDataSource / LocalTaskDataSource -> TaskDtoMapper`.
+- Android, iOS, and Desktop host the shared presentation entry point.
 
 ## Modules
 
@@ -9,21 +15,22 @@ Shared presentation and data in KMP. Presentation owns the Compose UI and ViewMo
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `sharedData` | Shared Repository and DataSource KMP library. |
-| `sharedPresentation` | Shared Compose UI and ViewModel KMP library. |
+| `sharedData` | Shared KMP module for this scenario. |
+| `sharedPresentation` | Shared KMP module for this scenario. |
 
-## Run
+## Verify
 
 ```sh
-./gradlew -p samples/kmp-presentation-data-layer :desktopApp:run
+./gradlew -p samples/kmp-presentation-data-layer :desktopApp:compileKotlin
 ./gradlew -p samples/kmp-presentation-data-layer :androidApp:assembleDebug
 ./gradlew -p samples/kmp-presentation-data-layer :sharedData:assemble
 ./gradlew -p samples/kmp-presentation-data-layer :sharedPresentation:assemble
 ```
 
-## iOS
+## iOS Frameworks
 
 ```sh
+./gradlew -p samples/kmp-presentation-data-layer :sharedData:linkDebugFrameworkIosSimulatorArm64
 ./gradlew -p samples/kmp-presentation-data-layer :sharedPresentation:linkDebugFrameworkIosSimulatorArm64
 ```
 

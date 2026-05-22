@@ -1,31 +1,37 @@
 # Modular KMP UI And Data Layers
 
-        Feature two shares UI and data as separate KMP modules.
+Feature two shares Compose UI and data while the ViewModel remains native.
 
-        ## Modules
+## Implemented Flow
 
-        | Module | Purpose |
+- Feature one stays native on Android, iOS, and Desktop.
+- Feature two native `DetailsViewModel` calls `featureTwoSharedData` and passes state to `featureTwoSharedUI`.
+- `featureTwoSharedData` owns repository/data sources; `featureTwoSharedUI` owns state and UI callbacks.
+
+## Modules
+
+| Module | Purpose |
 | --- | --- |
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `featureTwoSharedData` | Shared feature two data KMP library. |
-| `featureTwoSharedUI` | Shared feature two ui KMP library. |
+| `featureTwoSharedData` | Shared KMP module for this scenario. |
+| `featureTwoSharedUI` | Shared KMP module for this scenario. |
 
-        ## Run
+## Verify
 
-        ```sh
-        ./gradlew -p samples/modular-kmp-ui-data-layer :desktopApp:run
-        ./gradlew -p samples/modular-kmp-ui-data-layer :androidApp:assembleDebug
-        ./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedData:assemble
+```sh
+./gradlew -p samples/modular-kmp-ui-data-layer :desktopApp:compileKotlin
+./gradlew -p samples/modular-kmp-ui-data-layer :androidApp:assembleDebug
+./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedData:assemble
 ./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedUI:assemble
-        ```
+```
 
-        ## iOS
+## iOS Frameworks
 
-        ```sh
-        ./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedUI:linkDebugFrameworkIosSimulatorArm64
+```sh
 ./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedData:linkDebugFrameworkIosSimulatorArm64
-        ```
+./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedUI:linkDebugFrameworkIosSimulatorArm64
+```
 
-        The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.

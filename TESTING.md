@@ -1,13 +1,14 @@
 # Verification Notes
 
-Verification run on May 19, 2026 from `feature/kmp-2026-mermaid-samples`.
+Verification updated on May 22, 2026 from `feature/kmp-2026-mermaid-samples`.
 
 ## Static Checks
 
-- `diagrams/manifest.json` parses as valid JSON.
-- Manifest contains 19 entries.
-- Every manifest diagram file exists.
-- Every manifest sample folder exists.
+- `python3 -m json.tool diagrams/manifest.json`
+- `node --check diagrams/bundle.js`
+- `git diff --check`
+- `rg -n "No shared KMP module|sampleDetail|SampleMessage" samples` returned no matches.
+- `rg --files -g '*.hprof' -g 'hs_err_pid*'` returned no generated crash/heap files.
 - The review branch has no root `*.png` files.
 - `feature/legacy-png-reference` exists and preserves the old PNG files.
 
@@ -19,47 +20,57 @@ Served the repository root with:
 python3 -m http.server 8000
 ```
 
-Opened `http://127.0.0.1:8000/index.html` in the in-app browser. The viewer loaded:
+Opened `http://127.0.0.1:8000/index.html` and `http://127.0.0.1:8000/index.html?source=bundle`. The viewer loaded all 19 diagram cards, rendered all 19 Mermaid SVG diagrams, and showed no viewer error state.
 
-- 19 diagram cards
-- 19 Mermaid-rendered SVG diagrams
-- 19 sidebar links
-- no viewer error state
+## Sample Build Checks
 
-Forced the bundled fallback with `http://127.0.0.1:8000/index.html?source=bundle`. The viewer loaded:
+Android commands were run with `ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk`. Gradle was run serially because this local setup has a small default daemon heap/metaspace.
 
-- 19 diagram cards
-- 19 Mermaid-rendered SVG diagrams
-- 19 sidebar links
-- no viewer error state
-- `data-diagram-source="bundle"`
-
-The in-app browser blocks direct `file://` navigation by policy, so the fallback path was verified through the explicit bundle source switch. The same bundle is loaded by `index.html` as a local script for direct browser opens.
-
-## Gradle Checks
+### Native Baselines
 
 ```sh
-./gradlew --version
-./gradlew -p samples/normal-native tasks
 ./gradlew -p samples/normal-native :desktopApp:compileKotlin
-./gradlew -p samples/kmp-native-ui tasks
-./gradlew -p samples/kmp-native-ui :sharedLogic:linkDebugFrameworkIosSimulatorArm64
-./gradlew -p samples/kmp-compose-ui tasks
-./gradlew -p samples/kmp-compose-ui :shared:compileKotlinDesktop :desktopApp:compileKotlin
-./gradlew -p samples/modular-kmp-ui-data-layer tasks
-./gradlew -p samples/three-layer-kmp-domain-data tasks
+./gradlew -p samples/layered-native :desktopApp:compileKotlin
+./gradlew -p samples/modular-native :desktopApp:compileKotlin
+./gradlew -p samples/three-layer-native :desktopApp:compileKotlin
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/normal-native :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/layered-native :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modular-native :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-native :androidApp:assembleDebug
 ```
 
-All commands above completed successfully.
-
-## Local Tooling Limit
-
-Android assemble was attempted with:
+### Main KMP Samples
 
 ```sh
-./gradlew -p samples/kmp-compose-ui :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/kmp-native-ui :sharedLogic:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/kmp-compose-ui :shared:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/kmp-ui-layer :sharedUI:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/kmp-data-layer :sharedData:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/kmp-presentation-layer :sharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/kmp-presentation-data-layer :sharedData:assemble :sharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
 ```
 
-It was blocked because this machine does not expose an Android SDK through `ANDROID_HOME` or `local.properties`.
+### Modular KMP Samples
 
-Compose Multiplatform 1.11.0 resolved cleanly for `iosArm64` and `iosSimulatorArm64`. The samples intentionally omit `iosX64` to avoid unsupported Compose iOS x64 resolution.
+```sh
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modular-kmp-data-layer :featureTwoSharedData:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modular-kmp-ui-layer :featureTwoSharedUI:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedData:assemble :featureTwoSharedUI:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modular-kmp-presentation-layer :featureTwoSharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modular-kmp-shared-feature :featureTwoSharedFeature:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+```
+
+### Three Layer KMP Samples
+
+```sh
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-kmp-domain :sharedDomain:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-kmp-domain-simple :sharedDomain:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-kmp-domain-data :sharedData:assemble :sharedDomain:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-kmp-domain-presentation :sharedDomain:assemble :sharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+```
+
+## Local Tooling Notes
+
+- Plain shared KMP logic/data modules assembled fully, including Kotlin/Native framework tasks.
+- Compose-heavy shared UI/presentation modules were verified with `compileKotlinDesktop`, Android app assembly, and desktop app compilation. Full iOS Compose framework linking can exceed this machine's current Gradle daemon memory settings of 512 MiB heap and 384 MiB metaspace.
+- Gradle emitted deprecation warnings for Compose dependency accessors such as `compose.material3`; these are warnings from the current Compose Gradle API and did not block compilation.

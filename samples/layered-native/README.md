@@ -1,27 +1,28 @@
 # Layered Native
 
-        Platform-specific UI and data layers.
+Each platform separates presentation and data classes; this two-layer scenario intentionally has no use case.
 
-        ## Modules
+## Implemented Flow
 
-        | Module | Purpose |
+- Android: presentation `HomeViewModel` calls data `TaskRepository -> TaskDataSource`.
+- iOS: `ContentView.swift` calls `HomeViewModel -> TaskRepository -> TaskDataSource`.
+- Desktop: presentation `HomeViewModel` calls data `TaskRepository -> TaskDataSource`.
+
+## Modules
+
+| Module | Purpose |
 | --- | --- |
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
 
-        ## Run
+## Verify
 
-        ```sh
-        ./gradlew -p samples/layered-native :desktopApp:run
-        ./gradlew -p samples/layered-native :androidApp:assembleDebug
-        # No KMP module in this baseline sample.
-        ```
+```sh
+./gradlew -p samples/layered-native :desktopApp:compileKotlin
+./gradlew -p samples/layered-native :androidApp:assembleDebug
+```
 
-        ## iOS
+## iOS Frameworks
 
-        ```sh
-        # No KMP framework task in this baseline sample.
-        ```
-
-        The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+This baseline sample has no KMP framework task. The `iosApp` folder contains SwiftUI entry source.

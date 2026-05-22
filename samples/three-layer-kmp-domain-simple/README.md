@@ -1,28 +1,34 @@
 # Three Layer KMP Domain Simple
 
-        Minimal shared domain layer consumed directly by every app.
+A compact view of shared domain with native presentation and repository implementations.
 
-        ## Modules
+## Implemented Flow
 
-        | Module | Purpose |
+- Android, iOS, and Desktop own UI plus `HomeViewModel`.
+- `sharedDomain` owns `GetTasksUseCase`, the `Task` entity, and the `TaskRepository` contract.
+- Native repository/data-source classes keep the shared domain runnable while the diagram stays focused on the domain boundary.
+
+## Modules
+
+| Module | Purpose |
 | --- | --- |
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `sharedDomain` | Shared domain KMP library. |
+| `sharedDomain` | Shared KMP module for this scenario. |
 
-        ## Run
+## Verify
 
-        ```sh
-        ./gradlew -p samples/three-layer-kmp-domain-simple :desktopApp:run
-        ./gradlew -p samples/three-layer-kmp-domain-simple :androidApp:assembleDebug
-        ./gradlew -p samples/three-layer-kmp-domain-simple :sharedDomain:assemble
-        ```
+```sh
+./gradlew -p samples/three-layer-kmp-domain-simple :desktopApp:compileKotlin
+./gradlew -p samples/three-layer-kmp-domain-simple :androidApp:assembleDebug
+./gradlew -p samples/three-layer-kmp-domain-simple :sharedDomain:assemble
+```
 
-        ## iOS
+## iOS Frameworks
 
-        ```sh
-        ./gradlew -p samples/three-layer-kmp-domain-simple :sharedDomain:linkDebugFrameworkIosSimulatorArm64
-        ```
+```sh
+./gradlew -p samples/three-layer-kmp-domain-simple :sharedDomain:linkDebugFrameworkIosSimulatorArm64
+```
 
-        The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
