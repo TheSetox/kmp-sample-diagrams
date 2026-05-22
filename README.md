@@ -57,7 +57,7 @@ When served over HTTP, the viewer loads Markdown files from [`diagrams/`](diagra
 | Three Layer KMP Domain And Data | [`18-three-layer-kmp-domain-data.md`](diagrams/18-three-layer-kmp-domain-data.md) | [`samples/three-layer-kmp-domain-data`](samples/three-layer-kmp-domain-data/) |
 | Three Layer KMP Domain And Presentation | [`19-three-layer-kmp-domain-presentation.md`](diagrams/19-three-layer-kmp-domain-presentation.md) | [`samples/three-layer-kmp-domain-presentation`](samples/three-layer-kmp-domain-presentation/) |
 
-See [`samples/README.md`](samples/README.md) for each sample's implemented flow and module commands. See [`samples/IMPLEMENTATION_REVIEW.md`](samples/IMPLEMENTATION_REVIEW.md) for the per-module review map, and [`TESTING.md`](TESTING.md) for the latest local verification notes.
+See [`samples/README.md`](samples/README.md) for each sample's implemented flow and module commands. See [`samples/implementation-review.html`](samples/implementation-review.html) or [`samples/IMPLEMENTATION_REVIEW.md`](samples/IMPLEMENTATION_REVIEW.md) for the per-module review map, and [`TESTING.md`](TESTING.md) for the latest local verification notes.
 
 ## AGP 9 KMP Rules Used Here
 
