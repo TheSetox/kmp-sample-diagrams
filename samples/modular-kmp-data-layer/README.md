@@ -1,11 +1,11 @@
 # Modular KMP Data Layer
 
-Feature two uses shared data while feature one remains native.
+Feature one is rendered natively in every app target. Feature two keeps native ViewModels while sharing only its KMP data layer.
 
 ## Implemented Flow
 
-- Feature one stays native on Android, iOS, and Desktop.
-- Feature two native `DetailsViewModel` calls `featureTwoSharedData`.
+- Feature One native flow on Android, iOS, and Desktop: `HomeViewModel -> TaskRepository -> TaskDataSource`.
+- Feature Two native `DetailsViewModel` calls `featureTwoSharedData`.
 - `featureTwoSharedData` owns `DetailsRepository -> RemoteDetailsDataSource / LocalDetailsDataSource -> DetailsDtoMapper`.
 
 ## Modules

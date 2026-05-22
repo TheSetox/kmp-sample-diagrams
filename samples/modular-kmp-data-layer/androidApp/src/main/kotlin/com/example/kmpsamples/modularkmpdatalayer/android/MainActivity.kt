@@ -9,7 +9,10 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(
             TextView(this).apply {
-                text = "Modular KMP Data Layer\n" + DetailsViewModel().screenState("Android")
+                text = "Modular KMP Data Layer\n\nFeature One (native Android)\n" +
+                    HomeViewModel().screenState("Android") +
+                    "\n\nFeature Two (shared data)\n" +
+                    DetailsViewModel().screenState("Android")
                 textSize = 20f
                 setPadding(32, 32, 32, 32)
             }

@@ -18,6 +18,9 @@ fun main() = application {
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 Text("Modular KMP Data Layer")
+                Text("Feature One (native Desktop)")
+                Text(HomeViewModel().screenState("Desktop"))
+                Text("Feature Two (shared data)")
                 Text(DetailsViewModel().screenState("Desktop"))
             }
         }

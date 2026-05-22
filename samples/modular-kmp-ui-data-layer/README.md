@@ -1,12 +1,12 @@
 # Modular KMP UI And Data Layers
 
-Feature two shares Compose UI and data while the ViewModel remains native.
+Feature one is rendered natively in every app target. Feature two shares Compose UI and KMP data while native ViewModels wire them together.
 
 ## Implemented Flow
 
-- Feature one stays native on Android, iOS, and Desktop.
-- Feature two native `DetailsViewModel` calls `featureTwoSharedData` and passes state to `featureTwoSharedUI`.
-- `featureTwoSharedData` owns repository/data sources; `featureTwoSharedUI` owns state and UI callbacks.
+- Feature One native flow on Android, iOS, and Desktop: `HomeViewModel -> TaskRepository -> TaskDataSource`.
+- Feature Two native `DetailsViewModel` calls shared data and passes state/events to shared UI.
+- `featureTwoSharedUI` owns `App -> DetailsScreen -> DetailsUiState`; `featureTwoSharedData` owns repository/data sources/mapper.
 
 ## Modules
 
@@ -15,8 +15,8 @@ Feature two shares Compose UI and data while the ViewModel remains native.
 | `androidApp` | Android application entry point. |
 | `desktopApp` | Desktop application entry point. |
 | `iosApp` | SwiftUI source for the iOS entry point. |
-| `featureTwoSharedData` | Shared KMP module for this scenario. |
 | `featureTwoSharedUI` | Shared KMP module for this scenario. |
+| `featureTwoSharedData` | Shared KMP module for this scenario. |
 
 ## Verify
 
@@ -24,13 +24,12 @@ Feature two shares Compose UI and data while the ViewModel remains native.
 ./gradlew -p samples/modular-kmp-ui-data-layer :desktopApp:compileKotlin
 ./gradlew -p samples/modular-kmp-ui-data-layer :androidApp:assembleDebug
 ./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedData:assemble
-./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedUI:assemble
+./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedUI:compileKotlinDesktop
 ```
 
 ## iOS Frameworks
 
 ```sh
-./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedData:linkDebugFrameworkIosSimulatorArm64
 ./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedUI:linkDebugFrameworkIosSimulatorArm64
 ```
 

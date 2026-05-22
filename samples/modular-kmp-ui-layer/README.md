@@ -1,12 +1,12 @@
 # Modular KMP UI Layer
 
-Feature two shares Compose UI while feature behavior stays native.
+Feature one is rendered natively in every app target. Feature two shares Compose UI only while behavior stays native.
 
 ## Implemented Flow
 
-- Feature one stays native on Android, iOS, and Desktop.
-- `featureTwoSharedUI` exposes `DetailsUiState`, `App(state, onRefresh)`, and the iOS `MainViewController(...)` factory.
-- Native feature-two `DetailsViewModel -> DetailsRepository -> DetailsDataSource` passes state and callbacks into shared UI.
+- Feature One native flow on Android, iOS, and Desktop: `HomeViewModel -> TaskRepository -> TaskDataSource`.
+- Feature Two native flow is `DetailsViewModel -> DetailsRepository -> DetailsDataSource`.
+- `featureTwoSharedUI` owns `App -> DetailsScreen -> DetailsUiState` and receives state/events from native ViewModels.
 
 ## Modules
 
@@ -22,7 +22,7 @@ Feature two shares Compose UI while feature behavior stays native.
 ```sh
 ./gradlew -p samples/modular-kmp-ui-layer :desktopApp:compileKotlin
 ./gradlew -p samples/modular-kmp-ui-layer :androidApp:assembleDebug
-./gradlew -p samples/modular-kmp-ui-layer :featureTwoSharedUI:assemble
+./gradlew -p samples/modular-kmp-ui-layer :featureTwoSharedUI:compileKotlinDesktop
 ```
 
 ## iOS Frameworks

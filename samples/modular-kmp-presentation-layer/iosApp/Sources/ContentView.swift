@@ -3,11 +3,19 @@ import UIKit
 import FeatureTwoSharedPresentation
 
 struct ContentView: View {
+    private let homeViewModel = HomeViewModel()
     private let repository = IosDetailsRepository(dataSource: DetailsDataSource())
 
     var body: some View {
-        ComposeHostView(repository: repository)
-            .ignoresSafeArea()
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Modular KMP Presentation Layer")
+                .font(.title)
+            Text("Feature One (native iOS)")
+                .font(.headline)
+            Text(homeViewModel.screenState(platform: "iOS"))
+            ComposeHostView(repository: repository)
+        }
+        .padding()
     }
 }
 

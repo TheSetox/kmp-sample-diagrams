@@ -152,67 +152,67 @@ No blocking architecture mismatches were found in this pass. The known local too
 
 - Sample: [`modular-kmp-data-layer`](modular-kmp-data-layer/)
 - Diagram: [`10-modular-kmp-data-layer.md`](../diagrams/10-modular-kmp-data-layer.md)
-- Verdict: Matches: feature two data is shared while feature one remains native.
+- Verdict: Matches: Feature One is native and visible; Feature Two uses shared KMP data.
 
 | Module | How It Works |
 | --- | --- |
-| [`androidApp`](modular-kmp-data-layer/androidApp/) | Android owns feature-one UI/logic and feature-two `DetailsViewModel`, which calls shared data. |
-| [`iosApp`](modular-kmp-data-layer/iosApp/) | Swift owns feature-one and a feature-two `DetailsViewModel` that calls the shared data framework. |
-| [`desktopApp`](modular-kmp-data-layer/desktopApp/) | Desktop owns feature-one and feature-two ViewModel, with shared feature-two data. |
+| [`androidApp`](modular-kmp-data-layer/androidApp/) | Renders native Feature One via `HomeViewModel -> TaskRepository -> TaskDataSource`, then native `DetailsViewModel` calls shared data. |
+| [`iosApp`](modular-kmp-data-layer/iosApp/) | SwiftUI renders native Feature One and native `DetailsViewModel` calls the shared data framework. |
+| [`desktopApp`](modular-kmp-data-layer/desktopApp/) | Compose Desktop renders native Feature One and native `DetailsViewModel` calls shared data. |
 | [`featureTwoSharedData`](modular-kmp-data-layer/featureTwoSharedData/) | KMP owns `DetailsRepository -> RemoteDetailsDataSource / LocalDetailsDataSource -> DetailsDtoMapper`. |
 
 ### modular-kmp-presentation-layer
 
 - Sample: [`modular-kmp-presentation-layer`](modular-kmp-presentation-layer/)
 - Diagram: [`11-modular-kmp-presentation-layer.md`](../diagrams/11-modular-kmp-presentation-layer.md)
-- Verdict: Matches: feature two presentation is shared and data implementations stay native.
+- Verdict: Matches: Feature One is native and visible; Feature Two presentation is shared and data is native.
 
 | Module | How It Works |
 | --- | --- |
-| [`androidApp`](modular-kmp-presentation-layer/androidApp/) | Android keeps feature one native and implements feature-two repository/data source for the shared presentation contract. |
-| [`iosApp`](modular-kmp-presentation-layer/iosApp/) | Swift keeps feature one native and implements the feature-two repository contract. |
-| [`desktopApp`](modular-kmp-presentation-layer/desktopApp/) | Desktop keeps feature one native and implements feature-two repository/data source. |
-| [`featureTwoSharedPresentation`](modular-kmp-presentation-layer/featureTwoSharedPresentation/) | KMP owns feature-two `App`, `DetailsUiState`, `DetailsViewModel`, and repository contract. |
+| [`androidApp`](modular-kmp-presentation-layer/androidApp/) | Renders native Feature One, implements native `DetailsRepository -> DetailsDataSource`, and hosts shared Feature Two presentation. |
+| [`iosApp`](modular-kmp-presentation-layer/iosApp/) | SwiftUI renders native Feature One, implements the repository contract, and hosts shared Compose presentation. |
+| [`desktopApp`](modular-kmp-presentation-layer/desktopApp/) | Renders native Feature One, implements native Feature Two data, and hosts shared presentation. |
+| [`featureTwoSharedPresentation`](modular-kmp-presentation-layer/featureTwoSharedPresentation/) | KMP owns `App -> DetailsScreen -> DetailsViewModel -> DetailsUiState` plus the `DetailsRepository` contract. |
 
 ### modular-kmp-ui-layer
 
 - Sample: [`modular-kmp-ui-layer`](modular-kmp-ui-layer/)
 - Diagram: [`12-modular-kmp-ui-layer.md`](../diagrams/12-modular-kmp-ui-layer.md)
-- Verdict: Matches: feature two UI is shared, feature two behavior stays native.
+- Verdict: Matches: Feature One is native and visible; Feature Two UI is shared while behavior stays native.
 
 | Module | How It Works |
 | --- | --- |
-| [`androidApp`](modular-kmp-ui-layer/androidApp/) | Android owns `DetailsViewModel -> DetailsRepository -> DetailsDataSource` and passes state/callbacks to shared UI. |
-| [`iosApp`](modular-kmp-ui-layer/iosApp/) | Swift owns feature-two ViewModel/repository/data source and hosts shared UI. |
-| [`desktopApp`](modular-kmp-ui-layer/desktopApp/) | Desktop owns feature-two logic and renders shared UI. |
-| [`featureTwoSharedUI`](modular-kmp-ui-layer/featureTwoSharedUI/) | KMP UI-only surface exposes `DetailsUiState`, `App(state, onRefresh)`, and iOS `MainViewController(...)`. |
+| [`androidApp`](modular-kmp-ui-layer/androidApp/) | Renders native Feature One and native Feature Two `DetailsViewModel -> DetailsRepository -> DetailsDataSource`, passing state/events to shared UI. |
+| [`iosApp`](modular-kmp-ui-layer/iosApp/) | SwiftUI renders native Feature One and uses native Feature Two logic with the shared UI factory. |
+| [`desktopApp`](modular-kmp-ui-layer/desktopApp/) | Renders native Feature One and native Feature Two logic, then renders shared UI. |
+| [`featureTwoSharedUI`](modular-kmp-ui-layer/featureTwoSharedUI/) | KMP owns `App -> DetailsScreen -> DetailsUiState` and receives native state/events. |
 
 ### modular-kmp-ui-data-layer
 
 - Sample: [`modular-kmp-ui-data-layer`](modular-kmp-ui-data-layer/)
 - Diagram: [`13-modular-kmp-ui-data-layer.md`](../diagrams/13-modular-kmp-ui-data-layer.md)
-- Verdict: Matches: feature two UI and data are shared, with native ViewModels wiring the flow.
+- Verdict: Matches: Feature One is native and visible; Feature Two UI and data are shared with a native ViewModel bridge.
 
 | Module | How It Works |
 | --- | --- |
-| [`androidApp`](modular-kmp-ui-data-layer/androidApp/) | Android feature-two `DetailsViewModel` calls shared data and passes state/callbacks to shared UI. |
-| [`iosApp`](modular-kmp-ui-data-layer/iosApp/) | Swift feature-two `DetailsViewModel` imports shared UI and shared data frameworks. |
-| [`desktopApp`](modular-kmp-ui-data-layer/desktopApp/) | Desktop feature-two `DetailsViewModel` calls shared data and renders shared UI. |
-| [`featureTwoSharedUI`](modular-kmp-ui-data-layer/featureTwoSharedUI/) | KMP UI-only surface exposes `DetailsUiState`, `App(state, onRefresh)`, and iOS `MainViewController(...)`. |
+| [`androidApp`](modular-kmp-ui-data-layer/androidApp/) | Renders native Feature One; native `DetailsViewModel` calls shared data and passes state/events to shared UI. |
+| [`iosApp`](modular-kmp-ui-data-layer/iosApp/) | SwiftUI renders native Feature One; native `DetailsViewModel` bridges shared UI and shared data. |
+| [`desktopApp`](modular-kmp-ui-data-layer/desktopApp/) | Renders native Feature One; native `DetailsViewModel` connects shared UI and data. |
+| [`featureTwoSharedUI`](modular-kmp-ui-data-layer/featureTwoSharedUI/) | KMP owns `App -> DetailsScreen -> DetailsUiState`. |
 | [`featureTwoSharedData`](modular-kmp-ui-data-layer/featureTwoSharedData/) | KMP owns `DetailsRepository -> RemoteDetailsDataSource / LocalDetailsDataSource -> DetailsDtoMapper`. |
 
 ### modular-kmp-shared-feature
 
 - Sample: [`modular-kmp-shared-feature`](modular-kmp-shared-feature/)
 - Diagram: [`14-modular-kmp-shared-feature.md`](../diagrams/14-modular-kmp-shared-feature.md)
-- Verdict: Matches: feature two is owned entirely by KMP and feature one stays native.
+- Verdict: Matches: Feature One is native and visible; Feature Two is fully owned by the shared KMP feature module.
 
 | Module | How It Works |
 | --- | --- |
-| [`androidApp`](modular-kmp-shared-feature/androidApp/) | Android native feature one creates a summary, then hosts shared feature-two `App`. |
-| [`iosApp`](modular-kmp-shared-feature/iosApp/) | Swift native feature one creates a summary, then hosts shared feature-two UI. |
-| [`desktopApp`](modular-kmp-shared-feature/desktopApp/) | Desktop native feature one creates a summary, then hosts shared feature-two `App`. |
-| [`featureTwoSharedFeature`](modular-kmp-shared-feature/featureTwoSharedFeature/) | KMP owns feature-two `App -> DetailsViewModel -> DetailsRepository -> DetailsDataSource`. |
+| [`androidApp`](modular-kmp-shared-feature/androidApp/) | Renders native Feature One via `HomeViewModel -> TaskRepository -> TaskDataSource`, then hosts shared Feature Two. |
+| [`iosApp`](modular-kmp-shared-feature/iosApp/) | SwiftUI renders native Feature One, then hosts the shared Feature Two view controller. |
+| [`desktopApp`](modular-kmp-shared-feature/desktopApp/) | Renders native Feature One, then hosts shared Feature Two. |
+| [`featureTwoSharedFeature`](modular-kmp-shared-feature/featureTwoSharedFeature/) | KMP owns `App -> DetailsScreen -> DetailsViewModel -> DetailsRepository -> DetailsDataSource`. |
 
 ## Three Layer KMP
 

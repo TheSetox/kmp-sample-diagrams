@@ -5,175 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sample Implementation Review</title>
   <style>
-    :root {
-      color-scheme: light;
-      --bg: #f7f8fa;
-      --panel: #ffffff;
-      --ink: #17202a;
-      --muted: #5c6672;
-      --line: #d9dee7;
-      --accent: #246b8f;
-      --accent-soft: #e7f3f8;
-      --code: #f0f3f6;
-    }
-
+    :root { color-scheme: light; --bg: #f7f8fa; --panel: #ffffff; --ink: #17202a; --muted: #5c6672; --line: #d9dee7; --accent: #246b8f; --accent-soft: #e7f3f8; --code: #f0f3f6; }
     * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.55;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(8px);
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 14px 24px;
-    }
-
-    .brand {
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0;
-    }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-size: 13px;
-    }
-
-    nav a {
-      color: var(--accent);
-      text-decoration: none;
-      padding: 5px 8px;
-      border-radius: 6px;
-    }
-
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.55; }
+    header { position: sticky; top: 0; z-index: 2; border-bottom: 1px solid var(--line); background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px); }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 1180px; margin: 0 auto; padding: 14px 24px; }
+    .brand { font-size: 15px; font-weight: 700; letter-spacing: 0; }
+    nav { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; }
+    nav a { color: var(--accent); text-decoration: none; padding: 5px 8px; border-radius: 6px; }
     nav a:hover { background: var(--accent-soft); }
-
-    main {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 26px 24px 56px;
-    }
-
-    .content {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 28px;
-    }
-
-    h1, h2, h3 {
-      line-height: 1.2;
-      letter-spacing: 0;
-    }
-
-    h1 {
-      margin: 0 0 12px;
-      font-size: 32px;
-    }
-
-    h2 {
-      margin-top: 34px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
-      font-size: 23px;
-    }
-
-    h3 {
-      margin-top: 28px;
-      font-size: 19px;
-    }
-
+    main { max-width: 1180px; margin: 0 auto; padding: 26px 24px 56px; }
+    .content { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 28px; }
+    h1, h2, h3 { line-height: 1.2; letter-spacing: 0; }
+    h1 { margin: 0 0 12px; font-size: 32px; }
+    h2 { margin-top: 34px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 23px; }
+    h3 { margin-top: 28px; font-size: 19px; }
     p, li { color: var(--muted); }
-
     a { color: var(--accent); }
-
-    code {
-      padding: 2px 5px;
-      border-radius: 5px;
-      background: var(--code);
-      color: var(--ink);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.92em;
-    }
-
-    pre {
-      overflow: auto;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #0f1720;
-      color: #eef4f8;
-    }
-
-    pre code {
-      padding: 0;
-      background: transparent;
-      color: inherit;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-      margin: 16px 0 26px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 760px;
-      background: #fff;
-    }
-
-    th, td {
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--line);
-      vertical-align: top;
-      text-align: left;
-    }
-
-    th {
-      color: var(--ink);
-      background: #f2f6f8;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0;
-    }
-
+    code { padding: 2px 5px; border-radius: 5px; background: var(--code); color: var(--ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.92em; }
+    pre { overflow: auto; padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: #0f1720; color: #eef4f8; }
+    pre code { padding: 0; background: transparent; color: inherit; }
+    .table-wrap { overflow-x: auto; margin: 16px 0 26px; border: 1px solid var(--line); border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; background: #fff; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+    th { color: var(--ink); background: #f2f6f8; font-size: 13px; text-transform: uppercase; letter-spacing: 0; }
     tr:last-child td { border-bottom: 0; }
-
-    td:first-child {
-      width: 220px;
-      white-space: nowrap;
-    }
-
-    @media (max-width: 760px) {
-      .topbar { align-items: flex-start; flex-direction: column; }
-      main { padding: 18px 14px 42px; }
-      .content { padding: 20px; }
-      h1 { font-size: 26px; }
-      table { min-width: 640px; }
-    }
+    td:first-child { width: 220px; white-space: nowrap; }
+    @media (max-width: 760px) { .topbar { align-items: flex-start; flex-direction: column; } main { padding: 18px 14px 42px; } .content { padding: 20px; } h1 { font-size: 26px; } table { min-width: 640px; } }
   </style>
 </head>
 <body>
@@ -189,9 +47,7 @@
       </nav>
     </div>
   </header>
-  <main>
-    <article class="content">
-<h1 id="sample-implementation-review">Sample Implementation Review</h1>
+  <main><article class="content"><h1 id="sample-implementation-review">Sample Implementation Review</h1>
 <p>This review maps every diagram scenario to the current sample code on <code>feature/kmp-2026-mermaid-samples</code>. It is intended as a reading guide for code review: start with the module row, then open the linked module folder.</p>
 <h2 id="validation-summary">Validation Summary</h2>
 <ul>
@@ -348,72 +204,72 @@
 <ul>
 <li>Sample: <a href="modular-kmp-data-layer/"><code>modular-kmp-data-layer</code></a></li>
 <li>Diagram: <a href="../diagrams/10-modular-kmp-data-layer.md"><code>10-modular-kmp-data-layer.md</code></a></li>
-<li>Verdict: Matches: feature two data is shared while feature one remains native.</li>
+<li>Verdict: Matches: Feature One is native and visible; Feature Two uses shared KMP data.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-data-layer/androidApp/"><code>androidApp</code></a></td><td>Android owns feature-one UI/logic and feature-two <code>DetailsViewModel</code>, which calls shared data.</td></tr>
-<tr><td><a href="modular-kmp-data-layer/iosApp/"><code>iosApp</code></a></td><td>Swift owns feature-one and a feature-two <code>DetailsViewModel</code> that calls the shared data framework.</td></tr>
-<tr><td><a href="modular-kmp-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop owns feature-one and feature-two ViewModel, with shared feature-two data.</td></tr>
+<tr><td><a href="modular-kmp-data-layer/androidApp/"><code>androidApp</code></a></td><td>Renders native Feature One via <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then native <code>DetailsViewModel</code> calls shared data.</td></tr>
+<tr><td><a href="modular-kmp-data-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI renders native Feature One and native <code>DetailsViewModel</code> calls the shared data framework.</td></tr>
+<tr><td><a href="modular-kmp-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Compose Desktop renders native Feature One and native <code>DetailsViewModel</code> calls shared data.</td></tr>
 <tr><td><a href="modular-kmp-data-layer/featureTwoSharedData/"><code>featureTwoSharedData</code></a></td><td>KMP owns <code>DetailsRepository -&gt; RemoteDetailsDataSource / LocalDetailsDataSource -&gt; DetailsDtoMapper</code>.</td></tr>
 </tbody></table></div>
 <h3 id="modular-kmp-presentation-layer">modular-kmp-presentation-layer</h3>
 <ul>
 <li>Sample: <a href="modular-kmp-presentation-layer/"><code>modular-kmp-presentation-layer</code></a></li>
 <li>Diagram: <a href="../diagrams/11-modular-kmp-presentation-layer.md"><code>11-modular-kmp-presentation-layer.md</code></a></li>
-<li>Verdict: Matches: feature two presentation is shared and data implementations stay native.</li>
+<li>Verdict: Matches: Feature One is native and visible; Feature Two presentation is shared and data is native.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-presentation-layer/androidApp/"><code>androidApp</code></a></td><td>Android keeps feature one native and implements feature-two repository/data source for the shared presentation contract.</td></tr>
-<tr><td><a href="modular-kmp-presentation-layer/iosApp/"><code>iosApp</code></a></td><td>Swift keeps feature one native and implements the feature-two repository contract.</td></tr>
-<tr><td><a href="modular-kmp-presentation-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop keeps feature one native and implements feature-two repository/data source.</td></tr>
-<tr><td><a href="modular-kmp-presentation-layer/featureTwoSharedPresentation/"><code>featureTwoSharedPresentation</code></a></td><td>KMP owns feature-two <code>App</code>, <code>DetailsUiState</code>, <code>DetailsViewModel</code>, and repository contract.</td></tr>
+<tr><td><a href="modular-kmp-presentation-layer/androidApp/"><code>androidApp</code></a></td><td>Renders native Feature One, implements native <code>DetailsRepository -&gt; DetailsDataSource</code>, and hosts shared Feature Two presentation.</td></tr>
+<tr><td><a href="modular-kmp-presentation-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI renders native Feature One, implements the repository contract, and hosts shared Compose presentation.</td></tr>
+<tr><td><a href="modular-kmp-presentation-layer/desktopApp/"><code>desktopApp</code></a></td><td>Renders native Feature One, implements native Feature Two data, and hosts shared presentation.</td></tr>
+<tr><td><a href="modular-kmp-presentation-layer/featureTwoSharedPresentation/"><code>featureTwoSharedPresentation</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsViewModel -&gt; DetailsUiState</code> plus the <code>DetailsRepository</code> contract.</td></tr>
 </tbody></table></div>
 <h3 id="modular-kmp-ui-layer">modular-kmp-ui-layer</h3>
 <ul>
 <li>Sample: <a href="modular-kmp-ui-layer/"><code>modular-kmp-ui-layer</code></a></li>
 <li>Diagram: <a href="../diagrams/12-modular-kmp-ui-layer.md"><code>12-modular-kmp-ui-layer.md</code></a></li>
-<li>Verdict: Matches: feature two UI is shared, feature two behavior stays native.</li>
+<li>Verdict: Matches: Feature One is native and visible; Feature Two UI is shared while behavior stays native.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-ui-layer/androidApp/"><code>androidApp</code></a></td><td>Android owns <code>DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code> and passes state/callbacks to shared UI.</td></tr>
-<tr><td><a href="modular-kmp-ui-layer/iosApp/"><code>iosApp</code></a></td><td>Swift owns feature-two ViewModel/repository/data source and hosts shared UI.</td></tr>
-<tr><td><a href="modular-kmp-ui-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop owns feature-two logic and renders shared UI.</td></tr>
-<tr><td><a href="modular-kmp-ui-layer/featureTwoSharedUI/"><code>featureTwoSharedUI</code></a></td><td>KMP UI-only surface exposes <code>DetailsUiState</code>, <code>App(state, onRefresh)</code>, and iOS <code>MainViewController(...)</code>.</td></tr>
+<tr><td><a href="modular-kmp-ui-layer/androidApp/"><code>androidApp</code></a></td><td>Renders native Feature One and native Feature Two <code>DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code>, passing state/events to shared UI.</td></tr>
+<tr><td><a href="modular-kmp-ui-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI renders native Feature One and uses native Feature Two logic with the shared UI factory.</td></tr>
+<tr><td><a href="modular-kmp-ui-layer/desktopApp/"><code>desktopApp</code></a></td><td>Renders native Feature One and native Feature Two logic, then renders shared UI.</td></tr>
+<tr><td><a href="modular-kmp-ui-layer/featureTwoSharedUI/"><code>featureTwoSharedUI</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsUiState</code> and receives native state/events.</td></tr>
 </tbody></table></div>
 <h3 id="modular-kmp-ui-data-layer">modular-kmp-ui-data-layer</h3>
 <ul>
 <li>Sample: <a href="modular-kmp-ui-data-layer/"><code>modular-kmp-ui-data-layer</code></a></li>
 <li>Diagram: <a href="../diagrams/13-modular-kmp-ui-data-layer.md"><code>13-modular-kmp-ui-data-layer.md</code></a></li>
-<li>Verdict: Matches: feature two UI and data are shared, with native ViewModels wiring the flow.</li>
+<li>Verdict: Matches: Feature One is native and visible; Feature Two UI and data are shared with a native ViewModel bridge.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-ui-data-layer/androidApp/"><code>androidApp</code></a></td><td>Android feature-two <code>DetailsViewModel</code> calls shared data and passes state/callbacks to shared UI.</td></tr>
-<tr><td><a href="modular-kmp-ui-data-layer/iosApp/"><code>iosApp</code></a></td><td>Swift feature-two <code>DetailsViewModel</code> imports shared UI and shared data frameworks.</td></tr>
-<tr><td><a href="modular-kmp-ui-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop feature-two <code>DetailsViewModel</code> calls shared data and renders shared UI.</td></tr>
-<tr><td><a href="modular-kmp-ui-data-layer/featureTwoSharedUI/"><code>featureTwoSharedUI</code></a></td><td>KMP UI-only surface exposes <code>DetailsUiState</code>, <code>App(state, onRefresh)</code>, and iOS <code>MainViewController(...)</code>.</td></tr>
+<tr><td><a href="modular-kmp-ui-data-layer/androidApp/"><code>androidApp</code></a></td><td>Renders native Feature One; native <code>DetailsViewModel</code> calls shared data and passes state/events to shared UI.</td></tr>
+<tr><td><a href="modular-kmp-ui-data-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI renders native Feature One; native <code>DetailsViewModel</code> bridges shared UI and shared data.</td></tr>
+<tr><td><a href="modular-kmp-ui-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Renders native Feature One; native <code>DetailsViewModel</code> connects shared UI and data.</td></tr>
+<tr><td><a href="modular-kmp-ui-data-layer/featureTwoSharedUI/"><code>featureTwoSharedUI</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsUiState</code>.</td></tr>
 <tr><td><a href="modular-kmp-ui-data-layer/featureTwoSharedData/"><code>featureTwoSharedData</code></a></td><td>KMP owns <code>DetailsRepository -&gt; RemoteDetailsDataSource / LocalDetailsDataSource -&gt; DetailsDtoMapper</code>.</td></tr>
 </tbody></table></div>
 <h3 id="modular-kmp-shared-feature">modular-kmp-shared-feature</h3>
 <ul>
 <li>Sample: <a href="modular-kmp-shared-feature/"><code>modular-kmp-shared-feature</code></a></li>
 <li>Diagram: <a href="../diagrams/14-modular-kmp-shared-feature.md"><code>14-modular-kmp-shared-feature.md</code></a></li>
-<li>Verdict: Matches: feature two is owned entirely by KMP and feature one stays native.</li>
+<li>Verdict: Matches: Feature One is native and visible; Feature Two is fully owned by the shared KMP feature module.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-shared-feature/androidApp/"><code>androidApp</code></a></td><td>Android native feature one creates a summary, then hosts shared feature-two <code>App</code>.</td></tr>
-<tr><td><a href="modular-kmp-shared-feature/iosApp/"><code>iosApp</code></a></td><td>Swift native feature one creates a summary, then hosts shared feature-two UI.</td></tr>
-<tr><td><a href="modular-kmp-shared-feature/desktopApp/"><code>desktopApp</code></a></td><td>Desktop native feature one creates a summary, then hosts shared feature-two <code>App</code>.</td></tr>
-<tr><td><a href="modular-kmp-shared-feature/featureTwoSharedFeature/"><code>featureTwoSharedFeature</code></a></td><td>KMP owns feature-two <code>App -&gt; DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code>.</td></tr>
+<tr><td><a href="modular-kmp-shared-feature/androidApp/"><code>androidApp</code></a></td><td>Renders native Feature One via <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts shared Feature Two.</td></tr>
+<tr><td><a href="modular-kmp-shared-feature/iosApp/"><code>iosApp</code></a></td><td>SwiftUI renders native Feature One, then hosts the shared Feature Two view controller.</td></tr>
+<tr><td><a href="modular-kmp-shared-feature/desktopApp/"><code>desktopApp</code></a></td><td>Renders native Feature One, then hosts shared Feature Two.</td></tr>
+<tr><td><a href="modular-kmp-shared-feature/featureTwoSharedFeature/"><code>featureTwoSharedFeature</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code>.</td></tr>
 </tbody></table></div>
 <h2 id="three-layer-kmp">Three Layer KMP</h2>
 <h3 id="three-layer-kmp-domain">three-layer-kmp-domain</h3>
@@ -480,8 +336,6 @@ rg -n &quot;org\.jetbrains\.kotlin\.android|kotlin-android&quot; samples -g '*.g
 python3 -m json.tool diagrams/manifest.json
 node --check diagrams/bundle.js
 git diff --check</code></pre>
-<p>For Gradle commands per sample, use each sample README or <a href="../TESTING.md">../TESTING.md</a>.</p>
-    </article>
-  </main>
+<p>For Gradle commands per sample, use each sample README or <a href="../TESTING.md">../TESTING.md</a>.</p></article></main>
 </body>
 </html>

@@ -1,12 +1,12 @@
 # Modular KMP Presentation Layer
 
-Feature two has shared Compose presentation with native data implementations.
+Feature one is rendered natively in every app target. Feature two has shared Compose presentation with native data implementations.
 
 ## Implemented Flow
 
-- Feature one stays native on Android, iOS, and Desktop.
-- `featureTwoSharedPresentation` owns `App`, `DetailsUiState`, and `DetailsViewModel`.
-- Android, iOS, and Desktop implement the feature-two repository contract natively.
+- Feature One native flow on Android, iOS, and Desktop: `HomeViewModel -> TaskRepository -> TaskDataSource`.
+- `featureTwoSharedPresentation` owns `App -> DetailsScreen -> DetailsViewModel -> DetailsUiState` and the `DetailsRepository` contract.
+- Android, iOS, and Desktop implement the feature-two repository contract with native `DetailsDataSource` classes.
 
 ## Modules
 
@@ -22,7 +22,7 @@ Feature two has shared Compose presentation with native data implementations.
 ```sh
 ./gradlew -p samples/modular-kmp-presentation-layer :desktopApp:compileKotlin
 ./gradlew -p samples/modular-kmp-presentation-layer :androidApp:assembleDebug
-./gradlew -p samples/modular-kmp-presentation-layer :featureTwoSharedPresentation:assemble
+./gradlew -p samples/modular-kmp-presentation-layer :featureTwoSharedPresentation:compileKotlinDesktop
 ```
 
 ## iOS Frameworks

@@ -1,52 +1,67 @@
 # 12. Modular KMP UI Layer
 
-Feature two shares Compose UI only. Native ViewModels call native repositories and data sources.
+Feature one stays native in every platform module. Feature two shares Compose UI only; native ViewModels call native repositories and data sources.
 
 ```mermaid
 flowchart TB
-  subgraph Desktop["desktopApp"]
-    DHost["feature-two host"]
-    DVM["DetailsViewModel.kt"]
-    DRepository["DetailsRepository.kt"]
-    DDataSource["DetailsDataSource.kt"]
-    DVM --> DRepository --> DDataSource
+  subgraph Android["androidApp"]
+    direction TB
+    AEntry["MainActivity.kt"]
+    AHomeVM["HomeViewModel.kt"]
+    ATaskRepository["TaskRepository.kt"]
+    ATaskDataSource["TaskDataSource.kt"]
+    ADetailsVM["DetailsViewModel.kt"]
+    ADetailsRepository["DetailsRepository.kt"]
+    ADetailsDataSource["DetailsDataSource.kt"]
+    AEntry --> AHomeVM --> ATaskRepository --> ATaskDataSource
+    AEntry --> ADetailsVM --> ADetailsRepository --> ADetailsDataSource
   end
 
   subgraph IOS["iosApp"]
-    IHost["feature-two host"]
-    IVM["DetailsViewModel.swift"]
-    IRepository["DetailsRepository.swift"]
-    IDataSource["DetailsDataSource.swift"]
-    IVM --> IRepository --> IDataSource
+    direction TB
+    IEntry["ContentView.swift"]
+    IHomeVM["HomeViewModel.swift"]
+    ITaskRepository["TaskRepository.swift"]
+    ITaskDataSource["TaskDataSource.swift"]
+    IDetailsVM["DetailsViewModel.swift"]
+    IDetailsRepository["DetailsRepository.swift"]
+    IDetailsDataSource["DetailsDataSource.swift"]
+    IEntry --> IHomeVM --> ITaskRepository --> ITaskDataSource
+    IEntry --> IDetailsVM --> IDetailsRepository --> IDetailsDataSource
   end
 
-  subgraph Android["androidApp"]
-    AHost["feature-two host"]
-    AVM["DetailsViewModel.kt"]
-    ARepository["DetailsRepository.kt"]
-    ADataSource["DetailsDataSource.kt"]
-    AVM --> ARepository --> ADataSource
+  subgraph Desktop["desktopApp"]
+    direction TB
+    DEntry["Main.kt"]
+    DHomeVM["HomeViewModel.kt"]
+    DTaskRepository["TaskRepository.kt"]
+    DTaskDataSource["TaskDataSource.kt"]
+    DDetailsVM["DetailsViewModel.kt"]
+    DDetailsRepository["DetailsRepository.kt"]
+    DDetailsDataSource["DetailsDataSource.kt"]
+    DEntry --> DHomeVM --> DTaskRepository --> DTaskDataSource
+    DEntry --> DDetailsVM --> DDetailsRepository --> DDetailsDataSource
   end
 
   subgraph KMP["featureTwoSharedUI KMP module"]
     direction LR
-    App["Details Compose App"]
+    App["App.kt"]
     Screen["DetailsScreen.kt"]
-    Components["Details components"]
-    App --> Screen --> Components
+    State["DetailsUiState.kt"]
+    App --> Screen --> State
   end
 
-  AHost --> App
-  IHost --> App
-  DHost --> App
-  Screen -. "state and events" .-> AVM
-  Screen -. "state and events" .-> IVM
-  Screen -. "state and events" .-> DVM
+  AEntry --> App
+  IEntry --> App
+  DEntry --> App
+  Screen -. "state and events" .-> ADetailsVM
+  Screen -. "state and events" .-> IDetailsVM
+  Screen -. "state and events" .-> DDetailsVM
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
-  class AHost,AVM,ARepository,ADataSource,IHost,IVM,IRepository,IDataSource,DHost,DVM,DRepository,DDataSource app;
-  class App,Screen,Components kmp;
+  class AEntry,AHomeVM,ATaskRepository,ATaskDataSource,ADetailsVM,ADetailsRepository,ADetailsDataSource,IEntry,IHomeVM,ITaskRepository,ITaskDataSource,IDetailsVM,IDetailsRepository,IDetailsDataSource,DEntry,DHomeVM,DTaskRepository,DTaskDataSource,DDetailsVM,DDetailsRepository,DDetailsDataSource app;
+  class App,Screen,State kmp;
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
   style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px

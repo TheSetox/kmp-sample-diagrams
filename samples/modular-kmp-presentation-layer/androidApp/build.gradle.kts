@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.compose.multiplatform)
 }
 
 android {
@@ -14,6 +15,7 @@ android {
         versionCode = 1
         versionName = "1.0"
     }
+
     buildFeatures {
         compose = true
     }
@@ -21,5 +23,9 @@ android {
 
 dependencies {
     implementation(libs.androidx.activity.compose)
+    implementation(compose.runtime)
+    implementation(compose.foundation)
+    implementation(compose.material3)
+    implementation(compose.ui)
     implementation(project(":featureTwoSharedPresentation"))
 }

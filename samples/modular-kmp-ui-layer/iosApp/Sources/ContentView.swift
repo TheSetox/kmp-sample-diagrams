@@ -3,14 +3,30 @@ import UIKit
 import FeatureTwoSharedUI
 
 struct ContentView: View {
-    private let viewModel = DetailsViewModel()
+    private let homeViewModel = HomeViewModel()
+    private let detailsViewModel = DetailsViewModel()
+    @State private var detailsState: DetailsUiState?
 
     var body: some View {
-        ComposeHostView(
-            state: viewModel.load(platform: "iOS"),
-            onRefresh: { _ = viewModel.refresh(platform: "iOS") }
-        )
-        .ignoresSafeArea()
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Modular KMP UI Layer")
+                .font(.title)
+            Text("Feature One (native iOS)")
+                .font(.headline)
+            Text(homeViewModel.screenState(platform: "iOS"))
+            if let detailsState = detailsState {
+                ComposeHostView(
+                    state: detailsState,
+                    onRefresh: { self.detailsState = detailsViewModel.refresh(platform: "iOS") }
+                )
+            }
+        }
+        .padding()
+        .onAppear {
+            if detailsState == nil {
+                detailsState = detailsViewModel.load(platform: "iOS")
+            }
+        }
     }
 }
 

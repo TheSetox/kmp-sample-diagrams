@@ -1,12 +1,12 @@
 # Modular KMP Shared Feature
 
-Feature two is fully shared as a KMP feature module.
+Feature one is rendered natively in every app target. Feature two is fully owned by one shared KMP feature module.
 
 ## Implemented Flow
 
-- Feature one stays native and passes a summary into the shared feature.
-- `featureTwoSharedFeature` owns `App -> DetailsViewModel -> DetailsRepository -> DetailsDataSource`.
-- Android, iOS, and Desktop host the shared feature-two entry point.
+- Feature One native flow on Android, iOS, and Desktop: `HomeViewModel -> TaskRepository -> TaskDataSource`.
+- `featureTwoSharedFeature` owns `App -> DetailsScreen -> DetailsViewModel -> DetailsRepository -> DetailsDataSource`.
+- Native apps render Feature One outside the shared Feature Two UI; no Feature One state is passed into KMP.
 
 ## Modules
 
@@ -22,7 +22,7 @@ Feature two is fully shared as a KMP feature module.
 ```sh
 ./gradlew -p samples/modular-kmp-shared-feature :desktopApp:compileKotlin
 ./gradlew -p samples/modular-kmp-shared-feature :androidApp:assembleDebug
-./gradlew -p samples/modular-kmp-shared-feature :featureTwoSharedFeature:assemble
+./gradlew -p samples/modular-kmp-shared-feature :featureTwoSharedFeature:compileKotlinDesktop
 ```
 
 ## iOS Frameworks

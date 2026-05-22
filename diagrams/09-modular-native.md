@@ -5,7 +5,7 @@ Baseline modular architecture. Each app target owns native feature modules; each
 ```mermaid
 flowchart TB
   subgraph Desktop["desktopApp"]
-    direction LR
+    direction TB
     subgraph DF1["feature-one module"]
       direction TB
       DF1UI["HomeWindow.kt"]
@@ -25,7 +25,7 @@ flowchart TB
   end
 
   subgraph IOS["iosApp"]
-    direction LR
+    direction TB
     subgraph IF1["feature-one module"]
       direction TB
       IF1UI["HomeView.swift"]
@@ -45,7 +45,7 @@ flowchart TB
   end
 
   subgraph Android["androidApp"]
-    direction LR
+    direction TB
     subgraph AF1["feature-one module"]
       direction TB
       AF1UI["HomeScreen.kt"]

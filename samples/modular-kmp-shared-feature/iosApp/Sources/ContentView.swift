@@ -6,16 +6,21 @@ struct ContentView: View {
     private let homeViewModel = HomeViewModel()
 
     var body: some View {
-        ComposeHostView(nativeFeatureOneSummary: homeViewModel.screenState(platform: "iOS"))
-            .ignoresSafeArea()
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Modular KMP Shared Feature")
+                .font(.title)
+            Text("Feature One (native iOS)")
+                .font(.headline)
+            Text(homeViewModel.screenState(platform: "iOS"))
+            ComposeHostView()
+        }
+        .padding()
     }
 }
 
 struct ComposeHostView: UIViewControllerRepresentable {
-    let nativeFeatureOneSummary: String
-
     func makeUIViewController(context: Context) -> UIViewController {
-        MainViewControllerKt.MainViewController(platform: "iOS", nativeFeatureOneSummary: nativeFeatureOneSummary)
+        MainViewControllerKt.MainViewController(platform: "iOS")
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
