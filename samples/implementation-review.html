@@ -63,258 +63,258 @@
 <h2 id="baseline">Baseline</h2>
 <h3 id="normal-native">normal-native</h3>
 <ul>
-<li>Sample: <a href="normal-native/"><code>normal-native</code></a></li>
+<li>Sample: <a href="01_normal-native/"><code>01_normal-native</code></a></li>
 <li>Diagram: <a href="../diagrams/01-normal-native.md"><code>01-normal-native.md</code></a></li>
 <li>Verdict: Matches: each platform has its own direct UI -&gt; ViewModel -&gt; Repository -&gt; DataSource flow.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="normal-native/androidApp/"><code>androidApp</code></a></td><td>Android entry point renders a native text screen and calls <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> in Android code.</td></tr>
-<tr><td><a href="normal-native/iosApp/"><code>iosApp</code></a></td><td>SwiftUI <code>ContentView</code> calls native Swift <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>.</td></tr>
-<tr><td><a href="normal-native/desktopApp/"><code>desktopApp</code></a></td><td>Compose Desktop window calls desktop <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>.</td></tr>
+<tr><td><a href="01_normal-native/androidApp/"><code>androidApp</code></a></td><td>Android entry point renders a native text screen and calls <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> in Android code.</td></tr>
+<tr><td><a href="01_normal-native/iosApp/"><code>iosApp</code></a></td><td>SwiftUI <code>ContentView</code> calls native Swift <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>.</td></tr>
+<tr><td><a href="01_normal-native/desktopApp/"><code>desktopApp</code></a></td><td>Compose Desktop window calls desktop <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>.</td></tr>
 </tbody></table></div>
 <h3 id="layered-native">layered-native</h3>
 <ul>
-<li>Sample: <a href="layered-native/"><code>layered-native</code></a></li>
+<li>Sample: <a href="04_layered-native/"><code>04_layered-native</code></a></li>
 <li>Diagram: <a href="../diagrams/04-layered-native.md"><code>04-layered-native.md</code></a></li>
 <li>Verdict: Matches: presentation and data are separated per platform, with no use case layer.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="layered-native/androidApp/"><code>androidApp</code></a></td><td><code>presentation/HomeViewModel</code> calls <code>data/TaskRepository -&gt; TaskDataSource</code>; <code>MainActivity</code> owns the Android entry point.</td></tr>
-<tr><td><a href="layered-native/iosApp/"><code>iosApp</code></a></td><td>SwiftUI <code>ContentView</code> calls Swift <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>.</td></tr>
-<tr><td><a href="layered-native/desktopApp/"><code>desktopApp</code></a></td><td><code>presentation/HomeViewModel</code> calls <code>data/TaskRepository -&gt; TaskDataSource</code>; <code>Main.kt</code> owns the desktop entry point.</td></tr>
+<tr><td><a href="04_layered-native/androidApp/"><code>androidApp</code></a></td><td><code>presentation/HomeViewModel</code> calls <code>data/TaskRepository -&gt; TaskDataSource</code>; <code>MainActivity</code> owns the Android entry point.</td></tr>
+<tr><td><a href="04_layered-native/iosApp/"><code>iosApp</code></a></td><td>SwiftUI <code>ContentView</code> calls Swift <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>.</td></tr>
+<tr><td><a href="04_layered-native/desktopApp/"><code>desktopApp</code></a></td><td><code>presentation/HomeViewModel</code> calls <code>data/TaskRepository -&gt; TaskDataSource</code>; <code>Main.kt</code> owns the desktop entry point.</td></tr>
 </tbody></table></div>
 <h3 id="modular-native">modular-native</h3>
 <ul>
-<li>Sample: <a href="modular-native/"><code>modular-native</code></a></li>
+<li>Sample: <a href="09_modular-native/"><code>09_modular-native</code></a></li>
 <li>Diagram: <a href="../diagrams/09-modular-native.md"><code>09-modular-native.md</code></a></li>
 <li>Verdict: Matches: feature one and feature two are duplicated per platform as native modules/packages.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-native/androidApp/"><code>androidApp</code></a></td><td><code>featureone/HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and <code>featuretwo/DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code>.</td></tr>
-<tr><td><a href="modular-native/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts Swift feature-one task classes and feature-two details classes.</td></tr>
-<tr><td><a href="modular-native/desktopApp/"><code>desktopApp</code></a></td><td>Desktop packages mirror Android: <code>featureone</code> for task summary and <code>featuretwo</code> for details.</td></tr>
+<tr><td><a href="09_modular-native/androidApp/"><code>androidApp</code></a></td><td><code>featureone/HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and <code>featuretwo/DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code>.</td></tr>
+<tr><td><a href="09_modular-native/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts Swift feature-one task classes and feature-two details classes.</td></tr>
+<tr><td><a href="09_modular-native/desktopApp/"><code>desktopApp</code></a></td><td>Desktop packages mirror Android: <code>featureone</code> for task summary and <code>featuretwo</code> for details.</td></tr>
 </tbody></table></div>
 <h3 id="three-layer-native">three-layer-native</h3>
 <ul>
-<li>Sample: <a href="three-layer-native/"><code>three-layer-native</code></a></li>
+<li>Sample: <a href="15_three-layer-native/"><code>15_three-layer-native</code></a></li>
 <li>Diagram: <a href="../diagrams/15-three-layer-native.md"><code>15-three-layer-native.md</code></a></li>
 <li>Verdict: Matches: every platform owns presentation, domain, and data classes.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="three-layer-native/androidApp/"><code>androidApp</code></a></td><td><code>presentation/HomeViewModel -&gt; domain/GetTasksUseCase -&gt; data/TaskRepository -&gt; TaskDataSource</code>, with <code>Task</code> in domain.</td></tr>
-<tr><td><a href="three-layer-native/iosApp/"><code>iosApp</code></a></td><td>SwiftUI calls Swift <code>HomeViewModel -&gt; GetTasksUseCase -&gt; TaskRepository -&gt; TaskDataSource</code>, with Swift <code>Task</code> entity.</td></tr>
-<tr><td><a href="three-layer-native/desktopApp/"><code>desktopApp</code></a></td><td>Desktop mirrors Android with presentation, domain, and data packages.</td></tr>
+<tr><td><a href="15_three-layer-native/androidApp/"><code>androidApp</code></a></td><td><code>presentation/HomeViewModel -&gt; domain/GetTasksUseCase -&gt; data/TaskRepository -&gt; TaskDataSource</code>, with <code>Task</code> in domain.</td></tr>
+<tr><td><a href="15_three-layer-native/iosApp/"><code>iosApp</code></a></td><td>SwiftUI calls Swift <code>HomeViewModel -&gt; GetTasksUseCase -&gt; TaskRepository -&gt; TaskDataSource</code>, with Swift <code>Task</code> entity.</td></tr>
+<tr><td><a href="15_three-layer-native/desktopApp/"><code>desktopApp</code></a></td><td>Desktop mirrors Android with presentation, domain, and data packages.</td></tr>
 </tbody></table></div>
 <h2 id="main-kmp">Main KMP</h2>
 <h3 id="kmp-native-ui">kmp-native-ui</h3>
 <ul>
-<li>Sample: <a href="kmp-native-ui/"><code>kmp-native-ui</code></a></li>
+<li>Sample: <a href="02_kmp-native-ui/"><code>02_kmp-native-ui</code></a></li>
 <li>Diagram: <a href="../diagrams/02-kmp-native-ui.md"><code>02-kmp-native-ui.md</code></a></li>
 <li>Verdict: Matches: platform UI is native while the ViewModel, use case, repository, and data source are shared.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="kmp-native-ui/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> creates the shared <code>HomeViewModel</code> and displays its state in Android UI.</td></tr>
-<tr><td><a href="kmp-native-ui/iosApp/"><code>iosApp</code></a></td><td>SwiftUI <code>ContentView</code> calls the exported shared <code>HomeViewModel</code>.</td></tr>
-<tr><td><a href="kmp-native-ui/desktopApp/"><code>desktopApp</code></a></td><td>Compose Desktop calls the shared <code>HomeViewModel</code>.</td></tr>
-<tr><td><a href="kmp-native-ui/sharedLogic/"><code>sharedLogic</code></a></td><td>KMP flow is <code>HomeViewModel -&gt; GetTasksUseCase -&gt; TaskRepository -&gt; TaskDataSource</code>.</td></tr>
+<tr><td><a href="02_kmp-native-ui/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> creates the shared <code>HomeViewModel</code> and displays its state in Android UI.</td></tr>
+<tr><td><a href="02_kmp-native-ui/iosApp/"><code>iosApp</code></a></td><td>SwiftUI <code>ContentView</code> calls the exported shared <code>HomeViewModel</code>.</td></tr>
+<tr><td><a href="02_kmp-native-ui/desktopApp/"><code>desktopApp</code></a></td><td>Compose Desktop calls the shared <code>HomeViewModel</code>.</td></tr>
+<tr><td><a href="02_kmp-native-ui/sharedLogic/"><code>sharedLogic</code></a></td><td>KMP flow is <code>HomeViewModel -&gt; GetTasksUseCase -&gt; TaskRepository -&gt; TaskDataSource</code>.</td></tr>
 </tbody></table></div>
 <h3 id="kmp-compose-ui">kmp-compose-ui</h3>
 <ul>
-<li>Sample: <a href="kmp-compose-ui/"><code>kmp-compose-ui</code></a></li>
+<li>Sample: <a href="03_kmp-compose-ui/"><code>03_kmp-compose-ui</code></a></li>
 <li>Diagram: <a href="../diagrams/03-kmp-compose-ui.md"><code>03-kmp-compose-ui.md</code></a></li>
 <li>Verdict: Matches the corrected intent: UI is shared, behavior is native.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="kmp-compose-ui/androidApp/"><code>androidApp</code></a></td><td>Android owns <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then passes <code>HomeUiState</code> and refresh callback to shared UI.</td></tr>
-<tr><td><a href="kmp-compose-ui/iosApp/"><code>iosApp</code></a></td><td>Swift owns <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts the KMP Compose UI via <code>MainViewController</code>.</td></tr>
-<tr><td><a href="kmp-compose-ui/desktopApp/"><code>desktopApp</code></a></td><td>Desktop owns <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then renders shared <code>App(state, onRefresh)</code>.</td></tr>
-<tr><td><a href="kmp-compose-ui/shared/"><code>shared</code></a></td><td>KMP UI-only surface exposes <code>HomeUiState</code>, <code>App(state, onRefresh)</code>, and iOS <code>MainViewController(...)</code>.</td></tr>
+<tr><td><a href="03_kmp-compose-ui/androidApp/"><code>androidApp</code></a></td><td>Android owns <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then passes <code>HomeUiState</code> and refresh callback to shared UI.</td></tr>
+<tr><td><a href="03_kmp-compose-ui/iosApp/"><code>iosApp</code></a></td><td>Swift owns <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts the KMP Compose UI via <code>MainViewController</code>.</td></tr>
+<tr><td><a href="03_kmp-compose-ui/desktopApp/"><code>desktopApp</code></a></td><td>Desktop owns <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then renders shared <code>App(state, onRefresh)</code>.</td></tr>
+<tr><td><a href="03_kmp-compose-ui/shared/"><code>shared</code></a></td><td>KMP UI-only surface exposes <code>HomeUiState</code>, <code>App(state, onRefresh)</code>, and iOS <code>MainViewController(...)</code>.</td></tr>
 </tbody></table></div>
 <h3 id="kmp-data-layer">kmp-data-layer</h3>
 <ul>
-<li>Sample: <a href="kmp-data-layer/"><code>kmp-data-layer</code></a></li>
+<li>Sample: <a href="05_kmp-data-layer/"><code>05_kmp-data-layer</code></a></li>
 <li>Diagram: <a href="../diagrams/05-kmp-data-layer.md"><code>05-kmp-data-layer.md</code></a></li>
 <li>Verdict: Matches: UI and ViewModel are native, data is shared.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="kmp-data-layer/androidApp/"><code>androidApp</code></a></td><td>Android <code>HomeViewModel</code> calls shared <code>TaskRepository</code>.</td></tr>
-<tr><td><a href="kmp-data-layer/iosApp/"><code>iosApp</code></a></td><td>Swift <code>HomeViewModel</code> imports the shared data framework and calls shared <code>TaskRepository</code>.</td></tr>
-<tr><td><a href="kmp-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop <code>HomeViewModel</code> calls shared <code>TaskRepository</code>.</td></tr>
-<tr><td><a href="kmp-data-layer/sharedData/"><code>sharedData</code></a></td><td>KMP data flow is <code>TaskRepository -&gt; RemoteTaskDataSource / LocalTaskDataSource -&gt; TaskDtoMapper</code>.</td></tr>
+<tr><td><a href="05_kmp-data-layer/androidApp/"><code>androidApp</code></a></td><td>Android <code>HomeViewModel</code> calls shared <code>TaskRepository</code>.</td></tr>
+<tr><td><a href="05_kmp-data-layer/iosApp/"><code>iosApp</code></a></td><td>Swift <code>HomeViewModel</code> imports the shared data framework and calls shared <code>TaskRepository</code>.</td></tr>
+<tr><td><a href="05_kmp-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop <code>HomeViewModel</code> calls shared <code>TaskRepository</code>.</td></tr>
+<tr><td><a href="05_kmp-data-layer/sharedData/"><code>sharedData</code></a></td><td>KMP data flow is <code>TaskRepository -&gt; RemoteTaskDataSource / LocalTaskDataSource -&gt; TaskDtoMapper</code>.</td></tr>
 </tbody></table></div>
 <h3 id="kmp-presentation-layer">kmp-presentation-layer</h3>
 <ul>
-<li>Sample: <a href="kmp-presentation-layer/"><code>kmp-presentation-layer</code></a></li>
+<li>Sample: <a href="06_kmp-presentation-layer/"><code>06_kmp-presentation-layer</code></a></li>
 <li>Diagram: <a href="../diagrams/06-kmp-presentation-layer.md"><code>06-kmp-presentation-layer.md</code></a></li>
 <li>Verdict: Matches: shared presentation depends on a repository contract implemented natively.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="kmp-presentation-layer/androidApp/"><code>androidApp</code></a></td><td>Android implements the shared <code>TaskRepository</code> contract with native <code>TaskDataSource</code>, then hosts shared <code>App</code>.</td></tr>
-<tr><td><a href="kmp-presentation-layer/iosApp/"><code>iosApp</code></a></td><td>Swift implements the exported repository contract and hosts shared Compose UI through <code>MainViewController</code>.</td></tr>
-<tr><td><a href="kmp-presentation-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop implements the repository contract and hosts shared <code>App</code>.</td></tr>
-<tr><td><a href="kmp-presentation-layer/sharedPresentation/"><code>sharedPresentation</code></a></td><td>KMP owns <code>App</code>, <code>HomeUiState</code>, <code>HomeViewModel</code>, and the <code>TaskRepository</code> contract.</td></tr>
+<tr><td><a href="06_kmp-presentation-layer/androidApp/"><code>androidApp</code></a></td><td>Android implements the shared <code>TaskRepository</code> contract with native <code>TaskDataSource</code>, then hosts shared <code>App</code>.</td></tr>
+<tr><td><a href="06_kmp-presentation-layer/iosApp/"><code>iosApp</code></a></td><td>Swift implements the exported repository contract and hosts shared Compose UI through <code>MainViewController</code>.</td></tr>
+<tr><td><a href="06_kmp-presentation-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop implements the repository contract and hosts shared <code>App</code>.</td></tr>
+<tr><td><a href="06_kmp-presentation-layer/sharedPresentation/"><code>sharedPresentation</code></a></td><td>KMP owns <code>App</code>, <code>HomeUiState</code>, <code>HomeViewModel</code>, and the <code>TaskRepository</code> contract.</td></tr>
 </tbody></table></div>
 <h3 id="kmp-ui-layer">kmp-ui-layer</h3>
 <ul>
-<li>Sample: <a href="kmp-ui-layer/"><code>kmp-ui-layer</code></a></li>
+<li>Sample: <a href="07_kmp-ui-layer/"><code>07_kmp-ui-layer</code></a></li>
 <li>Diagram: <a href="../diagrams/07-kmp-ui-layer.md"><code>07-kmp-ui-layer.md</code></a></li>
 <li>Verdict: Matches: only the Compose UI surface is shared.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="kmp-ui-layer/androidApp/"><code>androidApp</code></a></td><td>Android owns <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and passes state/callbacks to <code>sharedUI</code>.</td></tr>
-<tr><td><a href="kmp-ui-layer/iosApp/"><code>iosApp</code></a></td><td>Swift owns the ViewModel/repository/data source and passes state/callbacks into the shared UI factory.</td></tr>
-<tr><td><a href="kmp-ui-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop owns native-style logic and renders shared UI.</td></tr>
-<tr><td><a href="kmp-ui-layer/sharedUI/"><code>sharedUI</code></a></td><td>KMP UI-only surface exposes <code>HomeUiState</code>, <code>App(state, onRefresh)</code>, and iOS <code>MainViewController(...)</code>.</td></tr>
+<tr><td><a href="07_kmp-ui-layer/androidApp/"><code>androidApp</code></a></td><td>Android owns <code>HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and passes state/callbacks to <code>sharedUI</code>.</td></tr>
+<tr><td><a href="07_kmp-ui-layer/iosApp/"><code>iosApp</code></a></td><td>Swift owns the ViewModel/repository/data source and passes state/callbacks into the shared UI factory.</td></tr>
+<tr><td><a href="07_kmp-ui-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop owns native-style logic and renders shared UI.</td></tr>
+<tr><td><a href="07_kmp-ui-layer/sharedUI/"><code>sharedUI</code></a></td><td>KMP UI-only surface exposes <code>HomeUiState</code>, <code>App(state, onRefresh)</code>, and iOS <code>MainViewController(...)</code>.</td></tr>
 </tbody></table></div>
 <h3 id="kmp-presentation-data-layer">kmp-presentation-data-layer</h3>
 <ul>
-<li>Sample: <a href="kmp-presentation-data-layer/"><code>kmp-presentation-data-layer</code></a></li>
+<li>Sample: <a href="08_kmp-presentation-data-layer/"><code>08_kmp-presentation-data-layer</code></a></li>
 <li>Diagram: <a href="../diagrams/08-kmp-presentation-data-layer.md"><code>08-kmp-presentation-data-layer.md</code></a></li>
 <li>Verdict: Matches: presentation and data are shared; app targets host only the entry point.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="kmp-presentation-data-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts shared <code>App(platform, repository)</code>.</td></tr>
-<tr><td><a href="kmp-presentation-data-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts the shared Compose view controller.</td></tr>
-<tr><td><a href="kmp-presentation-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts shared <code>App(platform, TaskRepository())</code>.</td></tr>
-<tr><td><a href="kmp-presentation-data-layer/sharedPresentation/"><code>sharedPresentation</code></a></td><td>KMP presentation flow is <code>App -&gt; HomeViewModel -&gt; HomeUiState</code>, calling shared data.</td></tr>
-<tr><td><a href="kmp-presentation-data-layer/sharedData/"><code>sharedData</code></a></td><td>KMP data flow is <code>TaskRepository -&gt; RemoteTaskDataSource / LocalTaskDataSource -&gt; TaskDtoMapper</code>.</td></tr>
+<tr><td><a href="08_kmp-presentation-data-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts shared <code>App(platform, repository)</code>.</td></tr>
+<tr><td><a href="08_kmp-presentation-data-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts the shared Compose view controller.</td></tr>
+<tr><td><a href="08_kmp-presentation-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts shared <code>App(platform, TaskRepository())</code>.</td></tr>
+<tr><td><a href="08_kmp-presentation-data-layer/sharedPresentation/"><code>sharedPresentation</code></a></td><td>KMP presentation flow is <code>App -&gt; HomeViewModel -&gt; HomeUiState</code>, calling shared data.</td></tr>
+<tr><td><a href="08_kmp-presentation-data-layer/sharedData/"><code>sharedData</code></a></td><td>KMP data flow is <code>TaskRepository -&gt; RemoteTaskDataSource / LocalTaskDataSource -&gt; TaskDtoMapper</code>.</td></tr>
 </tbody></table></div>
 <h2 id="modular-kmp">Modular KMP</h2>
 <h3 id="modular-kmp-data-layer">modular-kmp-data-layer</h3>
 <ul>
-<li>Sample: <a href="modular-kmp-data-layer/"><code>modular-kmp-data-layer</code></a></li>
+<li>Sample: <a href="10_modular-kmp-data-layer/"><code>10_modular-kmp-data-layer</code></a></li>
 <li>Diagram: <a href="../diagrams/10-modular-kmp-data-layer.md"><code>10-modular-kmp-data-layer.md</code></a></li>
 <li>Verdict: Matches: Feature One is native and visible; Feature Two uses shared KMP data.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-data-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then native <code>DetailsViewModel</code> calls shared data.</td></tr>
-<tr><td><a href="modular-kmp-data-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI <code>ContentView</code> hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, and native <code>DetailsViewModel</code> calls the shared data framework.</td></tr>
-<tr><td><a href="modular-kmp-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop <code>Main.kt</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, and native <code>DetailsViewModel</code> calls shared data.</td></tr>
-<tr><td><a href="modular-kmp-data-layer/featureTwoSharedData/"><code>featureTwoSharedData</code></a></td><td>KMP owns <code>DetailsRepository -&gt; RemoteDetailsDataSource / LocalDetailsDataSource -&gt; DetailsDtoMapper</code>.</td></tr>
+<tr><td><a href="10_modular-kmp-data-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then native <code>DetailsViewModel</code> calls shared data.</td></tr>
+<tr><td><a href="10_modular-kmp-data-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI <code>ContentView</code> hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, and native <code>DetailsViewModel</code> calls the shared data framework.</td></tr>
+<tr><td><a href="10_modular-kmp-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop <code>Main.kt</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, and native <code>DetailsViewModel</code> calls shared data.</td></tr>
+<tr><td><a href="10_modular-kmp-data-layer/featureTwoSharedData/"><code>featureTwoSharedData</code></a></td><td>KMP owns <code>DetailsRepository -&gt; RemoteDetailsDataSource / LocalDetailsDataSource -&gt; DetailsDtoMapper</code>.</td></tr>
 </tbody></table></div>
 <h3 id="modular-kmp-presentation-layer">modular-kmp-presentation-layer</h3>
 <ul>
-<li>Sample: <a href="modular-kmp-presentation-layer/"><code>modular-kmp-presentation-layer</code></a></li>
+<li>Sample: <a href="11_modular-kmp-presentation-layer/"><code>11_modular-kmp-presentation-layer</code></a></li>
 <li>Diagram: <a href="../diagrams/11-modular-kmp-presentation-layer.md"><code>11-modular-kmp-presentation-layer.md</code></a></li>
 <li>Verdict: Matches: Feature One is native and visible; Feature Two presentation is shared and data is native.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-presentation-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, implements native <code>DetailsRepository -&gt; DetailsDataSource</code>, and hosts shared Feature Two presentation.</td></tr>
-<tr><td><a href="modular-kmp-presentation-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, implements the repository contract, and hosts shared Compose presentation.</td></tr>
-<tr><td><a href="modular-kmp-presentation-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, implements native Feature Two data, and hosts shared presentation.</td></tr>
-<tr><td><a href="modular-kmp-presentation-layer/featureTwoSharedPresentation/"><code>featureTwoSharedPresentation</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsViewModel -&gt; DetailsUiState</code> plus the <code>DetailsRepository</code> contract.</td></tr>
+<tr><td><a href="11_modular-kmp-presentation-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, implements native <code>DetailsRepository -&gt; DetailsDataSource</code>, and hosts shared Feature Two presentation.</td></tr>
+<tr><td><a href="11_modular-kmp-presentation-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, implements the repository contract, and hosts shared Compose presentation.</td></tr>
+<tr><td><a href="11_modular-kmp-presentation-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, implements native Feature Two data, and hosts shared presentation.</td></tr>
+<tr><td><a href="11_modular-kmp-presentation-layer/featureTwoSharedPresentation/"><code>featureTwoSharedPresentation</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsViewModel -&gt; DetailsUiState</code> plus the <code>DetailsRepository</code> contract.</td></tr>
 </tbody></table></div>
 <h3 id="modular-kmp-ui-layer">modular-kmp-ui-layer</h3>
 <ul>
-<li>Sample: <a href="modular-kmp-ui-layer/"><code>modular-kmp-ui-layer</code></a></li>
+<li>Sample: <a href="12_modular-kmp-ui-layer/"><code>12_modular-kmp-ui-layer</code></a></li>
 <li>Diagram: <a href="../diagrams/12-modular-kmp-ui-layer.md"><code>12-modular-kmp-ui-layer.md</code></a></li>
 <li>Verdict: Matches: Feature One is native and visible; Feature Two UI is shared while behavior stays native.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-ui-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and native Feature Two <code>DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code>, passing state/events to shared UI.</td></tr>
-<tr><td><a href="modular-kmp-ui-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and uses native Feature Two logic with the shared UI factory.</td></tr>
-<tr><td><a href="modular-kmp-ui-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and native Feature Two logic, then renders shared UI.</td></tr>
-<tr><td><a href="modular-kmp-ui-layer/featureTwoSharedUI/"><code>featureTwoSharedUI</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsUiState</code> and receives native state/events.</td></tr>
+<tr><td><a href="12_modular-kmp-ui-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and native Feature Two <code>DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code>, passing state/events to shared UI.</td></tr>
+<tr><td><a href="12_modular-kmp-ui-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and uses native Feature Two logic with the shared UI factory.</td></tr>
+<tr><td><a href="12_modular-kmp-ui-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code> and native Feature Two logic, then renders shared UI.</td></tr>
+<tr><td><a href="12_modular-kmp-ui-layer/featureTwoSharedUI/"><code>featureTwoSharedUI</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsUiState</code> and receives native state/events.</td></tr>
 </tbody></table></div>
 <h3 id="modular-kmp-ui-data-layer">modular-kmp-ui-data-layer</h3>
 <ul>
-<li>Sample: <a href="modular-kmp-ui-data-layer/"><code>modular-kmp-ui-data-layer</code></a></li>
+<li>Sample: <a href="13_modular-kmp-ui-data-layer/"><code>13_modular-kmp-ui-data-layer</code></a></li>
 <li>Diagram: <a href="../diagrams/13-modular-kmp-ui-data-layer.md"><code>13-modular-kmp-ui-data-layer.md</code></a></li>
 <li>Verdict: Matches: Feature One is native and visible; Feature Two UI and data are shared with a native ViewModel bridge.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-ui-data-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>; native <code>DetailsViewModel</code> calls shared data and passes state/events to shared UI.</td></tr>
-<tr><td><a href="modular-kmp-ui-data-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>; native <code>DetailsViewModel</code> bridges shared UI and shared data.</td></tr>
-<tr><td><a href="modular-kmp-ui-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>; native <code>DetailsViewModel</code> connects shared UI and data.</td></tr>
-<tr><td><a href="modular-kmp-ui-data-layer/featureTwoSharedUI/"><code>featureTwoSharedUI</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsUiState</code>.</td></tr>
-<tr><td><a href="modular-kmp-ui-data-layer/featureTwoSharedData/"><code>featureTwoSharedData</code></a></td><td>KMP owns <code>DetailsRepository -&gt; RemoteDetailsDataSource / LocalDetailsDataSource -&gt; DetailsDtoMapper</code>.</td></tr>
+<tr><td><a href="13_modular-kmp-ui-data-layer/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>; native <code>DetailsViewModel</code> calls shared data and passes state/events to shared UI.</td></tr>
+<tr><td><a href="13_modular-kmp-ui-data-layer/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>; native <code>DetailsViewModel</code> bridges shared UI and shared data.</td></tr>
+<tr><td><a href="13_modular-kmp-ui-data-layer/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>; native <code>DetailsViewModel</code> connects shared UI and data.</td></tr>
+<tr><td><a href="13_modular-kmp-ui-data-layer/featureTwoSharedUI/"><code>featureTwoSharedUI</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsUiState</code>.</td></tr>
+<tr><td><a href="13_modular-kmp-ui-data-layer/featureTwoSharedData/"><code>featureTwoSharedData</code></a></td><td>KMP owns <code>DetailsRepository -&gt; RemoteDetailsDataSource / LocalDetailsDataSource -&gt; DetailsDtoMapper</code>.</td></tr>
 </tbody></table></div>
 <h3 id="modular-kmp-shared-feature">modular-kmp-shared-feature</h3>
 <ul>
-<li>Sample: <a href="modular-kmp-shared-feature/"><code>modular-kmp-shared-feature</code></a></li>
+<li>Sample: <a href="14_modular-kmp-shared-feature/"><code>14_modular-kmp-shared-feature</code></a></li>
 <li>Diagram: <a href="../diagrams/14-modular-kmp-shared-feature.md"><code>14-modular-kmp-shared-feature.md</code></a></li>
 <li>Verdict: Matches: Feature One is native and visible; Feature Two is fully owned by the shared KMP feature module.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="modular-kmp-shared-feature/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts shared Feature Two.</td></tr>
-<tr><td><a href="modular-kmp-shared-feature/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts the shared Feature Two view controller.</td></tr>
-<tr><td><a href="modular-kmp-shared-feature/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts shared Feature Two.</td></tr>
-<tr><td><a href="modular-kmp-shared-feature/featureTwoSharedFeature/"><code>featureTwoSharedFeature</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code>.</td></tr>
+<tr><td><a href="14_modular-kmp-shared-feature/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts shared Feature Two.</td></tr>
+<tr><td><a href="14_modular-kmp-shared-feature/iosApp/"><code>iosApp</code></a></td><td>SwiftUI hosts native <code>FeatureOneView -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts the shared Feature Two view controller.</td></tr>
+<tr><td><a href="14_modular-kmp-shared-feature/desktopApp/"><code>desktopApp</code></a></td><td>Desktop hosts native <code>FeatureOneScreen -&gt; HomeViewModel -&gt; TaskRepository -&gt; TaskDataSource</code>, then hosts shared Feature Two.</td></tr>
+<tr><td><a href="14_modular-kmp-shared-feature/featureTwoSharedFeature/"><code>featureTwoSharedFeature</code></a></td><td>KMP owns <code>App -&gt; DetailsScreen -&gt; DetailsViewModel -&gt; DetailsRepository -&gt; DetailsDataSource</code>.</td></tr>
 </tbody></table></div>
 <h2 id="three-layer-kmp">Three Layer KMP</h2>
 <h3 id="three-layer-kmp-domain">three-layer-kmp-domain</h3>
 <ul>
-<li>Sample: <a href="three-layer-kmp-domain/"><code>three-layer-kmp-domain</code></a></li>
+<li>Sample: <a href="16_three-layer-kmp-domain/"><code>16_three-layer-kmp-domain</code></a></li>
 <li>Diagram: <a href="../diagrams/16-three-layer-kmp-domain.md"><code>16-three-layer-kmp-domain.md</code></a></li>
 <li>Verdict: Matches: domain is shared and native repositories implement the shared contract.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="three-layer-kmp-domain/androidApp/"><code>androidApp</code></a></td><td>Android owns <code>HomeScreen -&gt; HomeViewModel</code>, plus native <code>TaskRepository -&gt; TaskDataSource</code>.</td></tr>
-<tr><td><a href="three-layer-kmp-domain/iosApp/"><code>iosApp</code></a></td><td>SwiftUI owns <code>HomeViewModel</code>, plus native repository/data source classes implementing the shared contract.</td></tr>
-<tr><td><a href="three-layer-kmp-domain/desktopApp/"><code>desktopApp</code></a></td><td>Desktop owns <code>HomeWindow -&gt; HomeViewModel</code>, plus native <code>TaskRepository -&gt; TaskDataSource</code>.</td></tr>
-<tr><td><a href="three-layer-kmp-domain/sharedDomain/"><code>sharedDomain</code></a></td><td>KMP owns <code>GetTasksUseCase</code>, <code>Task</code>, and the <code>TaskRepository</code> contract.</td></tr>
+<tr><td><a href="16_three-layer-kmp-domain/androidApp/"><code>androidApp</code></a></td><td>Android owns <code>HomeScreen -&gt; HomeViewModel</code>, plus native <code>TaskRepository -&gt; TaskDataSource</code>.</td></tr>
+<tr><td><a href="16_three-layer-kmp-domain/iosApp/"><code>iosApp</code></a></td><td>SwiftUI owns <code>HomeViewModel</code>, plus native repository/data source classes implementing the shared contract.</td></tr>
+<tr><td><a href="16_three-layer-kmp-domain/desktopApp/"><code>desktopApp</code></a></td><td>Desktop owns <code>HomeWindow -&gt; HomeViewModel</code>, plus native <code>TaskRepository -&gt; TaskDataSource</code>.</td></tr>
+<tr><td><a href="16_three-layer-kmp-domain/sharedDomain/"><code>sharedDomain</code></a></td><td>KMP owns <code>GetTasksUseCase</code>, <code>Task</code>, and the <code>TaskRepository</code> contract.</td></tr>
 </tbody></table></div>
 <h3 id="three-layer-kmp-domain-data">three-layer-kmp-domain-data</h3>
 <ul>
-<li>Sample: <a href="three-layer-kmp-domain-data/"><code>three-layer-kmp-domain-data</code></a></li>
+<li>Sample: <a href="18_three-layer-kmp-domain-data/"><code>18_three-layer-kmp-domain-data</code></a></li>
 <li>Diagram: <a href="../diagrams/18-three-layer-kmp-domain-data.md"><code>18-three-layer-kmp-domain-data.md</code></a></li>
 <li>Verdict: Matches: native presentation calls shared domain, and shared domain calls shared data.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="three-layer-kmp-domain-data/androidApp/"><code>androidApp</code></a></td><td>Android owns <code>HomeScreen -&gt; HomeViewModel</code>; ViewModel calls shared <code>GetTasksUseCase</code>.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-data/iosApp/"><code>iosApp</code></a></td><td>SwiftUI owns <code>HomeViewModel</code>; ViewModel calls shared <code>GetTasksUseCase</code>.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-data/desktopApp/"><code>desktopApp</code></a></td><td>Desktop owns <code>HomeWindow -&gt; HomeViewModel</code>; ViewModel calls shared <code>GetTasksUseCase</code>.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-data/sharedDomain/"><code>sharedDomain</code></a></td><td>KMP owns <code>GetTasksUseCase</code> and <code>Task</code>, and depends on shared data.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-data/sharedData/"><code>sharedData</code></a></td><td>KMP owns <code>TaskRepository -&gt; RemoteTaskDataSource / LocalTaskDataSource -&gt; TaskDtoMapper</code>.</td></tr>
+<tr><td><a href="18_three-layer-kmp-domain-data/androidApp/"><code>androidApp</code></a></td><td>Android owns <code>HomeScreen -&gt; HomeViewModel</code>; ViewModel calls shared <code>GetTasksUseCase</code>.</td></tr>
+<tr><td><a href="18_three-layer-kmp-domain-data/iosApp/"><code>iosApp</code></a></td><td>SwiftUI owns <code>HomeViewModel</code>; ViewModel calls shared <code>GetTasksUseCase</code>.</td></tr>
+<tr><td><a href="18_three-layer-kmp-domain-data/desktopApp/"><code>desktopApp</code></a></td><td>Desktop owns <code>HomeWindow -&gt; HomeViewModel</code>; ViewModel calls shared <code>GetTasksUseCase</code>.</td></tr>
+<tr><td><a href="18_three-layer-kmp-domain-data/sharedDomain/"><code>sharedDomain</code></a></td><td>KMP owns <code>GetTasksUseCase</code> and <code>Task</code>, and depends on shared data.</td></tr>
+<tr><td><a href="18_three-layer-kmp-domain-data/sharedData/"><code>sharedData</code></a></td><td>KMP owns <code>TaskRepository -&gt; RemoteTaskDataSource / LocalTaskDataSource -&gt; TaskDtoMapper</code>.</td></tr>
 </tbody></table></div>
 <h3 id="three-layer-kmp-domain-presentation">three-layer-kmp-domain-presentation</h3>
 <ul>
-<li>Sample: <a href="three-layer-kmp-domain-presentation/"><code>three-layer-kmp-domain-presentation</code></a></li>
+<li>Sample: <a href="19_three-layer-kmp-domain-presentation/"><code>19_three-layer-kmp-domain-presentation</code></a></li>
 <li>Diagram: <a href="../diagrams/19-three-layer-kmp-domain-presentation.md"><code>19-three-layer-kmp-domain-presentation.md</code></a></li>
 <li>Verdict: Matches: shared presentation and shared domain call native data implementations through a contract.</li>
 </ul>
 <div class="table-wrap"><table>
 <thead><tr><th>Module</th><th>How It Works</th></tr></thead>
 <tbody>
-<tr><td><a href="three-layer-kmp-domain-presentation/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> is the Android entry point; it builds native <code>TaskRepository -&gt; TaskDataSource</code> and passes it to shared <code>App</code>.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-presentation/iosApp/"><code>iosApp</code></a></td><td>SwiftUI <code>ContentView</code> is the iOS entry point; it builds native <code>TaskRepository -&gt; TaskDataSource</code> and passes it to the shared Compose view controller.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-presentation/desktopApp/"><code>desktopApp</code></a></td><td>Desktop <code>Main.kt</code> is the desktop entry point; it builds native <code>TaskRepository -&gt; TaskDataSource</code> and passes it to shared <code>App</code>.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-presentation/sharedPresentation/"><code>sharedPresentation</code></a></td><td>KMP owns <code>MainViewController</code>, <code>App -&gt; HomeScreen -&gt; HomeViewModel -&gt; HomeUiState</code>.</td></tr>
-<tr><td><a href="three-layer-kmp-domain-presentation/sharedDomain/"><code>sharedDomain</code></a></td><td>KMP owns <code>GetTasksUseCase</code>, <code>Task</code>, and the <code>TaskRepository</code> contract.</td></tr>
+<tr><td><a href="19_three-layer-kmp-domain-presentation/androidApp/"><code>androidApp</code></a></td><td><code>MainActivity</code> is the Android entry point; it builds native <code>TaskRepository -&gt; TaskDataSource</code> and passes it to shared <code>App</code>.</td></tr>
+<tr><td><a href="19_three-layer-kmp-domain-presentation/iosApp/"><code>iosApp</code></a></td><td>SwiftUI <code>ContentView</code> is the iOS entry point; it builds native <code>TaskRepository -&gt; TaskDataSource</code> and passes it to the shared Compose view controller.</td></tr>
+<tr><td><a href="19_three-layer-kmp-domain-presentation/desktopApp/"><code>desktopApp</code></a></td><td>Desktop <code>Main.kt</code> is the desktop entry point; it builds native <code>TaskRepository -&gt; TaskDataSource</code> and passes it to shared <code>App</code>.</td></tr>
+<tr><td><a href="19_three-layer-kmp-domain-presentation/sharedPresentation/"><code>sharedPresentation</code></a></td><td>KMP owns <code>MainViewController</code>, <code>App -&gt; HomeScreen -&gt; HomeViewModel -&gt; HomeUiState</code>.</td></tr>
+<tr><td><a href="19_three-layer-kmp-domain-presentation/sharedDomain/"><code>sharedDomain</code></a></td><td>KMP owns <code>GetTasksUseCase</code>, <code>Task</code>, and the <code>TaskRepository</code> contract.</td></tr>
 </tbody></table></div>
 <h2 id="how-to-re-validate-quickly">How To Re-Validate Quickly</h2>
 <pre><code class="language-sh">rg -n &quot;Sample[M]essage|sample[D]etail|TO[D]O|FIX[M]E&quot; samples

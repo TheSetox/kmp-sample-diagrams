@@ -37,24 +37,24 @@ When served over HTTP, the viewer loads Markdown files from [`diagrams/`](diagra
 
 | Scenario | Diagram | Sample |
 | --- | --- | --- |
-| Normal Native | [`01-normal-native.md`](diagrams/01-normal-native.md) | [`samples/normal-native`](samples/normal-native/) |
-| KMP Native UI | [`02-kmp-native-ui.md`](diagrams/02-kmp-native-ui.md) | [`samples/kmp-native-ui`](samples/kmp-native-ui/) |
-| KMP Compose UI | [`03-kmp-compose-ui.md`](diagrams/03-kmp-compose-ui.md) | [`samples/kmp-compose-ui`](samples/kmp-compose-ui/) |
-| Layered Native | [`04-layered-native.md`](diagrams/04-layered-native.md) | [`samples/layered-native`](samples/layered-native/) |
-| KMP Data Layer | [`05-kmp-data-layer.md`](diagrams/05-kmp-data-layer.md) | [`samples/kmp-data-layer`](samples/kmp-data-layer/) |
-| KMP Presentation Layer | [`06-kmp-presentation-layer.md`](diagrams/06-kmp-presentation-layer.md) | [`samples/kmp-presentation-layer`](samples/kmp-presentation-layer/) |
-| KMP UI Layer | [`07-kmp-ui-layer.md`](diagrams/07-kmp-ui-layer.md) | [`samples/kmp-ui-layer`](samples/kmp-ui-layer/) |
-| KMP Presentation And Data Layers | [`08-kmp-presentation-data-layer.md`](diagrams/08-kmp-presentation-data-layer.md) | [`samples/kmp-presentation-data-layer`](samples/kmp-presentation-data-layer/) |
-| Modular Native | [`09-modular-native.md`](diagrams/09-modular-native.md) | [`samples/modular-native`](samples/modular-native/) |
-| Modular KMP Data Layer | [`10-modular-kmp-data-layer.md`](diagrams/10-modular-kmp-data-layer.md) | [`samples/modular-kmp-data-layer`](samples/modular-kmp-data-layer/) |
-| Modular KMP Presentation Layer | [`11-modular-kmp-presentation-layer.md`](diagrams/11-modular-kmp-presentation-layer.md) | [`samples/modular-kmp-presentation-layer`](samples/modular-kmp-presentation-layer/) |
-| Modular KMP UI Layer | [`12-modular-kmp-ui-layer.md`](diagrams/12-modular-kmp-ui-layer.md) | [`samples/modular-kmp-ui-layer`](samples/modular-kmp-ui-layer/) |
-| Modular KMP UI And Data Layers | [`13-modular-kmp-ui-data-layer.md`](diagrams/13-modular-kmp-ui-data-layer.md) | [`samples/modular-kmp-ui-data-layer`](samples/modular-kmp-ui-data-layer/) |
-| Modular KMP Shared Feature | [`14-modular-kmp-shared-feature.md`](diagrams/14-modular-kmp-shared-feature.md) | [`samples/modular-kmp-shared-feature`](samples/modular-kmp-shared-feature/) |
-| Three Layer Native | [`15-three-layer-native.md`](diagrams/15-three-layer-native.md) | [`samples/three-layer-native`](samples/three-layer-native/) |
-| Three Layer KMP Domain | [`16-three-layer-kmp-domain.md`](diagrams/16-three-layer-kmp-domain.md) | [`samples/three-layer-kmp-domain`](samples/three-layer-kmp-domain/) |
-| Three Layer KMP Domain And Data | [`18-three-layer-kmp-domain-data.md`](diagrams/18-three-layer-kmp-domain-data.md) | [`samples/three-layer-kmp-domain-data`](samples/three-layer-kmp-domain-data/) |
-| Three Layer KMP Domain And Presentation | [`19-three-layer-kmp-domain-presentation.md`](diagrams/19-three-layer-kmp-domain-presentation.md) | [`samples/three-layer-kmp-domain-presentation`](samples/three-layer-kmp-domain-presentation/) |
+| Normal Native | [`01-normal-native.md`](diagrams/01-normal-native.md) | [`samples/01_normal-native`](samples/01_normal-native/) |
+| KMP Native UI | [`02-kmp-native-ui.md`](diagrams/02-kmp-native-ui.md) | [`samples/02_kmp-native-ui`](samples/02_kmp-native-ui/) |
+| KMP Compose UI | [`03-kmp-compose-ui.md`](diagrams/03-kmp-compose-ui.md) | [`samples/03_kmp-compose-ui`](samples/03_kmp-compose-ui/) |
+| Layered Native | [`04-layered-native.md`](diagrams/04-layered-native.md) | [`samples/04_layered-native`](samples/04_layered-native/) |
+| KMP Data Layer | [`05-kmp-data-layer.md`](diagrams/05-kmp-data-layer.md) | [`samples/05_kmp-data-layer`](samples/05_kmp-data-layer/) |
+| KMP Presentation Layer | [`06-kmp-presentation-layer.md`](diagrams/06-kmp-presentation-layer.md) | [`samples/06_kmp-presentation-layer`](samples/06_kmp-presentation-layer/) |
+| KMP UI Layer | [`07-kmp-ui-layer.md`](diagrams/07-kmp-ui-layer.md) | [`samples/07_kmp-ui-layer`](samples/07_kmp-ui-layer/) |
+| KMP Presentation And Data Layers | [`08-kmp-presentation-data-layer.md`](diagrams/08-kmp-presentation-data-layer.md) | [`samples/08_kmp-presentation-data-layer`](samples/08_kmp-presentation-data-layer/) |
+| Modular Native | [`09-modular-native.md`](diagrams/09-modular-native.md) | [`samples/09_modular-native`](samples/09_modular-native/) |
+| Modular KMP Data Layer | [`10-modular-kmp-data-layer.md`](diagrams/10-modular-kmp-data-layer.md) | [`samples/10_modular-kmp-data-layer`](samples/10_modular-kmp-data-layer/) |
+| Modular KMP Presentation Layer | [`11-modular-kmp-presentation-layer.md`](diagrams/11-modular-kmp-presentation-layer.md) | [`samples/11_modular-kmp-presentation-layer`](samples/11_modular-kmp-presentation-layer/) |
+| Modular KMP UI Layer | [`12-modular-kmp-ui-layer.md`](diagrams/12-modular-kmp-ui-layer.md) | [`samples/12_modular-kmp-ui-layer`](samples/12_modular-kmp-ui-layer/) |
+| Modular KMP UI And Data Layers | [`13-modular-kmp-ui-data-layer.md`](diagrams/13-modular-kmp-ui-data-layer.md) | [`samples/13_modular-kmp-ui-data-layer`](samples/13_modular-kmp-ui-data-layer/) |
+| Modular KMP Shared Feature | [`14-modular-kmp-shared-feature.md`](diagrams/14-modular-kmp-shared-feature.md) | [`samples/14_modular-kmp-shared-feature`](samples/14_modular-kmp-shared-feature/) |
+| Three Layer Native | [`15-three-layer-native.md`](diagrams/15-three-layer-native.md) | [`samples/15_three-layer-native`](samples/15_three-layer-native/) |
+| Three Layer KMP Domain | [`16-three-layer-kmp-domain.md`](diagrams/16-three-layer-kmp-domain.md) | [`samples/16_three-layer-kmp-domain`](samples/16_three-layer-kmp-domain/) |
+| Three Layer KMP Domain And Data | [`18-three-layer-kmp-domain-data.md`](diagrams/18-three-layer-kmp-domain-data.md) | [`samples/18_three-layer-kmp-domain-data`](samples/18_three-layer-kmp-domain-data/) |
+| Three Layer KMP Domain And Presentation | [`19-three-layer-kmp-domain-presentation.md`](diagrams/19-three-layer-kmp-domain-presentation.md) | [`samples/19_three-layer-kmp-domain-presentation`](samples/19_three-layer-kmp-domain-presentation/) |
 
 See [`samples/README.md`](samples/README.md) for each sample's implemented flow and module commands. See [`samples/implementation-review.html`](samples/implementation-review.html) or [`samples/IMPLEMENTATION_REVIEW.md`](samples/IMPLEMENTATION_REVIEW.md) for the per-module review map, and [`TESTING.md`](TESTING.md) for the latest local verification notes.
 

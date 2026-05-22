@@ -29,43 +29,43 @@ Android commands were run with `ANDROID_HOME=/Users/stephensiapno/Library/Androi
 ### Native Baselines
 
 ```sh
-./gradlew -p samples/normal-native :desktopApp:compileKotlin
-./gradlew -p samples/layered-native :desktopApp:compileKotlin
-./gradlew -p samples/modular-native :desktopApp:compileKotlin
-./gradlew -p samples/three-layer-native :desktopApp:compileKotlin
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/normal-native :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/layered-native :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modular-native :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-native :androidApp:assembleDebug
+./gradlew -p samples/01_normal-native :desktopApp:compileKotlin
+./gradlew -p samples/04_layered-native :desktopApp:compileKotlin
+./gradlew -p samples/09_modular-native :desktopApp:compileKotlin
+./gradlew -p samples/15_three-layer-native :desktopApp:compileKotlin
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/01_normal-native :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/04_layered-native :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/09_modular-native :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/15_three-layer-native :androidApp:assembleDebug
 ```
 
 ### Main KMP Samples
 
 ```sh
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/kmp-native-ui :sharedLogic:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/kmp-compose-ui :shared:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/kmp-ui-layer :sharedUI:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/kmp-data-layer :sharedData:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/kmp-presentation-layer :sharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/kmp-presentation-data-layer :sharedData:assemble :sharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/02_kmp-native-ui :sharedLogic:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/03_kmp-compose-ui :shared:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/07_kmp-ui-layer :sharedUI:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/05_kmp-data-layer :sharedData:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/06_kmp-presentation-layer :sharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/08_kmp-presentation-data-layer :sharedData:assemble :sharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
 ```
 
 ### Modular KMP Samples
 
 ```sh
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modular-kmp-data-layer :featureTwoSharedData:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modular-kmp-ui-layer :featureTwoSharedUI:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modular-kmp-ui-data-layer :featureTwoSharedData:assemble :featureTwoSharedUI:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modular-kmp-presentation-layer :featureTwoSharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/modular-kmp-shared-feature :featureTwoSharedFeature:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/10_modular-kmp-data-layer :featureTwoSharedData:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/12_modular-kmp-ui-layer :featureTwoSharedUI:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/13_modular-kmp-ui-data-layer :featureTwoSharedData:assemble :featureTwoSharedUI:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/11_modular-kmp-presentation-layer :featureTwoSharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/14_modular-kmp-shared-feature :featureTwoSharedFeature:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
 ```
 
 ### Three Layer KMP Samples
 
 ```sh
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-kmp-domain :sharedDomain:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-kmp-domain-data :sharedData:assemble :sharedDomain:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
-ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/three-layer-kmp-domain-presentation :sharedDomain:assemble :sharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/16_three-layer-kmp-domain :sharedDomain:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/18_three-layer-kmp-domain-data :sharedData:assemble :sharedDomain:assemble :desktopApp:compileKotlin :androidApp:assembleDebug
+ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk ./gradlew -p samples/19_three-layer-kmp-domain-presentation :sharedDomain:assemble :sharedPresentation:compileKotlinDesktop :desktopApp:compileKotlin :androidApp:assembleDebug
 ```
 
 ## Local Tooling Notes
