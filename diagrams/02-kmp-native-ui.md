@@ -6,31 +6,31 @@ Shared Kotlin logic is used by every app, while each platform keeps its own nati
 flowchart TB
   subgraph Android["androidApp"]
     direction TB
-    AEntry["MainActivity"]
-    AUI["Compose screen"]
+    AEntry["MainActivity.kt"]
+    AUI["Android TextView UI\ncreated in MainActivity.kt"]
     AEntry --> AUI
   end
 
   subgraph IOS["iosApp"]
     direction TB
-    IEntry["SwiftUI App"]
-    IUI["SwiftUI view"]
+    IEntry["SampleApp.swift\nSwiftUI app"]
+    IUI["ContentView.swift\nSwiftUI view"]
     IEntry --> IUI
   end
 
   subgraph Desktop["desktopApp"]
     direction TB
-    DEntry["main()"]
-    DUI["Compose Desktop screen"]
+    DEntry["Main.kt\nmain()"]
+    DUI["Compose Desktop UI\nimplemented in Main.kt"]
     DEntry --> DUI
   end
 
   subgraph KMP["sharedLogic KMP module"]
     direction LR
-    VM["ViewModel\nstate and events"]
-    UseCase["UseCase\nbusiness rules"]
-    Repository["Repository\nshared contract"]
-    DataSource["DataSource\nnetwork or cache"]
+    VM["HomeViewModel.kt\nstate and events"]
+    UseCase["GetTasksUseCase.kt\nbusiness rules"]
+    Repository["TaskRepository.kt\nshared contract"]
+    DataSource["TaskDataSource.kt\nnetwork or cache"]
     VM --> UseCase --> Repository --> DataSource
   end
 

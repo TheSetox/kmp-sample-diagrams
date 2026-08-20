@@ -31,4 +31,4 @@ Native presentation with a shared KMP data layer.
 ./gradlew -p samples/05_kmp-data-layer :sharedData:linkDebugFrameworkIosSimulatorArm64
 ```
 
-The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+Open `iosApp/iosApp.xcodeproj` and run the shared `iosApp` scheme. Its `Build KMP Frameworks` phase builds and copies the required framework automatically.

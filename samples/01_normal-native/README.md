@@ -25,4 +25,4 @@ Separate native implementations with no shared KMP module.
 
 ## iOS Frameworks
 
-This baseline sample has no KMP framework task. The `iosApp` folder contains SwiftUI entry source.
+This baseline sample has no KMP framework task. Open `iosApp/iosApp.xcodeproj` and run the shared `iosApp` scheme.

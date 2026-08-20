@@ -6,7 +6,7 @@ Presentation is shared in a KMP module. In this two-layer scenario, presentation
 flowchart TB
   subgraph Desktop["desktopApp"]
     direction TB
-    DEntry["main()"]
+    DEntry["Main.kt\nCompose Desktop host"]
     DRepository["TaskRepository.kt"]
     DDataSource["TaskDataSource.kt"]
     DRepository --> DDataSource
@@ -14,15 +14,15 @@ flowchart TB
 
   subgraph IOS["iosApp"]
     direction TB
-    IEntry["SwiftUI App"]
-    IRepository["TaskRepository.swift"]
+    IEntry["ContentView.swift\nSwiftUI / UIKit Compose host"]
+    IRepository["IosTaskRepository.swift"]
     IDataSource["TaskDataSource.swift"]
     IRepository --> IDataSource
   end
 
   subgraph Android["androidApp"]
     direction TB
-    AEntry["MainActivity"]
+    AEntry["MainActivity.kt\nCompose host"]
     ARepository["TaskRepository.kt"]
     ADataSource["TaskDataSource.kt"]
     ARepository --> ADataSource
@@ -30,10 +30,10 @@ flowchart TB
 
   subgraph KMP["sharedPresentation KMP module"]
     direction LR
-    App["Compose App"]
-    Screen["HomeScreen.kt"]
-    VM["HomeViewModel.kt"]
-    RepositoryPort["TaskRepository contract"]
+    App["App.kt\nCompose UI entry"]
+    Screen["Compose UI\nimplemented in App.kt"]
+    VM["HomeViewModel class\nin App.kt"]
+    RepositoryPort["TaskRepository contract\nin App.kt"]
     App --> Screen --> VM --> RepositoryPort
   end
 

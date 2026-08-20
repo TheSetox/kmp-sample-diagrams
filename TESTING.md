@@ -1,17 +1,22 @@
 # Verification Notes
 
-Verification updated on May 22, 2026 from `feature/kmp-2026-mermaid-samples`.
+Verification updated on August 21, 2026 from `feature/kmp-2026-mermaid-samples` before publishing to `main`.
 
 ## Static Checks
 
 - `python3 -m json.tool diagrams/manifest.json`
+- `npm run validate`
+- `npm run bundle:check`
+- `npm run render:check`
 - `node --check diagrams/bundle.js`
 - `node --check samples/gradle/ios-xcode/generate-ios-projects.js`
 - `git diff --check`
 - `rg -n "No shared KMP module|sampleDetail|SampleMessage" samples` returned no matches.
 - `rg --files -g '*.hprof' -g 'hs_err_pid*'` returned no generated crash/heap files.
 - `find samples -path '*/iosApp/iosApp.xcodeproj/project.pbxproj' -type f | wc -l` returned `18`.
-- The review branch has no root `*.png` files.
+- The repository has exactly 18 manifest entries, Mermaid source files, generated SVG images, sample directories, Xcode projects, and shared Xcode schemes.
+- Every literal Kotlin or Swift filename shown in a Mermaid diagram resolves to source in its matching sample.
+- The repository has no root `*.png` files.
 - `feature/legacy-png-reference` exists and preserves the old PNG files.
 
 ## Viewer Check
@@ -22,9 +27,11 @@ Served the repository root with:
 python3 -m http.server 8000
 ```
 
-Opened `http://127.0.0.1:8000/index.html` and `http://127.0.0.1:8000/index.html?source=bundle`. The viewer loaded all 18 diagram cards, rendered all 18 Mermaid SVG diagrams, and showed no viewer error state.
+Opened `http://127.0.0.1:8000/index.html` and `http://127.0.0.1:8000/index.html?source=bundle`. The viewer loaded all 18 diagram cards and all 18 pre-rendered Mermaid SVG images in both modes, showed no viewer or console errors, and passed zoom-control checks. No runtime Mermaid CDN is used.
 
 ## Sample Build Checks
+
+The complete command inventory below was verified on May 22, 2026. On August 21, 2026, the exact CI Android/desktop and iOS simulator commands were rerun successfully for the complex `19_three-layer-kmp-domain-presentation` sample, including its Kotlin/Native framework phase. GitHub CI now applies the same checks to all 18 samples on pushes to `main` and on pull requests.
 
 Android commands were run with `ANDROID_HOME=/Users/stephensiapno/Library/Android/sdk`. Gradle was run serially because this local setup has a small default daemon heap/metaspace.
 
@@ -85,6 +92,7 @@ xcodebuild -project samples/03_kmp-compose-ui/iosApp/iosApp.xcodeproj -scheme io
 xcodebuild -project samples/08_kmp-presentation-data-layer/iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -derivedDataPath samples/08_kmp-presentation-data-layer/build/xcode-derived-data CODE_SIGNING_ALLOWED=NO -quiet build
 xcodebuild -project samples/13_modular-kmp-ui-data-layer/iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -derivedDataPath samples/13_modular-kmp-ui-data-layer/build/xcode-derived-data CODE_SIGNING_ALLOWED=NO -quiet build
 xcodebuild -project samples/18_three-layer-kmp-domain-data/iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -derivedDataPath samples/18_three-layer-kmp-domain-data/build/xcode-derived-data CODE_SIGNING_ALLOWED=NO -quiet build
+xcodebuild -project samples/19_three-layer-kmp-domain-presentation/iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath /tmp/kmp-ci-derived-data CODE_SIGNING_ALLOWED=NO COMPILER_INDEX_STORE_ENABLE=NO build
 ```
 
 ## Local Tooling Notes

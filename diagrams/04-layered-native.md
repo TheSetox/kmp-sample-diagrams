@@ -8,7 +8,7 @@ flowchart TB
     direction TB
     subgraph DPresentation["presentation module"]
       direction TB
-      DUI["HomeWindow.kt\nCompose Desktop UI"]
+      DUI["Main.kt\nCompose Desktop UI"]
       DVM["HomeViewModel.kt"]
       DUI --> DVM
     end
@@ -42,7 +42,7 @@ flowchart TB
     direction TB
     subgraph APresentation["presentation module"]
       direction TB
-      AUI["HomeScreen.kt\nCompose UI"]
+      AUI["MainActivity.kt\nAndroid TextView UI"]
       AVM["HomeViewModel.kt"]
       AUI --> AVM
     end

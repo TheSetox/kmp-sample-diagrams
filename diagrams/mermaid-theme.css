@@ -1,0 +1,29 @@
+.cluster rect {
+  rx: 14px;
+  ry: 14px;
+}
+
+.node rect,
+.node polygon,
+.node path {
+  filter: drop-shadow(0 1px 1px rgb(15 23 42 / 0.08));
+  rx: 9px;
+  ry: 9px;
+}
+
+.nodeLabel,
+.edgeLabel {
+  line-height: 1.35;
+}
+
+.edgeLabel {
+  background-color: #f8fafc !important;
+  border-radius: 4px;
+  color: #334155 !important;
+  font-size: 13px;
+  padding: 2px 5px;
+}
+
+.flowchart-link {
+  stroke-linecap: round;
+}

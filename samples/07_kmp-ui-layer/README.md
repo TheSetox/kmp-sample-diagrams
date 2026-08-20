@@ -31,4 +31,4 @@ Shared Compose UI only; behavior remains native.
 ./gradlew -p samples/07_kmp-ui-layer :sharedUI:linkDebugFrameworkIosSimulatorArm64
 ```
 
-The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+Open `iosApp/iosApp.xcodeproj` and run the shared `iosApp` scheme. Its `Build KMP Frameworks` phase builds and copies the required framework automatically.

@@ -1,13 +1,13 @@
 # 10. Modular KMP Data Layer
 
-Feature one stays native in every platform module. Feature two shares only its data layer; feature two presentation remains native in each app target.
+Feature one stays native inside every platform app. Feature two shares only its data layer; feature two presentation remains native in each app target.
 
 ```mermaid
 flowchart TB
   subgraph Android["androidApp"]
     direction TB
     AEntry["MainActivity.kt"]
-    subgraph AFeatureOne["featureOne module"]
+    subgraph AFeatureOne["featureOne native code"]
       direction TB
       AHomeUI["FeatureOneScreen.kt"]
       AHomeVM["HomeViewModel.kt"]
@@ -26,7 +26,7 @@ flowchart TB
   subgraph IOS["iosApp"]
     direction TB
     IEntry["ContentView.swift"]
-    subgraph IFeatureOne["featureOne module"]
+    subgraph IFeatureOne["featureOne native code"]
       direction TB
       IHomeUI["FeatureOneView.swift"]
       IHomeVM["HomeViewModel.swift"]
@@ -45,7 +45,7 @@ flowchart TB
   subgraph Desktop["desktopApp"]
     direction TB
     DEntry["Main.kt"]
-    subgraph DFeatureOne["featureOne module"]
+    subgraph DFeatureOne["featureOne native code"]
       direction TB
       DHomeUI["FeatureOneScreen.kt"]
       DHomeVM["HomeViewModel.kt"]

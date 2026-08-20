@@ -5,7 +5,7 @@ Only Compose UI is shared with Compose Multiplatform. Native ViewModels call nat
 ```mermaid
 flowchart TB
   subgraph Desktop["desktopApp"]
-    DHost["main()"]
+    DHost["Main.kt\nCompose Desktop host"]
     DVM["HomeViewModel.kt"]
     DRepository["TaskRepository.kt"]
     DDataSource["TaskDataSource.kt"]
@@ -13,7 +13,7 @@ flowchart TB
   end
 
   subgraph IOS["iosApp"]
-    IHost["SwiftUI App"]
+    IHost["ContentView.swift\nSwiftUI / UIKit Compose host"]
     IVM["HomeViewModel.swift"]
     IRepository["TaskRepository.swift"]
     IDataSource["TaskDataSource.swift"]
@@ -21,7 +21,7 @@ flowchart TB
   end
 
   subgraph Android["androidApp"]
-    AHost["MainActivity"]
+    AHost["MainActivity.kt\nCompose host"]
     AVM["HomeViewModel.kt"]
     ARepository["TaskRepository.kt"]
     ADataSource["TaskDataSource.kt"]
@@ -30,9 +30,9 @@ flowchart TB
 
   subgraph KMP["sharedUI KMP module"]
     direction LR
-    App["Compose App"]
-    Screen["HomeScreen.kt"]
-    Components["Design components"]
+    App["App.kt\nCompose UI entry"]
+    Screen["Screen layout\nimplemented in App.kt"]
+    Components["Material 3 components\nused in App.kt"]
     App --> Screen --> Components
   end
 

@@ -1,13 +1,13 @@
 # 13. Modular KMP UI And Data Layers
 
-Feature one stays native in every platform module. Feature two shares UI and data as separate KMP modules; native ViewModels connect the shared UI to shared data.
+Feature one stays native inside every platform app. Feature two shares UI and data as separate KMP modules; native ViewModels connect the shared UI to shared data.
 
 ```mermaid
 flowchart TB
   subgraph Android["androidApp"]
     direction TB
     AEntry["MainActivity.kt"]
-    subgraph AFeatureOne["featureOne module"]
+    subgraph AFeatureOne["featureOne native code"]
       direction TB
       AHomeUI["FeatureOneScreen.kt"]
       AHomeVM["HomeViewModel.kt"]
@@ -26,7 +26,7 @@ flowchart TB
   subgraph IOS["iosApp"]
     direction TB
     IEntry["ContentView.swift"]
-    subgraph IFeatureOne["featureOne module"]
+    subgraph IFeatureOne["featureOne native code"]
       direction TB
       IHomeUI["FeatureOneView.swift"]
       IHomeVM["HomeViewModel.swift"]
@@ -45,7 +45,7 @@ flowchart TB
   subgraph Desktop["desktopApp"]
     direction TB
     DEntry["Main.kt"]
-    subgraph DFeatureOne["featureOne module"]
+    subgraph DFeatureOne["featureOne native code"]
       direction TB
       DHomeUI["FeatureOneScreen.kt"]
       DHomeVM["HomeViewModel.kt"]

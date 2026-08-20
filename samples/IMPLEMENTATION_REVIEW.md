@@ -1,11 +1,11 @@
 # Sample Implementation Review
 
-This review maps every diagram scenario to the current sample code on `feature/kmp-2026-mermaid-samples`. It is intended as a reading guide for code review: start with the module row, then open the linked module folder.
+This review maps every diagram scenario to the current sample code in this repository. It is intended as a reading guide for code review: start with the module row, then open the linked module folder.
 
 ## Validation Summary
 
-- Review date: May 22, 2026.
-- Branch: `feature/kmp-2026-mermaid-samples`.
+- Review date: August 21, 2026.
+- Target branch: `main`.
 - All 18 samples have `androidApp`, `desktopApp`, and a real SwiftUI `iosApp.xcodeproj` with the shared `iosApp` scheme.
 - Static scan found no stale placeholder message classes, sample-detail helpers, or todo/fixme markers.
 - Android app Gradle files do not apply `org.jetbrains.kotlin.android`; they rely on AGP built-in Kotlin.

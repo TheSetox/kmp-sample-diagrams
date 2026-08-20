@@ -1,0 +1,165 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  JAVA_VERSION: "17"
+
+jobs:
+  validate:
+    name: Static repository validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate inventory, diagrams, bundle, links, and projects
+        run: python scripts/validate_repository.py
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install diagram tooling
+        run: npm ci
+
+      - name: Verify generated diagram assets
+        run: |
+          npm run bundle:check
+          npm run render:check
+
+  gradle-samples:
+    name: Gradle (${{ matrix.sample }})
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        sample:
+          - samples/01_normal-native
+          - samples/02_kmp-native-ui
+          - samples/03_kmp-compose-ui
+          - samples/04_layered-native
+          - samples/05_kmp-data-layer
+          - samples/06_kmp-presentation-layer
+          - samples/07_kmp-ui-layer
+          - samples/08_kmp-presentation-data-layer
+          - samples/09_modular-native
+          - samples/10_modular-kmp-data-layer
+          - samples/11_modular-kmp-presentation-layer
+          - samples/12_modular-kmp-ui-layer
+          - samples/13_modular-kmp-ui-data-layer
+          - samples/14_modular-kmp-shared-feature
+          - samples/15_three-layer-native
+          - samples/16_three-layer-kmp-domain
+          - samples/18_three-layer-kmp-domain-data
+          - samples/19_three-layer-kmp-domain-presentation
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: gradle
+          cache-dependency-path: |
+            gradle/wrapper/gradle-wrapper.properties
+            samples/gradle/libs.versions.toml
+            ${{ matrix.sample }}/**/*.gradle.kts
+            ${{ matrix.sample }}/gradle.properties
+
+      - name: Set up Android SDK 36
+        shell: bash
+        run: sdkmanager --install "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+
+      - name: Build Android and desktop targets
+        run: >-
+          ./gradlew --no-daemon --stacktrace
+          -p "${{ matrix.sample }}"
+          :androidApp:assembleDebug
+          :desktopApp:compileKotlin
+
+  ios-samples:
+    name: iOS (${{ matrix.sample }})
+    needs: validate
+    runs-on: macos-15
+    timeout-minutes: 50
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        sample:
+          - samples/01_normal-native
+          - samples/02_kmp-native-ui
+          - samples/03_kmp-compose-ui
+          - samples/04_layered-native
+          - samples/05_kmp-data-layer
+          - samples/06_kmp-presentation-layer
+          - samples/07_kmp-ui-layer
+          - samples/08_kmp-presentation-data-layer
+          - samples/09_modular-native
+          - samples/10_modular-kmp-data-layer
+          - samples/11_modular-kmp-presentation-layer
+          - samples/12_modular-kmp-ui-layer
+          - samples/13_modular-kmp-ui-data-layer
+          - samples/14_modular-kmp-shared-feature
+          - samples/15_three-layer-native
+          - samples/16_three-layer-kmp-domain
+          - samples/18_three-layer-kmp-domain-data
+          - samples/19_three-layer-kmp-domain-presentation
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: gradle
+          cache-dependency-path: |
+            gradle/wrapper/gradle-wrapper.properties
+            samples/gradle/libs.versions.toml
+            ${{ matrix.sample }}/**/*.gradle.kts
+            ${{ matrix.sample }}/gradle.properties
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Build iOS simulator app
+        shell: bash
+        run: |
+          xcodebuild \
+            -project "${{ matrix.sample }}/iosApp/iosApp.xcodeproj" \
+            -scheme iosApp \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination "generic/platform=iOS Simulator" \
+            -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            CODE_SIGNING_ALLOWED=NO \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            build

@@ -3,5 +3,7 @@ build/
 **/.gradle/
 **/build/
 **/iosApp/Frameworks/
+.idea/
+node_modules/
 local.properties
 .DS_Store

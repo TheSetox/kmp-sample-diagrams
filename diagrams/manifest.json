@@ -3,108 +3,126 @@
     "title": "Normal Native",
     "category": "Baselines",
     "file": "01-normal-native.md",
+    "image": "images/01-normal-native.svg",
     "sample": "samples/01_normal-native"
   },
   {
     "title": "KMP Native UI",
     "category": "Main KMP",
     "file": "02-kmp-native-ui.md",
+    "image": "images/02-kmp-native-ui.svg",
     "sample": "samples/02_kmp-native-ui"
   },
   {
     "title": "KMP Compose UI",
     "category": "Main KMP",
     "file": "03-kmp-compose-ui.md",
+    "image": "images/03-kmp-compose-ui.svg",
     "sample": "samples/03_kmp-compose-ui"
   },
   {
     "title": "Layered Native",
     "category": "Baselines",
     "file": "04-layered-native.md",
+    "image": "images/04-layered-native.svg",
     "sample": "samples/04_layered-native"
   },
   {
     "title": "KMP Data Layer",
     "category": "Main KMP",
     "file": "05-kmp-data-layer.md",
+    "image": "images/05-kmp-data-layer.svg",
     "sample": "samples/05_kmp-data-layer"
   },
   {
     "title": "KMP Presentation Layer",
     "category": "Main KMP",
     "file": "06-kmp-presentation-layer.md",
+    "image": "images/06-kmp-presentation-layer.svg",
     "sample": "samples/06_kmp-presentation-layer"
   },
   {
     "title": "KMP UI Layer",
     "category": "Main KMP",
     "file": "07-kmp-ui-layer.md",
+    "image": "images/07-kmp-ui-layer.svg",
     "sample": "samples/07_kmp-ui-layer"
   },
   {
     "title": "KMP Presentation And Data Layers",
     "category": "Main KMP",
     "file": "08-kmp-presentation-data-layer.md",
+    "image": "images/08-kmp-presentation-data-layer.svg",
     "sample": "samples/08_kmp-presentation-data-layer"
   },
   {
     "title": "Modular Native",
     "category": "Baselines",
     "file": "09-modular-native.md",
+    "image": "images/09-modular-native.svg",
     "sample": "samples/09_modular-native"
   },
   {
     "title": "Modular KMP Data Layer",
     "category": "Modular KMP",
     "file": "10-modular-kmp-data-layer.md",
+    "image": "images/10-modular-kmp-data-layer.svg",
     "sample": "samples/10_modular-kmp-data-layer"
   },
   {
     "title": "Modular KMP Presentation Layer",
     "category": "Modular KMP",
     "file": "11-modular-kmp-presentation-layer.md",
+    "image": "images/11-modular-kmp-presentation-layer.svg",
     "sample": "samples/11_modular-kmp-presentation-layer"
   },
   {
     "title": "Modular KMP UI Layer",
     "category": "Modular KMP",
     "file": "12-modular-kmp-ui-layer.md",
+    "image": "images/12-modular-kmp-ui-layer.svg",
     "sample": "samples/12_modular-kmp-ui-layer"
   },
   {
     "title": "Modular KMP UI And Data Layers",
     "category": "Modular KMP",
     "file": "13-modular-kmp-ui-data-layer.md",
+    "image": "images/13-modular-kmp-ui-data-layer.svg",
     "sample": "samples/13_modular-kmp-ui-data-layer"
   },
   {
     "title": "Modular KMP Shared Feature",
     "category": "Modular KMP",
     "file": "14-modular-kmp-shared-feature.md",
+    "image": "images/14-modular-kmp-shared-feature.svg",
     "sample": "samples/14_modular-kmp-shared-feature"
   },
   {
     "title": "Three Layer Native",
     "category": "Baselines",
     "file": "15-three-layer-native.md",
+    "image": "images/15-three-layer-native.svg",
     "sample": "samples/15_three-layer-native"
   },
   {
     "title": "Three Layer KMP Domain",
     "category": "Three Layer KMP",
     "file": "16-three-layer-kmp-domain.md",
+    "image": "images/16-three-layer-kmp-domain.svg",
     "sample": "samples/16_three-layer-kmp-domain"
   },
   {
     "title": "Three Layer KMP Domain And Data",
     "category": "Three Layer KMP",
     "file": "18-three-layer-kmp-domain-data.md",
+    "image": "images/18-three-layer-kmp-domain-data.svg",
     "sample": "samples/18_three-layer-kmp-domain-data"
   },
   {
     "title": "Three Layer KMP Domain And Presentation",
     "category": "Three Layer KMP",
     "file": "19-three-layer-kmp-domain-presentation.md",
+    "image": "images/19-three-layer-kmp-domain-presentation.svg",
     "sample": "samples/19_three-layer-kmp-domain-presentation"
   }
 ]

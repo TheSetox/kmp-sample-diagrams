@@ -33,4 +33,4 @@ Feature one is rendered natively in every app target. Feature two is fully owned
 ./gradlew -p samples/14_modular-kmp-shared-feature :featureTwoSharedFeature:linkDebugFrameworkIosSimulatorArm64
 ```
 
-The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+Open `iosApp/iosApp.xcodeproj` and run the shared `iosApp` scheme. Its `Build KMP Frameworks` phase builds and copies the required framework automatically.

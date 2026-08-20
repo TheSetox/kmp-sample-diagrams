@@ -176,6 +176,47 @@
         font-size: 13px;
       }
 
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+
+      .legend-swatch {
+        width: 20px;
+        height: 12px;
+        border: 2px solid;
+        border-radius: 4px;
+      }
+
+      .legend-swatch.platform {
+        border-color: #1f5f8b;
+        background: #d8ecff;
+      }
+
+      .legend-swatch.shared {
+        border-color: #9b7415;
+        background: #fff0b8;
+      }
+
+      .legend-line {
+        width: 24px;
+        border-top: 3px solid #536575;
+      }
+
+      .legend-line.relationship {
+        border-top-style: dashed;
+      }
+
       .content {
         padding: 28px clamp(18px, 4vw, 56px) 64px;
       }
@@ -278,18 +319,23 @@
         color: var(--muted);
       }
 
-      .mermaid {
+      .diagram-viewport {
         width: 100%;
         overflow: auto;
         padding: 12px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: #fff;
+        background: #f8fafc;
         touch-action: pan-x pan-y;
       }
 
-      .mermaid svg {
+      .diagram-stage {
+        padding: 0 18px 18px;
+      }
+
+      .diagram-image {
         display: block;
+        height: auto;
         max-width: none;
       }
 
@@ -341,6 +387,13 @@
             <span class="pill">Kotlin 2.3.21</span>
             <span class="pill">Compose Multiplatform 1.11.0</span>
             <span class="pill">Android + iOS + Desktop</span>
+            <span class="pill">18 generated SVGs</span>
+          </div>
+          <div class="legend" aria-label="Diagram legend">
+            <span class="legend-item"><span class="legend-swatch platform" aria-hidden="true"></span>Platform code</span>
+            <span class="legend-item"><span class="legend-swatch shared" aria-hidden="true"></span>Shared KMP code</span>
+            <span class="legend-item"><span class="legend-line" aria-hidden="true"></span>Call or data flow</span>
+            <span class="legend-item"><span class="legend-line relationship" aria-hidden="true"></span>State/event or implementation link</span>
           </div>
         </section>
 
@@ -349,38 +402,21 @@
     </div>
 
     <script src="diagrams/bundle.js"></script>
-    <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-
+    <script>
       const nav = document.querySelector("#nav");
       const content = document.querySelector("#content");
       const bundle = window.KMP_DIAGRAM_BUNDLE;
       const forceBundle = new URLSearchParams(window.location.search).get("source") === "bundle";
-      const minZoom = 0.4;
+      const minZoom = 0.1;
       const maxZoom = 2.5;
       const zoomStep = 0.15;
-
-      mermaid.initialize({
-        startOnLoad: false,
-        securityLevel: "strict",
-        theme: "base",
-        themeVariables: {
-          fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
-          primaryColor: "#d8ecff",
-          primaryBorderColor: "#1f5f8b",
-          primaryTextColor: "#17212b",
-          lineColor: "#536575",
-          secondaryColor: "#fff0b8",
-          tertiaryColor: "#e4f5f8"
-        }
-      });
 
       function slug(value) {
         return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
       }
 
       function escapeHtml(value) {
-        return value
+        return String(value ?? "")
           .replaceAll("&", "&amp;")
           .replaceAll("<", "&lt;")
           .replaceAll(">", "&gt;")
@@ -416,9 +452,7 @@
               flushParagraph();
               flushList();
               const code = fenceBody.join("\n");
-              if (fence === "mermaid") {
-                html.push(`<div class="mermaid">${escapeHtml(code)}</div>`);
-              } else {
+              if (fence !== "mermaid") {
                 html.push(`<pre><code>${escapeHtml(code)}</code></pre>`);
               }
               fence = null;
@@ -439,7 +473,6 @@
           if (line.startsWith("# ")) {
             flushParagraph();
             flushList();
-            html.push(`<h1>${escapeHtml(line.slice(2).trim())}</h1>`);
           } else if (line.startsWith("## ")) {
             flushParagraph();
             flushList();
@@ -460,50 +493,45 @@
         return html.join("\n");
       }
 
-      function clampZoom(value) {
-        return Math.min(maxZoom, Math.max(minZoom, value));
+      function clampZoom(value, minimum = minZoom) {
+        return Math.min(maxZoom, Math.max(minimum, value));
       }
 
       function formatZoom(value) {
         return `${Math.round(value * 100)}%`;
       }
 
-      function readSvgSize(svg) {
-        const viewBox = svg.viewBox?.baseVal;
-        if (viewBox?.width > 0 && viewBox?.height > 0) {
-          return { width: viewBox.width, height: viewBox.height };
-        }
-        const box = svg.getBoundingClientRect();
+      function readImageSize(image) {
+        const box = image.getBoundingClientRect();
         return {
-          width: box.width || 800,
-          height: box.height || 480
+          width: image.naturalWidth || box.width || 1200,
+          height: image.naturalHeight || box.height || 720
         };
       }
 
-      function ensureZoomBase(svg) {
-        if (svg.dataset.baseWidth && svg.dataset.baseHeight) {
+      function ensureZoomBase(image) {
+        if (image.dataset.baseWidth && image.dataset.baseHeight) {
           return;
         }
-        const size = readSvgSize(svg);
-        svg.dataset.baseWidth = String(size.width);
-        svg.dataset.baseHeight = String(size.height);
+        const size = readImageSize(image);
+        image.dataset.baseWidth = String(size.width);
+        image.dataset.baseHeight = String(size.height);
       }
 
-      function setDiagramZoom(diagram, nextZoom) {
-        const svg = diagram.querySelector("svg");
-        if (!svg) {
+      function setDiagramZoom(viewport, nextZoom, minimum = minZoom) {
+        const image = viewport.querySelector(".diagram-image");
+        if (!image) {
           return;
         }
-        ensureZoomBase(svg);
-        const zoom = clampZoom(nextZoom);
-        const baseWidth = Number(svg.dataset.baseWidth);
-        const baseHeight = Number(svg.dataset.baseHeight);
-        svg.style.maxWidth = "none";
-        svg.style.width = `${Math.round(baseWidth * zoom)}px`;
-        svg.style.height = `${Math.round(baseHeight * zoom)}px`;
-        diagram.dataset.zoom = String(zoom);
+        ensureZoomBase(image);
+        const zoom = clampZoom(nextZoom, minimum);
+        const baseWidth = Number(image.dataset.baseWidth);
+        const baseHeight = Number(image.dataset.baseHeight);
+        image.style.width = `${Math.round(baseWidth * zoom)}px`;
+        image.style.height = `${Math.round(baseHeight * zoom)}px`;
+        viewport.dataset.zoom = String(zoom);
 
-        const card = diagram.closest(".diagram-card");
+        const card = viewport.closest(".diagram-card");
         const zoomLevel = card?.querySelector(".zoom-level");
         if (zoomLevel) {
           zoomLevel.value = formatZoom(zoom);
@@ -517,37 +545,43 @@
         });
       }
 
-      function fitDiagramZoom(diagram) {
-        const svg = diagram.querySelector("svg");
-        if (!svg) {
+      function fitDiagramZoom(viewport) {
+        const image = viewport.querySelector(".diagram-image");
+        if (!image) {
           return;
         }
-        ensureZoomBase(svg);
-        const baseWidth = Number(svg.dataset.baseWidth);
-        const availableWidth = Math.max(160, diagram.clientWidth - 24);
-        setDiagramZoom(diagram, availableWidth / baseWidth);
+        ensureZoomBase(image);
+        const baseWidth = Number(image.dataset.baseWidth);
+        const availableWidth = Math.max(1, viewport.clientWidth - 24);
+        setDiagramZoom(viewport, availableWidth / baseWidth, 0.01);
       }
 
       function changeDiagramZoom(card, action) {
-        const diagram = card.querySelector(".mermaid");
-        if (!diagram) {
+        const viewport = card.querySelector(".diagram-viewport");
+        if (!viewport) {
           return;
         }
-        const currentZoom = Number(diagram.dataset.zoom || "1");
+        const currentZoom = Number(viewport.dataset.zoom || "1");
         if (action === "in") {
-          setDiagramZoom(diagram, currentZoom + zoomStep);
+          setDiagramZoom(viewport, currentZoom + zoomStep);
         } else if (action === "out") {
-          setDiagramZoom(diagram, currentZoom - zoomStep);
+          setDiagramZoom(viewport, currentZoom - zoomStep);
         } else if (action === "reset") {
-          setDiagramZoom(diagram, 1);
+          setDiagramZoom(viewport, 1);
         } else if (action === "fit") {
-          fitDiagramZoom(diagram);
+          fitDiagramZoom(viewport);
         }
       }
 
       function setupDiagramZoom() {
-        document.querySelectorAll(".diagram-card .mermaid").forEach((diagram) => {
-          setDiagramZoom(diagram, 1);
+        document.querySelectorAll(".diagram-card .diagram-viewport").forEach((viewport) => {
+          const image = viewport.querySelector(".diagram-image");
+          const initialize = () => fitDiagramZoom(viewport);
+          if (image.complete) {
+            initialize();
+          } else {
+            image.addEventListener("load", initialize, { once: true });
+          }
         });
       }
 
@@ -564,13 +598,13 @@
         if (!event.metaKey && !event.ctrlKey) {
           return;
         }
-        const diagram = event.target.closest(".mermaid");
-        if (!diagram) {
+        const viewport = event.target.closest(".diagram-viewport");
+        if (!viewport) {
           return;
         }
         event.preventDefault();
-        const currentZoom = Number(diagram.dataset.zoom || "1");
-        setDiagramZoom(diagram, currentZoom + (event.deltaY < 0 ? zoomStep : -zoomStep));
+        const currentZoom = Number(viewport.dataset.zoom || "1");
+        setDiagramZoom(viewport, currentZoom + (event.deltaY < 0 ? zoomStep : -zoomStep));
       }, { passive: false });
 
       function renderNav(items) {
@@ -598,7 +632,7 @@
           return bundle.manifest;
         }
         try {
-          const manifestResponse = await fetch("diagrams/manifest.json");
+          const manifestResponse = await fetch("diagrams/manifest.json", { cache: "no-store" });
           if (!manifestResponse.ok) {
             throw new Error("Unable to load diagrams/manifest.json");
           }
@@ -619,7 +653,7 @@
           return bundledMarkdown;
         }
         try {
-          const response = await fetch(`diagrams/${entry.file}`);
+          const response = await fetch(`diagrams/${entry.file}`, { cache: "no-store" });
           if (!response.ok) {
             throw new Error(`Unable to load ${entry.file}`);
           }
@@ -647,21 +681,35 @@
                   <button class="zoom-button" type="button" data-zoom-action="fit" aria-label="Fit diagram" title="Fit diagram">&#x2922;</button>
                   <button class="zoom-button" type="button" data-zoom-action="reset" aria-label="Reset zoom" title="Reset zoom">&#x21ba;</button>
                 </div>
+                <a href="diagrams/${escapeHtml(entry.file)}">Mermaid source</a>
+                <a href="diagrams/${escapeHtml(entry.image)}" download>Download SVG</a>
                 <a href="${escapeHtml(entry.sample)}">Open sample</a>
               </div>
             </header>
             <div class="markdown">${renderMarkdown(markdown)}</div>
+            <div class="diagram-stage">
+              <div class="diagram-viewport" data-zoom="1">
+                <img
+                  class="diagram-image"
+                  src="diagrams/${escapeHtml(entry.image)}"
+                  alt="${escapeHtml(entry.title)} architecture diagram"
+                  loading="lazy"
+                >
+              </div>
+            </div>
           </article>
         `;
       }
 
       async function main() {
         try {
-          const manifest = await loadManifest();
+          const manifest = (await loadManifest()).map((entry) => ({
+            ...entry,
+            image: entry.image || `images/${entry.file.replace(/\.md$/, ".svg")}`
+          }));
           renderNav(manifest);
           const cards = await Promise.all(manifest.map(loadDiagram));
           content.innerHTML = cards.join("");
-          await mermaid.run({ querySelector: ".mermaid" });
           setupDiagramZoom();
         } catch (error) {
           content.innerHTML = `

@@ -6,7 +6,7 @@ The data layer is shared in a KMP module. Each app target keeps native presentat
 flowchart TB
   subgraph Android["androidApp"]
     direction TB
-    AUI["HomeScreen.kt\nCompose UI"]
+    AUI["MainActivity.kt\nAndroid TextView UI"]
     AVM["HomeViewModel.kt"]
     AUI --> AVM
   end
@@ -20,7 +20,7 @@ flowchart TB
 
   subgraph Desktop["desktopApp"]
     direction TB
-    DUI["HomeWindow.kt\nCompose Desktop UI"]
+    DUI["Main.kt\nCompose Desktop UI"]
     DVM["HomeViewModel.kt"]
     DUI --> DVM
   end

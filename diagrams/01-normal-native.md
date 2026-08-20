@@ -6,7 +6,7 @@ Baseline with separate platform app targets. There is no shared KMP module.
 flowchart TB
   subgraph Desktop["desktopApp"]
     direction TB
-    DUI["HomeWindow.kt\nCompose Desktop UI"]
+    DUI["Main.kt\nCompose Desktop UI"]
     DVM["HomeViewModel.kt"]
     DRepository["TaskRepository.kt"]
     DDataSource["TaskDataSource.kt"]
@@ -24,7 +24,7 @@ flowchart TB
 
   subgraph Android["androidApp"]
     direction TB
-    AUI["HomeScreen.kt\nCompose UI"]
+    AUI["MainActivity.kt\nAndroid TextView UI"]
     AVM["HomeViewModel.kt"]
     ARepository["TaskRepository.kt"]
     ADataSource["TaskDataSource.kt"]

@@ -2,12 +2,12 @@
 
 Kotlin Multiplatform architecture diagrams and runnable sample projects updated for the 2026 KMP default structure and AGP 9.
 
-The old PNG diagrams are preserved on the `feature/legacy-png-reference` branch. This branch keeps the refreshed version reviewable without losing the previous reference material.
+The old PNG diagrams are preserved on the `feature/legacy-png-reference` branch, so the refreshed version remains reviewable without losing the previous reference material.
 
 ## What Changed
 
-- Diagrams are now Markdown files with Mermaid source in [`diagrams/`](diagrams/).
-- [`index.html`](index.html) loads every diagram listed in [`diagrams/manifest.json`](diagrams/manifest.json).
+- Editable Mermaid source lives in [`diagrams/`](diagrams/) and is rendered into committed SVG images under [`diagrams/images/`](diagrams/images/).
+- [`index.html`](index.html) loads every generated image listed in [`diagrams/manifest.json`](diagrams/manifest.json), with links back to its Mermaid source.
 - Samples use Android, iOS, and desktop only.
 - Every sample `iosApp` contains a runnable SwiftUI `iosApp.xcodeproj` with an `iosApp` scheme.
 - No `webApp` and no `server` modules are included.
@@ -32,7 +32,23 @@ Open [`index.html`](index.html) directly in a browser, or serve the repository r
 python3 -m http.server 8000
 ```
 
-When served over HTTP, the viewer loads Markdown files from [`diagrams/`](diagrams/). When opened directly from `file://`, it falls back to [`diagrams/bundle.js`](diagrams/bundle.js), because browsers block `fetch()` for local Markdown files.
+When served over HTTP, the viewer loads descriptions from the Markdown files and displays the generated SVGs. When opened directly from `file://`, it falls back to [`diagrams/bundle.js`](diagrams/bundle.js) for the descriptions; the committed SVG images continue to load locally. The viewer no longer needs a Mermaid CDN at runtime.
+
+## Rebuild And Validate Diagrams
+
+The image workflow pins Mermaid CLI so every SVG can be regenerated from the fenced Mermaid block in its matching Markdown file:
+
+```sh
+npm ci
+npm run render
+npm run bundle
+npm run validate
+```
+
+- `npm run render` recreates all files under [`diagrams/images/`](diagrams/images/).
+- `npm run bundle` synchronizes the local-file fallback with the manifest and Markdown sources.
+- `npm run validate` checks the scenario inventory, Mermaid fences, SVGs, bundle, Xcode projects, relative links, and unfinished markers.
+- `npm run render:check` renders every Mermaid source as a smoke test and verifies the render-input fingerprint stored in each SVG; `npm run bundle:check` verifies the offline bundle. Both fail when generated artifacts are stale.
 
 ## Scenarios
 
@@ -57,6 +73,8 @@ When served over HTTP, the viewer loads Markdown files from [`diagrams/`](diagra
 | Three Layer KMP Domain And Data | [`18-three-layer-kmp-domain-data.md`](diagrams/18-three-layer-kmp-domain-data.md) | [`samples/18_three-layer-kmp-domain-data`](samples/18_three-layer-kmp-domain-data/) |
 | Three Layer KMP Domain And Presentation | [`19-three-layer-kmp-domain-presentation.md`](diagrams/19-three-layer-kmp-domain-presentation.md) | [`samples/19_three-layer-kmp-domain-presentation`](samples/19_three-layer-kmp-domain-presentation/) |
 
+Scenario 17 was intentionally removed because it duplicated scenario 16; the original numbering is retained so the remaining scenarios continue to match the legacy reference set.
+
 See [`samples/README.md`](samples/README.md) for each sample's implemented flow and module commands. See [`samples/implementation-review.html`](samples/implementation-review.html) or [`samples/IMPLEMENTATION_REVIEW.md`](samples/IMPLEMENTATION_REVIEW.md) for the per-module review map, and [`TESTING.md`](TESTING.md) for the latest local verification notes.
 
 ## AGP 9 KMP Rules Used Here
@@ -65,6 +83,10 @@ See [`samples/README.md`](samples/README.md) for each sample's implemented flow 
 - Android app modules rely on AGP built-in Kotlin instead of applying `org.jetbrains.kotlin.android`.
 - KMP library modules apply `org.jetbrains.kotlin.multiplatform` and `com.android.kotlin.multiplatform.library`.
 - KMP library Android targets are configured inside the Kotlin DSL with `android { ... }`.
+
+## Continuous Verification
+
+[`CI`](.github/workflows/ci.yml) runs repository validation, Android and desktop builds for every scenario, and iOS simulator builds for every Xcode project on pushes to `main` and on pull requests.
 
 ## References
 

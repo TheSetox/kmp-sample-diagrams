@@ -31,4 +31,4 @@ Native UI on each platform calls fully shared KMP logic.
 ./gradlew -p samples/02_kmp-native-ui :sharedLogic:linkDebugFrameworkIosSimulatorArm64
 ```
 
-The `iosApp` folder contains SwiftUI entry source and notes for connecting the generated framework or frameworks in Xcode.
+Open `iosApp/iosApp.xcodeproj` and run the shared `iosApp` scheme. Its `Build KMP Frameworks` phase builds and copies the required framework automatically.

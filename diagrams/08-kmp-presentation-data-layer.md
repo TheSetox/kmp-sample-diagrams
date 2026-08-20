@@ -6,24 +6,24 @@ Presentation and data are shared. Presentation contains Compose UI and ViewModel
 flowchart TB
   subgraph Android["androidApp"]
     direction TB
-    AndroidEntry["MainActivity"]
+    AndroidEntry["MainActivity.kt\nCompose host"]
   end
 
   subgraph IOS["iosApp"]
     direction TB
-    IOSEntry["SwiftUI App"]
+    IOSEntry["ContentView.swift\nSwiftUI / UIKit Compose host"]
   end
 
   subgraph Desktop["desktopApp"]
     direction TB
-    DesktopEntry["main()"]
+    DesktopEntry["Main.kt\nCompose Desktop host"]
   end
 
   subgraph Presentation["sharedPresentation KMP module"]
     direction LR
-    App["Compose App"]
-    Screen["HomeScreen.kt"]
-    VM["HomeViewModel.kt"]
+    App["App.kt\nCompose UI entry"]
+    Screen["Compose UI\nimplemented in App.kt"]
+    VM["HomeViewModel class\nin App.kt"]
     App --> Screen --> VM
   end
 

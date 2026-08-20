@@ -1,15 +1,15 @@
 # 11. Modular KMP Presentation Layer
 
-Feature one stays native in every platform module. Feature two shares presentation as a KMP module; feature two data remains native.
+Feature one stays native inside every platform app. Feature two shares presentation as a KMP module; feature two data remains native.
 
 ```mermaid
 flowchart TB
   subgraph Android["androidApp"]
     direction TB
-    AEntry["MainActivity.kt"]
-    subgraph AFeatureOne["featureOne module"]
+    AEntry["MainActivity.kt\nCompose host"]
+    subgraph AFeatureOne["featureOne native code"]
       direction TB
-      AHomeUI["FeatureOneScreen.kt"]
+      AHomeUI["FeatureOneScreen.kt\nCompose UI"]
       AHomeVM["HomeViewModel.kt"]
       ATaskRepository["TaskRepository.kt"]
       ATaskDataSource["TaskDataSource.kt"]
@@ -26,10 +26,10 @@ flowchart TB
 
   subgraph IOS["iosApp"]
     direction TB
-    IEntry["ContentView.swift"]
-    subgraph IFeatureOne["featureOne module"]
+    IEntry["ContentView.swift\nSwiftUI + Compose host"]
+    subgraph IFeatureOne["featureOne native code"]
       direction TB
-      IHomeUI["FeatureOneView.swift"]
+      IHomeUI["FeatureOneView.swift\nSwiftUI"]
       IHomeVM["HomeViewModel.swift"]
       ITaskRepository["TaskRepository.swift"]
       ITaskDataSource["TaskDataSource.swift"]
@@ -37,7 +37,7 @@ flowchart TB
     end
     subgraph IFeatureTwo["featureTwo native data"]
       direction TB
-      IDetailsRepository["DetailsRepository.swift"]
+      IDetailsRepository["IosDetailsRepository.swift"]
       IDetailsDataSource["DetailsDataSource.swift"]
       IDetailsRepository --> IDetailsDataSource
     end
@@ -46,10 +46,10 @@ flowchart TB
 
   subgraph Desktop["desktopApp"]
     direction TB
-    DEntry["Main.kt"]
-    subgraph DFeatureOne["featureOne module"]
+    DEntry["Main.kt\nCompose Desktop host"]
+    subgraph DFeatureOne["featureOne native code"]
       direction TB
-      DHomeUI["FeatureOneScreen.kt"]
+      DHomeUI["FeatureOneScreen.kt\nCompose Desktop UI"]
       DHomeVM["HomeViewModel.kt"]
       DTaskRepository["TaskRepository.kt"]
       DTaskDataSource["TaskDataSource.kt"]
@@ -66,11 +66,11 @@ flowchart TB
 
   subgraph KMP["featureTwoSharedPresentation KMP module"]
     direction LR
-    App["App.kt"]
-    Screen["DetailsScreen.kt"]
+    App["App.kt\nCompose UI entry"]
+    Screen["DetailsScreen.kt\nCompose Multiplatform UI"]
     State["DetailsUiState.kt"]
     VM["DetailsViewModel.kt"]
-    RepositoryPort["DetailsRepository.kt contract"]
+    RepositoryPort["DetailsRepository.kt\ncontract"]
     App --> Screen --> VM
     VM --> State
     VM --> RepositoryPort
