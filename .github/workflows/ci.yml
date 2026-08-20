@@ -107,7 +107,7 @@ jobs:
   ios-samples:
     name: iOS (${{ matrix.sample }})
     needs: validate
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 50
     strategy:
       fail-fast: false
