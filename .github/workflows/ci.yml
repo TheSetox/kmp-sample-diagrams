@@ -46,7 +46,7 @@ jobs:
       - name: Verify generated diagram assets
         run: |
           npm run bundle:check
-          npm run render:check
+          npm run render:check -- --puppeteer-config .github/mermaid-puppeteer-config.json
 
   gradle-samples:
     name: Gradle (${{ matrix.sample }})

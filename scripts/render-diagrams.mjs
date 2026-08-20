@@ -23,8 +23,28 @@ const renderFingerprintSchema = 1;
 const mmdcPath = path.join(repoRoot, "node_modules", ".bin", process.platform === "win32" ? "mmdc.cmd" : "mmdc");
 const checkOnly = process.argv.includes("--check");
 
+function argumentValue(name) {
+  const index = process.argv.indexOf(name);
+  if (index === -1) return null;
+  const value = process.argv[index + 1];
+  if (!value || value.startsWith("--")) {
+    throw new Error(`${name} requires a path.`);
+  }
+  return value;
+}
+
+const puppeteerConfigArgument = argumentValue("--puppeteer-config");
+const puppeteerConfigPath = puppeteerConfigArgument
+  ? path.resolve(repoRoot, puppeteerConfigArgument)
+  : null;
+
 if (!fs.existsSync(mmdcPath)) {
   console.error("Mermaid CLI is not installed. Run `npm ci` first.");
+  process.exit(1);
+}
+
+if (puppeteerConfigPath && !fs.existsSync(puppeteerConfigPath)) {
+  console.error(`Puppeteer configuration not found: ${puppeteerConfigPath}`);
   process.exit(1);
 }
 
@@ -77,24 +97,25 @@ try {
     const committedPath = path.join(imagesDir, `${stem}.svg`);
     fs.writeFileSync(inputPath, source);
 
-    const result = spawnSync(
-      mmdcPath,
-      [
-        "--input",
-        inputPath,
-        "--output",
-        renderedPath,
-        "--configFile",
-        configPath,
-        "--cssFile",
-        cssPath,
-        "--backgroundColor",
-        renderSettings.backgroundColor,
-        "--width",
-        String(renderSettings.width),
-      ],
-      { cwd: repoRoot, encoding: "utf8" },
-    );
+    const mmdcArguments = [
+      "--input",
+      inputPath,
+      "--output",
+      renderedPath,
+      "--configFile",
+      configPath,
+      "--cssFile",
+      cssPath,
+      "--backgroundColor",
+      renderSettings.backgroundColor,
+      "--width",
+      String(renderSettings.width),
+    ];
+    if (puppeteerConfigPath) {
+      mmdcArguments.push("--puppeteerConfigFile", puppeteerConfigPath);
+    }
+
+    const result = spawnSync(mmdcPath, mmdcArguments, { cwd: repoRoot, encoding: "utf8" });
     if (result.status !== 0) {
       process.stderr.write(result.stdout || "");
       process.stderr.write(result.stderr || "");
