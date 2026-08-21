@@ -19,7 +19,7 @@ flowchart TB
       ADataSource["TaskDataSource.kt"]
       ARepository --> ADataSource
     end
-    AEntry -->|"creates"| ARepository
+    AEntry -->|"creates native data"| AData
   end
 
   subgraph IOS["iosApp\niOS Xcode target"]
@@ -31,7 +31,7 @@ flowchart TB
       IDataSource["TaskDataSource.swift"]
       IRepository --> IDataSource
     end
-    IEntry -->|"creates"| IRepository
+    IEntry -->|"creates native data"| IData
   end
 
   subgraph Desktop[":desktopApp\nDesktop app module"]
@@ -43,7 +43,7 @@ flowchart TB
       DDataSource["TaskDataSource.kt"]
       DRepository --> DDataSource
     end
-    DEntry -->|"creates"| DRepository
+    DEntry -->|"creates native data"| DData
   end
 
   subgraph Presentation[":sharedPresentation\nKMP library module"]
@@ -69,10 +69,10 @@ flowchart TB
     UseCase -->|"calls"| RepositoryPort
   end
 
-  DEntry -->|"hosts + injects repository"| App
-  IEntry -->|"hosts + injects repository"| Controller
-  AEntry -->|"hosts + injects repository"| App
-  VM -->|"uses shared domain"| UseCase
+  DEntry -->|"hosts + injects repository"| Presentation
+  IEntry -->|"hosts via iOS factory + injects repository"| Presentation
+  AEntry -->|"hosts + injects repository"| Presentation
+  VM -->|"uses shared domain"| Domain
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;

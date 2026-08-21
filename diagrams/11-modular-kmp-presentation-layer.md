@@ -27,8 +27,8 @@ flowchart TB
       ADetailsDataSource["DetailsDataSource.kt"]
       ADetailsRepository --> ADetailsDataSource
     end
-    AEntry -->|"renders Feature 1"| AHomeUI
-    AEntry -->|"creates Feature 2 repository"| ADetailsRepository
+    AEntry -->|"renders Feature 1"| AFeatureOne
+    AEntry -->|"creates Feature 2 repository"| AFeatureTwo
   end
 
   subgraph IOS["iosApp\niOS Xcode target"]
@@ -48,8 +48,8 @@ flowchart TB
       IDetailsDataSource["DetailsDataSource.swift"]
       IDetailsRepository --> IDetailsDataSource
     end
-    IEntry -->|"renders Feature 1"| IHomeUI
-    IEntry -->|"creates Feature 2 repository"| IDetailsRepository
+    IEntry -->|"renders Feature 1"| IFeatureOne
+    IEntry -->|"creates Feature 2 repository"| IFeatureTwo
   end
 
   subgraph Desktop[":desktopApp\nDesktop app module"]
@@ -69,8 +69,8 @@ flowchart TB
       DDetailsDataSource["DetailsDataSource.kt"]
       DDetailsRepository --> DDetailsDataSource
     end
-    DEntry -->|"renders Feature 1"| DHomeUI
-    DEntry -->|"creates Feature 2 repository"| DDetailsRepository
+    DEntry -->|"renders Feature 1"| DFeatureOne
+    DEntry -->|"creates Feature 2 repository"| DFeatureTwo
   end
 
   subgraph KMP[":featureTwoSharedPresentation\nKMP library module"]
@@ -86,9 +86,9 @@ flowchart TB
     VM -->|"calls"| RepositoryPort
   end
 
-  DEntry -->|"hosts + injects repository"| App
-  IEntry -->|"hosts + injects repository"| App
-  AEntry -->|"hosts + injects repository"| App
+  DEntry -->|"hosts + injects repository"| KMP
+  IEntry -->|"hosts + injects repository"| KMP
+  AEntry -->|"hosts + injects repository"| KMP
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;

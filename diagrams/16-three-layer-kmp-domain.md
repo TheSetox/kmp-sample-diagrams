@@ -67,9 +67,9 @@ flowchart TB
     UseCase -->|"calls"| RepositoryPort
   end
 
-  DVM -->|"uses shared domain"| UseCase
-  IVM -->|"uses shared domain"| UseCase
-  AVM -->|"uses shared domain"| UseCase
+  DVM -->|"uses shared domain"| KMP
+  IVM -->|"uses shared domain"| KMP
+  AVM -->|"uses shared domain"| KMP
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;

@@ -12,6 +12,17 @@
 }
 
 .nodeLabel,
+.nodeLabel *,
+.cluster-label,
+.cluster-label *,
+.edgeLabel,
+.edgeLabel *,
+.flowchartTitleText,
+.mermaidTooltip {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+}
+
+.nodeLabel,
 .edgeLabel {
   line-height: 1.3;
 }
@@ -22,26 +33,46 @@
 
 .cluster-label {
   font-size: 17px;
-  font-weight: 700;
   line-height: 1.2;
 }
 
 .cluster-label foreignObject > div {
-  background: #f8fafc;
-  border-radius: 4px;
+  background: transparent !important;
+}
+
+.cluster-label foreignObject {
+  overflow: visible !important;
+}
+
+.cluster-label .nodeLabel,
+.cluster-label .nodeLabel p {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .edgeLabel {
   color: #334155 !important;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0;
 }
 
+.edgeLabel,
+.edgeLabel foreignObject > div,
+.edgeLabel span,
+.edgeLabel p,
 .edgeLabel .labelBkg {
-  background-color: #f8fafc !important;
-  border-radius: 4px;
+  background: transparent !important;
+}
+
+.edgeLabel foreignObject {
+  overflow: visible !important;
+}
+
+.edgeLabel rect {
+  fill: transparent !important;
+  opacity: 0 !important;
 }
 
 .edgeLabel p {

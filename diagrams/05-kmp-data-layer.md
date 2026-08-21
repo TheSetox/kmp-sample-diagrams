@@ -36,9 +36,9 @@ flowchart TB
     Repository -->|"maps results"| Mapper
   end
 
-  DVM -->|"uses shared data"| Repository
-  IVM -->|"uses shared data"| Repository
-  AVM -->|"uses shared data"| Repository
+  DVM -->|"uses shared data"| KMP
+  IVM -->|"uses shared data"| KMP
+  AVM -->|"uses shared data"| KMP
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;

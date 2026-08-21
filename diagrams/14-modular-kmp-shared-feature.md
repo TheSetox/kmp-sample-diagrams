@@ -21,7 +21,7 @@ flowchart TB
       ATaskDataSource["TaskDataSource.kt"]
       AHomeUI --> AHomeVM --> ATaskRepository --> ATaskDataSource
     end
-    AEntry -->|"renders Feature 1"| AHomeUI
+    AEntry -->|"renders Feature 1"| AFeatureOne
   end
 
   subgraph IOS["iosApp\niOS Xcode target"]
@@ -35,7 +35,7 @@ flowchart TB
       ITaskDataSource["TaskDataSource.swift"]
       IHomeUI --> IHomeVM --> ITaskRepository --> ITaskDataSource
     end
-    IEntry -->|"renders Feature 1"| IHomeUI
+    IEntry -->|"renders Feature 1"| IFeatureOne
   end
 
   subgraph Desktop[":desktopApp\nDesktop app module"]
@@ -49,7 +49,7 @@ flowchart TB
       DTaskDataSource["TaskDataSource.kt"]
       DHomeUI --> DHomeVM --> DTaskRepository --> DTaskDataSource
     end
-    DEntry -->|"renders Feature 1"| DHomeUI
+    DEntry -->|"renders Feature 1"| DFeatureOne
   end
 
   subgraph KMP[":featureTwoSharedFeature\nKMP library module"]
@@ -67,9 +67,9 @@ flowchart TB
     VM -->|"returns"| State
   end
 
-  DEntry -->|"hosts Feature 2"| App
-  IEntry -->|"hosts Feature 2"| App
-  AEntry -->|"hosts Feature 2"| App
+  DEntry -->|"hosts Feature 2"| KMP
+  IEntry -->|"hosts Feature 2"| KMP
+  AEntry -->|"hosts Feature 2"| KMP
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;

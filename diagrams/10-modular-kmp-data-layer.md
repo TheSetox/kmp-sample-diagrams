@@ -25,8 +25,8 @@ flowchart TB
       direction TB
       ADetailsVM["DetailsViewModel.kt"]
     end
-    AEntry -->|"renders Feature 1"| AHomeUI
-    AEntry -->|"renders Feature 2 + calls"| ADetailsVM
+    AEntry -->|"renders Feature 1"| AFeatureOne
+    AEntry -->|"renders Feature 2 + calls"| AFeatureTwo
   end
 
   subgraph IOS["iosApp\niOS Xcode target"]
@@ -44,8 +44,8 @@ flowchart TB
       direction TB
       IDetailsVM["DetailsViewModel.swift"]
     end
-    IEntry -->|"renders Feature 1"| IHomeUI
-    IEntry -->|"renders Feature 2 + calls"| IDetailsVM
+    IEntry -->|"renders Feature 1"| IFeatureOne
+    IEntry -->|"renders Feature 2 + calls"| IFeatureTwo
   end
 
   subgraph Desktop[":desktopApp\nDesktop app module"]
@@ -63,8 +63,8 @@ flowchart TB
       direction TB
       DDetailsVM["DetailsViewModel.kt"]
     end
-    DEntry -->|"renders Feature 1"| DHomeUI
-    DEntry -->|"renders Feature 2 + calls"| DDetailsVM
+    DEntry -->|"renders Feature 1"| DFeatureOne
+    DEntry -->|"renders Feature 2 + calls"| DFeatureTwo
   end
 
   subgraph KMP[":featureTwoSharedData\nKMP library module"]
@@ -78,9 +78,9 @@ flowchart TB
     Repository -->|"maps results"| Mapper
   end
 
-  DDetailsVM -->|"uses shared data"| Repository
-  IDetailsVM -->|"uses shared data"| Repository
-  ADetailsVM -->|"uses shared data"| Repository
+  DDetailsVM -->|"uses shared data"| KMP
+  IDetailsVM -->|"uses shared data"| KMP
+  ADetailsVM -->|"uses shared data"| KMP
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;

@@ -27,8 +27,8 @@ flowchart TB
       ADataSource["TaskDataSource.kt"]
       ARepository --> ADataSource
     end
-    AVM --> AUseCase
-    AUseCase -->|"calls"| ARepository
+    AVM -->|"uses domain layer"| ADomain
+    AUseCase -->|"uses data layer"| AData
   end
 
   subgraph IOS["iosApp\niOS Xcode target"]
@@ -48,8 +48,8 @@ flowchart TB
       IDataSource["TaskDataSource.swift"]
       IRepository --> IDataSource
     end
-    IVM --> IUseCase
-    IUseCase -->|"calls"| IRepository
+    IVM -->|"uses domain layer"| IDomain
+    IUseCase -->|"uses data layer"| IData
   end
 
   subgraph Desktop[":desktopApp\nDesktop app module"]
@@ -69,8 +69,8 @@ flowchart TB
       DDataSource["TaskDataSource.kt"]
       DRepository --> DDataSource
     end
-    DVM --> DUseCase
-    DUseCase -->|"calls"| DRepository
+    DVM -->|"uses domain layer"| DDomain
+    DUseCase -->|"uses data layer"| DData
   end
 
   classDef native fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;

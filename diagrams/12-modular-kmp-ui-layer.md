@@ -28,8 +28,8 @@ flowchart TB
       ADetailsDataSource["DetailsDataSource.kt"]
       ADetailsVM --> ADetailsRepository --> ADetailsDataSource
     end
-    AEntry -->|"renders Feature 1"| AHomeUI
-    AEntry -->|"creates + refreshes"| ADetailsVM
+    AEntry -->|"renders Feature 1"| AFeatureOne
+    AEntry -->|"creates + refreshes"| AFeatureTwo
   end
 
   subgraph IOS["iosApp\niOS Xcode target"]
@@ -50,8 +50,8 @@ flowchart TB
       IDetailsDataSource["DetailsDataSource.swift"]
       IDetailsVM --> IDetailsRepository --> IDetailsDataSource
     end
-    IEntry -->|"renders Feature 1"| IHomeUI
-    IEntry -->|"creates + refreshes"| IDetailsVM
+    IEntry -->|"renders Feature 1"| IFeatureOne
+    IEntry -->|"creates + refreshes"| IFeatureTwo
   end
 
   subgraph Desktop[":desktopApp\nDesktop app module"]
@@ -72,8 +72,8 @@ flowchart TB
       DDetailsDataSource["DetailsDataSource.kt"]
       DDetailsVM --> DDetailsRepository --> DDetailsDataSource
     end
-    DEntry -->|"renders Feature 1"| DHomeUI
-    DEntry -->|"creates + refreshes"| DDetailsVM
+    DEntry -->|"renders Feature 1"| DFeatureOne
+    DEntry -->|"creates + refreshes"| DFeatureTwo
   end
 
   subgraph KMP[":featureTwoSharedUI\nKMP library module"]
@@ -85,9 +85,9 @@ flowchart TB
     Screen -->|"reads"| State
   end
 
-  DEntry -->|"passes state + refresh callback"| App
-  IEntry -->|"passes state + refresh callback"| App
-  AEntry -->|"passes state + refresh callback"| App
+  DEntry -->|"passes state + refresh callback"| KMP
+  IEntry -->|"passes state + refresh callback"| KMP
+  AEntry -->|"passes state + refresh callback"| KMP
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;

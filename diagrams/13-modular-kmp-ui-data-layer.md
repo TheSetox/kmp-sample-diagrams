@@ -25,8 +25,8 @@ flowchart TB
       direction TB
       ADetailsVM["DetailsViewModel.kt"]
     end
-    AEntry -->|"renders Feature 1"| AHomeUI
-    AEntry -->|"creates + refreshes"| ADetailsVM
+    AEntry -->|"renders Feature 1"| AFeatureOne
+    AEntry -->|"creates + refreshes"| AFeatureTwo
   end
 
   subgraph IOS["iosApp\niOS Xcode target"]
@@ -44,8 +44,8 @@ flowchart TB
       direction TB
       IDetailsVM["DetailsViewModel.swift"]
     end
-    IEntry -->|"renders Feature 1"| IHomeUI
-    IEntry -->|"creates + refreshes"| IDetailsVM
+    IEntry -->|"renders Feature 1"| IFeatureOne
+    IEntry -->|"creates + refreshes"| IFeatureTwo
   end
 
   subgraph Desktop[":desktopApp\nDesktop app module"]
@@ -63,8 +63,8 @@ flowchart TB
       direction TB
       DDetailsVM["DetailsViewModel.kt"]
     end
-    DEntry -->|"renders Feature 1"| DHomeUI
-    DEntry -->|"creates + refreshes"| DDetailsVM
+    DEntry -->|"renders Feature 1"| DFeatureOne
+    DEntry -->|"creates + refreshes"| DFeatureTwo
   end
 
   subgraph UIKMP[":featureTwoSharedUI\nKMP library module"]
@@ -87,12 +87,12 @@ flowchart TB
     Repository -->|"maps results"| Mapper
   end
 
-  DEntry -->|"passes state + refresh callback"| App
-  IEntry -->|"passes state + refresh callback"| App
-  AEntry -->|"passes state + refresh callback"| App
-  DDetailsVM -->|"uses shared data"| Repository
-  IDetailsVM -->|"uses shared data"| Repository
-  ADetailsVM -->|"uses shared data"| Repository
+  DEntry -->|"passes state + refresh callback"| UIKMP
+  IEntry -->|"passes state + refresh callback"| UIKMP
+  AEntry -->|"passes state + refresh callback"| UIKMP
+  DDetailsVM -->|"uses shared data"| DataKMP
+  IDetailsVM -->|"uses shared data"| DataKMP
+  ADetailsVM -->|"uses shared data"| DataKMP
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;

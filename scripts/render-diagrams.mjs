@@ -6,7 +6,8 @@ import process from "node:process";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const rendererPath = fileURLToPath(import.meta.url);
+const repoRoot = path.resolve(path.dirname(rendererPath), "..");
 const diagramsDir = path.join(repoRoot, "diagrams");
 const imagesDir = path.join(diagramsDir, "images");
 const manifest = JSON.parse(fs.readFileSync(path.join(diagramsDir, "manifest.json"), "utf8"));
@@ -17,9 +18,12 @@ const cssSource = fs.readFileSync(cssPath, "utf8");
 const packageMetadata = JSON.parse(fs.readFileSync(path.join(repoRoot, "package.json"), "utf8"));
 const packageLockSource = fs.readFileSync(path.join(repoRoot, "package-lock.json"), "utf8");
 const packageLockSha256 = createHash("sha256").update(packageLockSource).digest("hex");
+const rendererSourceSha256 = createHash("sha256")
+  .update(fs.readFileSync(rendererPath, "utf8"))
+  .digest("hex");
 const mermaidCliVersion = packageMetadata.devDependencies?.["@mermaid-js/mermaid-cli"];
 const renderSettings = { backgroundColor: "#f8fafc", width: 1800 };
-const renderFingerprintSchema = 1;
+const renderFingerprintSchema = 2;
 const mmdcPath = path.join(repoRoot, "node_modules", ".bin", process.platform === "win32" ? "mmdc.cmd" : "mmdc");
 const checkOnly = process.argv.includes("--check");
 
@@ -65,6 +69,7 @@ function renderInputHash(source) {
         cssSource,
         mermaidCliVersion,
         packageLockSha256,
+        rendererSourceSha256,
         renderSettings,
         renderFingerprintSchema,
       }),
@@ -77,6 +82,48 @@ function attachRenderInputHash(svg, hash) {
     throw new Error("Mermaid output does not contain an <svg> root.");
   }
   return svg.replace("<svg", `<svg data-render-input-sha256="${hash}"`);
+}
+
+function maskEdgesBehindLabels(svg) {
+  const viewBox = svg.match(
+    /<svg\b[^>]*\bviewBox="([-+\deE.]+)\s+([-+\deE.]+)\s+([-+\deE.]+)\s+([-+\deE.]+)"/,
+  );
+  if (!viewBox) {
+    throw new Error("Rendered SVG does not contain a numeric viewBox.");
+  }
+  const padding = 4;
+  const gapRects = [];
+  const labelPattern =
+    /<g class="edgeLabel" transform="translate\(([-+\deE.]+),\s*([-+\deE.]+)\)">\s*<g class="label" data-id="[^"]+" transform="translate\(([-+\deE.]+),\s*([-+\deE.]+)\)">\s*<foreignObject width="([-+\deE.]+)" height="([-+\deE.]+)">/g;
+  for (const match of svg.matchAll(labelPattern)) {
+    const x = Number(match[1]) + Number(match[3]) - padding;
+    const y = Number(match[2]) + Number(match[4]) - padding;
+    const width = Number(match[5]) + padding * 2;
+    const height = Number(match[6]) + padding * 2;
+    gapRects.push(`<rect x="${x}" y="${y}" width="${width}" height="${height}" rx="2" fill="black"/>`);
+  }
+
+  const labelCount = [...svg.matchAll(/<g class="edgeLabel" transform=/g)].length;
+  if (gapRects.length !== labelCount) {
+    throw new Error(`Masked ${gapRects.length} of ${labelCount} rendered edge labels.`);
+  }
+  if (gapRects.length === 0) {
+    return svg;
+  }
+
+  const maskId = "edge-label-gaps";
+  const mask = `<defs><mask id="${maskId}" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="${viewBox[1]}" y="${viewBox[2]}" width="${viewBox[3]}" height="${viewBox[4]}"><rect x="${viewBox[1]}" y="${viewBox[2]}" width="${viewBox[3]}" height="${viewBox[4]}" fill="white"/>${gapRects.join("")}</mask></defs>`;
+  let maskedGroupCount = 0;
+  const masked = svg
+    .replace(/(<svg\b[^>]*>)/, `$1${mask}`)
+    .replace(/<g class="(?:edgePaths|edges edgePath)">/g, (group) => {
+      maskedGroupCount += 1;
+      return group.replace(">", ` mask="url(#${maskId})">`);
+    });
+  if (maskedGroupCount === 0) {
+    throw new Error("Rendered SVG does not contain an edge-path group.");
+  }
+  return masked;
 }
 
 function committedRenderInputHash(svg) {
@@ -123,7 +170,8 @@ try {
     }
 
     const expectedHash = renderInputHash(source);
-    const rendered = attachRenderInputHash(fs.readFileSync(renderedPath, "utf8"), expectedHash);
+    const maskedSvg = maskEdgesBehindLabels(fs.readFileSync(renderedPath, "utf8"));
+    const rendered = attachRenderInputHash(maskedSvg, expectedHash);
     if (checkOnly) {
       const current = fs.existsSync(committedPath) ? fs.readFileSync(committedPath, "utf8") : "";
       if (committedRenderInputHash(current) !== expectedHash) {

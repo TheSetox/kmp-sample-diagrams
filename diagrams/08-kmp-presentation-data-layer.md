@@ -3,6 +3,12 @@
 Presentation and data are shared. Presentation contains Compose UI and ViewModel; data contains repository and data sources.
 
 ```mermaid
+---
+config:
+  layout: elk
+  elk:
+    nodePlacementStrategy: LINEAR_SEGMENTS
+---
 flowchart TB
   subgraph Android[":androidApp\nAndroid app module"]
     direction TB
@@ -19,12 +25,14 @@ flowchart TB
     DesktopEntry["Main.kt\nCompose Desktop host"]
   end
 
-  subgraph Presentation[":sharedPresentation\nKMP library module"]
+  subgraph Presentation[" "]
     direction LR
+    PresentationTitle[":sharedPresentation\nKMP library module"]:::kmpTitle
     App["App.kt\nCompose UI entry"]
     Screen["Compose UI\nimplemented in App.kt"]
     VM["HomeViewModel class\nin App.kt"]
     State["HomeUiState\ndefined in App.kt"]
+    PresentationTitle ~~~ App
     App --> Screen --> VM
     VM -->|"returns"| State
   end
@@ -40,13 +48,14 @@ flowchart TB
     Repository -->|"maps results"| Mapper
   end
 
-  DesktopEntry -->|"hosts shared UI"| App
-  IOSEntry -->|"hosts shared UI"| App
-  AndroidEntry -->|"hosts shared UI"| App
-  VM -->|"uses shared data"| Repository
+  DesktopEntry -->|"hosts"| App
+  IOSEntry -->|"hosts"| App
+  AndroidEntry -->|"hosts"| App
+  VM -->|"uses shared data"| Data
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
+  classDef kmpTitle fill:transparent,stroke:transparent,color:#3b2a00,font-weight:700;
   class AndroidEntry,IOSEntry,DesktopEntry app;
   class App,Screen,VM,State,Repository,Remote,Cache,Mapper kmp;
   style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px

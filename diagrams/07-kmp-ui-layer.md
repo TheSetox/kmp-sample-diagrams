@@ -44,9 +44,9 @@ flowchart TB
     App -->|"renders"| State
   end
 
-  DHost -->|"passes state + refresh callback"| App
-  IHost -->|"passes state + refresh callback"| App
-  AHost -->|"passes state + refresh callback"| App
+  DHost -->|"passes state + refresh callback"| KMP
+  IHost -->|"passes state + refresh callback"| KMP
+  AHost -->|"passes state + refresh callback"| KMP
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;

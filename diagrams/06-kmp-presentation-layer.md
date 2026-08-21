@@ -49,9 +49,9 @@ flowchart TB
     VM -->|"calls"| RepositoryPort
   end
 
-  DEntry -->|"hosts + injects repository"| App
-  IEntry -->|"hosts + injects repository"| App
-  AEntry -->|"hosts + injects repository"| App
+  DEntry -->|"hosts + injects repository"| KMP
+  IEntry -->|"hosts + injects repository"| KMP
+  AEntry -->|"hosts + injects repository"| KMP
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;

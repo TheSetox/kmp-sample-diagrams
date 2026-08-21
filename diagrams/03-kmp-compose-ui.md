@@ -44,9 +44,9 @@ flowchart TB
     App -->|"renders"| State
   end
 
-  DEntry -->|"passes state + refresh callback"| App
-  IEntry -->|"passes state + refresh callback"| App
-  AEntry -->|"passes state + refresh callback"| App
+  DEntry -->|"passes state + refresh callback"| KMP
+  IEntry -->|"passes state + refresh callback"| KMP
+  AEntry -->|"passes state + refresh callback"| KMP
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;

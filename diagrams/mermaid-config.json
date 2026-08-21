@@ -7,7 +7,11 @@
     "diagramPadding": 24,
     "htmlLabels": true,
     "nodeSpacing": 32,
-    "rankSpacing": 48,
+    "rankSpacing": 64,
+    "subGraphTitleMargin": {
+      "top": 12,
+      "bottom": 36
+    },
     "useMaxWidth": false
   },
   "securityLevel": "strict",
