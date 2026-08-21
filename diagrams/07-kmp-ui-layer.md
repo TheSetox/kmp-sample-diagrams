@@ -7,54 +7,53 @@ Only Compose UI is shared with Compose Multiplatform. Native ViewModels call nat
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: SIMPLE
+    nodePlacementStrategy: LINEAR_SEGMENTS
 ---
 flowchart TB
-  subgraph Desktop["desktopApp"]
-    DHost["Main.kt\nCompose Desktop host"]
-    DVM["HomeViewModel.kt"]
-    DRepository["TaskRepository.kt"]
-    DDataSource["TaskDataSource.kt"]
-    DVM --> DRepository --> DDataSource
-  end
-
-  subgraph IOS["iosApp"]
-    IHost["ContentView.swift\nSwiftUI / UIKit Compose host"]
-    IVM["HomeViewModel.swift"]
-    IRepository["TaskRepository.swift"]
-    IDataSource["TaskDataSource.swift"]
-    IVM --> IRepository --> IDataSource
-  end
-
-  subgraph Android["androidApp"]
+  subgraph Android[":androidApp\nAndroid app module"]
     AHost["MainActivity.kt\nCompose host"]
     AVM["HomeViewModel.kt"]
     ARepository["TaskRepository.kt"]
     ADataSource["TaskDataSource.kt"]
+    AHost -->|"creates + refreshes"| AVM
     AVM --> ARepository --> ADataSource
   end
 
-  subgraph KMP["sharedUI KMP module"]
-    direction LR
-    App["App.kt\nCompose UI entry"]
-    Screen["Screen layout\nimplemented in App.kt"]
-    Components["Material 3 components\nused in App.kt"]
-    App --> Screen --> Components
+  subgraph IOS["iosApp\niOS Xcode target"]
+    IHost["ContentView.swift\nSwiftUI / UIKit Compose host"]
+    IVM["HomeViewModel.swift"]
+    IRepository["TaskRepository.swift"]
+    IDataSource["TaskDataSource.swift"]
+    IHost -->|"creates + refreshes"| IVM
+    IVM --> IRepository --> IDataSource
   end
 
-  AHost --> App
-  IHost --> App
-  DHost --> App
-  Screen -. "state and events" .-> AVM
-  Screen -. "state and events" .-> IVM
-  Screen -. "state and events" .-> DVM
+  subgraph Desktop[":desktopApp\nDesktop app module"]
+    DHost["Main.kt\nCompose Desktop host"]
+    DVM["HomeViewModel.kt"]
+    DRepository["TaskRepository.kt"]
+    DDataSource["TaskDataSource.kt"]
+    DHost -->|"creates + refreshes"| DVM
+    DVM --> DRepository --> DDataSource
+  end
+
+  subgraph KMP[":sharedUI\nKMP library module"]
+    direction TB
+    App["App.kt\nCompose UI"]
+    State["HomeUiState\ndefined in App.kt"]
+    App -->|"renders"| State
+  end
+
+  DHost -->|"passes state + refresh callback"| App
+  IHost -->|"passes state + refresh callback"| App
+  AHost -->|"passes state + refresh callback"| App
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
   class AHost,AVM,ARepository,ADataSource,IHost,IVM,IRepository,IDataSource,DHost,DVM,DRepository,DDataSource app;
-  class App,Screen,Components kmp;
-  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
-  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
-  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
+  class App,State kmp;
+  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
+  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
+  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
   style KMP fill:#fff7cc,stroke:#9b7415,stroke-width:3px
 ```

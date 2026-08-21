@@ -13,17 +13,49 @@
 
 .nodeLabel,
 .edgeLabel {
-  line-height: 1.35;
+  line-height: 1.3;
+}
+
+.nodeLabel {
+  font-weight: 500;
+}
+
+.cluster-label {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cluster-label foreignObject > div {
+  background: #f8fafc;
+  border-radius: 4px;
 }
 
 .edgeLabel {
+  color: #334155 !important;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.edgeLabel .labelBkg {
   background-color: #f8fafc !important;
   border-radius: 4px;
-  color: #334155 !important;
-  font-size: 15px;
-  padding: 2px 5px;
+}
+
+.edgeLabel p {
+  margin: 0;
 }
 
 .flowchart-link {
+  stroke: #4f46a5 !important;
+  stroke-width: 2px !important;
   stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+marker path {
+  fill: #4f46a5 !important;
+  stroke: #4f46a5 !important;
 }

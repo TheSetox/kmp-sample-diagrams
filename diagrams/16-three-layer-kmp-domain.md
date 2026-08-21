@@ -1,91 +1,88 @@
 # 16. Three Layer KMP Domain
 
-The domain layer is shared. Presentation stays native and contains UI plus ViewModel; data implementations stay native.
+The domain layer is shared. Presentation and data remain app-owned layers; presentation contains UI plus ViewModel.
 
 ```mermaid
 ---
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: SIMPLE
+    nodePlacementStrategy: LINEAR_SEGMENTS
 ---
 flowchart TB
-  subgraph Android["androidApp"]
+  subgraph Android[":androidApp\nAndroid app module"]
     direction TB
-    subgraph APresentation["presentation module"]
+    subgraph APresentation["Presentation layer\napp-owned code"]
       direction TB
       AUI["HomeScreen.kt\nCompose UI"]
       AVM["HomeViewModel.kt"]
       AUI --> AVM
     end
-    subgraph AData["data module"]
+    subgraph AData["Data layer\napp-owned code"]
       direction TB
-      ARepository["TaskRepository.kt"]
+      ARepository["TaskRepository.kt\nimplements shared TaskRepository"]
       ADataSource["TaskDataSource.kt"]
       ARepository --> ADataSource
     end
   end
 
-  subgraph IOS["iosApp"]
+  subgraph IOS["iosApp\niOS Xcode target"]
     direction TB
-    subgraph IPresentation["presentation module"]
+    subgraph IPresentation["Presentation layer\napp-owned code"]
       direction TB
       IUI["ContentView.swift\nSwiftUI"]
       IVM["HomeViewModel.swift"]
       IUI --> IVM
     end
-    subgraph IData["data module"]
+    subgraph IData["Data layer\napp-owned code"]
       direction TB
-      IRepository["TaskRepository.swift"]
+      IRepository["IosTaskRepository\nTaskRepository.swift · implements shared contract"]
       IDataSource["TaskDataSource.swift"]
       IRepository --> IDataSource
     end
   end
 
-  subgraph Desktop["desktopApp"]
+  subgraph Desktop[":desktopApp\nDesktop app module"]
     direction TB
-    subgraph DPresentation["presentation module"]
+    subgraph DPresentation["Presentation layer\napp-owned code"]
       direction TB
       DUI["HomeWindow.kt\nCompose Desktop UI"]
       DVM["HomeViewModel.kt"]
       DUI --> DVM
     end
-    subgraph DData["data module"]
+    subgraph DData["Data layer\napp-owned code"]
       direction TB
-      DRepository["TaskRepository.kt"]
+      DRepository["TaskRepository.kt\nimplements shared TaskRepository"]
       DDataSource["TaskDataSource.kt"]
       DRepository --> DDataSource
     end
   end
 
-  subgraph KMP["sharedDomain KMP module"]
-    direction LR
+  subgraph KMP[":sharedDomain\nKMP library module"]
+    direction TB
     UseCase["GetTasksUseCase.kt"]
     Entity["Task.kt"]
     RepositoryPort["TaskRepository contract"]
-    UseCase --> Entity
-    UseCase --> RepositoryPort
+    UseCase -->|"returns Task"| Entity
+    UseCase -->|"calls"| RepositoryPort
   end
 
-  AVM --> UseCase
-  IVM --> UseCase
-  DVM --> UseCase
-  RepositoryPort -. "implemented by native" .-> ARepository
-  RepositoryPort -. "implemented by native" .-> IRepository
-  RepositoryPort -. "implemented by native" .-> DRepository
+  DVM -->|"uses shared domain"| UseCase
+  IVM -->|"uses shared domain"| UseCase
+  AVM -->|"uses shared domain"| UseCase
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
   class AUI,AVM,ARepository,ADataSource,IUI,IVM,IRepository,IDataSource,DUI,DVM,DRepository,DDataSource app;
   class UseCase,Entity,RepositoryPort kmp;
-  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
-  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
-  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
-  style APresentation fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
-  style AData fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
-  style IPresentation fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
-  style IData fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
-  style DPresentation fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
-  style DData fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
+  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
+  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
+  style APresentation fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
+  style AData fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
+  style IPresentation fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
+  style IData fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
+  style DPresentation fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
+  style DData fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
   style KMP fill:#fff7cc,stroke:#9b7415,stroke-width:3px
 ```

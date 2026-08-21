@@ -34,6 +34,8 @@ python3 -m http.server 8000
 
 When served over HTTP, the viewer loads descriptions from the Markdown files and displays the generated SVGs. When opened directly from `file://`, it falls back to [`diagrams/bundle.js`](diagrams/bundle.js) for the descriptions; the committed SVG images continue to load locally. The viewer no longer needs a Mermaid CDN at runtime.
 
+Diagram labels use the exact build identity where one exists: names beginning with `:` are Gradle modules, while `iosApp` is an Xcode app target. Solid outer boxes are real modules or targets; dashed inner boxes are app-owned architectural layers or features. A solid arrow reads from caller or owner to the dependency it uses.
+
 ## Rebuild And Validate Diagrams
 
 The image workflow pins Mermaid CLI so every SVG can be regenerated from the fenced Mermaid block in its matching Markdown file:

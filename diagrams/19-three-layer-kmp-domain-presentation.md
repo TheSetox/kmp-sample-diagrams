@@ -7,95 +7,83 @@ Domain and presentation are shared. Presentation contains shared Compose UI and 
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: SIMPLE
+    nodePlacementStrategy: LINEAR_SEGMENTS
 ---
 flowchart TB
-  subgraph Android["androidApp"]
+  subgraph Android[":androidApp\nAndroid app module"]
     direction TB
-    subgraph AApp["app module"]
+    AEntry["MainActivity.kt\nplatform host"]
+    subgraph AData["Native data implementation\napp-owned code"]
       direction TB
-      AEntry["MainActivity.kt"]
-    end
-    subgraph AData["data module"]
-      direction TB
-      ARepository["TaskRepository.kt"]
+      ARepository["TaskRepository.kt\nimplements shared TaskRepository"]
       ADataSource["TaskDataSource.kt"]
       ARepository --> ADataSource
     end
-    AEntry --> ARepository
+    AEntry -->|"creates"| ARepository
   end
 
-  subgraph IOS["iosApp"]
+  subgraph IOS["iosApp\niOS Xcode target"]
     direction TB
-    subgraph IApp["app module"]
+    IEntry["ContentView.swift\nplatform host"]
+    subgraph IData["Native data implementation\napp-owned code"]
       direction TB
-      IEntry["ContentView.swift"]
-    end
-    subgraph IData["data module"]
-      direction TB
-      IRepository["TaskRepository.swift"]
+      IRepository["IosTaskRepository\nTaskRepository.swift · implements shared contract"]
       IDataSource["TaskDataSource.swift"]
       IRepository --> IDataSource
     end
-    IEntry --> IRepository
+    IEntry -->|"creates"| IRepository
   end
 
-  subgraph Desktop["desktopApp"]
+  subgraph Desktop[":desktopApp\nDesktop app module"]
     direction TB
-    subgraph DApp["app module"]
+    DEntry["Main.kt\nplatform host"]
+    subgraph DData["Native data implementation\napp-owned code"]
       direction TB
-      DEntry["Main.kt"]
-    end
-    subgraph DData["data module"]
-      direction TB
-      DRepository["TaskRepository.kt"]
+      DRepository["TaskRepository.kt\nimplements shared TaskRepository"]
       DDataSource["TaskDataSource.kt"]
       DRepository --> DDataSource
     end
-    DEntry --> DRepository
+    DEntry -->|"creates"| DRepository
   end
 
-  subgraph Presentation["sharedPresentation KMP module"]
-    direction LR
+  subgraph Presentation[":sharedPresentation\nKMP library module"]
+    direction TB
     Controller["MainViewController.kt\niOS factory"]
     App["App.kt\nCompose app"]
     Screen["HomeScreen.kt"]
     VM["HomeViewModel.kt"]
     State["HomeUiState.kt"]
-    Controller --> App
-    App --> Screen --> VM --> State
+    Controller -->|"creates"| App
+    App -->|"creates + calls"| VM
+    App -->|"passes state + refresh callback"| Screen
+    VM -->|"returns"| State
+    Screen -->|"reads"| State
   end
 
-  subgraph Domain["sharedDomain KMP module"]
-    direction LR
+  subgraph Domain[":sharedDomain\nKMP library module"]
+    direction TB
     UseCase["GetTasksUseCase.kt"]
     Entity["Task.kt"]
-    RepositoryPort["TaskRepository contract"]
-    UseCase --> Entity
-    UseCase --> RepositoryPort
+    RepositoryPort["TaskRepository.kt\nshared contract"]
+    UseCase -->|"returns Task"| Entity
+    UseCase -->|"calls"| RepositoryPort
   end
 
-  AEntry --> App
-  IEntry --> Controller
-  DEntry --> App
-  VM --> UseCase
-  RepositoryPort -. "implemented by native" .-> ARepository
-  RepositoryPort -. "implemented by native" .-> IRepository
-  RepositoryPort -. "implemented by native" .-> DRepository
+  DEntry -->|"hosts + injects repository"| App
+  IEntry -->|"hosts + injects repository"| Controller
+  AEntry -->|"hosts + injects repository"| App
+  VM -->|"uses shared domain"| UseCase
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
   class AEntry,ARepository,ADataSource,IEntry,IRepository,IDataSource,DEntry,DRepository,DDataSource app;
   class Controller,App,Screen,VM,State,UseCase,Entity,RepositoryPort kmp;
-  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
-  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
-  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
-  style AApp fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
-  style AData fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
-  style IApp fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
-  style IData fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
-  style DApp fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
-  style DData fill:#f6fbff,stroke:#5f97bd,stroke-width:1px
+  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
+  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
+  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
+  style AData fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
+  style IData fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
+  style DData fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
   style Presentation fill:#fff7cc,stroke:#9b7415,stroke-width:3px
   style Domain fill:#fff7cc,stroke:#9b7415,stroke-width:3px
 ```

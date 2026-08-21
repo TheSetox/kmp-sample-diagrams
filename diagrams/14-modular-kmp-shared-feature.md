@@ -7,13 +7,13 @@ Feature one stays native inside every platform app. Feature two is consolidated 
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: SIMPLE
+    nodePlacementStrategy: LINEAR_SEGMENTS
 ---
 flowchart TB
-  subgraph Android["androidApp"]
+  subgraph Android[":androidApp\nAndroid app module"]
     direction TB
     AEntry["MainActivity.kt"]
-    subgraph AFeatureOne["featureOne native code"]
+    subgraph AFeatureOne["Feature 1\napp-owned code"]
       direction TB
       AHomeUI["FeatureOneScreen.kt"]
       AHomeVM["HomeViewModel.kt"]
@@ -21,13 +21,13 @@ flowchart TB
       ATaskDataSource["TaskDataSource.kt"]
       AHomeUI --> AHomeVM --> ATaskRepository --> ATaskDataSource
     end
-    AEntry --> AHomeUI
+    AEntry -->|"renders Feature 1"| AHomeUI
   end
 
-  subgraph IOS["iosApp"]
+  subgraph IOS["iosApp\niOS Xcode target"]
     direction TB
     IEntry["ContentView.swift"]
-    subgraph IFeatureOne["featureOne native code"]
+    subgraph IFeatureOne["Feature 1\napp-owned code"]
       direction TB
       IHomeUI["FeatureOneView.swift"]
       IHomeVM["HomeViewModel.swift"]
@@ -35,13 +35,13 @@ flowchart TB
       ITaskDataSource["TaskDataSource.swift"]
       IHomeUI --> IHomeVM --> ITaskRepository --> ITaskDataSource
     end
-    IEntry --> IHomeUI
+    IEntry -->|"renders Feature 1"| IHomeUI
   end
 
-  subgraph Desktop["desktopApp"]
+  subgraph Desktop[":desktopApp\nDesktop app module"]
     direction TB
     DEntry["Main.kt"]
-    subgraph DFeatureOne["featureOne native code"]
+    subgraph DFeatureOne["Feature 1\napp-owned code"]
       direction TB
       DHomeUI["FeatureOneScreen.kt"]
       DHomeVM["HomeViewModel.kt"]
@@ -49,34 +49,37 @@ flowchart TB
       DTaskDataSource["TaskDataSource.kt"]
       DHomeUI --> DHomeVM --> DTaskRepository --> DTaskDataSource
     end
-    DEntry --> DHomeUI
+    DEntry -->|"renders Feature 1"| DHomeUI
   end
 
-  subgraph KMP["featureTwoSharedFeature KMP module"]
-    direction LR
+  subgraph KMP[":featureTwoSharedFeature\nKMP library module"]
+    direction TB
     App["App.kt"]
     Screen["DetailsScreen.kt"]
     State["DetailsUiState.kt"]
     VM["DetailsViewModel.kt"]
     Repository["DetailsRepository.kt"]
     DataSource["DetailsDataSource.kt"]
-    App --> Screen --> VM --> Repository --> DataSource
-    VM --> State
+    App -->|"renders"| Screen
+    Screen -->|"creates + calls"| VM
+    VM -->|"calls"| Repository
+    Repository -->|"loads"| DataSource
+    VM -->|"returns"| State
   end
 
-  AEntry --> App
-  IEntry --> App
-  DEntry --> App
+  DEntry -->|"hosts Feature 2"| App
+  IEntry -->|"hosts Feature 2"| App
+  AEntry -->|"hosts Feature 2"| App
 
   classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
   classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
   class AEntry,AHomeUI,AHomeVM,ATaskRepository,ATaskDataSource,IEntry,IHomeUI,IHomeVM,ITaskRepository,ITaskDataSource,DEntry,DHomeUI,DHomeVM,DTaskRepository,DTaskDataSource app;
   class App,Screen,State,VM,Repository,DataSource kmp;
-  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
-  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
-  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:2px
-  style AFeatureOne fill:#e8f4ff,stroke:#1f5f8b,stroke-width:2px
-  style IFeatureOne fill:#e8f4ff,stroke:#1f5f8b,stroke-width:2px
-  style DFeatureOne fill:#e8f4ff,stroke:#1f5f8b,stroke-width:2px
+  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
+  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
+  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
+  style AFeatureOne fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
+  style IFeatureOne fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
+  style DFeatureOne fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
   style KMP fill:#fff7cc,stroke:#9b7415,stroke-width:3px
 ```
