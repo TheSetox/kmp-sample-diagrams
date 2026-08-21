@@ -3,7 +3,7 @@
 Feature one stays native inside every platform app. Feature two shares only its data layer; feature two presentation remains native in each app target.
 
 ```mermaid
-flowchart TB
+flowchart LR
   subgraph Android["androidApp"]
     direction TB
     AEntry["MainActivity.kt"]

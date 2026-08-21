@@ -3,7 +3,7 @@
 Feature one stays native inside every platform app. Feature two shares Compose UI only; native ViewModels call native repositories and data sources.
 
 ```mermaid
-flowchart TB
+flowchart LR
   subgraph Android["androidApp"]
     direction TB
     AEntry["MainActivity.kt"]

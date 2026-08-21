@@ -395,6 +395,10 @@
             <span class="legend-item"><span class="legend-line" aria-hidden="true"></span>Call or data flow</span>
             <span class="legend-item"><span class="legend-line relationship" aria-hidden="true"></span>State/event or implementation link</span>
           </div>
+          <p>
+            Diagrams open at a readable 100% size. Scroll inside a diagram or use
+            the zoom controls; Fit is available when you want a full overview.
+          </p>
         </section>
 
         <section id="content" class="content" aria-live="polite"></section>
@@ -576,7 +580,7 @@
       function setupDiagramZoom() {
         document.querySelectorAll(".diagram-card .diagram-viewport").forEach((viewport) => {
           const image = viewport.querySelector(".diagram-image");
-          const initialize = () => fitDiagramZoom(viewport);
+          const initialize = () => setDiagramZoom(viewport, 1);
           if (image.complete) {
             initialize();
           } else {
@@ -678,8 +682,8 @@
                   <button class="zoom-button" type="button" data-zoom-action="out" aria-label="Zoom out" title="Zoom out">&minus;</button>
                   <output class="zoom-level" aria-live="polite">100%</output>
                   <button class="zoom-button" type="button" data-zoom-action="in" aria-label="Zoom in" title="Zoom in">+</button>
-                  <button class="zoom-button" type="button" data-zoom-action="fit" aria-label="Fit diagram" title="Fit diagram">&#x2922;</button>
-                  <button class="zoom-button" type="button" data-zoom-action="reset" aria-label="Reset zoom" title="Reset zoom">&#x21ba;</button>
+                  <button class="zoom-button" type="button" data-zoom-action="fit" aria-label="Fit entire diagram" title="Fit entire diagram">&#x2922;</button>
+                  <button class="zoom-button" type="button" data-zoom-action="reset" aria-label="Reset to readable size" title="Reset to readable 100% size">&#x21ba;</button>
                 </div>
                 <a href="diagrams/${escapeHtml(entry.file)}">Mermaid source</a>
                 <a href="diagrams/${escapeHtml(entry.image)}" download>Download SVG</a>

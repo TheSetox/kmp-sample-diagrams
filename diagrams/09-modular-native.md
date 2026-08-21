@@ -3,7 +3,7 @@
 Baseline modular architecture. Each app target groups feature-specific native code inside the platform app. The feature boundaries shown here are conceptual; they are not separate build modules.
 
 ```mermaid
-flowchart TB
+flowchart LR
   subgraph Desktop["desktopApp"]
     direction TB
     subgraph DF1["feature-one code"]
