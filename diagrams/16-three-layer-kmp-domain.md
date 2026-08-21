@@ -3,6 +3,12 @@
 The domain layer is shared. Presentation stays native and contains UI plus ViewModel; data implementations stay native.
 
 ```mermaid
+---
+config:
+  layout: elk
+  elk:
+    nodePlacementStrategy: SIMPLE
+---
 flowchart TB
   subgraph Android["androidApp"]
     direction TB

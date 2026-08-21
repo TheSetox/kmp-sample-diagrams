@@ -3,6 +3,12 @@
 Domain and presentation are shared. Presentation contains shared Compose UI and ViewModel; data implementations remain native.
 
 ```mermaid
+---
+config:
+  layout: elk
+  elk:
+    nodePlacementStrategy: SIMPLE
+---
 flowchart TB
   subgraph Android["androidApp"]
     direction TB

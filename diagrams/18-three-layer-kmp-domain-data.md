@@ -3,6 +3,12 @@
 Domain and data are shared. Native presentation contains UI and ViewModel.
 
 ```mermaid
+---
+config:
+  layout: elk
+  elk:
+    nodePlacementStrategy: SIMPLE
+---
 flowchart TB
   subgraph Android["androidApp"]
     direction TB

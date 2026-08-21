@@ -3,6 +3,12 @@
 Baseline three-layer native architecture. Each app target has presentation, domain, and data modules. Presentation contains UI and ViewModel.
 
 ```mermaid
+---
+config:
+  layout: elk
+  elk:
+    nodePlacementStrategy: SIMPLE
+---
 flowchart TB
   subgraph Desktop["desktopApp"]
     direction TB

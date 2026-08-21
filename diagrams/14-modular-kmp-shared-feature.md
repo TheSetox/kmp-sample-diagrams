@@ -3,6 +3,12 @@
 Feature one stays native inside every platform app. Feature two is consolidated into one shared KMP feature module.
 
 ```mermaid
+---
+config:
+  layout: elk
+  elk:
+    nodePlacementStrategy: SIMPLE
+---
 flowchart TB
   subgraph Android["androidApp"]
     direction TB

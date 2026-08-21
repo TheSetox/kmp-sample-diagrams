@@ -3,6 +3,12 @@
 All platform entry points are separate app modules. Compose UI is shared, while ViewModel, repository, and data source logic stay native.
 
 ```mermaid
+---
+config:
+  layout: elk
+  elk:
+    nodePlacementStrategy: SIMPLE
+---
 flowchart TB
   subgraph Desktop["desktopApp"]
     DEntry["main()"]

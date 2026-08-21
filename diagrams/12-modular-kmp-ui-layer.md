@@ -3,7 +3,13 @@
 Feature one stays native inside every platform app. Feature two shares Compose UI only; native ViewModels call native repositories and data sources.
 
 ```mermaid
-flowchart LR
+---
+config:
+  layout: elk
+  elk:
+    nodePlacementStrategy: SIMPLE
+---
+flowchart TB
   subgraph Android["androidApp"]
     direction TB
     AEntry["MainActivity.kt"]

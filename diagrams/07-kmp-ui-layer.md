@@ -3,6 +3,12 @@
 Only Compose UI is shared with Compose Multiplatform. Native ViewModels call native repositories and data sources.
 
 ```mermaid
+---
+config:
+  layout: elk
+  elk:
+    nodePlacementStrategy: SIMPLE
+---
 flowchart TB
   subgraph Desktop["desktopApp"]
     DHost["Main.kt\nCompose Desktop host"]

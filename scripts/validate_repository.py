@@ -410,6 +410,23 @@ def validate_mermaid(validator: Validator, manifest: list[dict[str, object]]) ->
         validator.require(
             bool(meaningful_lines), section, f"{relative(path)} has an empty Mermaid fence"
         )
+        if meaningful_lines and meaningful_lines[0] == "---":
+            try:
+                frontmatter_end = meaningful_lines.index("---", 1)
+            except ValueError:
+                validator.require(
+                    False,
+                    section,
+                    f"{relative(path)} has unterminated Mermaid front matter",
+                )
+                meaningful_lines = []
+            else:
+                meaningful_lines = meaningful_lines[frontmatter_end + 1 :]
+                validator.require(
+                    bool(meaningful_lines),
+                    section,
+                    f"{relative(path)} has no diagram after Mermaid front matter",
+                )
         if meaningful_lines:
             validator.require(
                 MERMAID_START.match(meaningful_lines[0]) is not None,

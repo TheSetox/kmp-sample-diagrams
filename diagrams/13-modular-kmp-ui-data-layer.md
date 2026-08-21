@@ -3,6 +3,12 @@
 Feature one stays native inside every platform app. Feature two shares UI and data as separate KMP modules; native ViewModels connect the shared UI to shared data.
 
 ```mermaid
+---
+config:
+  layout: elk
+  elk:
+    nodePlacementStrategy: SIMPLE
+---
 flowchart TB
   subgraph Android["androidApp"]
     direction TB
