@@ -9,7 +9,7 @@ config:
   elk:
     nodePlacementStrategy: LINEAR_SEGMENTS
 ---
-flowchart TB
+flowchart LR
   subgraph Android[":androidApp\nAndroid app module"]
     direction TB
     AndroidEntry["MainActivity.kt\nCompose host"]
@@ -25,20 +25,18 @@ flowchart TB
     DesktopEntry["Main.kt\nCompose Desktop host"]
   end
 
-  subgraph Presentation[" "]
-    direction LR
-    PresentationTitle[":sharedPresentation\nKMP library module"]:::kmpTitle
+  subgraph Presentation[":sharedPresentation\nKMP library module"]
+    direction TB
     App["App.kt\nCompose UI entry"]
     Screen["Compose UI\nimplemented in App.kt"]
     VM["HomeViewModel class\nin App.kt"]
     State["HomeUiState\ndefined in App.kt"]
-    PresentationTitle ~~~ App
     App --> Screen --> VM
     VM -->|"returns"| State
   end
 
   subgraph Data[":sharedData\nKMP library module"]
-    direction LR
+    direction TB
     Repository["TaskRepository.kt"]
     Remote["RemoteTaskDataSource.kt"]
     Cache["LocalTaskDataSource.kt"]
@@ -48,19 +46,18 @@ flowchart TB
     Repository -->|"maps results"| Mapper
   end
 
-  DesktopEntry -->|"hosts"| App
-  IOSEntry -->|"hosts"| App
-  AndroidEntry -->|"hosts"| App
-  VM -->|"uses shared data"| Data
+  Desktop -->|"hosts"| Presentation
+  IOS -->|"hosts"| Presentation
+  Android -->|"hosts"| Presentation
+  Presentation -->|"uses shared data"| Data
 
-  classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
-  classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
-  classDef kmpTitle fill:transparent,stroke:transparent,color:#3b2a00,font-weight:700;
+  classDef app fill:#f3f9fc,stroke:#2b6f9e,color:#334155,stroke-width:1.4px;
+  classDef kmp fill:#f8f5fe,stroke:#6e4bae,color:#334155,stroke-width:1.4px;
   class AndroidEntry,IOSEntry,DesktopEntry app;
   class App,Screen,VM,State,Repository,Remote,Cache,Mapper kmp;
-  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
-  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
-  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
-  style Presentation fill:#fff7cc,stroke:#9b7415,stroke-width:3px
-  style Data fill:#fff7cc,stroke:#9b7415,stroke-width:3px
+  style Android fill:#fff8eb,stroke:#c47a12,stroke-width:1.6px
+  style IOS fill:#fff8eb,stroke:#c47a12,stroke-width:1.6px
+  style Desktop fill:#fff8eb,stroke:#c47a12,stroke-width:1.6px
+  style Presentation fill:#f8f5fe,stroke:#6e4bae,stroke-width:1.6px
+  style Data fill:#f8f5fe,stroke:#6e4bae,stroke-width:1.6px
 ```

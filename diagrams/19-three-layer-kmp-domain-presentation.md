@@ -9,7 +9,7 @@ config:
   elk:
     nodePlacementStrategy: LINEAR_SEGMENTS
 ---
-flowchart TB
+flowchart LR
   subgraph Android[":androidApp\nAndroid app module"]
     direction TB
     AEntry["MainActivity.kt\nplatform host"]
@@ -69,21 +69,21 @@ flowchart TB
     UseCase -->|"calls"| RepositoryPort
   end
 
-  DEntry -->|"hosts + injects repository"| Presentation
-  IEntry -->|"hosts via iOS factory + injects repository"| Presentation
-  AEntry -->|"hosts + injects repository"| Presentation
-  VM -->|"uses shared domain"| Domain
+  Desktop -->|"hosts + injects repository"| Presentation
+  IOS -->|"hosts via iOS factory + injects repository"| Presentation
+  Android -->|"hosts + injects repository"| Presentation
+  Presentation -->|"uses shared domain"| Domain
 
-  classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
-  classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
+  classDef app fill:#f3f9fc,stroke:#2b6f9e,color:#334155,stroke-width:1.4px;
+  classDef kmp fill:#f8f5fe,stroke:#6e4bae,color:#334155,stroke-width:1.4px;
   class AEntry,ARepository,ADataSource,IEntry,IRepository,IDataSource,DEntry,DRepository,DDataSource app;
   class Controller,App,Screen,VM,State,UseCase,Entity,RepositoryPort kmp;
-  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
-  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
-  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
-  style AData fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style IData fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style DData fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style Presentation fill:#fff7cc,stroke:#9b7415,stroke-width:3px
-  style Domain fill:#fff7cc,stroke:#9b7415,stroke-width:3px
+  style Android fill:#fff8eb,stroke:#c47a12,stroke-width:1.6px
+  style IOS fill:#fff8eb,stroke:#c47a12,stroke-width:1.6px
+  style Desktop fill:#fff8eb,stroke:#c47a12,stroke-width:1.6px
+  style AData fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style IData fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style DData fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style Presentation fill:#f8f5fe,stroke:#6e4bae,stroke-width:1.6px
+  style Domain fill:#f8f5fe,stroke:#6e4bae,stroke-width:1.6px
 ```

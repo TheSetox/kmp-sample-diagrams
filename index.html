@@ -7,14 +7,15 @@
     <style>
       :root {
         color-scheme: light;
-        --ink: #17212b;
-        --muted: #536575;
-        --line: #d7e0e8;
-        --panel: #f7fafc;
-        --app: #d8ecff;
-        --shared: #fff0b8;
-        --accent: #0f6d83;
-        --accent-soft: #e4f5f8;
+        --ink: #26394a;
+        --muted: #617080;
+        --line: #d9e0e6;
+        --panel: #fafbfc;
+        --app: #fff8eb;
+        --platform: #f3f9fc;
+        --shared: #f8f5fe;
+        --accent: #2b6f9e;
+        --accent-soft: #eef6fb;
         --bg: #ffffff;
       }
 
@@ -203,24 +204,29 @@
       }
 
       .legend-swatch.platform {
-        border-color: #1f5f8b;
-        background: #d8ecff;
+        border-color: #c47a12;
+        background: #fff8eb;
+      }
+
+      .legend-swatch.platform-code {
+        border-color: #2b6f9e;
+        background: #f3f9fc;
       }
 
       .legend-swatch.shared {
-        border-color: #9b7415;
-        background: #fff0b8;
+        border-color: #6e4bae;
+        background: #f8f5fe;
       }
 
       .legend-swatch.conceptual {
-        border-color: #5f97bd;
+        border-color: #8aa7bc;
         border-style: dashed;
-        background: #f6fbff;
+        background: #f8fbfd;
       }
 
       .legend-line {
         width: 24px;
-        border-top: 3px solid #4f46a5;
+        border-top: 2px solid #17324a;
       }
 
       .content {
@@ -333,7 +339,7 @@
         padding: 12px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: #f8fafc;
+        background: #ffffff;
         touch-action: pan-x pan-y;
       }
 
@@ -398,7 +404,8 @@
             <span class="pill">18 generated SVGs</span>
           </div>
           <div class="legend" aria-label="Diagram legend">
-            <span class="legend-item"><span class="legend-swatch platform" aria-hidden="true"></span>Platform code</span>
+            <span class="legend-item"><span class="legend-swatch platform" aria-hidden="true"></span>Application target</span>
+            <span class="legend-item"><span class="legend-swatch platform-code" aria-hidden="true"></span>Platform code</span>
             <span class="legend-item"><span class="legend-swatch shared" aria-hidden="true"></span>Shared KMP code</span>
             <span class="legend-item"><span class="legend-swatch conceptual" aria-hidden="true"></span>App-owned layer or feature</span>
             <span class="legend-item"><span class="legend-line" aria-hidden="true"></span>Call or data flow</span>

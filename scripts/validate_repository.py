@@ -140,6 +140,30 @@ def validate_svg(validator: Validator, path: Path) -> None:
         section,
         f"{relative(path)} must identify the Mermaid render inputs used to generate it",
     )
+    validator.require(
+        root_element.get("data-diagram-design") == "engineering-doc-v1",
+        section,
+        f"{relative(path)} must use the engineering document diagram design",
+    )
+    child_tags = [child.tag.rsplit("}", maxsplit=1)[-1] for child in root_element]
+    validator.require(
+        "title" in child_tags and "desc" in child_tags,
+        section,
+        f"{relative(path)} must include accessible title and description elements",
+    )
+    has_document_header = any(
+        element.get("data-document-header") == "true"
+        for element in root_element.iter()
+    )
+    has_diagram_legend = any(
+        element.get("data-diagram-legend") == "true"
+        for element in root_element.iter()
+    )
+    validator.require(
+        has_document_header and has_diagram_legend,
+        section,
+        f"{relative(path)} must include one document header and legend",
+    )
 
 
 def load_manifest(validator: Validator) -> list[dict[str, object]]:

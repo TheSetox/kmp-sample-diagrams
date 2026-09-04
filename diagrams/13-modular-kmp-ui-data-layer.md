@@ -94,19 +94,19 @@ flowchart TB
   IDetailsVM -->|"uses shared data"| DataKMP
   ADetailsVM -->|"uses shared data"| DataKMP
 
-  classDef app fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
-  classDef kmp fill:#fff0b8,stroke:#9b7415,color:#3b2a00,stroke-width:2px;
+  classDef app fill:#f3f9fc,stroke:#2b6f9e,color:#334155,stroke-width:1.4px;
+  classDef kmp fill:#f8f5fe,stroke:#6e4bae,color:#334155,stroke-width:1.4px;
   class AEntry,AHomeUI,AHomeVM,ATaskRepository,ATaskDataSource,ADetailsVM,IEntry,IHomeUI,IHomeVM,ITaskRepository,ITaskDataSource,IDetailsVM,DEntry,DHomeUI,DHomeVM,DTaskRepository,DTaskDataSource,DDetailsVM app;
   class App,Screen,State,Repository,Remote,Cache,Mapper kmp;
-  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
-  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
-  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
-  style AFeatureOne fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style AFeatureTwo fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style IFeatureOne fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style IFeatureTwo fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style DFeatureOne fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style DFeatureTwo fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style UIKMP fill:#fff7cc,stroke:#9b7415,stroke-width:3px
-  style DataKMP fill:#fff7cc,stroke:#9b7415,stroke-width:3px
+  style Android fill:#fff8eb,stroke:#c47a12,stroke-width:1.6px
+  style IOS fill:#fff8eb,stroke:#c47a12,stroke-width:1.6px
+  style Desktop fill:#fff8eb,stroke:#c47a12,stroke-width:1.6px
+  style AFeatureOne fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style AFeatureTwo fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style IFeatureOne fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style IFeatureTwo fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style DFeatureOne fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style DFeatureTwo fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style UIKMP fill:#f8f5fe,stroke:#6e4bae,stroke-width:1.6px
+  style DataKMP fill:#f8f5fe,stroke:#6e4bae,stroke-width:1.6px
 ```

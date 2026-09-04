@@ -4,35 +4,36 @@
   "fontFamily": "Arial, Helvetica Neue, Helvetica, sans-serif",
   "flowchart": {
     "curve": "linear",
-    "diagramPadding": 24,
+    "diagramPadding": 20,
     "htmlLabels": true,
-    "nodeSpacing": 32,
-    "rankSpacing": 64,
+    "nodeSpacing": 28,
+    "padding": 14,
+    "rankSpacing": 56,
     "subGraphTitleMargin": {
       "top": 12,
-      "bottom": 36
+      "bottom": 32
     },
     "useMaxWidth": false
   },
   "securityLevel": "strict",
   "theme": "base",
   "themeVariables": {
-    "background": "#f8fafc",
+    "background": "#ffffff",
     "clusterBkg": "#ffffff",
     "clusterBorder": "#94a3b8",
-    "edgeLabelBackground": "#f8fafc",
-    "fontSize": "18px",
-    "lineColor": "#475569",
+    "edgeLabelBackground": "transparent",
+    "fontSize": "16px",
+    "lineColor": "#17324a",
     "mainBkg": "#ffffff",
-    "nodeBorder": "#64748b",
-    "primaryBorderColor": "#1f5f8b",
-    "primaryColor": "#d8ecff",
-    "primaryTextColor": "#17212b",
-    "secondaryBorderColor": "#9b7415",
-    "secondaryColor": "#fff0b8",
-    "secondaryTextColor": "#3b2a00",
-    "tertiaryBorderColor": "#0f6d83",
-    "tertiaryColor": "#e4f5f8",
-    "tertiaryTextColor": "#17212b"
+    "nodeBorder": "#8092a1",
+    "primaryBorderColor": "#2b6f9e",
+    "primaryColor": "#f3f9fc",
+    "primaryTextColor": "#33475a",
+    "secondaryBorderColor": "#6e4bae",
+    "secondaryColor": "#f8f5fe",
+    "secondaryTextColor": "#6e4bae",
+    "tertiaryBorderColor": "#c47a12",
+    "tertiaryColor": "#fff8eb",
+    "tertiaryTextColor": "#c47a12"
   }
 }

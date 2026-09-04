@@ -7,6 +7,7 @@ The old PNG diagrams are preserved on the `feature/legacy-png-reference` branch,
 ## What Changed
 
 - Editable Mermaid source lives in [`diagrams/`](diagrams/) and is rendered into committed SVG images under [`diagrams/images/`](diagrams/images/).
+- Every generated SVG uses the same engineering-document frame, Arial typography, semantic module colors, transparent relationship captions, and thin dependency arrows.
 - [`index.html`](index.html) loads every generated image listed in [`diagrams/manifest.json`](diagrams/manifest.json), with links back to its Mermaid source.
 - Samples use Android, iOS, and desktop only.
 - Every sample `iosApp` contains a runnable SwiftUI `iosApp.xcodeproj` with an `iosApp` scheme.

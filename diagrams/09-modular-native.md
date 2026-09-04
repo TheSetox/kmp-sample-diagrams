@@ -70,15 +70,15 @@ flowchart TB
     end
   end
 
-  classDef native fill:#d8ecff,stroke:#1f5f8b,color:#0f2738,stroke-width:2px;
+  classDef native fill:#f3f9fc,stroke:#2b6f9e,color:#334155,stroke-width:1.4px;
   class AF1UI,AF1VM,AF1Repo,AF1Source,AF2UI,AF2VM,AF2Repo,AF2Source,IF1UI,IF1VM,IF1Repo,IF1Source,IF2UI,IF2VM,IF2Repo,IF2Source,DF1UI,DF1VM,DF1Repo,DF1Source,DF2UI,DF2VM,DF2Repo,DF2Source native;
-  style Android fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
-  style IOS fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
-  style Desktop fill:#edf7ff,stroke:#1f5f8b,stroke-width:3px
-  style AF1 fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style AF2 fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style IF1 fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style IF2 fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style DF1 fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
-  style DF2 fill:#f6fbff,stroke:#5f97bd,stroke-width:1.5px,stroke-dasharray:6 4
+  style Android fill:#fff8eb,stroke:#c47a12,stroke-width:1.6px
+  style IOS fill:#fff8eb,stroke:#c47a12,stroke-width:1.6px
+  style Desktop fill:#fff8eb,stroke:#c47a12,stroke-width:1.6px
+  style AF1 fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style AF2 fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style IF1 fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style IF2 fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style DF1 fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
+  style DF2 fill:#f8fbfd,stroke:#8aa7bc,stroke-width:1.2px,stroke-dasharray:5 4
 ```
