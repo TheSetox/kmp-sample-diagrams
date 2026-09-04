@@ -7,7 +7,7 @@ Domain and presentation are shared. Presentation contains shared Compose UI and 
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: LINEAR_SEGMENTS
+    nodePlacementStrategy: BRANDES_KOEPF
 ---
 flowchart LR
   subgraph Android[":androidApp\nAndroid app module"]

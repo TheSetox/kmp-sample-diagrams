@@ -7,7 +7,7 @@ Baseline modular architecture. Each app target groups feature-specific native co
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: LINEAR_SEGMENTS
+    nodePlacementStrategy: BRANDES_KOEPF
 ---
 flowchart TB
   subgraph Android[":androidApp\nAndroid app module"]

@@ -7,7 +7,7 @@ Presentation is shared in a KMP module. In this two-layer scenario, presentation
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: LINEAR_SEGMENTS
+    nodePlacementStrategy: BRANDES_KOEPF
 ---
 flowchart TB
   subgraph Android[":androidApp\nAndroid app module"]

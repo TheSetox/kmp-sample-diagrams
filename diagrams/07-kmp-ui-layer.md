@@ -7,7 +7,7 @@ Only Compose UI is shared with Compose Multiplatform. Native ViewModels call nat
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: LINEAR_SEGMENTS
+    nodePlacementStrategy: BRANDES_KOEPF
 ---
 flowchart TB
   subgraph Android[":androidApp\nAndroid app module"]

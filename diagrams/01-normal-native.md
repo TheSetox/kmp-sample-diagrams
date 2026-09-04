@@ -7,7 +7,7 @@ Baseline with separate platform app targets. There is no shared KMP module.
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: LINEAR_SEGMENTS
+    nodePlacementStrategy: SIMPLE
 ---
 flowchart TB
   subgraph Android[":androidApp\nAndroid app module"]

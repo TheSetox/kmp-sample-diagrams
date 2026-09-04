@@ -7,7 +7,7 @@ Domain and data are shared. Each app target keeps an app-owned presentation laye
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: LINEAR_SEGMENTS
+    nodePlacementStrategy: BRANDES_KOEPF
 ---
 flowchart LR
   subgraph Android[":androidApp\nAndroid app module"]

@@ -7,7 +7,7 @@ All platform entry points are separate app targets. Compose UI is shared, while 
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: LINEAR_SEGMENTS
+    nodePlacementStrategy: BRANDES_KOEPF
 ---
 flowchart TB
   subgraph Android[":androidApp\nAndroid app module"]

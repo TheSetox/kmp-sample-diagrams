@@ -7,7 +7,7 @@ Baseline layered architecture. Each app target owns presentation and data layers
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: LINEAR_SEGMENTS
+    nodePlacementStrategy: BRANDES_KOEPF
 ---
 flowchart TB
   subgraph Android[":androidApp\nAndroid app module"]

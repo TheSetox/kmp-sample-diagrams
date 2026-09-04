@@ -7,7 +7,7 @@ Baseline three-layer native architecture. Each app target owns presentation, dom
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: LINEAR_SEGMENTS
+    nodePlacementStrategy: SIMPLE
 ---
 flowchart TB
   subgraph Android[":androidApp\nAndroid app module"]

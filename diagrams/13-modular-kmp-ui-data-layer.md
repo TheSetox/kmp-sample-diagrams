@@ -7,7 +7,7 @@ Feature one stays native inside every platform app. Feature two shares UI and da
 config:
   layout: elk
   elk:
-    nodePlacementStrategy: LINEAR_SEGMENTS
+    nodePlacementStrategy: SIMPLE
 ---
 flowchart TB
   subgraph Android[":androidApp\nAndroid app module"]
