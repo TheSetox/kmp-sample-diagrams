@@ -1,0 +1,214 @@
+<svg data-render-input-sha256="10fef96d5c70f129ec3be1b7d00aedb7c27c7911ae1507cacb4e09fec53d6404" width="1652" height="1044" preserveAspectRatio="xMinYMin meet" role="img" aria-labelledby="diagram-18-preview-title diagram-18-preview-description" data-diagram-design="readme-preview-v1" id="my-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="flowchart" viewBox="-8 -8 1651.921875 1044" aria-roledescription="flowchart-v2" style="background-color: rgb(255, 255, 255);"><title id="diagram-18-preview-title">18 · Three Layer KMP Domain And Data</title><desc id="diagram-18-preview-description">Three Layer KMP Domain And Data. Cropped architecture preview without the document header. Solid arrows show calls or dependencies.</desc><defs><mask id="edge-label-gaps" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="-8" y="-8" width="1651.921875" height="1044"><rect x="-8" y="-8" width="1651.921875" height="1044" fill="white"/><rect x="555.6898380305703" y="517.7037682832392" width="101.53125" height="36" rx="2" fill="black"/><rect x="1468.390625" y="452.9074414142758" width="102.703125" height="36" rx="2" fill="black"/><rect x="307.09375" y="425.95376828323924" width="156.09375" height="36" rx="2" fill="black"/><rect x="307.09375" y="517.5" width="156.09375" height="36" rx="2" fill="black"/><rect x="307.09375" y="865.5" width="156.09375" height="36" rx="2" fill="black"/><rect x="760.578125" y="426.9074414142758" width="132.96875" height="36" rx="2" fill="black"/></mask></defs><style>#my-svg{font-family:Arial,Helvetica Neue,Helvetica,sans-serif;font-size:16px;fill:#33475a;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#my-svg .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#my-svg .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#my-svg .error-icon{fill:#fff8eb;}#my-svg .error-text{fill:#c47a12;stroke:#c47a12;}#my-svg .edge-thickness-normal{stroke-width:1px;}#my-svg .edge-thickness-thick{stroke-width:3.5px;}#my-svg .edge-pattern-solid{stroke-dasharray:0;}#my-svg .edge-thickness-invisible{stroke-width:0;fill:none;}#my-svg .edge-pattern-dashed{stroke-dasharray:3;}#my-svg .edge-pattern-dotted{stroke-dasharray:2;}#my-svg .marker{fill:#17324a;stroke:#17324a;}#my-svg .marker.cross{stroke:#17324a;}#my-svg svg{font-family:Arial,Helvetica Neue,Helvetica,sans-serif;font-size:16px;}#my-svg p{margin:0;}#my-svg .label{font-family:Arial,Helvetica Neue,Helvetica,sans-serif;color:#33475a;}#my-svg .cluster-label text{fill:#c47a12;}#my-svg .cluster-label span{color:#c47a12;}#my-svg .cluster-label span p{background-color:transparent;}#my-svg .label text,#my-svg span{fill:#33475a;color:#33475a;}#my-svg .node rect,#my-svg .node circle,#my-svg .node ellipse,#my-svg .node polygon,#my-svg .node path{fill:#ffffff;stroke:#8092a1;stroke-width:1px;}#my-svg .rough-node .label text,#my-svg .node .label text,#my-svg .image-shape .label,#my-svg .icon-shape .label{text-anchor:middle;}#my-svg .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#my-svg .rough-node .label,#my-svg .node .label,#my-svg .image-shape .label,#my-svg .icon-shape .label{text-align:center;}#my-svg .node.clickable{cursor:pointer;}#my-svg .root .anchor path{fill:#17324a!important;stroke-width:0;stroke:#17324a;}#my-svg .arrowheadPath{fill:#000000;}#my-svg .edgePath .path{stroke:#17324a;stroke-width:1px;}#my-svg .flowchart-link{stroke:#17324a;fill:none;}#my-svg .edgeLabel{background-color:transparent;text-align:center;}#my-svg .edgeLabel p{background-color:transparent;}#my-svg .edgeLabel rect{opacity:0.5;background-color:transparent;fill:transparent;}#my-svg .labelBkg{background-color:rgba(0, 0, 0, 0.5);}#my-svg .cluster rect{fill:#ffffff;stroke:#94a3b8;stroke-width:1px;}#my-svg .cluster text{fill:#c47a12;}#my-svg .cluster span{color:#c47a12;}#my-svg .node .collapsed-indicator{fill:#94a3b8;stroke:none;opacity:0.6;}#my-svg .node .collapsed-separator{stroke:#94a3b8;stroke-width:0.75px;}#my-svg div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:Arial,Helvetica Neue,Helvetica,sans-serif;font-size:12px;background:#fff8eb;border:1px solid #c47a12;border-radius:2px;pointer-events:none;z-index:100;}#my-svg .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#33475a;}#my-svg rect.text{fill:none;stroke-width:0;}#my-svg .icon-shape,#my-svg .image-shape{background-color:transparent;text-align:center;}#my-svg .icon-shape p,#my-svg .image-shape p{background-color:transparent;padding:2px;}#my-svg .icon-shape .label rect,#my-svg .image-shape .label rect{opacity:0.5;background-color:transparent;fill:transparent;}#my-svg .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#my-svg .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#my-svg .node .neo-node{stroke:#8092a1;}#my-svg [data-look="neo"].node rect,#my-svg [data-look="neo"].cluster rect,#my-svg [data-look="neo"].node polygon{stroke:url(#my-svg-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#my-svg [data-look="neo"].swimlane.cluster rect{filter:none;}#my-svg [data-look="neo"].node path{stroke:url(#my-svg-gradient);stroke-width:1px;}#my-svg [data-look="neo"].node .outer-path{filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#my-svg [data-look="neo"].node .neo-line path{stroke:#8092a1;filter:none;}#my-svg [data-look="neo"].node circle{stroke:url(#my-svg-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#my-svg [data-look="neo"].node circle .state-start{fill:#000000;}#my-svg [data-look="neo"].icon-shape .icon{fill:url(#my-svg-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#my-svg [data-look="neo"].icon-shape .icon-neo path{stroke:url(#my-svg-gradient);filter:drop-shadow( 1px 2px 2px rgba(185,185,185,1));}#my-svg :root{--mermaid-font-family:Arial,Helvetica Neue,Helvetica,sans-serif;}#my-svg .app&gt;*{fill:rgb(243, 249, 252)!important;stroke:rgb(43, 111, 158)!important;color:rgb(51, 65, 85)!important;stroke-width:1.4px!important;}#my-svg .app span{fill:rgb(243, 249, 252)!important;stroke:rgb(43, 111, 158)!important;color:rgb(51, 65, 85)!important;stroke-width:1.4px!important;}#my-svg .app tspan{fill:rgb(51, 65, 85)!important;}#my-svg .kmp&gt;*{fill:rgb(248, 245, 254)!important;stroke:rgb(110, 75, 174)!important;color:rgb(51, 65, 85)!important;stroke-width:1.4px!important;}#my-svg .kmp span{fill:rgb(248, 245, 254)!important;stroke:rgb(110, 75, 174)!important;color:rgb(51, 65, 85)!important;stroke-width:1.4px!important;}#my-svg .kmp tspan{fill:rgb(51, 65, 85)!important;}</style><g><marker id="my-svg_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-pointEnd-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="11.5" refY="7" markerUnits="userSpaceOnUse" markerWidth="10.5" markerHeight="14" orient="auto"><path d="M 0 0 L 11.5 7 L 0 14 z" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-pointStart-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="1" refY="7" markerUnits="userSpaceOnUse" markerWidth="11.5" markerHeight="14" orient="auto"><polygon points="0,7 11.5,14 11.5,0" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-circleEnd-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refY="5" refX="12.25" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-circleStart-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-2" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath" style="stroke-width: 0; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath" style="stroke-width: 2; stroke-dasharray: 1, 0;"/></marker><marker id="my-svg_flowchart-v2-crossEnd-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="17.7" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5;"/></marker><marker id="my-svg_flowchart-v2-crossStart-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="-3.5" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath" style="stroke-width: 2.5; stroke-dasharray: 1, 0;"/></marker><g class="root"><g class="clusters"><g class="cluster" id="my-svg-Data" data-look="classic"><rect style="fill:#f8f5fe !important;stroke:#6e4bae !important;stroke-width:1.6px !important" x="927.546875" y="277.9074414142758" width="696.3750000000001" height="291"/><g class="cluster-label" transform="translate(941.546875, 289.9074414142758)"><foreignObject width="668.3750000000001" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5;"><span class="nodeLabel"><p>:sharedData<br />KMP library module</p></span></div></foreignObject></g></g><g class="cluster" id="my-svg-Domain" data-look="classic"><rect style="fill:#f8f5fe !important;stroke:#6e4bae !important;stroke-width:1.6px !important" x="497.1875" y="356.70376828323924" width="229.390625" height="263"/><g class="cluster-label" transform="translate(511.1875, 368.70376828323924)"><foreignObject width="201.390625" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5;"><span class="nodeLabel"><p>:sharedDomain<br />KMP library module</p></span></div></foreignObject></g></g><g class="cluster" id="my-svg-Desktop" data-look="classic"><rect style="fill:#fff8eb !important;stroke:#c47a12 !important;stroke-width:1.6px !important" x="17.03125" y="12.000000000000028" width="256.0625" height="308"/><g class="cluster-label" transform="translate(31.03125, 24.00000000000003)"><foreignObject width="228.0625" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5;"><span class="nodeLabel"><p>:desktopApp<br />Desktop app module</p></span></div></foreignObject></g></g><g class="cluster" id="my-svg-IOS" data-look="classic"><rect style="fill:#fff8eb !important;stroke:#c47a12 !important;stroke-width:1.6px !important" x="12" y="360" width="261.09375" height="308"/><g class="cluster-label" transform="translate(26, 372)"><foreignObject width="233.09375" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5;"><span class="nodeLabel"><p>iosApp<br />iOS Xcode target</p></span></div></foreignObject></g></g><g class="cluster" id="my-svg-Android" data-look="classic"><rect style="fill:#fff8eb !important;stroke:#c47a12 !important;stroke-width:1.6px !important" x="31.546875" y="708" width="241.546875" height="308"/><g class="cluster-label" transform="translate(45.546875, 720)"><foreignObject width="213.546875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5;"><span class="nodeLabel"><p>:androidApp<br />Android app module</p></span></div></foreignObject></g></g><g class="cluster" id="my-svg-DPresentation" data-look="classic"><rect style="fill:#f8fbfd !important;stroke:#8aa7bc !important;stroke-width:1.2px !important;stroke-dasharray:5 4 !important" x="29.03125" y="75.00000000000003" width="232.0625" height="233"/><g class="cluster-label" transform="translate(43.03125, 87.00000000000003)"><foreignObject width="204.0625" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5;"><span class="nodeLabel"><p>Presentation layer<br />app-owned code</p></span></div></foreignObject></g></g><g class="cluster" id="my-svg-IPresentation" data-look="classic"><rect style="fill:#f8fbfd !important;stroke:#8aa7bc !important;stroke-width:1.2px !important;stroke-dasharray:5 4 !important" x="24" y="423" width="237.09375" height="233"/><g class="cluster-label" transform="translate(38, 435)"><foreignObject width="209.09375" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5;"><span class="nodeLabel"><p>Presentation layer<br />app-owned code</p></span></div></foreignObject></g></g><g class="cluster" id="my-svg-APresentation" data-look="classic"><rect style="fill:#f8fbfd !important;stroke:#8aa7bc !important;stroke-width:1.2px !important;stroke-dasharray:5 4 !important" x="43.546875" y="771" width="217.546875" height="233"/><g class="cluster-label" transform="translate(57.546875, 783)"><foreignObject width="189.546875" height="48"><div xmlns="http://www.w3.org/1999/xhtml" style="display: table-cell; white-space: nowrap; line-height: 1.5;"><span class="nodeLabel"><p>Presentation layer<br />app-owned code</p></span></div></foreignObject></g></g></g><g class="edges edgePath" mask="url(#edge-label-gaps)"><path d="M152.3203125,910L152.3203125,936" id="my-svg-L_AUI_AVM_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_AUI_AVM_0" data-points="W3sieCI6MTUyLjMyMDMxMjUsInkiOjkxMH0seyJ4IjoxNTIuMzIwMzEyNSwieSI6OTQwfV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M142.546875,562L142.546875,588" id="my-svg-L_IUI_IVM_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_IUI_IVM_0" data-points="W3sieCI6MTQyLjU0Njg3NSwieSI6NTYyfSx7IngiOjE0Mi41NDY4NzUsInkiOjU5Mn1d" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M145.0625,214.00000000000003L145.0625,240.00000000000003" id="my-svg-L_DUI_DVM_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_DUI_DVM_0" data-points="W3sieCI6MTQ1LjA2MjUsInkiOjIxNC4wMDAwMDAwMDAwMDAwM30seyJ4IjoxNDUuMDYyNSwieSI6MjQ0LjAwMDAwMDAwMDAwMDAzfV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M611.8828125,471.70376828323924L611.8828125,484.1072810485244Q611.8828125,486.70376828323924 609.2863252652851,486.70376828323924L609.2863252652851,486.70376828323924Q606.6898380305703,486.70376828323924 606.6898380305703,489.3002555179541L606.6898380305703,551.7037682832392" id="my-svg-L_UseCase_Entity_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_UseCase_Entity_0" data-points="W3sieCI6NjExLjg4MjgxMjUsInkiOjQ3MS43MDM3NjgyODMyMzkyNH0seyJ4Ijo2MTEuODgyODEyNSwieSI6NDg2LjcwMzc2ODI4MzIzOTI0fSx7IngiOjYwNi42ODk4MzgwMzA1NzAzLCJ5Ijo0ODYuNzAzNzY4MjgzMjM5MjR9LHsieCI6NjA2LjY4OTgzODAzMDU3MDMsInkiOjU1NS43MDM3NjgyODMyMzkyfV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1321.234375,392.9074414142758L1321.234375,418.9074414142758" id="my-svg-L_Repository_Remote_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_Repository_Remote_0" data-points="W3sieCI6MTMyMS4yMzQzNzUsInkiOjM5Mi45MDc0NDE0MTQyNzU4fSx7IngiOjEzMjEuMjM0Mzc1LCJ5Ijo0MjIuOTA3NDQxNDE0Mjc1OH1d" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1275.96484375,392.9074414142758L1275.96484375,400.83637360241033Q1275.96484375,407.9074414142758 1268.8937759381345,407.9074414142758L1059.3125,407.9074414142758Q1053.8125,407.9074414142758 1053.8125,413.4074414142758L1053.8125,418.9074414142758" id="my-svg-L_Repository_Cache_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_Repository_Cache_0" data-points="W3sieCI6MTI3NS45NjQ4NDM3NSwieSI6MzkyLjkwNzQ0MTQxNDI3NTh9LHsieCI6MTI3NS45NjQ4NDM3NSwieSI6NDA3LjkwNzQ0MTQxNDI3NTh9LHsieCI6MTA1My44MTI1LCJ5Ijo0MDcuOTA3NDQxNDE0Mjc1OH0seyJ4IjoxMDUzLjgxMjUsInkiOjQyMi45MDc0NDE0MTQyNzU4fV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1366.50390625,392.9074414142758L1366.50390625,400.83637360241033Q1366.50390625,407.9074414142758 1373.5749740618655,407.9074414142758L1512.8195571881345,407.9074414142758Q1519.890625,407.9074414142758 1519.890625,414.9785092261413L1519.890625,500.9074414142758" id="my-svg-L_Repository_Mapper_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_Repository_Mapper_0" data-points="W3sieCI6MTM2Ni41MDM5MDYyNSwieSI6MzkyLjkwNzQ0MTQxNDI3NTh9LHsieCI6MTM2Ni41MDM5MDYyNSwieSI6NDA3LjkwNzQ0MTQxNDI3NTh9LHsieCI6MTUxOS44OTA2MjUsInkiOjQwNy45MDc0NDE0MTQyNzU4fSx7IngiOjE1MTkuODkwNjI1LCJ5Ijo1MDQuOTA3NDQxNDE0Mjc1OH1d" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M273.09375,166.00000000000003L286.0226821881345,166.00000000000003Q293.09375,166.00000000000003 293.09375,173.0710678118655L293.09375,415.38270047137377Q293.09375,422.45376828323924 300.1648178118655,422.45376828323924L493.1875,422.45376828323924" id="my-svg-L_Desktop_Domain_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_Desktop_Domain_0" data-points="W3sieCI6MjczLjA5Mzc1LCJ5IjoxNjYuMDAwMDAwMDAwMDAwMDN9LHsieCI6MjkzLjA5Mzc1LCJ5IjoxNjYuMDAwMDAwMDAwMDAwMDN9LHsieCI6MjkzLjA5Mzc1LCJ5Ijo0MjIuNDUzNzY4MjgzMjM5MjR9LHsieCI6NDk3LjE4NzUsInkiOjQyMi40NTM3NjgyODMyMzkyNH1d" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M273.09375,514L470.1164321881345,514Q477.1875,514 477.1875,506.9289321881345L477.1875,495.2748360951047Q477.1875,488.20376828323924 484.2585678118655,488.20376828323924L493.1875,488.20376828323924" id="my-svg-L_IOS_Domain_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_IOS_Domain_0" data-points="W3sieCI6MjczLjA5Mzc1LCJ5Ijo1MTR9LHsieCI6NDc3LjE4NzUsInkiOjUxNH0seyJ4Ijo0NzcuMTg3NSwieSI6NDg4LjIwMzc2ODI4MzIzOTI0fSx7IngiOjQ5Ny4xODc1LCJ5Ijo0ODguMjAzNzY4MjgzMjM5MjR9XQ==" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M273.09375,862L470.1164321881345,862Q477.1875,862 477.1875,854.9289321881345L477.1875,561.0248360951048Q477.1875,553.9537682832392 484.2585678118655,553.9537682832392L493.1875,553.9537682832392" id="my-svg-L_Android_Domain_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_Android_Domain_0" data-points="W3sieCI6MjczLjA5Mzc1LCJ5Ijo4NjJ9LHsieCI6NDc3LjE4NzUsInkiOjg2Mn0seyJ4Ijo0NzcuMTg3NSwieSI6NTUzLjk1Mzc2ODI4MzIzOTJ9LHsieCI6NDk3LjE4NzUsInkiOjU1My45NTM3NjgyODMyMzkyfV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M726.578125,488.20376828323924L739.5070571881345,488.20376828323924Q746.578125,488.20376828323924 746.578125,481.13270047137377L746.578125,430.4785092261413Q746.578125,423.4074414142758 753.6491928118655,423.4074414142758L923.546875,423.4074414142758" id="my-svg-L_Domain_Data_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" style=";" data-edge="true" data-et="edge" data-id="L_Domain_Data_0" data-points="W3sieCI6NzI2LjU3ODEyNSwieSI6NDg4LjIwMzc2ODI4MzIzOTI0fSx7IngiOjc0Ni41NzgxMjUsInkiOjQ4OC4yMDM3NjgyODMyMzkyNH0seyJ4Ijo3NDYuNTc4MTI1LCJ5Ijo0MjMuNDA3NDQxNDE0Mjc1OH0seyJ4Ijo5MjcuNTQ2ODc1LCJ5Ijo0MjMuNDA3NDQxNDE0Mjc1OH1d" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/></g><g class="edgeLabels"><g class="edgeLabel" transform="translate(606.4554630305703, 535.7037682832392)"><g class="label" data-id="L_UseCase_Entity_0" transform="translate(-44.765625, -12)"><foreignObject width="89.53125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>creates Task</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(1519.7421875, 470.9074414142758)"><g class="label" data-id="L_Repository_Mapper_0" transform="translate(-45.3515625, -12)"><foreignObject width="90.703125" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>maps results</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(385.140625, 443.95376828323924)"><g class="label" data-id="L_Desktop_Domain_0" transform="translate(-72.046875, -12)"><foreignObject width="144.09375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>uses shared domain</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(385.140625, 535.5)"><g class="label" data-id="L_IOS_Domain_0" transform="translate(-72.046875, -12)"><foreignObject width="144.09375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>uses shared domain</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(385.140625, 883.5)"><g class="label" data-id="L_Android_Domain_0" transform="translate(-72.046875, -12)"><foreignObject width="144.09375" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>uses shared domain</p></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(827.0625, 444.9074414142758)"><g class="label" data-id="L_Domain_Data_0" transform="translate(-60.484375, -12)"><foreignObject width="120.96875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;"><span class="edgeLabel"><p>calls shared data</p></span></div></foreignObject></g></g></g><g class="nodes"><g class="node default app" id="my-svg-flowchart-AUI-0" data-look="classic" transform="translate(152.3203125, 872)"><rect class="basic label-container" style="fill:#f3f9fc !important;stroke:#2b6f9e !important;stroke-width:1.4px !important" x="-83.1328125" y="-38" width="166.265625" height="76"/><g class="label" style="color:#334155 !important" transform="translate(-55.1328125, -24)"><rect/><foreignObject width="110.265625" height="48"><div style="color: rgb(51, 65, 85) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:#334155 !important" class="nodeLabel"><p>HomeScreen.kt<br />Compose UI</p></span></div></foreignObject></g></g><g class="node default app" id="my-svg-flowchart-AVM-1" data-look="classic" transform="translate(152.3203125, 966)"><rect class="basic label-container" style="fill:#f3f9fc !important;stroke:#2b6f9e !important;stroke-width:1.4px !important" x="-96.7734375" y="-26" width="193.546875" height="52"/><g class="label" style="color:#334155 !important" transform="translate(-68.7734375, -12)"><rect/><foreignObject width="137.546875" height="24"><div style="color: rgb(51, 65, 85) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:#334155 !important" class="nodeLabel"><p>HomeViewModel.kt</p></span></div></foreignObject></g></g><g class="node default app" id="my-svg-flowchart-IUI-4" data-look="classic" transform="translate(142.546875, 524)"><rect class="basic label-container" style="fill:#f3f9fc !important;stroke:#2b6f9e !important;stroke-width:1.4px !important" x="-91" y="-38" width="182" height="76"/><g class="label" style="color:#334155 !important" transform="translate(-63, -24)"><rect/><foreignObject width="126" height="48"><div style="color: rgb(51, 65, 85) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:#334155 !important" class="nodeLabel"><p>ContentView.swift<br />SwiftUI</p></span></div></foreignObject></g></g><g class="node default app" id="my-svg-flowchart-IVM-5" data-look="classic" transform="translate(142.546875, 618)"><rect class="basic label-container" style="fill:#f3f9fc !important;stroke:#2b6f9e !important;stroke-width:1.4px !important" x="-106.546875" y="-26" width="213.09375" height="52"/><g class="label" style="color:#334155 !important" transform="translate(-78.546875, -12)"><rect/><foreignObject width="157.09375" height="24"><div style="color: rgb(51, 65, 85) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:#334155 !important" class="nodeLabel"><p>HomeViewModel.swift</p></span></div></foreignObject></g></g><g class="node default app" id="my-svg-flowchart-DUI-8" data-look="classic" transform="translate(145.0625, 176.00000000000003)"><rect class="basic label-container" style="fill:#f3f9fc !important;stroke:#2b6f9e !important;stroke-width:1.4px !important" x="-104.03125" y="-38" width="208.0625" height="76"/><g class="label" style="color:#334155 !important" transform="translate(-76.03125, -24)"><rect/><foreignObject width="152.0625" height="48"><div style="color: rgb(51, 65, 85) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:#334155 !important" class="nodeLabel"><p>HomeWindow.kt<br />Compose Desktop UI</p></span></div></foreignObject></g></g><g class="node default app" id="my-svg-flowchart-DVM-9" data-look="classic" transform="translate(145.0625, 270)"><rect class="basic label-container" style="fill:#f3f9fc !important;stroke:#2b6f9e !important;stroke-width:1.4px !important" x="-96.7734375" y="-26" width="193.546875" height="52"/><g class="label" style="color:#334155 !important" transform="translate(-68.7734375, -12)"><rect/><foreignObject width="137.546875" height="24"><div style="color: rgb(51, 65, 85) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:#334155 !important" class="nodeLabel"><p>HomeViewModel.kt</p></span></div></foreignObject></g></g><g class="node default kmp" id="my-svg-flowchart-UseCase-12" data-look="classic" transform="translate(611.8828125, 445.70376828323924)"><rect class="basic label-container" style="fill:#f8f5fe !important;stroke:#6e4bae !important;stroke-width:1.4px !important" x="-102.6953125" y="-26" width="205.390625" height="52"/><g class="label" style="color:#334155 !important" transform="translate(-74.6953125, -12)"><rect/><foreignObject width="149.390625" height="24"><div style="color: rgb(51, 65, 85) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:#334155 !important" class="nodeLabel"><p>GetTasksUseCase.kt</p></span></div></foreignObject></g></g><g class="node default kmp" id="my-svg-flowchart-Entity-13" data-look="classic" transform="translate(606.6898380305703, 581.7037682832392)"><rect class="basic label-container" style="fill:#f8f5fe !important;stroke:#6e4bae !important;stroke-width:1.4px !important" x="-52.8984375" y="-26" width="105.796875" height="52"/><g class="label" style="color:#334155 !important" transform="translate(-24.8984375, -12)"><rect/><foreignObject width="49.796875" height="24"><div style="color: rgb(51, 65, 85) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:#334155 !important" class="nodeLabel"><p>Task.kt</p></span></div></foreignObject></g></g><g class="node default kmp" id="my-svg-flowchart-Repository-16" data-look="classic" transform="translate(1321.234375, 366.9074414142758)"><rect class="basic label-container" style="fill:#f8f5fe !important;stroke:#6e4bae !important;stroke-width:1.4px !important" x="-90.5390625" y="-26" width="181.078125" height="52"/><g class="label" style="color:#334155 !important" transform="translate(-62.5390625, -12)"><rect/><foreignObject width="125.078125" height="24"><div style="color: rgb(51, 65, 85) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:#334155 !important" class="nodeLabel"><p>TaskRepository.kt</p></span></div></foreignObject></g></g><g class="node default kmp" id="my-svg-flowchart-Remote-17" data-look="classic" transform="translate(1321.234375, 448.9074414142758)"><rect class="basic label-container" style="fill:#f8f5fe !important;stroke:#6e4bae !important;stroke-width:1.4px !important" x="-123.15625" y="-26" width="246.3125" height="52"/><g class="label" style="color:#334155 !important" transform="translate(-95.15625, -12)"><rect/><foreignObject width="190.3125" height="24"><div style="color: rgb(51, 65, 85) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:#334155 !important" class="nodeLabel"><p>RemoteTaskDataSource.kt</p></span></div></foreignObject></g></g><g class="node default kmp" id="my-svg-flowchart-Cache-18" data-look="classic" transform="translate(1053.8125, 448.9074414142758)"><rect class="basic label-container" style="fill:#f8f5fe !important;stroke:#6e4bae !important;stroke-width:1.4px !important" x="-114.265625" y="-26" width="228.53125" height="52"/><g class="label" style="color:#334155 !important" transform="translate(-86.265625, -12)"><rect/><foreignObject width="172.53125" height="24"><div style="color: rgb(51, 65, 85) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:#334155 !important" class="nodeLabel"><p>LocalTaskDataSource.kt</p></span></div></foreignObject></g></g><g class="node default kmp" id="my-svg-flowchart-Mapper-19" data-look="classic" transform="translate(1519.890625, 530.9074414142758)"><rect class="basic label-container" style="fill:#f8f5fe !important;stroke:#6e4bae !important;stroke-width:1.4px !important" x="-92.03125" y="-26" width="184.0625" height="52"/><g class="label" style="color:#334155 !important" transform="translate(-64.03125, -12)"><rect/><foreignObject width="128.0625" height="24"><div style="color: rgb(51, 65, 85) !important; display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" xmlns="http://www.w3.org/1999/xhtml"><span style="color:#334155 !important" class="nodeLabel"><p>TaskDtoMapper.kt</p></span></div></foreignObject></g></g></g></g></g><defs><filter id="my-svg-drop-shadow" height="130%" width="130%"><feDropShadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"/></filter></defs><defs><filter id="my-svg-drop-shadow-small" height="150%" width="150%"><feDropShadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"/></filter></defs><linearGradient id="my-svg-gradient" gradientUnits="objectBoundingBox" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2b6f9e" stop-opacity="1"/><stop offset="100%" stop-color="#6e4bae" stop-opacity="1"/></linearGradient><style>.cluster rect {
+  rx: 10px;
+  ry: 10px;
+}
+
+.node rect,
+.node polygon,
+.node path {
+  filter: none;
+  rx: 7px;
+  ry: 7px;
+}
+
+.nodeLabel,
+.nodeLabel *,
+.cluster-label,
+.cluster-label *,
+.edgeLabel,
+.edgeLabel *,
+.flowchartTitleText,
+.mermaidTooltip {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+}
+
+.nodeLabel,
+.edgeLabel {
+  line-height: 1.28;
+}
+
+.nodeLabel {
+  color: #33475a !important;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.nodeLabel p {
+  color: #617080;
+  margin: 0;
+}
+
+.node .label foreignObject {
+  overflow: visible !important;
+}
+
+.nodeLabel p::first-line {
+  color: #33475a;
+  font-weight: 600;
+}
+
+.node.app rect,
+.node.native rect {
+  fill: #f3f9fc !important;
+  stroke: #2b6f9e !important;
+  stroke-width: 1.4px !important;
+}
+
+.node.app .nodeLabel p::first-line,
+.node.native .nodeLabel p::first-line {
+  color: #2b6f9e;
+}
+
+.node.kmp rect,
+.node.kmp polygon,
+.node.kmp path {
+  fill: #f8f5fe !important;
+  stroke: #6e4bae !important;
+  stroke-width: 1.4px !important;
+}
+
+.node.kmp .nodeLabel p::first-line {
+  color: #6e4bae;
+}
+
+.cluster-label {
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.cluster-label foreignObject &gt; div {
+  background: transparent !important;
+  text-align: left !important;
+}
+
+.cluster-label foreignObject {
+  overflow: visible !important;
+}
+
+.cluster-label .nodeLabel,
+.cluster-label .nodeLabel p {
+  color: #788592;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left !important;
+}
+
+.cluster-label .nodeLabel p::first-line {
+  color: #566777;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cluster:is(
+  [id$="-Android"],
+  [id$="-IOS"],
+  [id$="-Desktop"]
+) &gt; rect {
+  fill: #fff8eb !important;
+  stroke: #c47a12 !important;
+  stroke-width: 1.6px !important;
+}
+
+.cluster:is(
+  [id$="-Android"],
+  [id$="-IOS"],
+  [id$="-Desktop"]
+) .cluster-label .nodeLabel p::first-line {
+  color: #c47a12;
+}
+
+.cluster:is(
+  [id$="-KMP"],
+  [id$="-Data"],
+  [id$="-DataKMP"],
+  [id$="-Domain"],
+  [id$="-Presentation"],
+  [id$="-UIKMP"]
+) &gt; rect {
+  fill: #f8f5fe !important;
+  stroke: #6e4bae !important;
+  stroke-width: 1.6px !important;
+}
+
+.cluster:is(
+  [id$="-KMP"],
+  [id$="-Data"],
+  [id$="-DataKMP"],
+  [id$="-Domain"],
+  [id$="-Presentation"],
+  [id$="-UIKMP"]
+) .cluster-label .nodeLabel p::first-line {
+  color: #6e4bae;
+}
+
+.cluster:is(
+  [id$="-AData"],
+  [id$="-ADomain"],
+  [id$="-AF1"],
+  [id$="-AF2"],
+  [id$="-AFeatureOne"],
+  [id$="-AFeatureTwo"],
+  [id$="-APresentation"],
+  [id$="-DData"],
+  [id$="-DDomain"],
+  [id$="-DF1"],
+  [id$="-DF2"],
+  [id$="-DFeatureOne"],
+  [id$="-DFeatureTwo"],
+  [id$="-DPresentation"],
+  [id$="-IData"],
+  [id$="-IDomain"],
+  [id$="-IF1"],
+  [id$="-IF2"],
+  [id$="-IFeatureOne"],
+  [id$="-IFeatureTwo"],
+  [id$="-IPresentation"]
+) &gt; rect {
+  fill: #f8fbfd !important;
+  stroke: #8aa7bc !important;
+  stroke-dasharray: 5 4 !important;
+  stroke-width: 1.2px !important;
+}
+
+.edgeLabel {
+  color: #31465a !important;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.edgeLabel,
+.edgeLabel foreignObject &gt; div,
+.edgeLabel span,
+.edgeLabel p,
+.edgeLabel .labelBkg {
+  background: transparent !important;
+}
+
+.edgeLabel foreignObject {
+  overflow: visible !important;
+}
+
+.edgeLabel rect {
+  fill: transparent !important;
+  opacity: 0 !important;
+}
+
+.edgeLabel p {
+  color: #31465a !important;
+  margin: 0;
+}
+
+.flowchart-link {
+  stroke: #17324a !important;
+  stroke-width: 1.55px !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+marker path {
+  fill: #17324a !important;
+  stroke: #17324a !important;
+}
+</style></svg>

@@ -20,6 +20,7 @@ IGNORED_DIRECTORY_NAMES = {
     ".git",
     ".gradle",
     ".idea",
+    "_site",
     "__pycache__",
     "build",
     "Frameworks",
@@ -102,8 +103,14 @@ def positive_svg_dimension(value: str | None) -> bool:
     return match is not None and float(match.group(1)) > 0
 
 
-def validate_svg(validator: Validator, path: Path) -> None:
-    section = "images"
+def validate_svg(
+    validator: Validator,
+    path: Path,
+    *,
+    expected_design: str,
+    require_document_chrome: bool,
+) -> None:
+    section = "images" if require_document_chrome else "previews"
     try:
         root_element = ElementTree.parse(path).getroot()
     except (OSError, ElementTree.ParseError) as error:
@@ -141,9 +148,9 @@ def validate_svg(validator: Validator, path: Path) -> None:
         f"{relative(path)} must identify the Mermaid render inputs used to generate it",
     )
     validator.require(
-        root_element.get("data-diagram-design") == "engineering-doc-v1",
+        root_element.get("data-diagram-design") == expected_design,
         section,
-        f"{relative(path)} must use the engineering document diagram design",
+        f"{relative(path)} must use the {expected_design} diagram design",
     )
     child_tags = [child.tag.rsplit("}", maxsplit=1)[-1] for child in root_element]
     validator.require(
@@ -151,19 +158,28 @@ def validate_svg(validator: Validator, path: Path) -> None:
         section,
         f"{relative(path)} must include accessible title and description elements",
     )
-    has_document_header = any(
+    document_headers = [
         element.get("data-document-header") == "true"
         for element in root_element.iter()
-    )
-    has_diagram_legend = any(
+    ]
+    diagram_legends = [
         element.get("data-diagram-legend") == "true"
         for element in root_element.iter()
-    )
-    validator.require(
-        has_document_header and has_diagram_legend,
-        section,
-        f"{relative(path)} must include one document header and legend",
-    )
+    ]
+    document_header_count = sum(document_headers)
+    diagram_legend_count = sum(diagram_legends)
+    if require_document_chrome:
+        validator.require(
+            document_header_count == 1 and diagram_legend_count == 1,
+            section,
+            f"{relative(path)} must include exactly one document header and legend",
+        )
+    else:
+        validator.require(
+            document_header_count == 0 and diagram_legend_count == 0,
+            section,
+            f"{relative(path)} must be a tightly cropped graph without document chrome",
+        )
 
 
 def load_manifest(validator: Validator) -> list[dict[str, object]]:
@@ -223,6 +239,7 @@ def validate_inventory(validator: Validator, manifest: list[dict[str, object]]) 
     section = "inventory"
     manifest_files: set[str] = set()
     manifest_images: set[str] = set()
+    manifest_previews: set[str] = set()
     manifest_samples: set[str] = set()
     scenario_ids: list[int] = []
 
@@ -239,6 +256,8 @@ def validate_inventory(validator: Validator, manifest: list[dict[str, object]]) 
 
         manifest_files.add(diagram_name)
         manifest_images.add(image_name)
+        preview_name = f"previews/{Path(image_name).name}"
+        manifest_previews.add(preview_name)
         manifest_samples.add(sample_name)
         validator.require(
             Path(diagram_name).parent == Path("."),
@@ -287,11 +306,25 @@ def validate_inventory(validator: Validator, manifest: list[dict[str, object]]) 
 
         diagram_path = DIAGRAMS_DIR / diagram_name
         image_path = DIAGRAMS_DIR / image_name
+        preview_path = DIAGRAMS_DIR / preview_name
         sample_path = ROOT / sample_name
         validator.require(diagram_path.is_file(), section, f"missing {relative(diagram_path)}")
         validator.require(image_path.is_file(), section, f"missing {relative(image_path)}")
         if image_path.is_file():
-            validate_svg(validator, image_path)
+            validate_svg(
+                validator,
+                image_path,
+                expected_design="engineering-doc-v1",
+                require_document_chrome=True,
+            )
+        validator.require(preview_path.is_file(), section, f"missing {relative(preview_path)}")
+        if preview_path.is_file():
+            validate_svg(
+                validator,
+                preview_path,
+                expected_design="readme-preview-v1",
+                require_document_chrome=False,
+            )
         validator.require(sample_path.is_dir(), section, f"missing {relative(sample_path)}")
         for required in (
             "README.md",
@@ -310,6 +343,11 @@ def validate_inventory(validator: Validator, manifest: list[dict[str, object]]) 
     actual_images = {
         path.relative_to(DIAGRAMS_DIR).as_posix()
         for path in (DIAGRAMS_DIR / "images").glob("*.svg")
+        if path.is_file()
+    }
+    actual_previews = {
+        path.relative_to(DIAGRAMS_DIR).as_posix()
+        for path in (DIAGRAMS_DIR / "previews").glob("*.svg")
         if path.is_file()
     }
     actual_samples = (
@@ -332,6 +370,12 @@ def validate_inventory(validator: Validator, manifest: list[dict[str, object]]) 
         section,
         "rendered image inventory differs from manifest; "
         f"unlisted={sorted(actual_images - manifest_images)}, missing={sorted(manifest_images - actual_images)}",
+    )
+    validator.require(
+        actual_previews == manifest_previews,
+        section,
+        "README preview inventory differs from manifest-derived paths; "
+        f"unlisted={sorted(actual_previews - manifest_previews)}, missing={sorted(manifest_previews - actual_previews)}",
     )
     validator.require(
         actual_samples == manifest_samples,
@@ -605,7 +649,7 @@ def main() -> int:
 
     print(
         "Repository validation passed: "
-        f"{len(manifest)} synchronized diagrams, SVG images, samples, and shared iOS schemes."
+        f"{len(manifest)} synchronized diagrams, full SVGs, README previews, samples, and shared iOS schemes."
     )
     return 0
 

@@ -10,6 +10,7 @@ const rendererPath = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(rendererPath), "..");
 const diagramsDir = path.join(repoRoot, "diagrams");
 const imagesDir = path.join(diagramsDir, "images");
+const previewsDir = path.join(diagramsDir, "previews");
 const manifest = JSON.parse(fs.readFileSync(path.join(diagramsDir, "manifest.json"), "utf8"));
 const configPath = path.join(diagramsDir, "mermaid-config.json");
 const cssPath = path.join(diagramsDir, "mermaid-theme.css");
@@ -23,8 +24,9 @@ const rendererSourceSha256 = createHash("sha256")
   .digest("hex");
 const mermaidCliVersion = packageMetadata.devDependencies?.["@mermaid-js/mermaid-cli"];
 const renderSettings = { backgroundColor: "#ffffff", width: 1800 };
-const renderFingerprintSchema = 3;
+const renderFingerprintSchema = 4;
 const diagramDesign = "engineering-doc-v1";
+const previewDesign = "readme-preview-v1";
 const mmdcPath = path.join(repoRoot, "node_modules", ".bin", process.platform === "win32" ? "mmdc.cmd" : "mmdc");
 const checkOnly = process.argv.includes("--check");
 
@@ -246,6 +248,35 @@ function frameDiagramSvg(svg, metadata) {
   return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${canvasWidth}" height="${canvasHeight}" viewBox="0 0 ${canvasWidth} ${canvasHeight}" role="img" aria-labelledby="${titleId} ${descriptionId}" data-diagram-design="${diagramDesign}" style="background:#ffffff"><title id="${titleId}">${escapeXml(`${metadata.scenario} · ${metadata.title}`)}</title><desc id="${descriptionId}">${escapeXml(accessibleDescription)}</desc><rect width="${canvasWidth}" height="${canvasHeight}" fill="#ffffff"/>${header}${innerSvg}</svg>`;
 }
 
+function readmePreviewSvg(svg, metadata) {
+  const opening = svg.match(/<svg\b[^>]*>/)?.[0];
+  if (!opening) throw new Error("Rendered SVG does not contain an <svg> root.");
+  const viewBox = opening.match(/\bviewBox="([-+\deE.]+)\s+([-+\deE.]+)\s+([-+\deE.]+)\s+([-+\deE.]+)"/);
+  if (!viewBox) throw new Error("Rendered SVG does not contain a numeric viewBox.");
+
+  const graphWidth = Math.ceil(Number(viewBox[3]));
+  const graphHeight = Math.ceil(Number(viewBox[4]));
+  const titleId = `diagram-${metadata.scenario}-preview-title`;
+  const descriptionId = `diagram-${metadata.scenario}-preview-description`;
+  const accessibleDescription = `${metadata.title}. Cropped architecture preview without the document header. Solid arrows show calls or dependencies.`;
+  let previewOpening = opening
+    .replace(/\sdata-render-input-sha256="[^"]*"/, "")
+    .replace(/\sdata-diagram-design="[^"]*"/, "")
+    .replace(/\swidth="[^"]*"/, "")
+    .replace(/\sheight="[^"]*"/, "")
+    .replace(/\sx="[^"]*"/, "")
+    .replace(/\sy="[^"]*"/, "")
+    .replace(/\spreserveAspectRatio="[^"]*"/, "")
+    .replace(/\srole="[^"]*"/, "")
+    .replace(/\saria-labelledby="[^"]*"/, "");
+  previewOpening = previewOpening.replace(
+    "<svg",
+    `<svg width="${graphWidth}" height="${graphHeight}" preserveAspectRatio="xMinYMin meet" role="img" aria-labelledby="${titleId} ${descriptionId}" data-diagram-design="${previewDesign}"`,
+  );
+  const accessibility = `<title id="${titleId}">${escapeXml(`${metadata.scenario} · ${metadata.title}`)}</title><desc id="${descriptionId}">${escapeXml(accessibleDescription)}</desc>`;
+  return svg.replace(opening, `${previewOpening}${accessibility}`);
+}
+
 function attachRenderInputHash(svg, hash) {
   if (!svg.includes("<svg")) {
     throw new Error("Mermaid output does not contain an <svg> root.");
@@ -300,6 +331,7 @@ function committedRenderInputHash(svg) {
 }
 
 fs.mkdirSync(imagesDir, { recursive: true });
+fs.mkdirSync(previewsDir, { recursive: true });
 const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "kmp-mermaid-"));
 const stale = [];
 
@@ -311,6 +343,7 @@ try {
     const inputPath = path.join(tempDir, `${stem}.mmd`);
     const renderedPath = path.join(tempDir, `${stem}.svg`);
     const committedPath = path.join(imagesDir, `${stem}.svg`);
+    const committedPreviewPath = path.join(previewsDir, `${stem}.svg`);
     fs.writeFileSync(inputPath, source);
 
     const mmdcArguments = [
@@ -344,13 +377,21 @@ try {
     const alignedSvg = alignClusterLabels(maskedSvg);
     const framedSvg = frameDiagramSvg(alignedSvg, metadata);
     const rendered = attachRenderInputHash(framedSvg, expectedHash);
+    const preview = attachRenderInputHash(readmePreviewSvg(alignedSvg, metadata), expectedHash);
     if (checkOnly) {
       const current = fs.existsSync(committedPath) ? fs.readFileSync(committedPath, "utf8") : "";
       if (committedRenderInputHash(current) !== expectedHash) {
         stale.push(path.relative(repoRoot, committedPath));
       }
+      const currentPreview = fs.existsSync(committedPreviewPath)
+        ? fs.readFileSync(committedPreviewPath, "utf8")
+        : "";
+      if (committedRenderInputHash(currentPreview) !== expectedHash) {
+        stale.push(path.relative(repoRoot, committedPreviewPath));
+      }
     } else {
       fs.writeFileSync(committedPath, rendered);
+      fs.writeFileSync(committedPreviewPath, preview);
     }
   }
 } finally {
@@ -363,4 +404,6 @@ if (stale.length > 0) {
   process.exit(1);
 }
 
-console.log(`${checkOnly ? "Verified" : "Rendered"} ${manifest.length} Mermaid SVG images.`);
+console.log(
+  `${checkOnly ? "Verified" : "Rendered"} ${manifest.length} full Mermaid SVGs and ${manifest.length} README previews.`,
+);

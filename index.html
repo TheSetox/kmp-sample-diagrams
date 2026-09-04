@@ -430,6 +430,7 @@
       const nav = document.querySelector("#nav");
       const content = document.querySelector("#content");
       const bundle = window.KMP_DIAGRAM_BUNDLE;
+      const repositoryUrl = "https://github.com/TheSetox/kmp-sample-diagrams";
       const forceBundle = new URLSearchParams(window.location.search).get("source") === "bundle";
       const minZoom = 0.1;
       const maxZoom = 2.5;
@@ -446,6 +447,14 @@
           .replaceAll(">", "&gt;")
           .replaceAll('"', "&quot;")
           .replaceAll("'", "&#039;");
+      }
+
+      function repositoryTreeUrl(relativePath) {
+        const encodedPath = String(relativePath ?? "")
+          .split("/")
+          .map(encodeURIComponent)
+          .join("/");
+        return `${repositoryUrl}/tree/main/${encodedPath}`;
       }
 
       function renderMarkdown(markdown) {
@@ -707,7 +716,7 @@
                 </div>
                 <a href="diagrams/${escapeHtml(entry.file)}">Mermaid source</a>
                 <a href="diagrams/${escapeHtml(entry.image)}" download>Download SVG</a>
-                <a href="${escapeHtml(entry.sample)}">Open sample</a>
+                <a href="${escapeHtml(repositoryTreeUrl(entry.sample))}" target="_blank" rel="noreferrer">Open sample</a>
               </div>
             </header>
             <div class="markdown">${renderMarkdown(markdown)}</div>

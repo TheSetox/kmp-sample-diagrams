@@ -5,6 +5,7 @@
   "scripts": {
     "bundle": "node scripts/build-diagram-bundle.mjs",
     "bundle:check": "node scripts/build-diagram-bundle.mjs --check",
+    "pages:build": "node scripts/build-pages-site.mjs",
     "render": "node scripts/render-diagrams.mjs",
     "render:check": "node scripts/render-diagrams.mjs --check",
     "validate": "python3 scripts/validate_repository.py"
