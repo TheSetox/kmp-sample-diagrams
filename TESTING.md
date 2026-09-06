@@ -1,23 +1,24 @@
 # Verification Notes
 
-Verification updated on August 21, 2026 from `feature/kmp-2026-mermaid-samples` before publishing to `main`.
+Verification checklist updated on September 6, 2026 before publishing to `main`.
 
 ## Static Checks
 
 - `python3 -m json.tool diagrams/manifest.json`
 - `npm run validate`
-- `npm run bundle:check`
 - `npm run render:check`
-- `node --check diagrams/bundle.js`
+- `npm run catalog:check`
+- `npm run pages:build`
+- `node --check diagrams/catalog.js`
 - `node --check samples/gradle/ios-xcode/generate-ios-projects.js`
 - `git diff --check`
 - `rg -n "No shared KMP module|sampleDetail|SampleMessage" samples` returned no matches.
 - `rg --files -g '*.hprof' -g 'hs_err_pid*'` returned no generated crash/heap files.
 - `find samples -path '*/iosApp/iosApp.xcodeproj/project.pbxproj' -type f | wc -l` returned `18`.
-- The repository has exactly 18 manifest entries, Mermaid source files, generated SVG images, sample directories, Xcode projects, and shared Xcode schemes.
-- Every literal Kotlin or Swift filename shown in a Mermaid diagram resolves to source in its matching sample.
-- The repository has no root `*.png` files.
-- `feature/legacy-png-reference` exists and preserves the old PNG files.
+- The repository has exactly 18 manifest entries, diagram detail files, structured specifications, full and preview SVG/PNG pairs, sample directories, Xcode projects, and shared Xcode schemes.
+- Every Kotlin or Swift file declared by a diagram specification resolves to source in its matching sample.
+- The repository has no loose root `*.png` files; current PNG deliverables live under `diagrams/images/` and `diagrams/previews/`.
+- `feature/legacy-png-reference` exists and preserves the original PNG set.
 
 ## Viewer Check
 
@@ -27,7 +28,7 @@ Served the repository root with:
 python3 -m http.server 8000
 ```
 
-Opened `http://127.0.0.1:8000/index.html` and `http://127.0.0.1:8000/index.html?source=bundle`. The viewer loaded all 18 diagram cards and all 18 pre-rendered Mermaid SVG images in both modes, showed no viewer or console errors, and passed zoom-control checks. No runtime Mermaid CDN is used.
+Open `http://127.0.0.1:8000/index.html`, `http://127.0.0.1:8000/index.html?source=catalog`, and the repository's `index.html` directly from `file://`. In every mode, confirm that all 18 cards and SVGs load, each SVG/PNG/details/sample action resolves, and pan, zoom, Fit, and Reset work without viewer or console errors. No client-side diagram renderer is required.
 
 ## Sample Build Checks
 

@@ -1,0 +1,407 @@
+{
+  "schemaVersion": 1,
+  "id": "19-three-layer-kmp-domain-presentation",
+  "number": 19,
+  "title": "Three Layer KMP Domain And Presentation",
+  "subtitle": "Domain and presentation are shared. Presentation contains shared Compose UI and ViewModel; data implementations remain native.",
+  "category": "Three Layer KMP",
+  "layout": {
+    "profile": "three-layer"
+  },
+  "groups": [
+    {
+      "id": "Android",
+      "title": ":androidApp",
+      "subtitle": "Android app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "AData",
+      "parent": "Android",
+      "title": "Native data implementation",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "IOS",
+      "title": "iosApp",
+      "subtitle": "iOS Xcode target",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "IData",
+      "parent": "IOS",
+      "title": "Native data implementation",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "Desktop",
+      "title": ":desktopApp",
+      "subtitle": "Desktop app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 3
+    },
+    {
+      "id": "DData",
+      "parent": "Desktop",
+      "title": "Native data implementation",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "Presentation",
+      "title": ":sharedPresentation",
+      "subtitle": "KMP library module",
+      "kind": "shared",
+      "layout": "vertical",
+      "order": 4
+    },
+    {
+      "id": "Domain",
+      "title": ":sharedDomain",
+      "subtitle": "KMP library module",
+      "kind": "shared",
+      "layout": "vertical",
+      "order": 5
+    }
+  ],
+  "nodes": [
+    {
+      "id": "AEntry",
+      "parent": "Android",
+      "title": "MainActivity.kt",
+      "subtitle": "platform host",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "MainActivity.kt"
+      ]
+    },
+    {
+      "id": "ARepository",
+      "parent": "AData",
+      "title": "TaskRepository.kt",
+      "subtitle": "implements shared TaskRepository",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "ADataSource",
+      "parent": "AData",
+      "title": "TaskDataSource.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "TaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "IEntry",
+      "parent": "IOS",
+      "title": "ContentView.swift",
+      "subtitle": "platform host",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "ContentView.swift"
+      ]
+    },
+    {
+      "id": "IRepository",
+      "parent": "IData",
+      "title": "IosTaskRepository",
+      "subtitle": "TaskRepository.swift · implements shared contract",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "TaskRepository.swift"
+      ]
+    },
+    {
+      "id": "IDataSource",
+      "parent": "IData",
+      "title": "TaskDataSource.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "TaskDataSource.swift"
+      ]
+    },
+    {
+      "id": "DEntry",
+      "parent": "Desktop",
+      "title": "Main.kt",
+      "subtitle": "platform host",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "Main.kt"
+      ]
+    },
+    {
+      "id": "DRepository",
+      "parent": "DData",
+      "title": "TaskRepository.kt",
+      "subtitle": "implements shared TaskRepository",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "DDataSource",
+      "parent": "DData",
+      "title": "TaskDataSource.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "TaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "Controller",
+      "parent": "Presentation",
+      "title": "MainViewController.kt",
+      "subtitle": "iOS factory",
+      "kind": "shared",
+      "order": 1,
+      "sourceRefs": [
+        "MainViewController.kt"
+      ]
+    },
+    {
+      "id": "App",
+      "parent": "Presentation",
+      "title": "App.kt",
+      "subtitle": "Compose app",
+      "kind": "shared",
+      "order": 2,
+      "sourceRefs": [
+        "App.kt"
+      ]
+    },
+    {
+      "id": "Screen",
+      "parent": "Presentation",
+      "title": "HomeScreen.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 3,
+      "sourceRefs": [
+        "HomeScreen.kt"
+      ]
+    },
+    {
+      "id": "VM",
+      "parent": "Presentation",
+      "title": "HomeViewModel.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 4,
+      "sourceRefs": [
+        "HomeViewModel.kt"
+      ]
+    },
+    {
+      "id": "State",
+      "parent": "Presentation",
+      "title": "HomeUiState.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 5,
+      "sourceRefs": [
+        "HomeUiState.kt"
+      ]
+    },
+    {
+      "id": "UseCase",
+      "parent": "Domain",
+      "title": "GetTasksUseCase.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 1,
+      "sourceRefs": [
+        "GetTasksUseCase.kt"
+      ]
+    },
+    {
+      "id": "Entity",
+      "parent": "Domain",
+      "title": "Task.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 2,
+      "sourceRefs": [
+        "Task.kt"
+      ]
+    },
+    {
+      "id": "RepositoryPort",
+      "parent": "Domain",
+      "title": "TaskRepository.kt",
+      "subtitle": "shared contract",
+      "kind": "shared",
+      "order": 3,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "ARepository-to-ADataSource",
+      "from": "ARepository",
+      "to": "ADataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AEntry-to-AData",
+      "from": "AEntry",
+      "to": "AData",
+      "label": "creates native data",
+      "route": "straight",
+      "fromAnchor": "top",
+      "toAnchor": "bottom"
+    },
+    {
+      "id": "IRepository-to-IDataSource",
+      "from": "IRepository",
+      "to": "IDataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IEntry-to-IData",
+      "from": "IEntry",
+      "to": "IData",
+      "label": "creates native data",
+      "route": "straight",
+      "fromAnchor": "top",
+      "toAnchor": "bottom"
+    },
+    {
+      "id": "DRepository-to-DDataSource",
+      "from": "DRepository",
+      "to": "DDataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DEntry-to-DData",
+      "from": "DEntry",
+      "to": "DData",
+      "label": "creates native data",
+      "route": "straight",
+      "fromAnchor": "top",
+      "toAnchor": "bottom"
+    },
+    {
+      "id": "Controller-to-App",
+      "from": "Controller",
+      "to": "App",
+      "label": "creates",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "App-to-VM",
+      "from": "App",
+      "to": "VM",
+      "label": "creates + calls",
+      "route": "orthogonal"
+    },
+    {
+      "id": "App-to-Screen",
+      "from": "App",
+      "to": "Screen",
+      "label": "passes state + refresh callback",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "VM-to-State",
+      "from": "VM",
+      "to": "State",
+      "label": "returns",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "Screen-to-State",
+      "from": "Screen",
+      "to": "State",
+      "label": "reads",
+      "route": "orthogonal"
+    },
+    {
+      "id": "UseCase-to-Entity",
+      "from": "UseCase",
+      "to": "Entity",
+      "label": "returns Task",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "UseCase-to-RepositoryPort",
+      "from": "UseCase",
+      "to": "RepositoryPort",
+      "label": "calls",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Desktop-to-Presentation",
+      "from": "Desktop",
+      "to": "Presentation",
+      "label": "hosts + injects repository",
+      "route": "orthogonal"
+    },
+    {
+      "id": "IOS-to-Presentation",
+      "from": "IOS",
+      "to": "Presentation",
+      "label": "hosts via iOS factory + injects repository",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Android-to-Presentation",
+      "from": "Android",
+      "to": "Presentation",
+      "label": "hosts + injects repository",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Presentation-to-Domain",
+      "from": "Presentation",
+      "to": "Domain",
+      "label": "uses shared domain",
+      "route": "orthogonal"
+    }
+  ]
+}

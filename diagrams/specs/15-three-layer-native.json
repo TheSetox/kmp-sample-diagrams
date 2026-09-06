@@ -1,0 +1,443 @@
+{
+  "schemaVersion": 1,
+  "id": "15-three-layer-native",
+  "number": 15,
+  "title": "Three Layer Native",
+  "subtitle": "Baseline three-layer native architecture. Each app target owns presentation, domain, and data layers. These layers are app-owned code groupings, not separate build modules.",
+  "category": "Baselines",
+  "layout": {
+    "profile": "three-layer"
+  },
+  "groups": [
+    {
+      "id": "Android",
+      "title": ":androidApp",
+      "subtitle": "Android app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "APresentation",
+      "parent": "Android",
+      "title": "Presentation layer",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "ADomain",
+      "parent": "Android",
+      "title": "Domain layer",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "AData",
+      "parent": "Android",
+      "title": "Data layer",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 3
+    },
+    {
+      "id": "IOS",
+      "title": "iosApp",
+      "subtitle": "iOS Xcode target",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "IPresentation",
+      "parent": "IOS",
+      "title": "Presentation layer",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "IDomain",
+      "parent": "IOS",
+      "title": "Domain layer",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "IData",
+      "parent": "IOS",
+      "title": "Data layer",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 3
+    },
+    {
+      "id": "Desktop",
+      "title": ":desktopApp",
+      "subtitle": "Desktop app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 3
+    },
+    {
+      "id": "DPresentation",
+      "parent": "Desktop",
+      "title": "Presentation layer",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "DDomain",
+      "parent": "Desktop",
+      "title": "Domain layer",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "DData",
+      "parent": "Desktop",
+      "title": "Data layer",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 3
+    }
+  ],
+  "nodes": [
+    {
+      "id": "AUI",
+      "parent": "APresentation",
+      "title": "MainActivity.kt",
+      "subtitle": "Android TextView UI",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "MainActivity.kt"
+      ]
+    },
+    {
+      "id": "AVM",
+      "parent": "APresentation",
+      "title": "HomeViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.kt"
+      ]
+    },
+    {
+      "id": "AUseCase",
+      "parent": "ADomain",
+      "title": "GetTasksUseCase.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "GetTasksUseCase.kt"
+      ]
+    },
+    {
+      "id": "AEntity",
+      "parent": "ADomain",
+      "title": "Task.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "Task.kt"
+      ]
+    },
+    {
+      "id": "ARepository",
+      "parent": "AData",
+      "title": "TaskRepository.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "ADataSource",
+      "parent": "AData",
+      "title": "TaskDataSource.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "TaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "IUI",
+      "parent": "IPresentation",
+      "title": "ContentView.swift",
+      "subtitle": "SwiftUI",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "ContentView.swift"
+      ]
+    },
+    {
+      "id": "IVM",
+      "parent": "IPresentation",
+      "title": "HomeViewModel.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.swift"
+      ]
+    },
+    {
+      "id": "IUseCase",
+      "parent": "IDomain",
+      "title": "GetTasksUseCase.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "GetTasksUseCase.swift"
+      ]
+    },
+    {
+      "id": "IEntity",
+      "parent": "IDomain",
+      "title": "Task.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "Task.swift"
+      ]
+    },
+    {
+      "id": "IRepository",
+      "parent": "IData",
+      "title": "TaskRepository.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "TaskRepository.swift"
+      ]
+    },
+    {
+      "id": "IDataSource",
+      "parent": "IData",
+      "title": "TaskDataSource.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "TaskDataSource.swift"
+      ]
+    },
+    {
+      "id": "DUI",
+      "parent": "DPresentation",
+      "title": "Main.kt",
+      "subtitle": "Compose Desktop UI",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "Main.kt"
+      ]
+    },
+    {
+      "id": "DVM",
+      "parent": "DPresentation",
+      "title": "HomeViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.kt"
+      ]
+    },
+    {
+      "id": "DUseCase",
+      "parent": "DDomain",
+      "title": "GetTasksUseCase.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "GetTasksUseCase.kt"
+      ]
+    },
+    {
+      "id": "DEntity",
+      "parent": "DDomain",
+      "title": "Task.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "Task.kt"
+      ]
+    },
+    {
+      "id": "DRepository",
+      "parent": "DData",
+      "title": "TaskRepository.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "DDataSource",
+      "parent": "DData",
+      "title": "TaskDataSource.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "TaskDataSource.kt"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "AUI-to-AVM",
+      "from": "AUI",
+      "to": "AVM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AUseCase-to-AEntity",
+      "from": "AUseCase",
+      "to": "AEntity",
+      "label": "creates Task",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "ARepository-to-ADataSource",
+      "from": "ARepository",
+      "to": "ADataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AVM-to-ADomain",
+      "from": "AVM",
+      "to": "ADomain",
+      "label": "uses domain layer",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AUseCase-to-AData",
+      "from": "AUseCase",
+      "to": "AData",
+      "label": "uses data layer",
+      "route": "orthogonal"
+    },
+    {
+      "id": "IUI-to-IVM",
+      "from": "IUI",
+      "to": "IVM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IUseCase-to-IEntity",
+      "from": "IUseCase",
+      "to": "IEntity",
+      "label": "creates Task",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IRepository-to-IDataSource",
+      "from": "IRepository",
+      "to": "IDataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IVM-to-IDomain",
+      "from": "IVM",
+      "to": "IDomain",
+      "label": "uses domain layer",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IUseCase-to-IData",
+      "from": "IUseCase",
+      "to": "IData",
+      "label": "uses data layer",
+      "route": "orthogonal"
+    },
+    {
+      "id": "DUI-to-DVM",
+      "from": "DUI",
+      "to": "DVM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DUseCase-to-DEntity",
+      "from": "DUseCase",
+      "to": "DEntity",
+      "label": "creates Task",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DRepository-to-DDataSource",
+      "from": "DRepository",
+      "to": "DDataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DVM-to-DDomain",
+      "from": "DVM",
+      "to": "DDomain",
+      "label": "uses domain layer",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DUseCase-to-DData",
+      "from": "DUseCase",
+      "to": "DData",
+      "label": "uses data layer",
+      "route": "orthogonal"
+    }
+  ]
+}

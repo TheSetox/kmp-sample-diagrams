@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "id": "08-kmp-presentation-data-layer",
+  "number": 8,
+  "title": "KMP Presentation And Data Layers",
+  "subtitle": "Presentation and data are shared. Presentation contains Compose UI and ViewModel; data contains repository and data sources.",
+  "category": "Main KMP",
+  "layout": {
+    "profile": "shared-stack"
+  },
+  "groups": [
+    {
+      "id": "Android",
+      "title": ":androidApp",
+      "subtitle": "Android app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "IOS",
+      "title": "iosApp",
+      "subtitle": "iOS Xcode target",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "Desktop",
+      "title": ":desktopApp",
+      "subtitle": "Desktop app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 3
+    },
+    {
+      "id": "Presentation",
+      "title": ":sharedPresentation",
+      "subtitle": "KMP library module",
+      "kind": "shared",
+      "layout": "vertical",
+      "order": 4
+    },
+    {
+      "id": "Data",
+      "title": ":sharedData",
+      "subtitle": "KMP library module",
+      "kind": "shared",
+      "layout": "vertical",
+      "order": 5
+    }
+  ],
+  "nodes": [
+    {
+      "id": "AndroidEntry",
+      "parent": "Android",
+      "title": "MainActivity.kt",
+      "subtitle": "Compose host",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "MainActivity.kt"
+      ]
+    },
+    {
+      "id": "IOSEntry",
+      "parent": "IOS",
+      "title": "ContentView.swift",
+      "subtitle": "SwiftUI / UIKit Compose host",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "ContentView.swift"
+      ]
+    },
+    {
+      "id": "DesktopEntry",
+      "parent": "Desktop",
+      "title": "Main.kt",
+      "subtitle": "Compose Desktop host",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "Main.kt"
+      ]
+    },
+    {
+      "id": "App",
+      "parent": "Presentation",
+      "title": "App.kt",
+      "subtitle": "Compose UI entry",
+      "kind": "shared",
+      "order": 1,
+      "sourceRefs": [
+        "App.kt"
+      ]
+    },
+    {
+      "id": "Screen",
+      "parent": "Presentation",
+      "title": "Compose UI",
+      "subtitle": "implemented in App.kt",
+      "kind": "shared",
+      "order": 2,
+      "sourceRefs": [
+        "App.kt"
+      ]
+    },
+    {
+      "id": "VM",
+      "parent": "Presentation",
+      "title": "HomeViewModel class",
+      "subtitle": "in App.kt",
+      "kind": "shared",
+      "order": 3,
+      "sourceRefs": [
+        "App.kt"
+      ]
+    },
+    {
+      "id": "State",
+      "parent": "Presentation",
+      "title": "HomeUiState",
+      "subtitle": "defined in App.kt",
+      "kind": "shared",
+      "order": 4,
+      "sourceRefs": [
+        "App.kt"
+      ]
+    },
+    {
+      "id": "Repository",
+      "parent": "Data",
+      "title": "TaskRepository.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 1,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "Remote",
+      "parent": "Data",
+      "title": "RemoteTaskDataSource.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 2,
+      "sourceRefs": [
+        "RemoteTaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "Cache",
+      "parent": "Data",
+      "title": "LocalTaskDataSource.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 3,
+      "sourceRefs": [
+        "LocalTaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "Mapper",
+      "parent": "Data",
+      "title": "TaskDtoMapper.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 4,
+      "sourceRefs": [
+        "TaskDtoMapper.kt"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "App-to-Screen",
+      "from": "App",
+      "to": "Screen",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "Screen-to-VM",
+      "from": "Screen",
+      "to": "VM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "VM-to-State",
+      "from": "VM",
+      "to": "State",
+      "label": "returns",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "Repository-to-Remote",
+      "from": "Repository",
+      "to": "Remote",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "Repository-to-Cache",
+      "from": "Repository",
+      "to": "Cache",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Repository-to-Mapper",
+      "from": "Repository",
+      "to": "Mapper",
+      "label": "maps results",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Desktop-to-Presentation",
+      "from": "Desktop",
+      "to": "Presentation",
+      "label": "hosts",
+      "route": "orthogonal"
+    },
+    {
+      "id": "IOS-to-Presentation",
+      "from": "IOS",
+      "to": "Presentation",
+      "label": "hosts",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Android-to-Presentation",
+      "from": "Android",
+      "to": "Presentation",
+      "label": "hosts",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Presentation-to-Data",
+      "from": "Presentation",
+      "to": "Data",
+      "label": "uses shared data",
+      "route": "orthogonal"
+    }
+  ]
+}

@@ -20,7 +20,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### normal-native
 
 - Sample: [`01_normal-native`](01_normal-native/)
-- Diagram: [`01-normal-native.md`](../diagrams/01-normal-native.md)
+- Diagram: [`01-normal-native.svg`](../diagrams/images/01-normal-native.svg)
 - Verdict: Matches: each platform has its own direct UI -> ViewModel -> Repository -> DataSource flow.
 
 | Module | How It Works |
@@ -32,7 +32,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### layered-native
 
 - Sample: [`04_layered-native`](04_layered-native/)
-- Diagram: [`04-layered-native.md`](../diagrams/04-layered-native.md)
+- Diagram: [`04-layered-native.svg`](../diagrams/images/04-layered-native.svg)
 - Verdict: Matches: presentation and data are separated per platform, with no use case layer.
 
 | Module | How It Works |
@@ -44,7 +44,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### modular-native
 
 - Sample: [`09_modular-native`](09_modular-native/)
-- Diagram: [`09-modular-native.md`](../diagrams/09-modular-native.md)
+- Diagram: [`09-modular-native.svg`](../diagrams/images/09-modular-native.svg)
 - Verdict: Matches: feature one and feature two are duplicated per platform as native modules/packages.
 
 | Module | How It Works |
@@ -56,7 +56,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### three-layer-native
 
 - Sample: [`15_three-layer-native`](15_three-layer-native/)
-- Diagram: [`15-three-layer-native.md`](../diagrams/15-three-layer-native.md)
+- Diagram: [`15-three-layer-native.svg`](../diagrams/images/15-three-layer-native.svg)
 - Verdict: Matches: every platform owns presentation, domain, and data classes.
 
 | Module | How It Works |
@@ -70,7 +70,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### kmp-native-ui
 
 - Sample: [`02_kmp-native-ui`](02_kmp-native-ui/)
-- Diagram: [`02-kmp-native-ui.md`](../diagrams/02-kmp-native-ui.md)
+- Diagram: [`02-kmp-native-ui.svg`](../diagrams/images/02-kmp-native-ui.svg)
 - Verdict: Matches: platform UI is native while the ViewModel, use case, repository, and data source are shared.
 
 | Module | How It Works |
@@ -83,7 +83,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### kmp-compose-ui
 
 - Sample: [`03_kmp-compose-ui`](03_kmp-compose-ui/)
-- Diagram: [`03-kmp-compose-ui.md`](../diagrams/03-kmp-compose-ui.md)
+- Diagram: [`03-kmp-compose-ui.svg`](../diagrams/images/03-kmp-compose-ui.svg)
 - Verdict: Matches the corrected intent: UI is shared, behavior is native.
 
 | Module | How It Works |
@@ -96,7 +96,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### kmp-data-layer
 
 - Sample: [`05_kmp-data-layer`](05_kmp-data-layer/)
-- Diagram: [`05-kmp-data-layer.md`](../diagrams/05-kmp-data-layer.md)
+- Diagram: [`05-kmp-data-layer.svg`](../diagrams/images/05-kmp-data-layer.svg)
 - Verdict: Matches: UI and ViewModel are native, data is shared.
 
 | Module | How It Works |
@@ -109,7 +109,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### kmp-presentation-layer
 
 - Sample: [`06_kmp-presentation-layer`](06_kmp-presentation-layer/)
-- Diagram: [`06-kmp-presentation-layer.md`](../diagrams/06-kmp-presentation-layer.md)
+- Diagram: [`06-kmp-presentation-layer.svg`](../diagrams/images/06-kmp-presentation-layer.svg)
 - Verdict: Matches: shared presentation depends on a repository contract implemented natively.
 
 | Module | How It Works |
@@ -122,7 +122,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### kmp-ui-layer
 
 - Sample: [`07_kmp-ui-layer`](07_kmp-ui-layer/)
-- Diagram: [`07-kmp-ui-layer.md`](../diagrams/07-kmp-ui-layer.md)
+- Diagram: [`07-kmp-ui-layer.svg`](../diagrams/images/07-kmp-ui-layer.svg)
 - Verdict: Matches: only the Compose UI surface is shared.
 
 | Module | How It Works |
@@ -135,7 +135,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### kmp-presentation-data-layer
 
 - Sample: [`08_kmp-presentation-data-layer`](08_kmp-presentation-data-layer/)
-- Diagram: [`08-kmp-presentation-data-layer.md`](../diagrams/08-kmp-presentation-data-layer.md)
+- Diagram: [`08-kmp-presentation-data-layer.svg`](../diagrams/images/08-kmp-presentation-data-layer.svg)
 - Verdict: Matches: presentation and data are shared; app targets host only the entry point.
 
 | Module | How It Works |
@@ -151,7 +151,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### modular-kmp-data-layer
 
 - Sample: [`10_modular-kmp-data-layer`](10_modular-kmp-data-layer/)
-- Diagram: [`10-modular-kmp-data-layer.md`](../diagrams/10-modular-kmp-data-layer.md)
+- Diagram: [`10-modular-kmp-data-layer.svg`](../diagrams/images/10-modular-kmp-data-layer.svg)
 - Verdict: Matches: Feature One is native and visible; Feature Two uses shared KMP data.
 
 | Module | How It Works |
@@ -164,7 +164,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### modular-kmp-presentation-layer
 
 - Sample: [`11_modular-kmp-presentation-layer`](11_modular-kmp-presentation-layer/)
-- Diagram: [`11-modular-kmp-presentation-layer.md`](../diagrams/11-modular-kmp-presentation-layer.md)
+- Diagram: [`11-modular-kmp-presentation-layer.svg`](../diagrams/images/11-modular-kmp-presentation-layer.svg)
 - Verdict: Matches: Feature One is native and visible; Feature Two presentation is shared and data is native.
 
 | Module | How It Works |
@@ -177,7 +177,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### modular-kmp-ui-layer
 
 - Sample: [`12_modular-kmp-ui-layer`](12_modular-kmp-ui-layer/)
-- Diagram: [`12-modular-kmp-ui-layer.md`](../diagrams/12-modular-kmp-ui-layer.md)
+- Diagram: [`12-modular-kmp-ui-layer.svg`](../diagrams/images/12-modular-kmp-ui-layer.svg)
 - Verdict: Matches: Feature One is native and visible; Feature Two UI is shared while behavior stays native.
 
 | Module | How It Works |
@@ -190,7 +190,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### modular-kmp-ui-data-layer
 
 - Sample: [`13_modular-kmp-ui-data-layer`](13_modular-kmp-ui-data-layer/)
-- Diagram: [`13-modular-kmp-ui-data-layer.md`](../diagrams/13-modular-kmp-ui-data-layer.md)
+- Diagram: [`13-modular-kmp-ui-data-layer.svg`](../diagrams/images/13-modular-kmp-ui-data-layer.svg)
 - Verdict: Matches: Feature One is native and visible; Feature Two UI and data are shared with a native ViewModel bridge.
 
 | Module | How It Works |
@@ -204,7 +204,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### modular-kmp-shared-feature
 
 - Sample: [`14_modular-kmp-shared-feature`](14_modular-kmp-shared-feature/)
-- Diagram: [`14-modular-kmp-shared-feature.md`](../diagrams/14-modular-kmp-shared-feature.md)
+- Diagram: [`14-modular-kmp-shared-feature.svg`](../diagrams/images/14-modular-kmp-shared-feature.svg)
 - Verdict: Matches: Feature One is native and visible; Feature Two is fully owned by the shared KMP feature module.
 
 | Module | How It Works |
@@ -219,7 +219,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### three-layer-kmp-domain
 
 - Sample: [`16_three-layer-kmp-domain`](16_three-layer-kmp-domain/)
-- Diagram: [`16-three-layer-kmp-domain.md`](../diagrams/16-three-layer-kmp-domain.md)
+- Diagram: [`16-three-layer-kmp-domain.svg`](../diagrams/images/16-three-layer-kmp-domain.svg)
 - Verdict: Matches: domain is shared and native repositories implement the shared contract.
 
 | Module | How It Works |
@@ -232,7 +232,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### three-layer-kmp-domain-data
 
 - Sample: [`18_three-layer-kmp-domain-data`](18_three-layer-kmp-domain-data/)
-- Diagram: [`18-three-layer-kmp-domain-data.md`](../diagrams/18-three-layer-kmp-domain-data.md)
+- Diagram: [`18-three-layer-kmp-domain-data.svg`](../diagrams/images/18-three-layer-kmp-domain-data.svg)
 - Verdict: Matches: native presentation calls shared domain, and shared domain calls shared data.
 
 | Module | How It Works |
@@ -246,7 +246,7 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 ### three-layer-kmp-domain-presentation
 
 - Sample: [`19_three-layer-kmp-domain-presentation`](19_three-layer-kmp-domain-presentation/)
-- Diagram: [`19-three-layer-kmp-domain-presentation.md`](../diagrams/19-three-layer-kmp-domain-presentation.md)
+- Diagram: [`19-three-layer-kmp-domain-presentation.svg`](../diagrams/images/19-three-layer-kmp-domain-presentation.svg)
 - Verdict: Matches: shared presentation and shared domain call native data implementations through a contract.
 
 | Module | How It Works |
@@ -263,7 +263,8 @@ No blocking architecture mismatches were found in this pass. The iOS apps are no
 rg -n "Sample[M]essage|sample[D]etail|TO[D]O|FIX[M]E" samples
 rg -n "org\.jetbrains\.kotlin\.android|kotlin-android" samples -g '*.gradle.kts'
 python3 -m json.tool diagrams/manifest.json
-node --check diagrams/bundle.js
+npm run catalog:check
+npm run validate
 git diff --check
 ```
 

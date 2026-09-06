@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "id": "18-three-layer-kmp-domain-data",
+  "number": 18,
+  "title": "Three Layer KMP Domain And Data",
+  "subtitle": "Domain and data are shared. Each app target keeps an app-owned presentation layer containing UI and ViewModel.",
+  "category": "Three Layer KMP",
+  "layout": {
+    "profile": "three-layer"
+  },
+  "groups": [
+    {
+      "id": "Android",
+      "title": ":androidApp",
+      "subtitle": "Android app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "APresentation",
+      "parent": "Android",
+      "title": "Presentation layer",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "IOS",
+      "title": "iosApp",
+      "subtitle": "iOS Xcode target",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "IPresentation",
+      "parent": "IOS",
+      "title": "Presentation layer",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "Desktop",
+      "title": ":desktopApp",
+      "subtitle": "Desktop app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 3
+    },
+    {
+      "id": "DPresentation",
+      "parent": "Desktop",
+      "title": "Presentation layer",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "Domain",
+      "title": ":sharedDomain",
+      "subtitle": "KMP library module",
+      "kind": "shared",
+      "layout": "vertical",
+      "order": 4
+    },
+    {
+      "id": "Data",
+      "title": ":sharedData",
+      "subtitle": "KMP library module",
+      "kind": "shared",
+      "layout": "vertical",
+      "order": 5
+    }
+  ],
+  "nodes": [
+    {
+      "id": "AUI",
+      "parent": "APresentation",
+      "title": "HomeScreen.kt",
+      "subtitle": "Compose UI",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "HomeScreen.kt"
+      ]
+    },
+    {
+      "id": "AVM",
+      "parent": "APresentation",
+      "title": "HomeViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.kt"
+      ]
+    },
+    {
+      "id": "IUI",
+      "parent": "IPresentation",
+      "title": "ContentView.swift",
+      "subtitle": "SwiftUI",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "ContentView.swift"
+      ]
+    },
+    {
+      "id": "IVM",
+      "parent": "IPresentation",
+      "title": "HomeViewModel.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.swift"
+      ]
+    },
+    {
+      "id": "DUI",
+      "parent": "DPresentation",
+      "title": "HomeWindow.kt",
+      "subtitle": "Compose Desktop UI",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "HomeWindow.kt"
+      ]
+    },
+    {
+      "id": "DVM",
+      "parent": "DPresentation",
+      "title": "HomeViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.kt"
+      ]
+    },
+    {
+      "id": "UseCase",
+      "parent": "Domain",
+      "title": "GetTasksUseCase.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 1,
+      "sourceRefs": [
+        "GetTasksUseCase.kt"
+      ]
+    },
+    {
+      "id": "Entity",
+      "parent": "Domain",
+      "title": "Task.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 2,
+      "sourceRefs": [
+        "Task.kt"
+      ]
+    },
+    {
+      "id": "Repository",
+      "parent": "Data",
+      "title": "TaskRepository.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 1,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "Remote",
+      "parent": "Data",
+      "title": "RemoteTaskDataSource.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 2,
+      "sourceRefs": [
+        "RemoteTaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "Cache",
+      "parent": "Data",
+      "title": "LocalTaskDataSource.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 3,
+      "sourceRefs": [
+        "LocalTaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "Mapper",
+      "parent": "Data",
+      "title": "TaskDtoMapper.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 4,
+      "sourceRefs": [
+        "TaskDtoMapper.kt"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "AUI-to-AVM",
+      "from": "AUI",
+      "to": "AVM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IUI-to-IVM",
+      "from": "IUI",
+      "to": "IVM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DUI-to-DVM",
+      "from": "DUI",
+      "to": "DVM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "UseCase-to-Entity",
+      "from": "UseCase",
+      "to": "Entity",
+      "label": "creates Task",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "Repository-to-Remote",
+      "from": "Repository",
+      "to": "Remote",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "Repository-to-Cache",
+      "from": "Repository",
+      "to": "Cache",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Repository-to-Mapper",
+      "from": "Repository",
+      "to": "Mapper",
+      "label": "maps results",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Desktop-to-Domain",
+      "from": "Desktop",
+      "to": "Domain",
+      "label": "uses shared domain",
+      "route": "orthogonal"
+    },
+    {
+      "id": "IOS-to-Domain",
+      "from": "IOS",
+      "to": "Domain",
+      "label": "uses shared domain",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Android-to-Domain",
+      "from": "Android",
+      "to": "Domain",
+      "label": "uses shared domain",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Domain-to-Data",
+      "from": "Domain",
+      "to": "Data",
+      "label": "calls shared data",
+      "route": "orthogonal"
+    }
+  ]
+}

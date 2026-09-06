@@ -31,7 +31,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Validate inventory, diagrams, bundle, links, and projects
+      - name: Validate inventory, assets, catalog, links, and projects
         run: python scripts/validate_repository.py
 
       - name: Set up Node.js
@@ -43,10 +43,11 @@ jobs:
       - name: Install diagram tooling
         run: npm ci
 
-      - name: Verify generated diagram assets
+      - name: Verify diagram assets, offline catalog, and Pages artifact
         run: |
-          npm run bundle:check
-          npm run render:check -- --puppeteer-config .github/mermaid-puppeteer-config.json
+          npm run render:check
+          npm run catalog:check
+          npm run pages:build
 
   gradle-samples:
     name: Gradle (${{ matrix.sample }})

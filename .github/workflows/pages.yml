@@ -35,7 +35,7 @@ jobs:
       - name: Validate static content
         run: |
           python scripts/validate_repository.py
-          npm run bundle:check
+          npm run catalog:check
           npm run pages:build
 
       - name: Configure GitHub Pages

@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 1,
+  "id": "10-modular-kmp-data-layer",
+  "number": 10,
+  "title": "Modular KMP Data Layer",
+  "subtitle": "Feature one stays native inside every platform app. Feature two shares only its data layer; feature two presentation remains native in each app target.",
+  "category": "Modular KMP",
+  "layout": {
+    "profile": "modular"
+  },
+  "groups": [
+    {
+      "id": "Android",
+      "title": ":androidApp",
+      "subtitle": "Android app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "AFeatureOne",
+      "parent": "Android",
+      "title": "Feature 1",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "AFeatureTwo",
+      "parent": "Android",
+      "title": "Feature 2 presentation",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "IOS",
+      "title": "iosApp",
+      "subtitle": "iOS Xcode target",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "IFeatureOne",
+      "parent": "IOS",
+      "title": "Feature 1",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "IFeatureTwo",
+      "parent": "IOS",
+      "title": "Feature 2 presentation",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "Desktop",
+      "title": ":desktopApp",
+      "subtitle": "Desktop app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 3
+    },
+    {
+      "id": "DFeatureOne",
+      "parent": "Desktop",
+      "title": "Feature 1",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "DFeatureTwo",
+      "parent": "Desktop",
+      "title": "Feature 2 presentation",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "KMP",
+      "title": ":featureTwoSharedData",
+      "subtitle": "KMP library module",
+      "kind": "shared",
+      "layout": "vertical",
+      "order": 4
+    }
+  ],
+  "nodes": [
+    {
+      "id": "AEntry",
+      "parent": "Android",
+      "title": "MainActivity.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "MainActivity.kt"
+      ]
+    },
+    {
+      "id": "AHomeUI",
+      "parent": "AFeatureOne",
+      "title": "FeatureOneScreen.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "FeatureOneScreen.kt"
+      ]
+    },
+    {
+      "id": "AHomeVM",
+      "parent": "AFeatureOne",
+      "title": "HomeViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.kt"
+      ]
+    },
+    {
+      "id": "ATaskRepository",
+      "parent": "AFeatureOne",
+      "title": "TaskRepository.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 3,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "ATaskDataSource",
+      "parent": "AFeatureOne",
+      "title": "TaskDataSource.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 4,
+      "sourceRefs": [
+        "TaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "ADetailsVM",
+      "parent": "AFeatureTwo",
+      "title": "DetailsViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "DetailsViewModel.kt"
+      ]
+    },
+    {
+      "id": "IEntry",
+      "parent": "IOS",
+      "title": "ContentView.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "ContentView.swift"
+      ]
+    },
+    {
+      "id": "IHomeUI",
+      "parent": "IFeatureOne",
+      "title": "FeatureOneView.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "FeatureOneView.swift"
+      ]
+    },
+    {
+      "id": "IHomeVM",
+      "parent": "IFeatureOne",
+      "title": "HomeViewModel.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.swift"
+      ]
+    },
+    {
+      "id": "ITaskRepository",
+      "parent": "IFeatureOne",
+      "title": "TaskRepository.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 3,
+      "sourceRefs": [
+        "TaskRepository.swift"
+      ]
+    },
+    {
+      "id": "ITaskDataSource",
+      "parent": "IFeatureOne",
+      "title": "TaskDataSource.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 4,
+      "sourceRefs": [
+        "TaskDataSource.swift"
+      ]
+    },
+    {
+      "id": "IDetailsVM",
+      "parent": "IFeatureTwo",
+      "title": "DetailsViewModel.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "DetailsViewModel.swift"
+      ]
+    },
+    {
+      "id": "DEntry",
+      "parent": "Desktop",
+      "title": "Main.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "Main.kt"
+      ]
+    },
+    {
+      "id": "DHomeUI",
+      "parent": "DFeatureOne",
+      "title": "FeatureOneScreen.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "FeatureOneScreen.kt"
+      ]
+    },
+    {
+      "id": "DHomeVM",
+      "parent": "DFeatureOne",
+      "title": "HomeViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.kt"
+      ]
+    },
+    {
+      "id": "DTaskRepository",
+      "parent": "DFeatureOne",
+      "title": "TaskRepository.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 3,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "DTaskDataSource",
+      "parent": "DFeatureOne",
+      "title": "TaskDataSource.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 4,
+      "sourceRefs": [
+        "TaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "DDetailsVM",
+      "parent": "DFeatureTwo",
+      "title": "DetailsViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "DetailsViewModel.kt"
+      ]
+    },
+    {
+      "id": "Repository",
+      "parent": "KMP",
+      "title": "DetailsRepository.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 1,
+      "sourceRefs": [
+        "DetailsRepository.kt"
+      ]
+    },
+    {
+      "id": "Remote",
+      "parent": "KMP",
+      "title": "RemoteDetailsDataSource.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 2,
+      "sourceRefs": [
+        "RemoteDetailsDataSource.kt"
+      ]
+    },
+    {
+      "id": "Cache",
+      "parent": "KMP",
+      "title": "LocalDetailsDataSource.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 3,
+      "sourceRefs": [
+        "LocalDetailsDataSource.kt"
+      ]
+    },
+    {
+      "id": "Mapper",
+      "parent": "KMP",
+      "title": "DetailsDtoMapper.kt",
+      "subtitle": "",
+      "kind": "shared",
+      "order": 4,
+      "sourceRefs": [
+        "DetailsDtoMapper.kt"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "AHomeUI-to-AHomeVM",
+      "from": "AHomeUI",
+      "to": "AHomeVM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AHomeVM-to-ATaskRepository",
+      "from": "AHomeVM",
+      "to": "ATaskRepository",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "ATaskRepository-to-ATaskDataSource",
+      "from": "ATaskRepository",
+      "to": "ATaskDataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AEntry-to-AFeatureOne",
+      "from": "AEntry",
+      "to": "AFeatureOne",
+      "label": "renders Feature 1",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AEntry-to-AFeatureTwo",
+      "from": "AEntry",
+      "to": "AFeatureTwo",
+      "label": "renders Feature 2 + calls",
+      "route": "orthogonal"
+    },
+    {
+      "id": "IHomeUI-to-IHomeVM",
+      "from": "IHomeUI",
+      "to": "IHomeVM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IHomeVM-to-ITaskRepository",
+      "from": "IHomeVM",
+      "to": "ITaskRepository",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "ITaskRepository-to-ITaskDataSource",
+      "from": "ITaskRepository",
+      "to": "ITaskDataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IEntry-to-IFeatureOne",
+      "from": "IEntry",
+      "to": "IFeatureOne",
+      "label": "renders Feature 1",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IEntry-to-IFeatureTwo",
+      "from": "IEntry",
+      "to": "IFeatureTwo",
+      "label": "renders Feature 2 + calls",
+      "route": "orthogonal"
+    },
+    {
+      "id": "DHomeUI-to-DHomeVM",
+      "from": "DHomeUI",
+      "to": "DHomeVM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DHomeVM-to-DTaskRepository",
+      "from": "DHomeVM",
+      "to": "DTaskRepository",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DTaskRepository-to-DTaskDataSource",
+      "from": "DTaskRepository",
+      "to": "DTaskDataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DEntry-to-DFeatureOne",
+      "from": "DEntry",
+      "to": "DFeatureOne",
+      "label": "renders Feature 1",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DEntry-to-DFeatureTwo",
+      "from": "DEntry",
+      "to": "DFeatureTwo",
+      "label": "renders Feature 2 + calls",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Repository-to-Remote",
+      "from": "Repository",
+      "to": "Remote",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "Repository-to-Cache",
+      "from": "Repository",
+      "to": "Cache",
+      "route": "orthogonal"
+    },
+    {
+      "id": "Repository-to-Mapper",
+      "from": "Repository",
+      "to": "Mapper",
+      "label": "maps results",
+      "route": "orthogonal"
+    },
+    {
+      "id": "DDetailsVM-to-KMP",
+      "from": "DDetailsVM",
+      "to": "KMP",
+      "label": "uses shared data",
+      "route": "orthogonal"
+    },
+    {
+      "id": "IDetailsVM-to-KMP",
+      "from": "IDetailsVM",
+      "to": "KMP",
+      "label": "uses shared data",
+      "route": "orthogonal"
+    },
+    {
+      "id": "ADetailsVM-to-KMP",
+      "from": "ADetailsVM",
+      "to": "KMP",
+      "label": "uses shared data",
+      "route": "orthogonal"
+    }
+  ]
+}

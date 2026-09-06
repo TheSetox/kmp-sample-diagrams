@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>KMP 2026 Diagrams</title>
     <style>
+      @font-face {
+        font-family: "Inter";
+        src: url("diagrams/fonts/Inter-Regular.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("diagrams/fonts/Inter-SemiBold.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Inter";
+        src: url("diagrams/fonts/Inter-SemiBold.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+      }
+
       :root {
         color-scheme: light;
         --ink: #26394a;
@@ -28,7 +52,7 @@
         background: var(--bg);
         color: var(--ink);
         font-family:
-          Arial, "Helvetica Neue", Helvetica, sans-serif;
+          "Inter", Arial, "Helvetica Neue", Helvetica, sans-serif;
       }
 
       a {
@@ -340,7 +364,13 @@
         border: 1px solid var(--line);
         border-radius: 8px;
         background: #ffffff;
+        cursor: grab;
         touch-action: pan-x pan-y;
+      }
+
+      .diagram-viewport.is-panning {
+        cursor: grabbing;
+        user-select: none;
       }
 
       .diagram-stage {
@@ -392,16 +422,16 @@
         <section class="hero">
           <h2>Kotlin Multiplatform sample diagrams</h2>
           <p>
-            Mermaid source diagrams for AGP 9 compatible Kotlin Multiplatform
-            structures. App entry points stay in platform modules, and shared
-            code stays in KMP library modules.
+            High-resolution architecture diagrams for AGP 9 compatible Kotlin
+            Multiplatform structures. App entry points stay in platform modules,
+            and shared code stays in KMP library modules.
           </p>
           <div class="meta">
             <span class="pill">AGP 9.2.0</span>
             <span class="pill">Kotlin 2.3.21</span>
             <span class="pill">Compose Multiplatform 1.11.0</span>
             <span class="pill">Android + iOS + Desktop</span>
-            <span class="pill">18 generated SVGs</span>
+            <span class="pill">18 architecture diagrams</span>
           </div>
           <div class="legend" aria-label="Diagram legend">
             <span class="legend-item"><span class="legend-swatch platform" aria-hidden="true"></span>Application target</span>
@@ -425,20 +455,16 @@
       </main>
     </div>
 
-    <script src="diagrams/bundle.js"></script>
+    <script src="diagrams/catalog.js"></script>
     <script>
       const nav = document.querySelector("#nav");
       const content = document.querySelector("#content");
-      const bundle = window.KMP_DIAGRAM_BUNDLE;
+      const catalog = window.KMP_DIAGRAM_CATALOG;
       const repositoryUrl = "https://github.com/TheSetox/kmp-sample-diagrams";
-      const forceBundle = new URLSearchParams(window.location.search).get("source") === "bundle";
+      const forceCatalog = new URLSearchParams(window.location.search).get("source") === "catalog";
       const minZoom = 0.1;
       const maxZoom = 2.5;
       const zoomStep = 0.15;
-
-      function slug(value) {
-        return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-      }
 
       function escapeHtml(value) {
         return String(value ?? "")
@@ -455,75 +481,6 @@
           .map(encodeURIComponent)
           .join("/");
         return `${repositoryUrl}/tree/main/${encodedPath}`;
-      }
-
-      function renderMarkdown(markdown) {
-        const lines = markdown.trim().split(/\r?\n/);
-        const html = [];
-        let paragraph = [];
-        let list = [];
-        let fence = null;
-        let fenceBody = [];
-
-        function flushParagraph() {
-          if (paragraph.length > 0) {
-            html.push(`<p>${paragraph.map(escapeHtml).join(" ")}</p>`);
-            paragraph = [];
-          }
-        }
-
-        function flushList() {
-          if (list.length > 0) {
-            html.push(`<ul>${list.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`);
-            list = [];
-          }
-        }
-
-        for (const line of lines) {
-          if (line.startsWith("```")) {
-            if (fence) {
-              flushParagraph();
-              flushList();
-              const code = fenceBody.join("\n");
-              if (fence !== "mermaid") {
-                html.push(`<pre><code>${escapeHtml(code)}</code></pre>`);
-              }
-              fence = null;
-              fenceBody = [];
-            } else {
-              flushParagraph();
-              flushList();
-              fence = line.slice(3).trim() || "text";
-            }
-            continue;
-          }
-
-          if (fence) {
-            fenceBody.push(line);
-            continue;
-          }
-
-          if (line.startsWith("# ")) {
-            flushParagraph();
-            flushList();
-          } else if (line.startsWith("## ")) {
-            flushParagraph();
-            flushList();
-            html.push(`<h2>${escapeHtml(line.slice(3).trim())}</h2>`);
-          } else if (line.startsWith("- ")) {
-            flushParagraph();
-            list.push(line.slice(2).trim());
-          } else if (line.trim() === "") {
-            flushParagraph();
-            flushList();
-          } else {
-            paragraph.push(line.trim());
-          }
-        }
-
-        flushParagraph();
-        flushList();
-        return html.join("\n");
       }
 
       function clampZoom(value, minimum = minZoom) {
@@ -640,6 +597,47 @@
         setDiagramZoom(viewport, currentZoom + (event.deltaY < 0 ? zoomStep : -zoomStep));
       }, { passive: false });
 
+      let panState = null;
+
+      content.addEventListener("pointerdown", (event) => {
+        const viewport = event.target.closest(".diagram-viewport");
+        if (!viewport || event.button !== 0 || event.pointerType !== "mouse") {
+          return;
+        }
+        panState = {
+          viewport,
+          pointerId: event.pointerId,
+          x: event.clientX,
+          y: event.clientY,
+          scrollLeft: viewport.scrollLeft,
+          scrollTop: viewport.scrollTop
+        };
+        viewport.classList.add("is-panning");
+        viewport.setPointerCapture(event.pointerId);
+      });
+
+      content.addEventListener("pointermove", (event) => {
+        if (!panState || event.pointerId !== panState.pointerId) {
+          return;
+        }
+        panState.viewport.scrollLeft = panState.scrollLeft - (event.clientX - panState.x);
+        panState.viewport.scrollTop = panState.scrollTop - (event.clientY - panState.y);
+      });
+
+      function stopPanning(event) {
+        if (!panState || event.pointerId !== panState.pointerId) {
+          return;
+        }
+        panState.viewport.classList.remove("is-panning");
+        if (panState.viewport.hasPointerCapture(event.pointerId)) {
+          panState.viewport.releasePointerCapture(event.pointerId);
+        }
+        panState = null;
+      }
+
+      content.addEventListener("pointerup", stopPanning);
+      content.addEventListener("pointercancel", stopPanning);
+
       function renderNav(items) {
         const groups = items.reduce((accumulator, item) => {
           const entries = accumulator.get(item.category) || [];
@@ -652,17 +650,17 @@
             <div class="nav-group">
               <h2>${escapeHtml(category)}</h2>
               ${entries.map((entry) => `
-                <a class="nav-link" href="#${slug(entry.file)}">${escapeHtml(entry.title)}</a>
+                <a class="nav-link" href="#${escapeHtml(entry.id)}">${escapeHtml(entry.title)}</a>
               `).join("")}
             </div>
           `)
           .join("");
       }
 
-      async function loadManifest() {
-        if (forceBundle && bundle?.manifest) {
-          document.documentElement.dataset.diagramSource = "bundle";
-          return bundle.manifest;
+      async function loadCatalog() {
+        if (forceCatalog && Array.isArray(catalog)) {
+          document.documentElement.dataset.diagramSource = "catalog";
+          return catalog;
         }
         try {
           const manifestResponse = await fetch("diagrams/manifest.json", { cache: "no-store" });
@@ -672,38 +670,17 @@
           document.documentElement.dataset.diagramSource = "fetch";
           return await manifestResponse.json();
         } catch (error) {
-          if (bundle?.manifest) {
-            document.documentElement.dataset.diagramSource = "bundle";
-            return bundle.manifest;
+          if (Array.isArray(catalog)) {
+            document.documentElement.dataset.diagramSource = "catalog";
+            return catalog;
           }
           throw error;
         }
       }
 
-      async function loadMarkdown(entry) {
-        const bundledMarkdown = bundle?.diagrams?.[entry.file];
-        if (forceBundle && bundledMarkdown) {
-          return bundledMarkdown;
-        }
-        try {
-          const response = await fetch(`diagrams/${entry.file}`, { cache: "no-store" });
-          if (!response.ok) {
-            throw new Error(`Unable to load ${entry.file}`);
-          }
-          return await response.text();
-        } catch (error) {
-          if (bundledMarkdown) {
-            document.documentElement.dataset.diagramSource = "bundle";
-            return bundledMarkdown;
-          }
-          throw error;
-        }
-      }
-
-      async function loadDiagram(entry) {
-        const markdown = await loadMarkdown(entry);
+      function loadDiagram(entry) {
         return `
-          <article class="diagram-card" id="${slug(entry.file)}">
+          <article class="diagram-card" id="${escapeHtml(entry.id)}">
             <header class="diagram-header">
               <h3>${escapeHtml(entry.title)}</h3>
               <div class="diagram-actions">
@@ -714,19 +691,27 @@
                   <button class="zoom-button" type="button" data-zoom-action="fit" aria-label="Fit entire diagram" title="Fit entire diagram">&#x2922;</button>
                   <button class="zoom-button" type="button" data-zoom-action="reset" aria-label="Reset to readable size" title="Reset to readable 100% size">&#x21ba;</button>
                 </div>
-                <a href="diagrams/${escapeHtml(entry.file)}">Mermaid source</a>
-                <a href="diagrams/${escapeHtml(entry.image)}" download>Download SVG</a>
-                <a href="${escapeHtml(repositoryTreeUrl(entry.sample))}" target="_blank" rel="noreferrer">Open sample</a>
+                <a href="diagrams/${escapeHtml(entry.image)}" target="_blank" rel="noreferrer">Open SVG</a>
+                <a href="diagrams/${escapeHtml(entry.png)}" download>Download PNG</a>
+                <a href="${escapeHtml(repositoryTreeUrl(entry.sample))}" target="_blank" rel="noreferrer">Runnable sample</a>
+                <a href="diagrams/${escapeHtml(entry.file)}">Diagram details</a>
               </div>
             </header>
-            <div class="markdown">${renderMarkdown(markdown)}</div>
+            <div class="markdown"><p>${escapeHtml(entry.description)}</p></div>
             <div class="diagram-stage">
-              <div class="diagram-viewport" data-zoom="1">
+              <div
+                class="diagram-viewport"
+                data-zoom="1"
+                tabindex="0"
+                aria-label="${escapeHtml(entry.title)} diagram viewport. Scroll to pan."
+              >
                 <img
                   class="diagram-image"
                   src="diagrams/${escapeHtml(entry.image)}"
                   alt="${escapeHtml(entry.title)} architecture diagram"
                   loading="lazy"
+                  decoding="async"
+                  draggable="false"
                 >
               </div>
             </div>
@@ -736,19 +721,16 @@
 
       async function main() {
         try {
-          const manifest = (await loadManifest()).map((entry) => ({
-            ...entry,
-            image: entry.image || `images/${entry.file.replace(/\.md$/, ".svg")}`
-          }));
+          const manifest = await loadCatalog();
           renderNav(manifest);
-          const cards = await Promise.all(manifest.map(loadDiagram));
+          const cards = manifest.map(loadDiagram);
           content.innerHTML = cards.join("");
           setupDiagramZoom();
         } catch (error) {
           content.innerHTML = `
             <div class="error">
               <strong>Could not load diagrams.</strong>
-              Open the repository version that includes diagrams/bundle.js, or serve this folder with a local HTTP server.
+              Open the repository version that includes diagrams/catalog.js, or serve this folder with a local HTTP server.
               Details: ${escapeHtml(error.message)}
             </div>
           `;

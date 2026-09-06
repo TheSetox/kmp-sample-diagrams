@@ -1,0 +1,503 @@
+{
+  "schemaVersion": 1,
+  "id": "09-modular-native",
+  "number": 9,
+  "title": "Modular Native",
+  "subtitle": "Baseline modular architecture. Each app target groups feature-specific native code inside the platform app. The feature boundaries shown here are conceptual; they are not separate build modules.",
+  "category": "Baselines",
+  "layout": {
+    "profile": "modular"
+  },
+  "groups": [
+    {
+      "id": "Android",
+      "title": ":androidApp",
+      "subtitle": "Android app module",
+      "kind": "application",
+      "layout": "horizontal",
+      "order": 1
+    },
+    {
+      "id": "AF1",
+      "parent": "Android",
+      "title": "Feature 1",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "AF2",
+      "parent": "Android",
+      "title": "Feature 2",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "IOS",
+      "title": "iosApp",
+      "subtitle": "iOS Xcode target",
+      "kind": "application",
+      "layout": "horizontal",
+      "order": 2
+    },
+    {
+      "id": "IF1",
+      "parent": "IOS",
+      "title": "Feature 1",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "IF2",
+      "parent": "IOS",
+      "title": "Feature 2",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "Desktop",
+      "title": ":desktopApp",
+      "subtitle": "Desktop app module",
+      "kind": "application",
+      "layout": "horizontal",
+      "order": 3
+    },
+    {
+      "id": "DF1",
+      "parent": "Desktop",
+      "title": "Feature 1",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "DF2",
+      "parent": "Desktop",
+      "title": "Feature 2",
+      "subtitle": "app-owned code",
+      "kind": "conceptual",
+      "layout": "vertical",
+      "order": 2
+    }
+  ],
+  "nodes": [
+    {
+      "id": "AF1UI",
+      "parent": "AF1",
+      "title": "Feature One UI content",
+      "subtitle": "MainActivity.kt · TextView",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "MainActivity.kt"
+      ]
+    },
+    {
+      "id": "AF1VM",
+      "parent": "AF1",
+      "title": "HomeViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.kt"
+      ]
+    },
+    {
+      "id": "AF1Repo",
+      "parent": "AF1",
+      "title": "TaskRepository.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 3,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "AF1Source",
+      "parent": "AF1",
+      "title": "TaskDataSource.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 4,
+      "sourceRefs": [
+        "TaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "AF2UI",
+      "parent": "AF2",
+      "title": "Feature Two UI content",
+      "subtitle": "MainActivity.kt · TextView",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "MainActivity.kt"
+      ]
+    },
+    {
+      "id": "AF2VM",
+      "parent": "AF2",
+      "title": "DetailsViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "DetailsViewModel.kt"
+      ]
+    },
+    {
+      "id": "AF2Repo",
+      "parent": "AF2",
+      "title": "DetailsRepository.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 3,
+      "sourceRefs": [
+        "DetailsRepository.kt"
+      ]
+    },
+    {
+      "id": "AF2Source",
+      "parent": "AF2",
+      "title": "DetailsDataSource.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 4,
+      "sourceRefs": [
+        "DetailsDataSource.kt"
+      ]
+    },
+    {
+      "id": "IF1UI",
+      "parent": "IF1",
+      "title": "Feature One UI content",
+      "subtitle": "ContentView.swift · SwiftUI",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "ContentView.swift"
+      ]
+    },
+    {
+      "id": "IF1VM",
+      "parent": "IF1",
+      "title": "HomeViewModel.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.swift"
+      ]
+    },
+    {
+      "id": "IF1Repo",
+      "parent": "IF1",
+      "title": "TaskRepository.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 3,
+      "sourceRefs": [
+        "TaskRepository.swift"
+      ]
+    },
+    {
+      "id": "IF1Source",
+      "parent": "IF1",
+      "title": "TaskDataSource.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 4,
+      "sourceRefs": [
+        "TaskDataSource.swift"
+      ]
+    },
+    {
+      "id": "IF2UI",
+      "parent": "IF2",
+      "title": "Feature Two UI content",
+      "subtitle": "ContentView.swift · SwiftUI",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "ContentView.swift"
+      ]
+    },
+    {
+      "id": "IF2VM",
+      "parent": "IF2",
+      "title": "DetailsViewModel.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "DetailsViewModel.swift"
+      ]
+    },
+    {
+      "id": "IF2Repo",
+      "parent": "IF2",
+      "title": "DetailsRepository.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 3,
+      "sourceRefs": [
+        "DetailsRepository.swift"
+      ]
+    },
+    {
+      "id": "IF2Source",
+      "parent": "IF2",
+      "title": "DetailsDataSource.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 4,
+      "sourceRefs": [
+        "DetailsDataSource.swift"
+      ]
+    },
+    {
+      "id": "DF1UI",
+      "parent": "DF1",
+      "title": "Feature One UI content",
+      "subtitle": "Main.kt · Compose Desktop",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "Main.kt"
+      ]
+    },
+    {
+      "id": "DF1VM",
+      "parent": "DF1",
+      "title": "HomeViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.kt"
+      ]
+    },
+    {
+      "id": "DF1Repo",
+      "parent": "DF1",
+      "title": "TaskRepository.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 3,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "DF1Source",
+      "parent": "DF1",
+      "title": "TaskDataSource.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 4,
+      "sourceRefs": [
+        "TaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "DF2UI",
+      "parent": "DF2",
+      "title": "Feature Two UI content",
+      "subtitle": "Main.kt · Compose Desktop",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "Main.kt"
+      ]
+    },
+    {
+      "id": "DF2VM",
+      "parent": "DF2",
+      "title": "DetailsViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "DetailsViewModel.kt"
+      ]
+    },
+    {
+      "id": "DF2Repo",
+      "parent": "DF2",
+      "title": "DetailsRepository.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 3,
+      "sourceRefs": [
+        "DetailsRepository.kt"
+      ]
+    },
+    {
+      "id": "DF2Source",
+      "parent": "DF2",
+      "title": "DetailsDataSource.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 4,
+      "sourceRefs": [
+        "DetailsDataSource.kt"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "AF1UI-to-AF1VM",
+      "from": "AF1UI",
+      "to": "AF1VM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AF1VM-to-AF1Repo",
+      "from": "AF1VM",
+      "to": "AF1Repo",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AF1Repo-to-AF1Source",
+      "from": "AF1Repo",
+      "to": "AF1Source",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AF2UI-to-AF2VM",
+      "from": "AF2UI",
+      "to": "AF2VM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AF2VM-to-AF2Repo",
+      "from": "AF2VM",
+      "to": "AF2Repo",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AF2Repo-to-AF2Source",
+      "from": "AF2Repo",
+      "to": "AF2Source",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IF1UI-to-IF1VM",
+      "from": "IF1UI",
+      "to": "IF1VM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IF1VM-to-IF1Repo",
+      "from": "IF1VM",
+      "to": "IF1Repo",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IF1Repo-to-IF1Source",
+      "from": "IF1Repo",
+      "to": "IF1Source",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IF2UI-to-IF2VM",
+      "from": "IF2UI",
+      "to": "IF2VM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IF2VM-to-IF2Repo",
+      "from": "IF2VM",
+      "to": "IF2Repo",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IF2Repo-to-IF2Source",
+      "from": "IF2Repo",
+      "to": "IF2Source",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DF1UI-to-DF1VM",
+      "from": "DF1UI",
+      "to": "DF1VM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DF1VM-to-DF1Repo",
+      "from": "DF1VM",
+      "to": "DF1Repo",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DF1Repo-to-DF1Source",
+      "from": "DF1Repo",
+      "to": "DF1Source",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DF2UI-to-DF2VM",
+      "from": "DF2UI",
+      "to": "DF2VM",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DF2VM-to-DF2Repo",
+      "from": "DF2VM",
+      "to": "DF2Repo",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DF2Repo-to-DF2Source",
+      "from": "DF2Repo",
+      "to": "DF2Source",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    }
+  ]
+}

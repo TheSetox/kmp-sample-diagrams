@@ -20,7 +20,7 @@ function safeRelativePath(value, field) {
 
 const siteFiles = new Set([
   "index.html",
-  "diagrams/bundle.js",
+  "diagrams/catalog.js",
   "diagrams/manifest.json",
 ]);
 
@@ -28,10 +28,38 @@ for (const [index, entry] of manifest.entries()) {
   if (!entry || typeof entry !== "object") {
     throw new Error(`Manifest entry ${index + 1} must be an object.`);
   }
-  const source = safeRelativePath(entry.file, `entry ${index + 1} file`);
-  const image = safeRelativePath(entry.image, `entry ${index + 1} image`);
-  siteFiles.add(`diagrams/${source}`);
-  siteFiles.add(`diagrams/${image}`);
+  for (const field of ["file", "spec", "image", "preview", "png", "previewPng"]) {
+    const asset = safeRelativePath(entry[field], `entry ${index + 1} ${field}`);
+    siteFiles.add(`diagrams/${asset}`);
+  }
+}
+
+const fontsDir = path.join(diagramsDir, "fonts");
+if (!fs.existsSync(fontsDir)) {
+  throw new Error("Pages input is missing diagrams/fonts.");
+} else {
+  const fontsStat = fs.lstatSync(fontsDir);
+  if (!fontsStat.isDirectory() || fontsStat.isSymbolicLink()) {
+    throw new Error("diagrams/fonts must be a regular directory.");
+  }
+  const pending = [fontsDir];
+  while (pending.length > 0) {
+    const directory = pending.pop();
+    for (const name of fs.readdirSync(directory)) {
+      const fontPath = path.join(directory, name);
+      const fontStat = fs.lstatSync(fontPath);
+      if (fontStat.isSymbolicLink()) {
+        throw new Error(`Pages input cannot be a symbolic link: ${path.relative(repoRoot, fontPath)}`);
+      }
+      if (fontStat.isDirectory()) {
+        pending.push(fontPath);
+      } else if (fontStat.isFile()) {
+        siteFiles.add(path.relative(repoRoot, fontPath).split(path.sep).join("/"));
+      } else {
+        throw new Error(`Pages font input must be a regular file: ${path.relative(repoRoot, fontPath)}`);
+      }
+    }
+  }
 }
 
 fs.rmSync(outputDir, { recursive: true, force: true });

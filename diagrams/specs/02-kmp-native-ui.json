@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "id": "02-kmp-native-ui",
+  "number": 2,
+  "title": "KMP Native UI",
+  "subtitle": "Shared Kotlin logic is used by every app, while each platform keeps its own native UI.",
+  "category": "Main KMP",
+  "layout": {
+    "profile": "shared-stack"
+  },
+  "groups": [
+    {
+      "id": "Android",
+      "title": ":androidApp",
+      "subtitle": "Android app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "IOS",
+      "title": "iosApp",
+      "subtitle": "iOS Xcode target",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "Desktop",
+      "title": ":desktopApp",
+      "subtitle": "Desktop app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 3
+    },
+    {
+      "id": "KMP",
+      "title": ":sharedLogic",
+      "subtitle": "KMP library module",
+      "kind": "shared",
+      "layout": "vertical",
+      "order": 4
+    }
+  ],
+  "nodes": [
+    {
+      "id": "AEntry",
+      "parent": "Android",
+      "title": "MainActivity.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "MainActivity.kt"
+      ]
+    },
+    {
+      "id": "AUI",
+      "parent": "Android",
+      "title": "Android TextView UI",
+      "subtitle": "created in MainActivity.kt",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "MainActivity.kt"
+      ]
+    },
+    {
+      "id": "IEntry",
+      "parent": "IOS",
+      "title": "SampleApp.swift",
+      "subtitle": "SwiftUI app",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "SampleApp.swift"
+      ]
+    },
+    {
+      "id": "IUI",
+      "parent": "IOS",
+      "title": "ContentView.swift",
+      "subtitle": "SwiftUI view",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "ContentView.swift"
+      ]
+    },
+    {
+      "id": "DEntry",
+      "parent": "Desktop",
+      "title": "Main.kt",
+      "subtitle": "main()",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "Main.kt"
+      ]
+    },
+    {
+      "id": "DUI",
+      "parent": "Desktop",
+      "title": "Compose Desktop UI",
+      "subtitle": "implemented in Main.kt",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "Main.kt"
+      ]
+    },
+    {
+      "id": "VM",
+      "parent": "KMP",
+      "title": "HomeViewModel.kt",
+      "subtitle": "shared logic coordinator",
+      "kind": "shared",
+      "order": 1,
+      "sourceRefs": [
+        "HomeViewModel.kt"
+      ]
+    },
+    {
+      "id": "UseCase",
+      "parent": "KMP",
+      "title": "GetTasksUseCase.kt",
+      "subtitle": "business rules",
+      "kind": "shared",
+      "order": 2,
+      "sourceRefs": [
+        "GetTasksUseCase.kt"
+      ]
+    },
+    {
+      "id": "Repository",
+      "parent": "KMP",
+      "title": "TaskRepository.kt",
+      "subtitle": "concrete repository",
+      "kind": "shared",
+      "order": 3,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "DataSource",
+      "parent": "KMP",
+      "title": "TaskDataSource.kt",
+      "subtitle": "data source",
+      "kind": "shared",
+      "order": 4,
+      "sourceRefs": [
+        "TaskDataSource.kt"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "AEntry-to-AUI",
+      "from": "AEntry",
+      "to": "AUI",
+      "label": "renders",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IEntry-to-IUI",
+      "from": "IEntry",
+      "to": "IUI",
+      "label": "renders",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DEntry-to-DUI",
+      "from": "DEntry",
+      "to": "DUI",
+      "label": "renders",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "VM-to-UseCase",
+      "from": "VM",
+      "to": "UseCase",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "UseCase-to-Repository",
+      "from": "UseCase",
+      "to": "Repository",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "Repository-to-DataSource",
+      "from": "Repository",
+      "to": "DataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DUI-to-KMP",
+      "from": "DUI",
+      "to": "KMP",
+      "label": "calls shared logic",
+      "route": "orthogonal"
+    },
+    {
+      "id": "IUI-to-KMP",
+      "from": "IUI",
+      "to": "KMP",
+      "label": "calls shared logic",
+      "route": "orthogonal"
+    },
+    {
+      "id": "AUI-to-KMP",
+      "from": "AUI",
+      "to": "KMP",
+      "label": "calls shared logic",
+      "route": "orthogonal"
+    }
+  ]
+}

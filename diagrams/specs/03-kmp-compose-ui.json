@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "id": "03-kmp-compose-ui",
+  "number": 3,
+  "title": "KMP Compose UI",
+  "subtitle": "All platform entry points are separate app targets. Compose UI is shared, while ViewModel, repository, and data source logic stay native.",
+  "category": "Main KMP",
+  "layout": {
+    "profile": "shared-stack"
+  },
+  "groups": [
+    {
+      "id": "Android",
+      "title": ":androidApp",
+      "subtitle": "Android app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 1
+    },
+    {
+      "id": "IOS",
+      "title": "iosApp",
+      "subtitle": "iOS Xcode target",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 2
+    },
+    {
+      "id": "Desktop",
+      "title": ":desktopApp",
+      "subtitle": "Desktop app module",
+      "kind": "application",
+      "layout": "vertical",
+      "order": 3
+    },
+    {
+      "id": "KMP",
+      "title": ":shared",
+      "subtitle": "KMP library module",
+      "kind": "shared",
+      "layout": "vertical",
+      "order": 4
+    }
+  ],
+  "nodes": [
+    {
+      "id": "AEntry",
+      "parent": "Android",
+      "title": "MainActivity.kt",
+      "subtitle": "platform host",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "MainActivity.kt"
+      ]
+    },
+    {
+      "id": "AVM",
+      "parent": "Android",
+      "title": "HomeViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.kt"
+      ]
+    },
+    {
+      "id": "ARepository",
+      "parent": "Android",
+      "title": "TaskRepository.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 3,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "ADataSource",
+      "parent": "Android",
+      "title": "TaskDataSource.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 4,
+      "sourceRefs": [
+        "TaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "IEntry",
+      "parent": "IOS",
+      "title": "ContentView.swift",
+      "subtitle": "platform host",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "ContentView.swift"
+      ]
+    },
+    {
+      "id": "IVM",
+      "parent": "IOS",
+      "title": "HomeViewModel.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.swift"
+      ]
+    },
+    {
+      "id": "IRepository",
+      "parent": "IOS",
+      "title": "TaskRepository.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 3,
+      "sourceRefs": [
+        "TaskRepository.swift"
+      ]
+    },
+    {
+      "id": "IDataSource",
+      "parent": "IOS",
+      "title": "TaskDataSource.swift",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 4,
+      "sourceRefs": [
+        "TaskDataSource.swift"
+      ]
+    },
+    {
+      "id": "DEntry",
+      "parent": "Desktop",
+      "title": "Main.kt",
+      "subtitle": "platform host",
+      "kind": "platform",
+      "order": 1,
+      "sourceRefs": [
+        "Main.kt"
+      ]
+    },
+    {
+      "id": "DVM",
+      "parent": "Desktop",
+      "title": "HomeViewModel.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 2,
+      "sourceRefs": [
+        "HomeViewModel.kt"
+      ]
+    },
+    {
+      "id": "DRepository",
+      "parent": "Desktop",
+      "title": "TaskRepository.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 3,
+      "sourceRefs": [
+        "TaskRepository.kt"
+      ]
+    },
+    {
+      "id": "DDataSource",
+      "parent": "Desktop",
+      "title": "TaskDataSource.kt",
+      "subtitle": "",
+      "kind": "platform",
+      "order": 4,
+      "sourceRefs": [
+        "TaskDataSource.kt"
+      ]
+    },
+    {
+      "id": "App",
+      "parent": "KMP",
+      "title": "App.kt",
+      "subtitle": "Compose UI",
+      "kind": "shared",
+      "order": 1,
+      "sourceRefs": [
+        "App.kt"
+      ]
+    },
+    {
+      "id": "State",
+      "parent": "KMP",
+      "title": "HomeUiState",
+      "subtitle": "defined in App.kt",
+      "kind": "shared",
+      "order": 2,
+      "sourceRefs": [
+        "App.kt"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "AEntry-to-AVM",
+      "from": "AEntry",
+      "to": "AVM",
+      "label": "creates + refreshes",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "AVM-to-ARepository",
+      "from": "AVM",
+      "to": "ARepository",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "ARepository-to-ADataSource",
+      "from": "ARepository",
+      "to": "ADataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IEntry-to-IVM",
+      "from": "IEntry",
+      "to": "IVM",
+      "label": "creates + refreshes",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IVM-to-IRepository",
+      "from": "IVM",
+      "to": "IRepository",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "IRepository-to-IDataSource",
+      "from": "IRepository",
+      "to": "IDataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DEntry-to-DVM",
+      "from": "DEntry",
+      "to": "DVM",
+      "label": "creates + refreshes",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DVM-to-DRepository",
+      "from": "DVM",
+      "to": "DRepository",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DRepository-to-DDataSource",
+      "from": "DRepository",
+      "to": "DDataSource",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "App-to-State",
+      "from": "App",
+      "to": "State",
+      "label": "renders",
+      "route": "straight",
+      "fromAnchor": "bottom",
+      "toAnchor": "top"
+    },
+    {
+      "id": "DEntry-to-KMP",
+      "from": "DEntry",
+      "to": "KMP",
+      "label": "passes state + refresh callback",
+      "route": "orthogonal"
+    },
+    {
+      "id": "IEntry-to-KMP",
+      "from": "IEntry",
+      "to": "KMP",
+      "label": "passes state + refresh callback",
+      "route": "orthogonal"
+    },
+    {
+      "id": "AEntry-to-KMP",
+      "from": "AEntry",
+      "to": "KMP",
+      "label": "passes state + refresh callback",
+      "route": "orthogonal"
+    }
+  ]
+}
