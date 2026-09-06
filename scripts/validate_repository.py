@@ -99,8 +99,8 @@ NODE_KINDS = {"application", "conceptual", "platform", "shared"}
 GROUP_LAYOUTS = {"vertical", "horizontal"}
 EDGE_ROUTES = {"straight", "orthogonal"}
 ANCHORS = {"top", "right", "bottom", "left"}
-FULL_DESIGN = "engineering-doc-v2"
-PREVIEW_DESIGN = "readme-preview-v2"
+FULL_DESIGN = "engineering-doc-v3"
+PREVIEW_DESIGN = "readme-preview-v3"
 
 IGNORED_DIRECTORY_NAMES = {
     ".git",
@@ -1180,6 +1180,33 @@ def point_is_on_anchor(
     return False
 
 
+def point_anchor_sides(
+    point: tuple[float, float], bounds: list[float]
+) -> set[str]:
+    return {
+        anchor
+        for anchor in ANCHORS
+        if point_is_on_anchor(point, bounds, anchor)
+    }
+
+
+def point_is_outside_anchor(
+    point: tuple[float, float], bounds: list[float], anchor: str
+) -> bool:
+    x, y, width, height = bounds
+    point_x, point_y = point
+    tolerance = 0.11
+    if anchor == "top":
+        return point_y < y - tolerance
+    if anchor == "right":
+        return point_x > x + width + tolerance
+    if anchor == "bottom":
+        return point_y > y + height + tolerance
+    if anchor == "left":
+        return point_x < x - tolerance
+    return False
+
+
 def validate_svg(
     validator: Validator,
     path: Path,
@@ -1375,6 +1402,38 @@ def validate_svg(
                 section,
                 f"{relative(path)} edge {edge_id!r} must end on its {to_anchor} target anchor",
             )
+        if source_bounds is not None:
+            source_anchor_sides = point_anchor_sides(path_points[0], source_bounds)
+            validator.require(
+                bool(source_anchor_sides),
+                section,
+                f"{relative(path)} edge {edge_id!r} must start on its source boundary",
+            )
+            if source_anchor_sides:
+                validator.require(
+                    any(
+                        point_is_outside_anchor(path_points[1], source_bounds, anchor)
+                        for anchor in source_anchor_sides
+                    ),
+                    section,
+                    f"{relative(path)} edge {edge_id!r} first segment must leave the source box",
+                )
+        if target_bounds is not None:
+            target_anchor_sides = point_anchor_sides(path_points[-1], target_bounds)
+            validator.require(
+                bool(target_anchor_sides),
+                section,
+                f"{relative(path)} edge {edge_id!r} must end on its target boundary",
+            )
+            if target_anchor_sides:
+                validator.require(
+                    any(
+                        point_is_outside_anchor(path_points[-2], target_bounds, anchor)
+                        for anchor in target_anchor_sides
+                    ),
+                    section,
+                    f"{relative(path)} edge {edge_id!r} final segment must approach the target box from outside",
+                )
         validator.require(len(path_points) == len(route_points), section, f"{relative(path)} edge {edge_id!r} path and route-point counts must match")
         if len(path_points) == len(route_points):
             offset_x = path_points[0][0] - route_points[0][0]

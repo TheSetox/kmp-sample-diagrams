@@ -13,8 +13,8 @@ const manifestPath = path.join(diagramsDir, "manifest.json");
 const rendererPath = fileURLToPath(import.meta.url);
 const checkOnly = process.argv.includes("--check");
 
-const DESIGN_FULL = "engineering-doc-v2";
-const DESIGN_PREVIEW = "readme-preview-v2";
+const DESIGN_FULL = "engineering-doc-v3";
+const DESIGN_PREVIEW = "readme-preview-v3";
 const MAX_GRAPH_WIDTH = 980;
 const OUTER_GRAPH_PADDING = 36;
 const ROOT_GAP = 38;
@@ -36,22 +36,25 @@ const EDGE_LABEL_FONT_SIZE = 16;
 const EDGE_LABEL_LINE_HEIGHT = 18;
 
 const COLORS = {
-  canvas: "#F6F8FB",
-  canvasPreview: "#F8FAFC",
-  ink: "#17324A",
-  text: "#263B50",
-  muted: "#667B8E",
-  faint: "#8B9AAA",
-  divider: "#D8E0E8",
-  arrow: "#294C68",
-  applicationFill: "#FFF8E9",
-  applicationStroke: "#C78321",
-  platformFill: "#EDF6FC",
-  platformStroke: "#4B83AA",
-  sharedFill: "#F3EEFF",
-  sharedStroke: "#7655B4",
-  conceptualFill: "#F8FBFD",
-  conceptualStroke: "#8DA5B8",
+  canvas: "#FFFFFF",
+  canvasPreview: "#FFFFFF",
+  ink: "#14283B",
+  muted: "#5F6E7C",
+  faint: "#6A7782",
+  divider: "#E4E8EC",
+  arrow: "#243F57",
+  applicationFill: "#FFF9F0",
+  applicationNodeFill: "#FFFEFC",
+  applicationStroke: "#A86416",
+  platformFill: "#F5FAFD",
+  platformNodeFill: "#FFFFFF",
+  platformStroke: "#3A7197",
+  sharedFill: "#FAF8FF",
+  sharedNodeFill: "#FFFFFF",
+  sharedStroke: "#7255AA",
+  conceptualFill: "#FBFCFD",
+  conceptualNodeFill: "#FFFFFF",
+  conceptualStroke: "#647786",
 };
 
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
@@ -479,19 +482,31 @@ function kindLabel(kind) {
 
 function styleForKind(kind, isGroup) {
   if (kind === "application") {
-    return { fill: COLORS.applicationFill, stroke: COLORS.applicationStroke, dash: "" };
+    return {
+      fill: isGroup ? COLORS.applicationFill : COLORS.applicationNodeFill,
+      stroke: COLORS.applicationStroke,
+      dash: "",
+    };
   }
   if (kind === "shared") {
-    return { fill: COLORS.sharedFill, stroke: COLORS.sharedStroke, dash: "" };
+    return {
+      fill: isGroup ? COLORS.sharedFill : COLORS.sharedNodeFill,
+      stroke: COLORS.sharedStroke,
+      dash: "",
+    };
   }
   if (kind === "conceptual") {
     return {
-      fill: COLORS.conceptualFill,
+      fill: isGroup ? COLORS.conceptualFill : COLORS.conceptualNodeFill,
       stroke: COLORS.conceptualStroke,
       dash: isGroup ? ' stroke-dasharray="7 6"' : "",
     };
   }
-  return { fill: COLORS.platformFill, stroke: COLORS.platformStroke, dash: "" };
+  return {
+    fill: isGroup ? COLORS.platformFill : COLORS.platformNodeFill,
+    stroke: COLORS.platformStroke,
+    dash: "",
+  };
 }
 
 function anchorPoint(geometry, anchor, counterpart) {
@@ -625,7 +640,12 @@ function routeEdge(edge, scene, edgeIndex, crossIndex, orthogonalIndex) {
       const previous = points[index - 1];
       return Math.abs(point.x - previous.x) <= 0.2 || Math.abs(point.y - previous.y) <= 0.2;
     });
-    if (!orthogonal) fail(edge.id + " has waypoints that create a diagonal segment.");
+    if (!orthogonal) {
+      fail(
+        edge.id + " has waypoints that create a diagonal segment: " +
+        JSON.stringify({ source, waypoints: specifiedWaypoints, target }),
+      );
+    }
     return points;
   }
 
@@ -889,7 +909,7 @@ function fontStyle() {
     '@font-face{font-family:"Inter";font-style:normal;font-weight:600;src:url("data:font/woff2;base64,',
     semiboldWoff2,
     '") format("woff2");}',
-    'text{font-family:"Inter","Segoe UI",Arial,sans-serif;}',
+    'text{font-family:"Inter","Segoe UI",Arial,sans-serif;font-kerning:normal;font-feature-settings:"cv02","cv03","cv04","cv11";}',
   ].join("");
 }
 
@@ -904,7 +924,7 @@ function renderGroupBackgrounds(scene, offsetX, offsetY) {
       return '<rect data-group-fill="' + escapeXml(item.id) + '" data-bounds="' +
         [x, y, item.width, item.height].join(",") + '" x="' + x + '" y="' + y +
         '" width="' + item.width + '" height="' + item.height + '" rx="' +
-        (item.depth === 0 ? 16 : 13) + '" fill="' + style.fill + '" stroke="none"/>';
+        (item.depth === 0 ? 10 : 8) + '" fill="' + style.fill + '" stroke="none"/>';
     })
     .join("");
 }
@@ -923,29 +943,29 @@ function renderGroupForegrounds(scene, offsetX, offsetY) {
       const titleY = y + 29;
       const headerKind = kindLabel(item.kind);
       const headerCollision =
-        estimatedWidth(titleLines[0] || "", 18, 600) +
-        estimatedWidth(headerKind, 10.5, 600) > item.width - 70;
+        estimatedWidth(titleLines[0] || "", 17, 600) +
+        estimatedWidth(headerKind, 10, 600) > item.width - 66;
       const kindY = headerCollision ? y + 52 : y + 27;
       const title = titleLines.map((line, index) =>
-        '<tspan x="' + (x + 24) + '" dy="' + (index === 0 ? 0 : 20) + '">' + escapeXml(line) + "</tspan>",
+        '<tspan x="' + (x + 20) + '" dy="' + (index === 0 ? 0 : 20) + '">' + escapeXml(line) + "</tspan>",
       ).join("");
       const subtitleY = titleY + titleLines.length * 20 + 4;
       const subtitle = subtitleLines.map((line, index) =>
-        '<tspan x="' + (x + 24) + '" dy="' + (index === 0 ? 0 : 17) + '">' + escapeXml(line) + "</tspan>",
+        '<tspan x="' + (x + 20) + '" dy="' + (index === 0 ? 0 : 17) + '">' + escapeXml(line) + "</tspan>",
       ).join("");
       return '<g data-group-id="' + escapeXml(item.id) + '">' +
         '<rect x="' + x + '" y="' + y + '" width="' + item.width + '" height="' + item.height +
-        '" rx="' + (item.depth === 0 ? 16 : 13) + '" fill="none" stroke="' + style.stroke +
-        '" stroke-width="' + (item.depth === 0 ? 1.8 : 1.4) + '"' + style.dash + '/>' +
+        '" rx="' + (item.depth === 0 ? 10 : 8) + '" fill="none" stroke="' + style.stroke +
+        '" stroke-width="' + (item.depth === 0 ? 1.25 : 1.1) + '"' + style.dash + '/>' +
         '<line x1="' + (x + 1) + '" y1="' + (y + headerHeight - 9) + '" x2="' +
         (x + item.width - 1) + '" y2="' + (y + headerHeight - 9) + '" stroke="' +
-        style.stroke + '" stroke-opacity=".22"/>' +
-        '<text x="' + (x + 24) + '" y="' + titleY + '" font-size="18" font-weight="600" fill="' +
-        COLORS.text + '">' + title + '</text>' +
-        (subtitle ? '<text x="' + (x + 24) + '" y="' + subtitleY +
+        style.stroke + '" stroke-opacity=".17"/>' +
+        '<text x="' + (x + 20) + '" y="' + titleY + '" font-size="17" font-weight="600" fill="' +
+        style.stroke + '">' + title + '</text>' +
+        (subtitle ? '<text x="' + (x + 20) + '" y="' + subtitleY +
           '" font-size="12.5" font-weight="400" fill="' + COLORS.muted + '">' + subtitle + '</text>' : "") +
-        '<text x="' + (x + item.width - 22) + '" y="' + kindY +
-        '" text-anchor="end" font-size="10.5" font-weight="600" letter-spacing="1.1" fill="' +
+        '<text x="' + (x + item.width - 18) + '" y="' + kindY +
+        '" text-anchor="end" font-size="10" font-weight="600" letter-spacing="1" fill="' +
         style.stroke + '">' + headerKind + '</text></g>';
     })
     .join("");
@@ -965,24 +985,22 @@ function renderNodes(scene, offsetX, offsetY) {
         (titleLines.length && subtitleLines.length ? 6 : 0);
       let cursorY = y + (item.height - contentHeight) / 2 + 15;
       const title = titleLines.map((line) => {
-        const markup = '<tspan x="' + (x + 22) + '" y="' + round(cursorY) + '">' + escapeXml(line) + "</tspan>";
+        const markup = '<tspan x="' + (x + 20) + '" y="' + round(cursorY) + '">' + escapeXml(line) + "</tspan>";
         cursorY += 21;
         return markup;
       }).join("");
       if (titleLines.length && subtitleLines.length) cursorY += 5;
       const subtitle = subtitleLines.map((line) => {
-        const markup = '<tspan x="' + (x + 22) + '" y="' + round(cursorY) + '">' + escapeXml(line) + "</tspan>";
+        const markup = '<tspan x="' + (x + 20) + '" y="' + round(cursorY) + '">' + escapeXml(line) + "</tspan>";
         cursorY += 18;
         return markup;
       }).join("");
       return '<g data-node-id="' + escapeXml(item.id) + '" data-bounds="' +
         [x, y, item.width, item.height].join(",") + '">' +
         '<rect x="' + x + '" y="' + y + '" width="' + item.width + '" height="' + item.height +
-        '" rx="11" fill="' + style.fill + '" stroke="' + style.stroke + '" stroke-width="1.45"/>' +
-        '<rect x="' + x + '" y="' + y + '" width="5" height="' + item.height +
-        '" rx="2.5" fill="' + style.stroke + '"/>' +
-        '<text font-size="16.5" font-weight="600" fill="' + COLORS.text + '">' + title + '</text>' +
-        (subtitle ? '<text font-size="13.25" font-weight="400" fill="' + COLORS.muted + '">' +
+        '" rx="7" fill="' + style.fill + '" stroke="' + style.stroke + '" stroke-width="1.15"/>' +
+        '<text font-size="16.5" font-weight="600" fill="' + style.stroke + '">' + title + '</text>' +
+        (subtitle ? '<text font-size="13" font-weight="400" fill="' + COLORS.muted + '">' +
           subtitle + '</text>' : "") +
         '</g>';
     })
@@ -1082,20 +1100,22 @@ function legendMarkup(x, y) {
     ["App-owned layer", COLORS.conceptualFill, COLORS.conceptualStroke, ' stroke-dasharray="5 4"'],
   ];
   return '<g data-diagram-legend="true">' +
-    '<text x="' + x + '" y="' + y + '" font-size="10.5" font-weight="600" letter-spacing="1.2" fill="' +
+    '<rect x="' + (x - 18) + '" y="' + (y - 18) + '" width="448" height="116" rx="8" fill="#FFFFFF" stroke="' +
+    COLORS.divider + '" stroke-width="1"/>' +
+    '<text x="' + x + '" y="' + y + '" font-size="9.5" font-weight="600" letter-spacing="1.1" fill="' +
     COLORS.faint + '">VISUAL KEY</text>' +
     items.map((item, index) => {
       const itemX = x + (index % 2) * 222;
       const itemY = y + 25 + Math.floor(index / 2) * 31;
       return '<rect x="' + itemX + '" y="' + (itemY - 12) +
-        '" width="24" height="15" rx="4" fill="' + item[1] + '" stroke="' + item[2] +
-        '" stroke-width="1.25"' + item[3] + '/><text x="' + (itemX + 34) + '" y="' + itemY +
-        '" font-size="12" font-weight="400" fill="' + COLORS.muted + '">' + item[0] + "</text>";
+        '" width="24" height="15" rx="3" fill="' + item[1] + '" stroke="' + item[2] +
+        '" stroke-width="1.1"' + item[3] + '/><text x="' + (itemX + 34) + '" y="' + itemY +
+        '" font-size="11.5" font-weight="400" fill="' + COLORS.muted + '">' + item[0] + "</text>";
     }).join("") +
     '<path d="M' + x + " " + (y + 88) + "H" + (x + 24) +
     '" fill="none" stroke="' + COLORS.arrow + '" stroke-width="1.8" marker-end="url(#arrowhead)"/>' +
     '<text x="' + (x + 34) + '" y="' + (y + 92) +
-    '" font-size="12" font-weight="400" fill="' + COLORS.muted + '">Call / dependency</text></g>';
+    '" font-size="11.5" font-weight="400" fill="' + COLORS.muted + '">Call / dependency</text></g>';
 }
 
 function rootSvgOpen(width, height, titleId, descriptionId, design, fingerprint) {
@@ -1115,8 +1135,8 @@ function definitions() {
 function renderFull(spec, entry, scene, fingerprint) {
   const canvasWidth = Math.ceil(Math.max(1440, scene.width + 96));
   const graphOffsetX = Math.max(48, (canvasWidth - scene.width) / 2);
-  const headerHeight = 184;
-  const graphOffsetY = headerHeight + 34;
+  const headerHeight = 170;
+  const graphOffsetY = headerHeight + 30;
   const canvasHeight = Math.ceil(graphOffsetY + scene.height + 52);
   const titleId = "diagram-" + spec.id + "-title";
   const descriptionId = "diagram-" + spec.id + "-description";
@@ -1131,15 +1151,15 @@ function renderFull(spec, entry, scene, fingerprint) {
     '<desc id="' + descriptionId + '">' + escapeXml(spec.subtitle + " Solid arrows show calls or dependencies.") + '</desc>' +
     '<rect width="' + canvasWidth + '" height="' + canvasHeight + '" fill="' + COLORS.canvas + '"/>' +
     '<g data-document-header="true">' +
-    '<text x="54" y="34" font-size="10.5" font-weight="600" letter-spacing="1.4" fill="' + COLORS.faint +
+    '<text x="54" y="32" font-size="9.5" font-weight="600" letter-spacing="1.3" fill="' + COLORS.faint +
     '">KMP ARCHITECTURE · ' + escapeXml(String(spec.category).toUpperCase()) + '</text>' +
-    '<text x="54" y="78" font-size="34" font-weight="600" fill="' + COLORS.ink + '">' +
+    '<text x="54" y="72" font-size="30" font-weight="600" fill="' + COLORS.ink + '">' +
     escapeXml(number + " · " + spec.title) + '</text>' +
-    '<text x="54" y="108" font-size="15" font-weight="400" fill="' + COLORS.muted + '">' + subtitle + '</text>' +
-    '<text x="54" y="157" font-size="10.5" font-weight="600" letter-spacing=".8" fill="' + COLORS.faint + '">' +
+    '<text x="54" y="100" font-size="13.5" font-weight="400" fill="' + COLORS.muted + '">' + subtitle + '</text>' +
+    '<text x="54" y="145" font-size="9.5" font-weight="600" letter-spacing=".8" fill="' + COLORS.faint + '">' +
     escapeXml(String(entry.sample).toUpperCase()) + '</text>' +
     legendMarkup(canvasWidth - 500, 34) +
-    '<line x1="54" y1="183" x2="' + (canvasWidth - 54) + '" y2="183" stroke="' + COLORS.divider + '"/>' +
+    '<line x1="54" y1="169" x2="' + (canvasWidth - 54) + '" y2="169" stroke="' + COLORS.divider + '"/>' +
     '</g>' +
     renderGroupBackgrounds(scene, graphOffsetX, graphOffsetY) +
     renderEdges(spec, scene, graphOffsetX, graphOffsetY) +
